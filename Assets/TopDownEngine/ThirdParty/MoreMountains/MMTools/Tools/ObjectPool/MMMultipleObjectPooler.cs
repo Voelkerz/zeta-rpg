@@ -14,7 +14,7 @@ namespace MoreMountains.Tools
 	{
 		public GameObject GameObjectToPool;
 		public int PoolSize;
-		public bool PoolCanExpand = true;
+		public bool PoolCanExpand= true;
 		public bool Enabled = true;
 	}
 

@@ -23,9 +23,14 @@ GameObject:
   - component: {fileID: 2047682667220363316}
   - component: {fileID: 6655888292125232488}
   - component: {fileID: 1068762288307706388}
+  - component: {fileID: 6307023993358142217}
+  - component: {fileID: -6821237217940254746}
+  - component: {fileID: 440786688683200674}
+  - component: {fileID: -4695374559871838548}
+  - component: {fileID: -321630817042076091}
   m_Layer: 13
   m_Name: TankCreep
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +44,7 @@ Transform:
   m_GameObject: {fileID: 1101218314698529574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 1099367633842630824}
   m_Father: {fileID: 0}
@@ -158,8 +163,8 @@ MonoBehaviour:
   CharacterAnimator: {fileID: 0}
   UseDefaultMecanim: 1
   CharacterModel: {fileID: 1101434561911459818}
-  SendStateChangeEvents: 0
-  SendStateUpdateEvents: 0
+  SendStateChangeEvents: 1
+  SendStateUpdateEvents: 1
   AdditionalAbilityNodes: []
   CharacterBrain: {fileID: 0}
   OptimizeForMobile: 0
@@ -187,7 +192,7 @@ MonoBehaviour:
   ModelShouldFlip: 0
   ModelFlipValueLeft: {x: -1, y: 1, z: 1}
   ModelFlipValueRight: {x: 1, y: 1, z: 1}
-  ModelShouldRotate: 1
+  ModelShouldRotate: 0
   ModelRotationValueLeft: {x: 0, y: 180, z: 0}
   ModelRotationValueRight: {x: 0, y: 0, z: 0}
   ModelRotationSpeed: 0
@@ -219,14 +224,13 @@ MonoBehaviour:
   Movement: 0
   InputAuthorized: 1
   AnalogInput: 0
-  WalkSpeed: 6
+  WalkSpeed: 4
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
   Deceleration: 10
   InterpolateMovementSpeed: 0
-  WalkParticles:
-  - {fileID: 7867241509720986155}
+  WalkParticles: []
   TouchTheGroundParticles: []
   TouchTheGroundSfx: []
 --- !u!114 &6725236055416505758
@@ -236,7 +240,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101218314698529574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d103439fc2940e347937487a70ea01e3, type: 3}
   m_Name: 
@@ -259,7 +263,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101218314698529574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cde870ae7090b974bb115e88bfbf8320, type: 3}
   m_Name: 
@@ -353,7 +357,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec89e4158bf96841b9bc830fc5385ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  States: []
+  States:
+  - StateName: WaitAtStart
+    Actions:
+      array:
+      - {fileID: -4695374559871838548}
+    Transitions:
+      array:
+      - Decision: {fileID: -321630817042076091}
+        TrueState: Creep
+        FalseState: WaitAtStart
+  - StateName: Creep
+    Actions:
+      array:
+      - {fileID: 2047682667220363316}
+    Transitions:
+      array:
+      - Decision: {fileID: 0}
+        TrueState: 1
+        FalseState: 0
   BrainActive: 1
   TimeInThisState: 0
   Target: {fileID: 0}
@@ -563,10 +585,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81dc1a6e4b189d4bae2faab8a2a1a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CycleOption: 0
+  CycleOption: 2
   LoopInitialMovementDirection: 0
-  PathElements: []
+  PathElements:
+  - PathElementPosition: {x: 0, y: 0, z: 0}
+    Delay: 0
   MinDistanceToGoal: 0.1
+--- !u!114 &6307023993358142217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101218314698529574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713a7621405152840b50c815ea8e6a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartSfx: {fileID: 0}
+  AbilityInProgressSfx: {fileID: 0}
+  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  AbilityPermitted: 1
+  BlockingMovementStates: 
+  BlockingConditionStates: 
+  RotationMode: 1
+  ShouldRotateToFaceMovementDirection: 1
+  MovementRotationSpeed: 1
+  MovementRotatingModel: {fileID: 0}
+  RotateToFaceMovementDirectionSpeed: 10
+  AbsoluteThresholdMovement: 0.5
+  ModelDirection: {x: 0, y: 0, z: 0}
+  ModelAngles: {x: 0, y: 0, z: 0}
+  ShouldRotateToFaceWeaponDirection: 0
+  WeaponRotationSpeed: 0
+  WeaponRotatingModel: {fileID: 0}
+  RotateToFaceWeaponDirectionSpeed: 10
+  AbsoluteThresholdWeapon: 0.5
+--- !u!114 &-6821237217940254746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101218314698529574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72de0b0360096ea41a18d17864ecb963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoundsBasedOn: 1
+  LifeTime: 0
+--- !u!114 &440786688683200674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101218314698529574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f17d44664aac74987993137adf9a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4695374559871838548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101218314698529574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561ab803e1e9aa94ab096724696e5475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: DoNothing
+--- !u!114 &-321630817042076091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101218314698529574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21818f4def5bf646bec3d25770336cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: TimeInState
+  AfterTimeMin: 1
+  AfterTimeMax: 1
 --- !u!1 &1101434561911459818
 GameObject:
   m_ObjectHideFlags: 0
