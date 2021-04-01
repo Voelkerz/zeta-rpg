@@ -11779,8 +11779,8 @@ MonoBehaviour:
   AbilityPermitted: 1
   BlockingMovementStates: 
   BlockingConditionStates: 
-  MainInventoryName: KoalaMainInventory
-  WeaponInventoryName: KoalaWeaponInventory
+  MainInventoryName: MainInventory
+  WeaponInventoryName: WeaponInventory
   HotbarInventoryName: 
   WeaponRotationMode: 0
   AutoPickItems: []

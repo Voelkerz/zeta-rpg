@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum ResourceType {
-    Wood
-}
-
 public class ResourceSource : MonoBehaviour {
 
     public ResourceType type;
