@@ -9,7 +9,10 @@ TagManager:
   - Enemy
   - World
   - NoMask
-  - CreeperPath
+  - Resource
+  - Friendly
+  - ResourceSource
+  - Wood
   layers:
   - Default
   - TransparentFX
@@ -17,14 +20,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - DroppedResources
+  - ResourceSources
   - Obstacles
   - Ground
   - Player
   - ObstaclesDoors
   - NoPathfinding
-  - Enemies
+  - NPC
   - NoCollisions
   - Hole
   - MovingPlatform
