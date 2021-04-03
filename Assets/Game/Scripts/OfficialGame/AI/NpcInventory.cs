@@ -14,7 +14,7 @@ namespace ZetaGames.RPG {
 
         void Start() {
             // link to resource manager in scene
-            resourceManager = FindObjectOfType<ResourceManager>();
+            //resourceManager = FindObjectOfType<ResourceManager>();
         }
 
         void Update() {

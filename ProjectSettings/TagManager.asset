@@ -11,6 +11,8 @@ TagManager:
   - NoMask
   - Resource
   - Friendly
+  - ResourceSource
+  - Wood
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - Resource
+  - DroppedResources
+  - ResourceSources
   - Obstacles
   - Ground
   - Player

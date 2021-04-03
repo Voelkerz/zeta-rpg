@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 114029223409458306}
   - component: {fileID: 114366886109299466}
   - component: {fileID: 2578904003073367510}
-  - component: {fileID: 7219114753271980829}
-  m_Layer: 7
+  - component: {fileID: 4656451670903446178}
+  m_Layer: 6
   m_Name: WoodDropped
-  m_TagString: Resource
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &7219114753271980829
+--- !u!114 &4656451670903446178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021539432022318}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4968739561898144}
   - component: {fileID: 212519941297183702}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: WoodLogStack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8432326664576062394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Feedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 793731431198832622}
   - component: {fileID: 8063560708483998443}
   - component: {fileID: 8169511557060997880}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: PickedMMFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 5261182415094113939}
   - component: {fileID: 7887479068797439920}
   - component: {fileID: 3971600518697131567}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: LootMMFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

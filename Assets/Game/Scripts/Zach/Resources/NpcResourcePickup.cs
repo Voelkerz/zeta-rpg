@@ -16,9 +16,11 @@ namespace ZetaGames.RPG {
                 resourceManager.addResource(collision.gameObject.GetInstanceID(), resourceType, 1);
 
                 //debug
-                resourceList = resourceManager.getNpcResources(collision.gameObject.GetInstanceID());
+                /*
+                resourceList = resourceManager.getNpcInventory(collision.gameObject.GetInstanceID());
                 Debug.Log(collision.name + "'s Resources:");
                 printInventory();
+                */
                 //
 
                 Destroy(gameObject);

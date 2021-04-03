@@ -12,23 +12,26 @@ namespace ZetaGames.RPG {
     }
 
     public class ResourceManager : MonoBehaviour {
-        // A master list of NPCs that includes their unique ID and a list of owned resouces
+        // A master list of NPCs that includes their unique ID and a list of resouces in their inventory
         private Dictionary<int, Dictionary<ResourceType, int>> npcList = new Dictionary<int, Dictionary<ResourceType, int>>();
-        private Dictionary<ResourceType, int> resourceList;
+        private Dictionary<ResourceType, int> inventory;
         private GameObject[] initialNpcList;
 
 
         void Start() {
+            // Initialize on character instantiation instead
+            /*
             // find all friendly NPCs in scene and initialize their inventories
             initialNpcList = GameObject.FindGameObjectsWithTag("Friendly");
             foreach (GameObject npc in initialNpcList) {
-                npcList.Add(npc.GetInstanceID(), initializeNpcResources());
+                npcList.Add(npc.GetInstanceID(), initializeNpcInventory());
             }
+            */
         }
 
         public void addNPC(int id) {
             if (!npcList.ContainsKey(id)) {
-                npcList.Add(id, initializeNpcResources());
+                npcList.Add(id, initializeNpcInventory());
             }
         }
         
@@ -40,19 +43,19 @@ namespace ZetaGames.RPG {
             npcList[id][type] -= amount;
         }
 
-        public Dictionary<ResourceType, int> getNpcResources(int id) {
+        public Dictionary<ResourceType, int> getNpcInventory(int id) {
             if (npcList.ContainsKey(id)) {
                 return npcList[id];
             } else { return null; }
         }
 
-        public Dictionary<ResourceType, int> initializeNpcResources() {
-            resourceList = new Dictionary<ResourceType, int>();
-            resourceList.Add(ResourceType.Coin, 100);
-            resourceList.Add(ResourceType.Wood, 0);
-            resourceList.Add(ResourceType.Stone, 0);
-            resourceList.Add(ResourceType.Food, 0);
-            return resourceList;
+        public Dictionary<ResourceType, int> initializeNpcInventory() {
+            inventory = new Dictionary<ResourceType, int>();
+            inventory.Add(ResourceType.Coin, 100);
+            inventory.Add(ResourceType.Wood, 0);
+            inventory.Add(ResourceType.Stone, 0);
+            inventory.Add(ResourceType.Food, 0);
+            return inventory;
         }
     }
 }
