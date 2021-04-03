@@ -114,7 +114,7 @@ namespace ZetaGames.RPG {
         */
 
         private Collider2D FindNearestCollider(string tag, int layerMask) {             
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, layerMask);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 100f, layerMask);
             Collider2D nearestCollider = null;
 
             float minSqrDistance = Mathf.Infinity;
