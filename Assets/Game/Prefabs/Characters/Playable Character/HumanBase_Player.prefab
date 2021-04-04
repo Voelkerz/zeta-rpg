@@ -10884,6 +10884,9 @@ GameObject:
   - component: {fileID: 8858996235799578644}
   - component: {fileID: 8650563583249743862}
   - component: {fileID: 8911565529832309962}
+  - component: {fileID: 8914712978224712481}
+  - component: {fileID: 2453124540812688673}
+  - component: {fileID: 9131644862389175177}
   m_Layer: 10
   m_Name: PlayerModel
   m_TagString: Untagged
@@ -10970,9 +10973,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8861619401076638704}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 91b83942a92301949b1e0d318f032906, type: 2}
+  m_Controller: {fileID: 9100000, guid: d460b204b5c208944a9639862ed87ed4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -10981,6 +10984,52 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &8914712978224712481
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861619401076638704}
+  m_Enabled: 1
+  m_AgentTypeID: 1479372276
+  m_Radius: 0.2
+  m_Speed: 4
+  m_Acceleration: 100
+  avoidancePriority: 49
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.4
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2453124540812688673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861619401076638704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01e3e182b09c4a4a8b4a96662d109f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9131644862389175177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861619401076638704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b3345fef4f4bd4da40d824e6897964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8861759867816438638
 GameObject:
   m_ObjectHideFlags: 0
@@ -11002,10 +11051,8 @@ GameObject:
   - component: {fileID: 8892732184369566832}
   - component: {fileID: 8893335903872520192}
   - component: {fileID: 8893349774347975690}
-  - component: {fileID: -8036421803396054736}
-  - component: {fileID: 1544991329700505669}
   m_Layer: 10
-  m_Name: MiniDudePlayer
+  m_Name: HumanBase_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11070,8 +11117,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8, y: 0.8}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.875, y: 0.875}
+    newSize: {x: 0.875, y: 0.875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -11350,40 +11397,6 @@ MonoBehaviour:
   LayerOnDeath:
     _layerIndex: 0
   DeathMMFeedbacks: {fileID: 4656512233439735637}
---- !u!195 &-8036421803396054736
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8861759867816438638}
-  m_Enabled: 1
-  m_AgentTypeID: 1479372276
-  m_Radius: 0.2
-  m_Speed: 10
-  m_Acceleration: 100
-  avoidancePriority: 49
-  m_AngularSpeed: 0
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.4
-  m_BaseOffset: 0
-  m_WalkableMask: 1
-  m_ObstacleAvoidanceType: 4
---- !u!114 &1544991329700505669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8861759867816438638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b3345fef4f4bd4da40d824e6897964, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8861838821449137068
 GameObject:
   m_ObjectHideFlags: 0

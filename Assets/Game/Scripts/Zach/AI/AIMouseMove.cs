@@ -9,8 +9,6 @@ namespace ZetaGames.RPG {
 
         private void Start() {
             agent = GetComponent<NavMeshAgent>();
-            agent.updateUpAxis = false;
-            agent.updateRotation = false;
         }
 
         private void Update() {
@@ -19,17 +17,6 @@ namespace ZetaGames.RPG {
                 target.z = 0;
                 agent.destination = target;
             }
-
-            /*
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hitData = Physics2D.Raycast(new Vector2(worldPosition.x, worldPosition.y), Vector2.zero, 0);
-
-            if (hitData && Input.GetMouseButtonDown(0)) {
-                agent.SetDestination(hitData.point);
-                
-                Debug.Log("OnNavMesh: " + agent.isOnNavMesh + " || Destination: " + hitData.point);
-            }
-            */
         }
     }
 }
