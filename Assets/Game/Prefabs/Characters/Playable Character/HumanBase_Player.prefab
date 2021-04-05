@@ -11113,7 +11113,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 1479372276
   m_Radius: 0.2
-  m_Speed: 4
+  m_Speed: 10
   m_Acceleration: 100
   avoidancePriority: 49
   m_AngularSpeed: 0

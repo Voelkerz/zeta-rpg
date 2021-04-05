@@ -23557,8 +23557,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -25, y: -33, z: 0}
-  m_Size: {x: 50, y: 40, z: 1}
+  m_Origin: {x: -25, y: -24, z: 0}
+  m_Size: {x: 50, y: 31, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -29909,7 +29909,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8e2b2d65ec56ea14a99b8740a2f5daa9, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e808249d572cfa34499761eac0e76036, type: 2}
 --- !u!4 &2097624383
 Transform:
   m_ObjectHideFlags: 0
