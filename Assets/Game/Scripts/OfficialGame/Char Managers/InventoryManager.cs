@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class InventoryManager : MonoBehaviour {
+        // FOR NPCs ONLY
 
         private ResourceManager resourceManager;
         public Dictionary<ResourceType, int> inventory { get; set; }

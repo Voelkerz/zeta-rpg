@@ -705,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eadf2b19325a7d49bdc462d345689b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastKnownDirection: 0
 --- !u!1 &8861759867816438638
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +727,7 @@ GameObject:
   - component: {fileID: 8892615616697251978}
   - component: {fileID: 8892688718326210260}
   - component: {fileID: 8893349774347975690}
+  - component: {fileID: 5837703847994887746}
   - component: {fileID: 4084673734430014159}
   - component: {fileID: 5924651789295370861}
   - component: {fileID: 262487509212458871}
@@ -789,7 +791,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04}
+  m_Offset: {x: 0, y: -0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -800,7 +802,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.08}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!210 &8652838370513545174
 SortingGroup:
@@ -871,7 +873,7 @@ MonoBehaviour:
   PlayerID: 
   DirectionOnSpawn: 0
   CharacterAnimator: {fileID: 8911565529832309962}
-  UseDefaultMecanim: 1
+  UseDefaultMecanim: 0
   CharacterModel: {fileID: 8861619401076638704}
   SendStateChangeEvents: 1
   SendStateUpdateEvents: 1
@@ -1067,6 +1069,19 @@ MonoBehaviour:
   LayerOnDeath:
     _layerIndex: 0
   DeathMMFeedbacks: {fileID: 4656512233439735637}
+--- !u!114 &5837703847994887746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861759867816438638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414ea45f3b45a614880dc021c6f62f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  race: 0
 --- !u!114 &4084673734430014159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,8 +1118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ce35fc63c20654a8d4b21c0b15afb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Paused: 0
-  PrioritySort: 1
+  paused: 0
+  prioritySort: 1
 --- !u!114 &1604424283163727048
 MonoBehaviour:
   m_ObjectHideFlags: 0

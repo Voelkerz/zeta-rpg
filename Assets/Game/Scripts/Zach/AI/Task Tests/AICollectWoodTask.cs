@@ -11,6 +11,7 @@ namespace ZetaGames.RPG {
         private int layerMask;
         private bool lookingForWood = true;
         private TaskManager taskManager;
+        public int amountOfWoodToCollect = 5;
 
         private void Start() {
             // GET TASK MANAGER
@@ -21,13 +22,10 @@ namespace ZetaGames.RPG {
 
             // FOR TESTING
             startingPosition = transform.position;
-
-            // START LOOKING
-            //lookForWood();
         }
 
         private void Update() {
-            if (taskManager.TaskList.Count == 0 && lookingForWood) {
+            if (taskManager.taskList.Count == 0 && lookingForWood) {
                 lookForWood();
             }
         }
@@ -35,10 +33,10 @@ namespace ZetaGames.RPG {
         private void lookForWood() {
             // Am I looking for wood?
             if (lookingForWood) {
-                // Do I have enough wood already? (I want two wood)
-                if (inventory[ResourceType.Wood] < 2) {
+                // Do I have enough wood already?
+                if (inventory[ResourceType.Wood] < amountOfWoodToCollect) {
                     Debug.Log(name + ": I don't have enough wood");
-                    // Look for free wood on the ground or a tree if no free wood is found
+                    // Look for free wood on the ground first or a tree if no free wood is found
                     lookForDroppedWood();
                 } else {
                     if (lookingForWood) {
@@ -68,15 +66,18 @@ namespace ZetaGames.RPG {
             destinationCollider = FindNearestCollider(ResourceType.Wood.ToString(), layerMask);
             // If tree is found
             if (destinationCollider != null) {
-                taskManager.AddNavMeshAgentMoveTask(destinationCollider.gameObject.transform.position);
+                taskManager.AddNavMeshAgentMoveTask(destinationCollider.gameObject.transform.position + new Vector3(0, -1.3f));
+                
                 Debug.Log(name + ": I found a tree!");
 
-                /******************
-                 Add function to start
-                chopping tree down
-                 *********************/
+                FellTreeTask task = new FellTreeTask() {
+                    taskID = 1,
+                    priority = 1,
+                    charGameObject = gameObject,
+                    treeGameObject = destinationCollider.gameObject
+                };
 
-                lookingForWood = false;
+                taskManager.taskList.Add(task);
             } else {
                 taskManager.AddNavMeshAgentMoveTask(startingPosition);
                 Debug.Log(name + ": I couldn't find any trees");

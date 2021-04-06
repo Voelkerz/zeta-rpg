@@ -8,14 +8,14 @@ namespace ZetaGames.RPG {
 
         #region TaskManager Functionality
 
-        public List<Task> TaskList;
+        public List<Task> taskList;
 
         /*You can simply pause the TaskManager by toggling this bool, note this won't actually stop some things from happening.
         For example, a NavMeshAgent will keep moving to its last target but not the next one, you could handle this in your Tasks though I'm sure.
         Possibly re-organise how Update() handles the pausing mechanic. Possibly checking to see if the TaskManager is Paused, then call a Pause()
         method on the Task and handle it in the task. NOTE: In the HumanTasks.cs See NavMeshTask.Reset() for an idea. ;P
          */
-        public bool Paused = false;
+        public bool paused = false;
 
 
         /*This switches the sorting by priority on or off. This is evaluated at the END of the first Task in the list.
@@ -30,15 +30,15 @@ namespace ZetaGames.RPG {
         up these tasks. It's quite simple.
         */
 
-        public bool PrioritySort = true;
+        public bool prioritySort = true;
 
         void Awake() {
-            TaskList = new List<Task>();
+            taskList = new List<Task>();
         }
 
         void SortListByPriority() {
-            if (TaskList.Count > 0) {
-                TaskList = TaskList.OrderBy(x => x.priority).Reverse().ToList();
+            if (taskList.Count > 0) {
+                taskList = taskList.OrderBy(x => x.priority).Reverse().ToList();
             }
         }
 
@@ -46,32 +46,32 @@ namespace ZetaGames.RPG {
         It also calls OnTaskStart() and OnTaskEnd() at the appropriate times. */
         void ProcessList() {
             //If this Task decides it is invalid, then delete it.
-            if (TaskList[0].valid) {
+            if (taskList[0].valid) {
                 //If its not initialised, intialise it.
-                if (TaskList[0].initialised) {
+                if (taskList[0].initialised) {
                     //If the task isn't finished, execute it.
-                    if (!TaskList[0].Finished()) {
-                        if (TaskList[0].started == false) {
-                            TaskList[0].started = true;
-                            TaskList[0].OnTaskStart();
+                    if (!taskList[0].Finished()) {
+                        if (taskList[0].started == false) {
+                            taskList[0].started = true;
+                            taskList[0].OnTaskStart();
                         }
-                        TaskList[0].Execute();
-                    } else if (TaskList[0].Finished()) {
+                        taskList[0].Execute();
+                    } else if (taskList[0].Finished()) {
                         Debug.Log("TaskManager - Task finished, removing!");
                         //Call OnTaskEnd() and then remove the task.
-                        TaskList[0].OnTaskEnd();
-                        TaskList.RemoveAt(0);
+                        taskList[0].OnTaskEnd();
+                        taskList.RemoveAt(0);
                         //If PrioritySort is on, sort the list now, before we start the next task.
-                        if (PrioritySort) {
+                        if (prioritySort) {
                             SortListByPriority();
                         }
                     }
                 } else {
-                    TaskList[0].Initialise();
+                    taskList[0].Initialise();
                 }
-            } else if (!TaskList[0].valid) {
+            } else if (!taskList[0].valid) {
                 Debug.LogWarning("TaskManager - Invalid Task detected, removing!");
-                TaskList.RemoveAt(0);
+                taskList.RemoveAt(0);
             }
         }
 
@@ -82,7 +82,7 @@ namespace ZetaGames.RPG {
         void UpdateTimedTaskCounters() {
 
             List<TimedTask> RemovalList = new List<TimedTask>();
-            foreach (TimedTask t in TaskList.OfType<TimedTask>()) {
+            foreach (TimedTask t in taskList.OfType<TimedTask>()) {
                 //Update the TimeInList (time sat in the list).
                 t.timeInList += Time.deltaTime;
 
@@ -98,15 +98,15 @@ namespace ZetaGames.RPG {
             }
             foreach (TimedTask rm in RemovalList) {
                 Debug.Log("TaskManager - Task expired: " + rm);
-                TaskList.Remove(rm);
+                taskList.Remove(rm);
             }
         }
 
         #endregion
 
         void Update() {
-            if (!Paused) {
-                if (TaskList.Count > 0) {
+            if (!paused) {
+                if (taskList.Count > 0) {
                     //StartCoroutine("UpdateTimedTaskCounters"); << I'm not completely sure if this is necessary, possibly with hundreds of objects in the scene?
                     UpdateTimedTaskCounters();
                     ProcessList();
@@ -125,15 +125,14 @@ namespace ZetaGames.RPG {
         */
 
         public void AddTaskAtBeginning(Task t) {
-            Paused = true;
-            if (TaskList.Count > 0) {
-                TaskList[0].Reset();
-                TaskList.Insert(0, t);
-
+            paused = true;
+            if (taskList.Count > 0) {
+                taskList[0].Reset();
+                taskList.Insert(0, t);
             } else {
-                TaskList.Add(t);
+                taskList.Add(t);
             }
-            Paused = false;
+            paused = false;
         }
 
         public void AddNavMeshAgentMoveTask(Vector3 MoveTarget) {
@@ -145,7 +144,7 @@ namespace ZetaGames.RPG {
                 agent = gameObject.GetComponent<NavMeshAgent>(),
                 destinationPosition = MoveTarget
             };
-            TaskList.Add(NewTask);
+            taskList.Add(NewTask);
         }
 
         /* Here you can see the setup of an example task with a TTL (Time To Live).
@@ -159,7 +158,7 @@ namespace ZetaGames.RPG {
                 priority = 1,
                 ttl = t
             };
-            TaskList.Add(NewTask);
+            taskList.Add(NewTask);
         }
 
         public void AddPauseAtBeginning(float t) {
@@ -181,7 +180,7 @@ namespace ZetaGames.RPG {
                 priority = 1,
                 expiryTime = t
             };
-            TaskList.Add(NewTask);
+            taskList.Add(NewTask);
         }
         #endregion
     }

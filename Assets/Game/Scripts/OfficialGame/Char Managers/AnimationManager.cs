@@ -7,7 +7,7 @@ namespace ZetaGames.RPG {
         private Animator animator;
         private Vector2 smoothDeltaPosition = Vector2.zero;
         private Vector2 velocity = Vector2.zero;
-        private float lastKnownDirection;
+        public float lastKnownDirection;
 
         // Start is called before the first frame update
         void Start() {
@@ -36,12 +36,20 @@ namespace ZetaGames.RPG {
             // update last known direction for idle animations
             if (deltaPosition.x > 0 && deltaPosition.y < 0) {
                 lastKnownDirection = 0; // facing NE
+                velocity.x = 1;
+                velocity.y = -1;
             } else if (deltaPosition.x < 0 && deltaPosition.y > 0) {
                 lastKnownDirection = 1; // facing SW
+                velocity.x = -1;
+                velocity.y = 1;
             } else if (deltaPosition.x < 0 && deltaPosition.y < 0) {
                 lastKnownDirection = 2; // facing NW
+                velocity.x = -1;
+                velocity.y = -1;
             } else if (deltaPosition.x > 0 && deltaPosition.y > 0) {
                 lastKnownDirection = 3; // facing SE
+                velocity.x = 1;
+                velocity.y = 1;
             }
 
             //Debug.Log("AIAnimMoveSync Called: move(" + shouldMove + "), velx(" + velocity.x + "), vely(" + velocity.y + "), lastDirection(" + lastKnownDirection + ")");
