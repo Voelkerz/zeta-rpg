@@ -66,7 +66,7 @@ namespace ZetaGames.RPG {
             destinationCollider = FindNearestCollider(ResourceType.Wood.ToString(), layerMask);
             // If tree is found
             if (destinationCollider != null) {
-                taskManager.AddNavMeshAgentMoveTask(destinationCollider.gameObject.transform.position + new Vector3(0, -1.3f));
+                taskManager.AddNavMeshAgentMoveTask(destinationCollider.gameObject.transform.position + new Vector3(0, -1.25f));
                 
                 Debug.Log(name + ": I found a tree!");
 
