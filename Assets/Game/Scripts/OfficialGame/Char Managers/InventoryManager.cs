@@ -14,7 +14,7 @@ namespace ZetaGames.RPG {
         //public int coinsToAdd = 0;
         //public int coinsToRemove = 0;
 
-        private void Awake() {
+        void Awake() {
             // INVENTORY SETUP
             resourceManager = FindObjectOfType<ResourceManager>();
             resourceManager.addNPC(gameObject.GetInstanceID());

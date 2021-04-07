@@ -63,7 +63,7 @@ namespace ZetaGames.RPG {
                     }
                     if (agent.pathStatus == NavMeshPathStatus.PathComplete) {
                         //Debug.Log ("MoveTask - Path complete."); << Loads of Logs!
-                        if (agent.remainingDistance == 0) {
+                        if (agent.remainingDistance != Mathf.Infinity && agent.remainingDistance == 0) {
                             Debug.Log("NavMeshTask - Destination Reached.");
                             _finished = true;
                         } else {

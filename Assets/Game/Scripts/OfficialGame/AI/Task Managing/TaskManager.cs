@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.AI;
+using System.Threading;
 
 namespace ZetaGames.RPG {
     public class TaskManager : MonoBehaviour {
@@ -36,7 +36,7 @@ namespace ZetaGames.RPG {
             taskList = new List<Task>();
         }
 
-        void SortListByPriority() {
+        private void SortListByPriority() {
             if (taskList.Count > 0) {
                 taskList = taskList.OrderBy(x => x.priority).Reverse().ToList();
             }
@@ -44,7 +44,7 @@ namespace ZetaGames.RPG {
 
         /*ProcessList() Handles the standard processing of the list including Validity checks, Initialisation and Execution of Tasks.
         It also calls OnTaskStart() and OnTaskEnd() at the appropriate times. */
-        void ProcessList() {
+        private void ProcessList() {
             //If this Task decides it is invalid, then delete it.
             if (taskList[0].valid) {
                 //If its not initialised, intialise it.
@@ -60,6 +60,7 @@ namespace ZetaGames.RPG {
                         Debug.Log("TaskManager - Task finished, removing!");
                         //Call OnTaskEnd() and then remove the task.
                         taskList[0].OnTaskEnd();
+                        
                         taskList.RemoveAt(0);
                         //If PrioritySort is on, sort the list now, before we start the next task.
                         if (prioritySort) {
@@ -79,7 +80,7 @@ namespace ZetaGames.RPG {
         /* This function is called in update, it simply adds time to the TimedTask's counter and asks if it needs to be killed off. Simple.
         Note the reoccuring theme here where-by the TaskManager ASKS the Task if it is finished. The TaskManager doesn't make that decision.*/
 
-        void UpdateTimedTaskCounters() {
+        private void UpdateTimedTaskCounters() {
 
             List<TimedTask> RemovalList = new List<TimedTask>();
             foreach (TimedTask t in taskList.OfType<TimedTask>()) {
@@ -133,18 +134,6 @@ namespace ZetaGames.RPG {
                 taskList.Add(t);
             }
             paused = false;
-        }
-
-        public void AddNavMeshAgentMoveTask(Vector3 MoveTarget) {
-
-            NavMeshTask NewTask = new NavMeshTask() {
-                taskID = 1,
-                priority = 1,
-                thisGameObject = gameObject,
-                agent = gameObject.GetComponent<NavMeshAgent>(),
-                destinationPosition = MoveTarget
-            };
-            taskList.Add(NewTask);
         }
 
         /* Here you can see the setup of an example task with a TTL (Time To Live).

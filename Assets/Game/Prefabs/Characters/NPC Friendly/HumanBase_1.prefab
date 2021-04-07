@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 8801320578797986290}
   - component: {fileID: 8652838370513545174}
   - component: {fileID: 5500780378080261107}
+  - component: {fileID: 262487509212458871}
   - component: {fileID: 4969507642293860344}
   - component: {fileID: 8891800731461659116}
   - component: {fileID: 6225048273322827655}
@@ -730,7 +731,6 @@ GameObject:
   - component: {fileID: 5837703847994887746}
   - component: {fileID: 4084673734430014159}
   - component: {fileID: 5924651789295370861}
-  - component: {fileID: 262487509212458871}
   - component: {fileID: 1604424283163727048}
   m_Layer: 13
   m_Name: HumanBase_1
@@ -791,7 +791,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -802,7 +802,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.8, y: 0.6}
   m_EdgeRadius: 0
 --- !u!210 &8652838370513545174
 SortingGroup:
@@ -837,6 +837,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!114 &262487509212458871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861759867816438638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ce35fc63c20654a8d4b21c0b15afb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paused: 0
+  prioritySort: 1
 --- !u!114 &4969507642293860344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,20 +1120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174b6a5321d168f4d8b8c6bda3f8bd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &262487509212458871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8861759867816438638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17ce35fc63c20654a8d4b21c0b15afb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paused: 0
-  prioritySort: 1
 --- !u!114 &1604424283163727048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,6 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c236b3ea0773624488329fbabdd81e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amountOfWoodToCollect: 10
 --- !u!1 &8861864694955399418
 GameObject:
   m_ObjectHideFlags: 0

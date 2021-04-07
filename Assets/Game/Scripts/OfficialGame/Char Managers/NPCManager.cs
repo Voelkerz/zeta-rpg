@@ -1,17 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
-    public class NavMeshAgentManager : MonoBehaviour {
+    public class NPCManager : MonoBehaviour {
+
         private NavMeshAgent agent;
 
-        private void Start() {
-            // NAVMESH SETUP
+        private void Awake() {
             agent = GetComponent<NavMeshAgent>();
             agent.updateUpAxis = false;
             agent.updateRotation = false;
             agent.updatePosition = false;
         }
     }
+
+
 }
 

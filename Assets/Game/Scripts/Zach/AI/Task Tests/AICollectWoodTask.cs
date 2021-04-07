@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
     public class AICollectWoodTask : MonoBehaviour {
@@ -11,39 +13,63 @@ namespace ZetaGames.RPG {
         private int layerMask;
         private bool lookingForWood = true;
         private TaskManager taskManager;
+        private NavMeshAgent navMeshAgent;
         public int amountOfWoodToCollect = 5;
+        private FellTreeTask chopTask;
 
-        private void Start() {
+        void Start() {
             // GET TASK MANAGER
             taskManager = GetComponent<TaskManager>();
 
             // GET INVENTORY
             inventory = GetComponent<InventoryManager>().inventory;
 
+            // GET NAV MESH AGENT
+            navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+
             // FOR TESTING
             startingPosition = transform.position;
         }
 
-        private void Update() {
-            if (taskManager.taskList.Count == 0 && lookingForWood) {
+        void Update() {
+            if (lookingForWood && !taskManager.taskList.Contains(chopTask)) {
                 lookForWood();
+            } else {
+                evaluateWoodStock();
+            }
+        }
+
+        private void evaluateWoodStock() {
+            if (!taskManager.taskList.Contains(chopTask)) {
+                if (inventory[ResourceType.Wood] < amountOfWoodToCollect) {
+                    lookingForWood = true;
+                    Debug.Log("I'm looking for wood");
+                }
+            } else {
+                lookingForWood = false;
             }
         }
 
         private void lookForWood() {
-            // Am I looking for wood?
-            if (lookingForWood) {
-                // Do I have enough wood already?
-                if (inventory[ResourceType.Wood] < amountOfWoodToCollect) {
-                    Debug.Log(name + ": I don't have enough wood");
-                    // Look for free wood on the ground first or a tree if no free wood is found
-                    lookForDroppedWood();
-                } else {
-                    if (lookingForWood) {
-                        Debug.Log(name + ": I have enough wood now");
-                        lookingForWood = false;
-                        taskManager.AddNavMeshAgentMoveTask(startingPosition);
-                    }
+            // Do I have enough wood already?
+            if (inventory[ResourceType.Wood] < amountOfWoodToCollect) {
+                Debug.Log(name + ": I don't have enough wood");
+                // Look for free wood on the ground first or a tree if no free wood is found
+                lookForDroppedWood();
+            } else {
+                if (lookingForWood) {
+                    Debug.Log(name + ": I have enough wood now");
+                    lookingForWood = false;
+
+                    NavMeshTask navTask = new NavMeshTask() {
+                        taskID = 1,
+                        priority = 1,
+                        thisGameObject = gameObject,
+                        agent = navMeshAgent,
+                        destinationPosition = startingPosition
+                    };
+
+                    taskManager.taskList.Add(navTask);
                 }
             }
         }
@@ -52,8 +78,18 @@ namespace ZetaGames.RPG {
             layerMask = 1 << 6; // layer mask 6 (dropped resources)
             destinationCollider = FindNearestCollider(ResourceType.Wood.ToString(), layerMask);
             if (destinationCollider != null) {
-                taskManager.AddNavMeshAgentMoveTask(destinationCollider.gameObject.transform.position);
                 Debug.Log(name + ": I found free wood!!!");
+                lookingForWood = false;
+
+                NavMeshTask navTask = new NavMeshTask() {
+                    taskID = 1,
+                    priority = 1,
+                    thisGameObject = gameObject,
+                    agent = navMeshAgent,
+                    destinationPosition = destinationCollider.gameObject.transform.position
+                };
+
+                taskManager.taskList.Add(navTask);
             } else {
                 Debug.Log(name + ": I couldn't find any free wood. I'll look for a tree instead");
                 lookForTree();
@@ -66,20 +102,42 @@ namespace ZetaGames.RPG {
             destinationCollider = FindNearestCollider(ResourceType.Wood.ToString(), layerMask);
             // If tree is found
             if (destinationCollider != null) {
-                taskManager.AddNavMeshAgentMoveTask(destinationCollider.gameObject.transform.position + new Vector3(0, -1.25f));
-                
+
+                NavMeshTask navTask = new NavMeshTask() {
+                    taskID = 1,
+                    priority = 1,
+                    thisGameObject = gameObject,
+                    agent = navMeshAgent,
+                    destinationPosition = destinationCollider.gameObject.transform.position + new Vector3(0, -1.25f)
+                };
+
+                taskManager.taskList.Add(navTask);
+
                 Debug.Log(name + ": I found a tree!");
 
-                FellTreeTask task = new FellTreeTask() {
-                    taskID = 1,
+                taskManager.AddPause(1f);
+
+                chopTask = new FellTreeTask() {
+                    taskID = 3,
                     priority = 1,
                     charGameObject = gameObject,
                     treeGameObject = destinationCollider.gameObject
                 };
 
-                taskManager.taskList.Add(task);
+                taskManager.taskList.Add(chopTask);
+                taskManager.AddPause(1f);
+                lookingForWood = false;
             } else {
-                taskManager.AddNavMeshAgentMoveTask(startingPosition);
+                NavMeshTask navTask = new NavMeshTask() {
+                    taskID = 1,
+                    priority = 1,
+                    thisGameObject = gameObject,
+                    agent = navMeshAgent,
+                    destinationPosition = startingPosition
+                };
+
+                taskManager.taskList.Add(navTask);
+                
                 Debug.Log(name + ": I couldn't find any trees");
                 lookingForWood = false;
             }

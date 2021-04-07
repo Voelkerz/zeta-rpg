@@ -42,7 +42,7 @@ namespace ZetaGames.RPG {
         //Execute() needs to be called in update of the TaskManager.
         public override void Execute() {
             // if tree is still alive
-            if (treeHealth.CurrentHealth > 0) {
+            if (treeHealth.CurrentHealth > 0 && treeGameObject != null) {
                 // if character is not doing a chopping animation and tree is idle
                 if (charAnimator.GetCurrentAnimatorStateInfo(0).IsTag("idling") && treeAnimator.GetCurrentAnimatorStateInfo(0).IsTag("idling")) {
                     
@@ -71,9 +71,6 @@ namespace ZetaGames.RPG {
             } else {
                 if (charAnimator.GetCurrentAnimatorStateInfo(0).IsTag("idling") && treeHealth.CurrentHealth <= 0) {
                     treeHealth.Kill();
-                    //treeGameObject.GetComponent<MoreMountains.TopDownEngine.Loot>().SpawnLoot();
-                    Debug.Log("Time: " + Time.time);
-                    WaitToDestroy(2f);
                     _finished = true;
                 }
             }
@@ -81,8 +78,6 @@ namespace ZetaGames.RPG {
 
         private IEnumerator WaitToDestroy(float waitTime) {
             yield return new WaitForSeconds(waitTime);
-            GameObject.Destroy(treeGameObject);
-            Debug.Log("Time Destroyed: " + Time.time);
         }
 
         public override bool Finished() {

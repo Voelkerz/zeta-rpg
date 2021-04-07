@@ -17,14 +17,7 @@ namespace ZetaGames.RPG {
 
 
         void Start() {
-            // Initialize on character instantiation instead
-            /*
-            // find all friendly NPCs in scene and initialize their inventories
-            initialNpcList = GameObject.FindGameObjectsWithTag("Friendly");
-            foreach (GameObject npc in initialNpcList) {
-                npcList.Add(npc.GetInstanceID(), initializeNpcInventory());
-            }
-            */
+
         }
 
         public void addNPC(int id) {
