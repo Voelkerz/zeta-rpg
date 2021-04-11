@@ -5040,6 +5040,50 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &3234293465735140621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2106457816202610991}
+  - component: {fileID: 3024256840793722373}
+  m_Layer: 7
+  m_Name: ResourceNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2106457816202610991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234293465735140621}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.5, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6560979086671960237}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3024256840793722373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234293465735140621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f860acbf45d24413ad655ea8c6f1ca92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
 --- !u!1 &3621254233348824343
 GameObject:
   m_ObjectHideFlags: 0
@@ -5123,7 +5167,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 3, y: 4}
   m_EdgeRadius: 0
 --- !u!208 &6921704512952567702
 NavMeshObstacle:
@@ -5135,11 +5179,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 1, y: 1.5, z: 1}
+  m_Extents: {x: 0.9, y: 1.5, z: 0.9}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: -0.8, z: 0}
+  m_Center: {x: 0, y: -0.7, z: 0}
   m_TimeToStationary: 0.5
 --- !u!114 &3668865614606573020
 MonoBehaviour:
@@ -5160,11 +5204,11 @@ MonoBehaviour:
   MaximumHealth: 20
   ImmuneToKnockback: 0
   DamageMMFeedbacks: {fileID: 0}
-  DestroyOnDeath: 1
+  DestroyOnDeath: 0
   DelayBeforeDestruction: 0.75
   PointsWhenDestroyed: 0
   RespawnAtInitialLocation: 0
-  DisableControllerOnDeath: 1
+  DisableControllerOnDeath: 0
   DisableModelOnDeath: 1
   DisableCollisionsOnDeath: 1
   DisableChildCollisionsOnDeath: 0
@@ -5195,7 +5239,7 @@ MonoBehaviour:
   SpawnLootOnDeath: 1
   SpawnLootOnDamage: 0
   Delay: 0
-  Quantity: {x: 2, y: 3}
+  Quantity: {x: 1, y: 2}
   SpawnProperties:
     Shape: 0
     NormalToSpawnPlane: {x: 0, y: 1, z: 0}
@@ -5384,7 +5428,7 @@ GameObject:
   - component: {fileID: 7888798782356934667}
   - component: {fileID: 1717467149902333367}
   m_Layer: 7
-  m_Name: Oak Tree Model
+  m_Name: OakTreeModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5400,7 +5444,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2106457816202610991}
   m_Father: {fileID: 3101755827246780455}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

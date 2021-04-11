@@ -1,26 +1,51 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
+
+    /**********************************
+     * Rework this into state machine
+     * so it doesn't constantly use 
+     * update()
+    ***********************************/
+
     public class AnimationManager : MonoBehaviour {
-        private NavMeshAgent agent;
+        private NavMeshAgent navMeshAgent;
         private Animator animator;
+        private AIBrain npcBrain;
+        private static readonly int shouldMove = Animator.StringToHash("move");
+        private static readonly int velocityX = Animator.StringToHash("velx");
+        private static readonly int velocityY = Animator.StringToHash("vely");
+        private static readonly int lastDirection = Animator.StringToHash("lastDirection");
         private Vector2 smoothDeltaPosition = Vector2.zero;
         private Vector2 velocity = Vector2.zero;
-        public float lastKnownDirection;
+        private float lastKnownDirection;
+        private Vector2 lastPosition;
 
         // Start is called before the first frame update
-        void Start() {
-            agent = GetComponentInParent<NavMeshAgent>();
+        void Awake() {
+            // SETUP NAVMESH AGENT
+            navMeshAgent = GetComponentInParent<NavMeshAgent>();
+            navMeshAgent.updateUpAxis = false;
+            navMeshAgent.updateRotation = false;
+            navMeshAgent.updatePosition = false;
+
+            // SETUP ANIMATOR
             animator = GetComponent<Animator>();
         }
 
-        private void Update() {
-            Vector3 worldDeltaPosition = agent.nextPosition - agent.gameObject.transform.position;
+        public void Move() {
+            //if (Vector2.Distance(npcBrain.transform.position, lastPosition) <= 0f) {
+            //    npcBrain.timeStuck += Time.deltaTime;
+            //}
+            //lastPosition = npcBrain.transform.position;
+
+            Vector2 worldDeltaPosition = navMeshAgent.nextPosition - navMeshAgent.gameObject.transform.position;
 
             // Map 'worldDeltaPosition' to local space
-            float dx = Vector3.Dot(agent.gameObject.transform.right, worldDeltaPosition);
-            float dy = Vector3.Dot(agent.gameObject.transform.forward, worldDeltaPosition);
+            float dx = Vector2.Dot(navMeshAgent.gameObject.transform.right, worldDeltaPosition);
+            float dy = Vector2.Dot(navMeshAgent.gameObject.transform.forward, worldDeltaPosition);
             Vector2 deltaPosition = new Vector2(dx, dy);
 
             // Low-pass filter the deltaMove
@@ -31,7 +56,7 @@ namespace ZetaGames.RPG {
             if (Time.deltaTime > 1e-5f)
                 velocity = smoothDeltaPosition / Time.deltaTime;
 
-            bool shouldMove = velocity.magnitude > 0.1f && agent.remainingDistance > agent.radius;
+            bool move = velocity.magnitude > 0.1f && navMeshAgent.remainingDistance > navMeshAgent.radius;
 
             // update last known direction for idle animations
             if (deltaPosition.x > 0 && deltaPosition.y < 0) {
@@ -52,18 +77,16 @@ namespace ZetaGames.RPG {
                 velocity.y = 1;
             }
 
-            //Debug.Log("AIAnimMoveSync Called: move(" + shouldMove + "), velx(" + velocity.x + "), vely(" + velocity.y + "), lastDirection(" + lastKnownDirection + ")");
-
             // Update animation parameters
-            animator.SetBool("move", shouldMove);
-            animator.SetFloat("velx", velocity.x);
-            animator.SetFloat("vely", velocity.y);
-            animator.SetFloat("lastDirection", lastKnownDirection);
+            animator.SetBool(shouldMove, move);
+            animator.SetFloat(velocityX, velocity.x);
+            animator.SetFloat(velocityY, velocity.y);
+            animator.SetFloat(lastDirection, lastKnownDirection);
         }
 
         void OnAnimatorMove() {
             // Update position to agent position
-            transform.parent.transform.position = agent.nextPosition;
+            transform.parent.transform.position = navMeshAgent.nextPosition;
         }
     }
 }

@@ -6,12 +6,11 @@ using UnityEngine.AI;
 namespace ZetaGames.RPG {
     public class ClickToMove : MonoBehaviour {
         private NavMeshAgent agent;
+        private AnimationManager animationManager;
 
         private void Start() {
             agent = GetComponent<NavMeshAgent>();
-            agent.updateUpAxis = false;
-            agent.updateRotation = false;
-            agent.updatePosition = false;
+            animationManager = GetComponentInChildren<AnimationManager>();
         }
 
         private void Update() {
@@ -20,6 +19,8 @@ namespace ZetaGames.RPG {
                 target.z = 0;
                 agent.destination = target;
             }
+
+            animationManager.Move();
         }
     }
 }
