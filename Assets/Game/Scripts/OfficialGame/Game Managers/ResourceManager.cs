@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace ZetaGames.RPG {
     public enum ResourceType {
@@ -18,15 +17,8 @@ namespace ZetaGames.RPG {
         private GameObject[] initialNpcList;
 
 
-        void Start() {
-            // Initialize on character instantiation instead
-            /*
-            // find all friendly NPCs in scene and initialize their inventories
-            initialNpcList = GameObject.FindGameObjectsWithTag("Friendly");
-            foreach (GameObject npc in initialNpcList) {
-                npcList.Add(npc.GetInstanceID(), initializeNpcInventory());
-            }
-            */
+        void Awake() {
+
         }
 
         public void addNPC(int id) {

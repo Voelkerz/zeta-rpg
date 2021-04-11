@@ -9,7 +9,7 @@ namespace ZetaGames.RPG {
 
         public GameObject popupPanel;
         public TextMeshProUGUI resourceQuantityText;
-        public ResourceSource resource;
+        //public ResourceSource resource;
 
         void Start() {
             popupPanel.SetActive(false);
@@ -24,7 +24,7 @@ namespace ZetaGames.RPG {
         }
 
         public void OnResourceQuantityChange() {
-            resourceQuantityText.text = resource.quantity.ToString();
+            //resourceQuantityText.text = resource.quantity.ToString();
         }
     }
 }
