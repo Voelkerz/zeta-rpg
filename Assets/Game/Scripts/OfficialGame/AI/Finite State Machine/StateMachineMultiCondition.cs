@@ -69,7 +69,6 @@ namespace ZetaGames.RPG {
             foreach (IState to in stateBuffer) {
                 foreach (Transition transition in transitionDict[to]) {
                     AddTransition(from, to, transition.conditions);
-                    Debug.Log("from: " + from + " || to: " + to);
                 }
             }
         }

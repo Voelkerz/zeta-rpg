@@ -2,7 +2,8 @@
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class SearchForResourceNode : IState {
+    public class SearchForResourceNode {
+        /*
         public bool isFinished { get => finished; }
         public bool isInterruptable { get => true; }
         private bool finished;
@@ -20,7 +21,7 @@ namespace ZetaGames.RPG {
             charTransform = npcBrain.gameObject.transform;
         }
         public void Tick() {
-            npcBrain.resourceNodeTarget = ZetaUtilities.FindNearestCollider(charTransform, resourceType.ToString(), searchRange, layerMask).GetComponentInChildren<GatherableResource>();
+            npcBrain.resourceNodeTarget = ZetaUtilities.FindNearestCollider(charTransform.position, resourceType.ToString(), searchRange, layerMask).GetComponentInChildren<GatherableResource>();
 
             if (npcBrain.resourceNodeTarget != null) {
                 npcBrain.destination = npcBrain.resourceNodeTarget.transform.position;
@@ -42,6 +43,7 @@ namespace ZetaGames.RPG {
                 Debug.Log("SearchForResources.OnExit()");
             }
         }
+        */
     }
 }
 

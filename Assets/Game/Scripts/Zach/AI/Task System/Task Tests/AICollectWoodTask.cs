@@ -22,7 +22,7 @@ namespace ZetaGames.RPG {
             taskManager = GetComponent<TaskManager>();
 
             // GET INVENTORY
-            inventory = GetComponent<InventoryManager>().inventory;
+            inventory = GetComponent<NpcInventory>().inventory;
 
             // GET NAV MESH AGENT
             navMeshAgent = gameObject.GetComponent<NavMeshAgent>();

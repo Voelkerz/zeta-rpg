@@ -245,10 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13f560b1a374b7598804ceaa878a5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugLogs: 0
-  wanderCooldown: 0
   inCombat: 0
-  resourceSearchRange: 10
+  debugLogs: 1
 --- !u!114 &5938975912322086502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,3 +259,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174b6a5321d168f4d8b8c6bda3f8bd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxInventoryCapacity: 10
+  numWood: 0

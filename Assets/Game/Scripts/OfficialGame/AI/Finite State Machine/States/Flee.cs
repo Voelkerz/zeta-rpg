@@ -2,7 +2,8 @@
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
-    public class Flee : IState {
+    public class Flee {
+        /*
         public bool isFinished { get => finished; }
         public bool isInterruptable { get => true; }
         private bool finished;
@@ -58,6 +59,7 @@ namespace ZetaGames.RPG {
             _navMeshAgent.enabled = false;
             _animator.SetBool(FleeHash, false);
         }
+        */
     }
 }
 

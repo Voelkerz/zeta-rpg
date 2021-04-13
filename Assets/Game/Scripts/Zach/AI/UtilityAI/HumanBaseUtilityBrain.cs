@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ZetaGames.RPG {
 	public class HumanBaseUtilityBrain : MonoBehaviour {
-
+		
 		public UAI_PropertyBoundedFloat energy, hunger, security, unsure, targetDistance;
 		public UAI_PropertyBoundedInt numWood, numCoins;
 		public UAI_PropertyBoolean shouldMove;
@@ -110,7 +110,7 @@ namespace ZetaGames.RPG {
 			ResetPositions();
 
 			agent.StartTimer();
-
+			/*
 			if (needWood) {
 				Collider2D targetCollider = ZetaUtilities.FindNearestCollider(transform, ResourceType.Wood.ToString(), 100f, 1 << 6);
                 if (targetCollider != null) {
@@ -128,6 +128,7 @@ namespace ZetaGames.RPG {
 					}
 				}
 			}
+			*/
 		}
 
 		void Harvest() {

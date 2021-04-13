@@ -5,13 +5,12 @@ namespace ZetaGames.RPG {
         public bool isFinished { get => finished;}
         public bool isInterruptable { get => true;}
         private bool finished;
+        private static readonly int lastDirection = Animator.StringToHash("lastDirection");
         private readonly AIBrain npcBrain;
         private readonly Animator animator;
         private Animator resourceAnimator;
         private ResourceType resourceType;
-        private MoreMountains.TopDownEngine.Health treeHealth;
         public bool depleted = false;
-        private GameObject resourceObject;
         private int currentHealth;
         
 
@@ -24,16 +23,16 @@ namespace ZetaGames.RPG {
 
         public void Tick() {
             if (!depleted) {
-                if (npcBrain.resourceNodeTarget != null) {
+                if (npcBrain.resourceTarget != null) {
                     if (currentHealth > 0) {
                         if (animator.GetCurrentAnimatorStateInfo(0).IsTag("idle") && resourceAnimator.GetCurrentAnimatorStateInfo(0).IsTag("idle")) {
                             HitResourceTarget();
                         }
                     } else if (animator.GetCurrentAnimatorStateInfo(0).IsTag("idle")) {
                         depleted = true;
-                        resourceObject.SetActive(false);
+                        npcBrain.resourceTarget.SetActive(false);
 
-                        npcBrain.DestroyObject(resourceObject, 0.75f); // TODO: Need to implement a recycling system instead of destroy outright
+                        npcBrain.DestroyObject(npcBrain.resourceTarget, 0.75f); // TODO: Need to implement a recycling system instead of destroy outright
                     }
                 }
                 /*
@@ -59,10 +58,12 @@ namespace ZetaGames.RPG {
                 animator.Play("HarvestWood");
             }
 
-            if (npcBrain.gameObject.transform.position.x - npcBrain.resourceNodeTarget.transform.position.x > 0) {
+            if (npcBrain.gameObject.transform.position.x - npcBrain.resourceTarget.transform.position.x > 0) {
                 resourceAnimator.Play("HarvestRight");
+                animator.SetFloat(lastDirection, 2f);
             } else {
                 resourceAnimator.Play("HarvestLeft");
+                animator.SetFloat(lastDirection, 0f);
             }
 
             //treeHealth.SetHealth(treeHealth.CurrentHealth - 5);
@@ -71,9 +72,13 @@ namespace ZetaGames.RPG {
 
         public void OnEnter() {
             npcBrain.ResetAgent();
-            resourceAnimator = npcBrain.resourceNodeTarget.GetComponentInParent<Animator>();
+            if (npcBrain.resourceTarget != null) {
+                if (npcBrain.debugLogs) {
+                    Debug.Log("resourceTarget: " + npcBrain.resourceTarget.name);
+                }
+                resourceAnimator = npcBrain.resourceTarget.GetComponentInChildren<Animator>();
+            }
             //treeHealth = npcBrain.resourceNodeTarget.GetComponentInParent<MoreMountains.TopDownEngine.Health>();
-            resourceObject = npcBrain.resourceNodeTarget.transform.parent.transform.parent.gameObject;
             depleted = false;
             currentHealth = 20;
         }

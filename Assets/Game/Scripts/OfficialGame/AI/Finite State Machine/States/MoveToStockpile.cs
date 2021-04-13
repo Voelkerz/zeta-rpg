@@ -2,7 +2,8 @@
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
-    internal class MoveToStockpile : IState {
+    internal class MoveToStockpile {
+        /*
         public bool isFinished { get => finished; }
         public bool isInterruptable { get => true; }
         private bool finished;
@@ -37,6 +38,7 @@ namespace ZetaGames.RPG {
         public void OnExit() {
             npcBrain.animator.SetBool(shouldMove, false);
         }
+        */
     }
 }
 

@@ -11,8 +11,6 @@ namespace ZetaGames.RPG {
         }
 
         public void Tick() {
-            if (npcBrain.Take())
-                npcBrain.stockPile.Add();
         }
 
         public void OnEnter() { }
