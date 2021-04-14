@@ -9,16 +9,16 @@ namespace ZetaGames.RPG {
         private readonly AIBrain npcBrain;
         private readonly Animator animator;
         private Animator resourceAnimator;
+        //private AudioManager resourceSound;
         private ResourceType resourceType;
         public bool depleted = false;
         private int currentHealth;
         
 
-        public HarvestResource(AIBrain npcBrain, Animator animator, ResourceType resourceType) {
+        public HarvestResource(AIBrain npcBrain) {
             this.npcBrain = npcBrain;
-            this.animator = animator;
-            this.resourceType = resourceType;
-            
+            animator = npcBrain.animator;
+            resourceType = npcBrain.resourceNeeded;
         }
 
         public void Tick() {
@@ -35,19 +35,6 @@ namespace ZetaGames.RPG {
                         npcBrain.DestroyObject(npcBrain.resourceTarget, 0.75f); // TODO: Need to implement a recycling system instead of destroy outright
                     }
                 }
-                /*
-                if (npcBrain.resourceNodeTarget != null || treeHealth.gameObject.activeSelf) {
-                    if (treeHealth != null && treeHealth.CurrentHealth > 0) {
-                        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("idle") && resourceAnimator.GetCurrentAnimatorStateInfo(0).IsTag("idle")) {
-                            HitResourceTarget();
-                        }
-                    } else if (treeHealth != null && animator.GetCurrentAnimatorStateInfo(0).IsTag("idle")) {
-                        depleted = true;
-                        treeHealth.Kill();
-                        npcBrain.DestroyObject(treeHealth.gameObject, 0.75f); // TODO: Need to implement a recycling system instead of destroy outright
-                    }
-                }
-                */
             } else {
                 Debug.Log("resource node depleted...");
             }
@@ -56,15 +43,28 @@ namespace ZetaGames.RPG {
         public void HitResourceTarget() {
             if (resourceType.Equals(ResourceType.Wood)) {
                 animator.Play("HarvestWood");
+
+
+                if (npcBrain.gameObject.transform.position.x - npcBrain.resourceTarget.transform.position.x > 0 &&
+                npcBrain.gameObject.transform.position.y - npcBrain.resourceTarget.transform.position.y < -1) {
+                    resourceAnimator.Play("HarvestRight");
+                    animator.SetFloat(lastDirection, 2f);
+                } else if (npcBrain.gameObject.transform.position.x - npcBrain.resourceTarget.transform.position.x > 0 &&
+                    npcBrain.gameObject.transform.position.y - npcBrain.resourceTarget.transform.position.y > -1) {
+                    resourceAnimator.Play("HarvestRight");
+                    animator.SetFloat(lastDirection, 1f);
+                } else if (npcBrain.gameObject.transform.position.x - npcBrain.resourceTarget.transform.position.x < 0 &&
+                            npcBrain.gameObject.transform.position.y - npcBrain.resourceTarget.transform.position.y < -1) {
+                    resourceAnimator.Play("HarvestLeft");
+                    animator.SetFloat(lastDirection, 0f);
+                } else if (npcBrain.gameObject.transform.position.x - npcBrain.resourceTarget.transform.position.x < 0 &&
+                            npcBrain.gameObject.transform.position.y - npcBrain.resourceTarget.transform.position.y > -1) {
+                    resourceAnimator.Play("HarvestLeft");
+                    animator.SetFloat(lastDirection, 3f);
+                }
             }
 
-            if (npcBrain.gameObject.transform.position.x - npcBrain.resourceTarget.transform.position.x > 0) {
-                resourceAnimator.Play("HarvestRight");
-                animator.SetFloat(lastDirection, 2f);
-            } else {
-                resourceAnimator.Play("HarvestLeft");
-                animator.SetFloat(lastDirection, 0f);
-            }
+            //resourceSound.PlaySoundEffect();
 
             //treeHealth.SetHealth(treeHealth.CurrentHealth - 5);
             currentHealth -= 5;
@@ -72,13 +72,15 @@ namespace ZetaGames.RPG {
 
         public void OnEnter() {
             npcBrain.ResetAgent();
+
             if (npcBrain.resourceTarget != null) {
                 if (npcBrain.debugLogs) {
                     Debug.Log("resourceTarget: " + npcBrain.resourceTarget.name);
                 }
                 resourceAnimator = npcBrain.resourceTarget.GetComponentInChildren<Animator>();
+                //resourceSound = npcBrain.resourceTarget.GetComponent<AudioManager>();
             }
-            //treeHealth = npcBrain.resourceNodeTarget.GetComponentInParent<MoreMountains.TopDownEngine.Health>();
+
             depleted = false;
             currentHealth = 20;
         }

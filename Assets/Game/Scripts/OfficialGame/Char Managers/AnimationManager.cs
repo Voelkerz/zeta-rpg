@@ -3,13 +3,6 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
-
-    /**********************************
-     * Rework this into state machine
-     * so it doesn't constantly use 
-     * update()
-    ***********************************/
-
     public class AnimationManager : MonoBehaviour {
         private NavMeshAgent navMeshAgent;
         private Animator animator;
@@ -19,7 +12,6 @@ namespace ZetaGames.RPG {
         private static readonly int lastDirection = Animator.StringToHash("lastDirection");
         private Vector2 smoothDeltaPosition = Vector2.zero;
         private Vector2 velocity = Vector2.zero;
-        private float lastKnownDirection;
         private bool move;
         
         // Start is called before the first frame update

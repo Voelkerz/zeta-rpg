@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class NpcResourcePickup : MonoBehaviour {
+    public class DroppedResource : MonoBehaviour {
         public ResourceType resourceType;
+        
         private ResourceManager resourceManager;
 
         //debug var

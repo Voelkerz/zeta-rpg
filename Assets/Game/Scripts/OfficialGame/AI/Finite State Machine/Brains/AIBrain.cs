@@ -53,7 +53,7 @@ namespace ZetaGames.RPG {
         }
 
         public virtual void ResetAgent() {
-            //animator.SetBool("move", false);
+            animator.SetBool("move", false);
         }
     }
 }

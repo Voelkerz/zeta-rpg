@@ -27,7 +27,7 @@ namespace ZetaGames.RPG {
 
             // Create all NPC states
             var searchForResource = new SearchForResource(this);
-            var harvestResource = new HarvestResource(this, animator, resourceNeeded);
+            var harvestResource = new HarvestResource(this);
             var getUnstuck = new GetUnstuck(this);
             var wander = new Wander(this, personality.wanderRadius, personality.wanderCycle); // range and cycle time
 
@@ -35,7 +35,7 @@ namespace ZetaGames.RPG {
              * SPECIFIC STATE TRANSITIONS
             ***************************************************************/
             // FROM 'search for resource' to ...
-            AT(searchForResource, harvestResource, new List<Func<bool>> { AtDestinationNotMoving(), HasResourceTarget(), IsFalse(InventoryFull()), () => resourceTarget.GetComponentInChildren<GatherableResource>() != null });
+            AT(searchForResource, harvestResource, new List<Func<bool>> { AtDestinationNotMoving(), HasResourceTarget(), IsFalse(InventoryFull()), () => resourceTarget.GetComponentInChildren<HarvestableResource>() != null });
           
             // FROM 'harvest resource' to ...
             AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(InventoryFull()) });

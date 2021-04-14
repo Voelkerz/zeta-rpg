@@ -41,6 +41,7 @@ namespace ZetaGames.RPG {
                 if (npcBrain.debugLogs) {
                     Debug.Log("SearchForResourceDrop.Tick(): have destination, calling animator move()");
                 }
+
                 npcBrain.animationManager.Move();
 
                 if (Vector2.Distance(npcBrain.transform.position, lastPosition) <= 0f) {
@@ -99,10 +100,10 @@ namespace ZetaGames.RPG {
                     }
 
                     // target the resource node component
-                    GatherableResource node = targetCollider.gameObject.GetComponentInChildren<GatherableResource>();
+                    HarvestableResource node = targetCollider.gameObject.GetComponent<HarvestableResource>();
 
                     if (node != null) {
-                        npcBrain.resourceTarget = targetCollider.gameObject;
+                        npcBrain.resourceTarget = targetCollider.transform.parent.gameObject;
                         npcBrain.destination = node.transform.position;
                         npcBrain.navMeshAgent.SetDestination(npcBrain.destination);
                         // remember the last location of a resource node for future reference

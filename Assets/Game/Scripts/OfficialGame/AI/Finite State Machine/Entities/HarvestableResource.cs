@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
-    public class GatherableResource : MonoBehaviour {
+    public class HarvestableResource : MonoBehaviour {
 
         public ResourceType resourceType;
         private int totalHitsToDeplete = 15;
@@ -16,7 +16,7 @@ namespace ZetaGames.RPG {
 
         public bool Hit(int hitAmount) {
             if (hitCountdown <= 0) {
-                Destroy(gameObject.transform.parent.transform.parent.gameObject);
+                Destroy(gameObject.transform.parent.gameObject);
                 return false;
             } else {
                 hitCountdown =- hitAmount;
@@ -24,14 +24,6 @@ namespace ZetaGames.RPG {
             }
         }
 
-        [ContextMenu("Snap")]
-        private void Snap() {
-            if (NavMesh.SamplePosition(transform.position, out var hit, 5f, NavMesh.AllAreas)) {
-                transform.position = hit.position;
-            }
-        }
-
-        public void SetHitCountdown(int amount) => hitCountdown = amount;
     }
 }
 
