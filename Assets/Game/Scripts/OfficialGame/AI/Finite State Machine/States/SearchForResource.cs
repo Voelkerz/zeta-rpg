@@ -11,7 +11,7 @@ namespace ZetaGames.RPG {
         private ResourceType resourceType;
         private float searchRange;
         private Collider2D targetCollider;
-        private float timeSearched;
+        //private float timeSearched;
         private float timer;
         private string lastKnownResourceLocation;
         private Vector2 lastPosition;
@@ -23,21 +23,30 @@ namespace ZetaGames.RPG {
         }
 
         public void Tick() {
-            timeSearched += Time.deltaTime;
+            //timeSearched += Time.deltaTime;
             timer += Time.deltaTime;
 
             //Check for resources every 1 second while in this state to reduce CPU usage
             if (timer > 1f && !activelySearching) {
                 timer = 0;
-                // if we don't have a resource target, get one
+                // if we don't have a resource target and we're not carrying something, get one
                 if (npcBrain.resourceTarget == null) {
-                    GetTarget();
+                    if (!npcBrain.npcInventory.IsCarryingSomething()) {
+                        GetTarget();
+                    }
+                } else if (!npcBrain.resourceTarget.activeSelf) {
+                    // or if we do have a target and it's not active, nullify
+                    npcBrain.resourceTarget = null;
+                } else {
+                    if (npcBrain.resourceTarget.TryGetComponent(out DroppedResource resource)) {
+                        resource.PickUp();
+                    }
                 }
             } else if (activelySearching && npcBrain.animator.GetCurrentAnimatorStateInfo(0).IsTag("idle")) {
                 activelySearching = false;
             }
 
-            if (npcBrain.destination != (Vector2)npcBrain.transform.position) {
+            if (Vector2.Distance(npcBrain.transform.position, npcBrain.destination) > 0.01f) {
                 if (npcBrain.debugLogs) {
                     Debug.Log("SearchForResourceDrop.Tick(): have destination, calling animator move()");
                 }
@@ -52,7 +61,20 @@ namespace ZetaGames.RPG {
 
                 lastPosition = npcBrain.transform.position;
             } else {
-                npcBrain.animator.SetBool(shouldMove, false);
+                //npcBrain.animator.SetBool(shouldMove, false);
+
+                /*
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(npcBrain.transform.position, 0.5f, 1 << 6);
+
+                if (colliders.Length > 0) {
+                    foreach (Collider2D collider in colliders) {
+                        if (collider.TryGetComponent(out DroppedResource resource)) {
+                            resource.PickUp();
+                            break;
+                        }
+                    }
+                }
+                */
             }
         }
 
@@ -62,7 +84,7 @@ namespace ZetaGames.RPG {
             }
             npcBrain.ResetAgent();
             npcBrain.timeStuck = 0f;
-            timeSearched = 0;
+            //timeSearched = 0;
             timer = 0;
             wanderTimer = 10;
             resourceType = npcBrain.resourceNeeded;
@@ -99,12 +121,9 @@ namespace ZetaGames.RPG {
                         Debug.Log("SearchForResourceDrop.Tick(): resource node found");
                     }
 
-                    // target the resource node component
-                    HarvestableResource node = targetCollider.gameObject.GetComponent<HarvestableResource>();
-
-                    if (node != null) {
-                        npcBrain.resourceTarget = targetCollider.transform.parent.gameObject;
-                        npcBrain.destination = node.transform.position;
+                    if (targetCollider.transform.parent.gameObject.TryGetComponent(out HarvestableResource harvestableResource)) {
+                        npcBrain.resourceTarget = harvestableResource.gameObject;
+                        npcBrain.destination = targetCollider.transform.position;
                         npcBrain.navMeshAgent.SetDestination(npcBrain.destination);
                         // remember the last location of a resource node for future reference
                         npcBrain.npcMemory.AddMemory(lastKnownResourceLocation, npcBrain.resourceTarget.transform.position);
@@ -115,7 +134,7 @@ namespace ZetaGames.RPG {
                     }
                     // otherwise, travel to last known location of the resource if there is one remembered and not too far away
                     if (npcBrain.npcMemory.ContainsMemory(lastKnownResourceLocation)) {
-                        Vector2 memoryLocation = (Vector2)npcBrain.npcMemory.RetrieveMemory(lastKnownResourceLocation);
+                        Vector2 memoryLocation = (Vector3)npcBrain.npcMemory.RetrieveMemory(lastKnownResourceLocation);
 
                         if (npcBrain.debugLogs) {
                             Debug.Log("SearchForResourceDrop.Tick(): memory found");
@@ -124,6 +143,7 @@ namespace ZetaGames.RPG {
                         if (Vector2.Distance(npcBrain.transform.position, memoryLocation) < npcBrain.personality.maxDistanceFromPosition) {
                             npcBrain.destination = memoryLocation;
                             npcBrain.navMeshAgent.SetDestination(npcBrain.destination);
+                            npcBrain.npcMemory.RemoveMemory(lastKnownResourceLocation); // remove memory so npc doesn't keep trying to go to same spot if there are no resources there
                         } else {
                             //TODO: Go to a shop instead if the last known location is too far away
                         }

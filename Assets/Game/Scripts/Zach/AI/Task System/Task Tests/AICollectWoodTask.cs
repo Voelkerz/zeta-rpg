@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
+    /*
     public class AICollectWoodTask : MonoBehaviour {
 
         private Dictionary<ResourceType, int> inventory;
@@ -162,4 +163,5 @@ namespace ZetaGames.RPG {
             return nearestCollider;
         }
     }
+    */
 }

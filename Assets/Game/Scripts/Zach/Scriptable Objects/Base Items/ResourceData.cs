@@ -7,6 +7,10 @@ namespace ZetaGames.RPG {
     public class ResourceData : BaseItem {
 
         [SerializeField] private ResourceType resourceType;
+
+        public ResourceType GetResourceType() {
+            return resourceType;
+        }
     }
 }
 

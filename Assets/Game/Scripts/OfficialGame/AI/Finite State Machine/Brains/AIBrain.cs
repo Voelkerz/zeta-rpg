@@ -9,11 +9,10 @@ namespace ZetaGames.RPG {
         public NavMeshAgent navMeshAgent { get; set; }
         public Animator animator { get; set; }
         public AnimationManager animationManager { get; set; }
-        //public GatherableResource resourceNodeTarget { get; set; }
         public GameObject resourceTarget { get; set; }
         public NpcMemory npcMemory { get; set; }
         public NpcInventory npcInventory { get; set; }
-        public Vector2 destination { get; set; }
+        public Vector3 destination { get; set; }
         public float timeStuck { get; set; }
         public float wanderCooldown { get; set; }
         public ResourceType resourceNeeded { get; set; }
@@ -28,8 +27,6 @@ namespace ZetaGames.RPG {
             animator = GetComponentInChildren<Animator>();
             animationManager = GetComponentInChildren<AnimationManager>();
             npcInventory = GetComponent<NpcInventory>();
-            //var enemyDetector = gameObject.AddComponent<EnemyDetector>();
-            //var fleeParticleSystem = gameObject.GetComponentInChildren<ParticleSystem>();
 
             // Create state machine for NPC
             stateMachine = new StateMachineMultiCondition();
@@ -40,8 +37,13 @@ namespace ZetaGames.RPG {
         }
 
         protected virtual void Update() {
-            stateMachine.Tick();
             updateCooldownTimers();
+            updateNeeds();
+            stateMachine.Tick();
+        }
+
+        protected virtual void updateNeeds() {
+
         }
 
         protected virtual void updateCooldownTimers() {
@@ -53,7 +55,7 @@ namespace ZetaGames.RPG {
         }
 
         public virtual void ResetAgent() {
-            animator.SetBool("move", false);
+            //animator.SetBool("move", false);
         }
     }
 }

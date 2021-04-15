@@ -30,6 +30,14 @@ namespace ZetaGames.RPG {
         public bool ContainsMemory(string key) {
             return memoryBank.ContainsKey(key);
         }
+
+        public void RemoveMemory(string key) {
+            if (memoryBank.ContainsKey(key)) {
+                memoryBank.Remove(key);
+            } else {
+                Debug.LogWarning("RetrieveMemory(): Cannot find key in memory to remove.");
+            }
+        }
     }
 }
 

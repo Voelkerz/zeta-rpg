@@ -6,12 +6,8 @@ using UnityEngine.AI;
 
 /***********************************************
  * TODO:
- * -Implement some kind of memory system (a List of Vector3's maybe) for key things
- *      like home, towns, stores, last location of a spotted enemy, a dangerous area,
- *      and simple things as the last place a resource node was found so it may aid
- *      in finding more.
  * -Implement a priority system for transitions in case there are multiple transitions
- *      that come back as true and possible.
+ *      that come back as true and possible. (Is this needed since I can prioritize on instantiation order?)
 ************************************************/
 
 namespace ZetaGames.RPG {
@@ -28,6 +24,7 @@ namespace ZetaGames.RPG {
             // Create all NPC states
             var searchForResource = new SearchForResource(this);
             var harvestResource = new HarvestResource(this);
+            var storeResource = new StoreResource(this);
             var getUnstuck = new GetUnstuck(this);
             var wander = new Wander(this, personality.wanderRadius, personality.wanderCycle); // range and cycle time
 
@@ -35,10 +32,12 @@ namespace ZetaGames.RPG {
              * SPECIFIC STATE TRANSITIONS
             ***************************************************************/
             // FROM 'search for resource' to ...
-            AT(searchForResource, harvestResource, new List<Func<bool>> { AtDestinationNotMoving(), HasResourceTarget(), IsFalse(InventoryFull()), () => resourceTarget.GetComponentInChildren<HarvestableResource>() != null });
+            AT(searchForResource, harvestResource, new List<Func<bool>> { AtDestinationNotMoving(), HasResourceTarget(), IsFalse(InventoryFull()), IsFalse(CarryingSomething()), () => resourceTarget.GetComponentInChildren<HarvestableResource>() != null, });
           
             // FROM 'harvest resource' to ...
-            AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(InventoryFull()) });
+            AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(InventoryFull()), IsFalse(CarryingSomething()) });
+
+            //
 
             /***************************************************************
              * FROM ANY STATE TRANSITIONS
@@ -71,8 +70,9 @@ namespace ZetaGames.RPG {
             // Conditionals for transitions
             Func<bool> AtDestinationNotMoving() => () => Vector2.Distance(transform.position, destination) < 2f && animator.GetCurrentAnimatorStateInfo(0).IsTag("idle");
             Func<bool> HasResourceTarget() => () => resourceTarget != null;
-            Func<bool> InventoryFull() => () => npcInventory.numWood >= npcInventory.maxInventoryCapacity;
-            
+            Func<bool> InventoryFull() => () => npcInventory.IsInventoryFull();
+            Func<bool> CarryingSomething() => () => npcInventory.IsCarryingSomething();
+
             // Inverse a condition
             Func<bool> IsFalse(Func<bool> conditionToInverse) => () => {
                 if (conditionToInverse()) {

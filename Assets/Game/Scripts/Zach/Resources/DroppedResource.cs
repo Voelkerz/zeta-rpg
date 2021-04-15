@@ -4,39 +4,34 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class DroppedResource : MonoBehaviour {
-        public ResourceType resourceType;
-        
-        private ResourceManager resourceManager;
+        [SerializeField] private RecycleSubCategory recycleSubCategory;
+        [SerializeField] private ResourceData resourcecData;
+        //private RecycleManager recycleManager;
+        private NpcInventory npcInventory;
 
-        //debug var
-        private Dictionary<ResourceType, int> resourceList;
-
-        private void OnTriggerEnter2D(Collider2D collision) {
-            /*
-            if (collision.tag == "Friendly" || collision.tag == "Enemy") {
-                resourceManager = FindObjectOfType<ResourceManager>();
-                resourceManager.addResource(collision.gameObject.GetInstanceID(), resourceType, 1);
-
-                //debug
-                
-                resourceList = resourceManager.getNpcInventory(collision.gameObject.GetInstanceID());
-                Debug.Log(collision.name + "'s Resources:");
-                printInventory();
-                
-                //
-
-                Destroy(gameObject);
-            }
-            */
+        private void Awake() {
+            //recycleManager = FindObjectOfType<RecycleManager>();
         }
 
-        // debug method
-        private void printInventory() {
-            Debug.Log("==========================");
-            foreach (KeyValuePair<ResourceType, int> resourceInfo in resourceList) {
-                Debug.Log(resourceInfo.Key + ": " + resourceInfo.Value);
+        private void OnTriggerEnter2D(Collider2D collider) {
+            if (collider.tag == "NPC") {
+                npcInventory = collider.GetComponent<NpcInventory>();
             }
-            Debug.Log("==========================");
+        }
+
+        public bool PickUp() {
+            if (npcInventory != null) {
+                npcInventory.PickupResource(resourcecData.GetResourceType());
+                // recycle the object
+                gameObject.SetActive(false);
+                Destroy(gameObject, 0.75f);
+                //recycleManager.RecycleObject(RecycleCategory.Resource, recycleSubCategory, gameObject);
+                return true;
+            } else {
+                Debug.LogWarning("DroppedResource.PickUp(): npcInventory null, collider may be improperly set.");
+                return false;
+            }
+            
         }
     }
 }
