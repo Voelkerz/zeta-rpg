@@ -10,10 +10,10 @@ TagManager:
   - World
   - NoMask
   - Resource
-  - Friendly
   - ResourceSource
   - Wood
   - Structure
+  - NPC
   layers:
   - Default
   - TransparentFX

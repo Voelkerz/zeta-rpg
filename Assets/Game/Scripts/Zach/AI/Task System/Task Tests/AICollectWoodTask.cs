@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
+    /*
     public class AICollectWoodTask : MonoBehaviour {
 
         private Dictionary<ResourceType, int> inventory;
@@ -22,7 +23,7 @@ namespace ZetaGames.RPG {
             taskManager = GetComponent<TaskManager>();
 
             // GET INVENTORY
-            inventory = GetComponent<InventoryManager>().inventory;
+            inventory = GetComponent<NpcInventory>().inventory;
 
             // GET NAV MESH AGENT
             navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
@@ -162,4 +163,5 @@ namespace ZetaGames.RPG {
             return nearestCollider;
         }
     }
+    */
 }
