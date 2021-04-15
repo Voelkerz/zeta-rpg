@@ -43,7 +43,7 @@ namespace ZetaGames.RPG {
                 velocity = smoothDeltaPosition / Time.deltaTime;
 
             move = velocity.magnitude > 0.1f && navMeshAgent.remainingDistance * 2 > navMeshAgent.radius;
-            Debug.Log("move: " + move + " || remainingDistance: " + navMeshAgent.remainingDistance);
+            //Debug.Log("move: " + move + " || remainingDistance: " + navMeshAgent.remainingDistance);
 
             // update last known direction for idle animations
             if (deltaPosition.x > 0 && deltaPosition.y < 0) {
