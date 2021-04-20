@@ -1,0 +1,1 @@
+So I learned that pulling sprites from a sprite atlas is a lot better for performance. So let's try to keep everything we're using in an atlas. Also, if we need to, I can look into making the atlases addressable for quicker cpu draw calls.
