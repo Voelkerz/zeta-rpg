@@ -1,0 +1,1 @@
+All shared assets can go here. If an asset is officially used, then we can COPY it to the OfficialGame folder with the same folder hierarchy. This will keep it so that only assets being used will be packaged with the game and keep the overall installation size lower.
