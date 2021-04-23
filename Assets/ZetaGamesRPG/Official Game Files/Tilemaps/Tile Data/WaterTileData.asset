@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: WaterTileData
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 3b9d6cf6b4d35254ca493b595977fb76, type: 2}
+  - {fileID: 11400000, guid: f4e6b6cac3265f04885193bafe7755b7, type: 2}
+  - {fileID: 11400000, guid: 234dbf59cffa4c141820d83f84673c81, type: 2}
+  - {fileID: 11400000, guid: 966a3042768515a4889259754a91fd31, type: 2}
+  - {fileID: 11400000, guid: f5f2e514423390d4982a892379efb228, type: 2}
+  - {fileID: 11400000, guid: b351da7fc3c59e94ab2ad952d1e06227, type: 2}
+  - {fileID: 11400000, guid: 649364a2118d2c44e8f9aeeee11f4265, type: 2}
+  - {fileID: 11400000, guid: 033264718d519264494c1bac2520e7c3, type: 2}
+  - {fileID: 11400000, guid: d808a08bbc409e14ba43424295bb117e, type: 2}
+  - {fileID: 11400000, guid: 6369c6ab6030f454784e225cac3cfef5, type: 2}
+  - {fileID: 11400000, guid: b1148391e1fb45a4cb364a9aa8ec9b03, type: 2}
+  - {fileID: 11400000, guid: 46e2cc57416c8664e9b8170122a3220d, type: 2}
+  - {fileID: 11400000, guid: e3d8335877d74894d8e8f7d2165153ba, type: 2}
+  - {fileID: 11400000, guid: 5f417f984a22ce441ae53403e567b6b5, type: 2}
+  - {fileID: 11400000, guid: 038ccb4a44ab83944adb6dc88f6ae9ef, type: 2}
+  - {fileID: 11400000, guid: 13d6a78a0761d534783429d01b864685, type: 2}
+  - {fileID: 11400000, guid: ebc2219b4371a0f43914a91cfc9a0c85, type: 2}
+  - {fileID: 11400000, guid: 75ad906a02c452645bb44bae77888929, type: 2}
+  - {fileID: 11400000, guid: a2167b33678e922488c3e507a41c6d9a, type: 2}
+  - {fileID: 11400000, guid: 57b5dbf6a06f0094880e598aa56b86dc, type: 2}
+  - {fileID: 11400000, guid: 46a8a8fc08cfa9b408c46693216680af, type: 2}
+  - {fileID: 11400000, guid: e6a5fc4880bbee940b57af3e69a9f3d2, type: 2}
+  - {fileID: 11400000, guid: 744d7ec1a8d05174b80a8c1d132011ff, type: 2}
+  - {fileID: 11400000, guid: 5b3faa6885ca22d4ba1f4e53cd36a4e9, type: 2}
+  - {fileID: 11400000, guid: 091076c3e71aa304397b023dce7ed4a8, type: 2}
+  - {fileID: 11400000, guid: a791abd67a15aae469b06af7f1610fd0, type: 2}
+  - {fileID: 11400000, guid: f23db6d7ab449ce4dba639ff94c6e03d, type: 2}
+  - {fileID: 11400000, guid: 6126786e95dd8664e83711a0db154262, type: 2}
+  - {fileID: 11400000, guid: c60862d69f0361d48bde2fd6df78320a, type: 2}
+  - {fileID: 11400000, guid: 6a14044e124fca241a0a3ff135e9c441, type: 2}
+  - {fileID: 11400000, guid: 1ae8919a37cc91e48b58509547445ca7, type: 2}
+  - {fileID: 11400000, guid: d0292fd9ee0b23246ab912d0c46e2e14, type: 2}
+  - {fileID: 11400000, guid: c578e166839656a4b8068cee89ed1bbf, type: 2}
+  movementCost: 9999
+  walkable: 0
+  type: water

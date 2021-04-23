@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: DirtTileData
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: c9fdd52118507614b8c0ee6aa226682a, type: 2}
+  - {fileID: 11400000, guid: 553cb20d5031cce48966e8e577529a32, type: 2}
+  - {fileID: 11400000, guid: dfc3a7e6f462309458a0d6a960f013d1, type: 2}
+  - {fileID: 11400000, guid: 94c1a09c481188a4b97c99cd2633c5e7, type: 2}
+  - {fileID: 11400000, guid: 531df966af1933e409df7e9be3272c7a, type: 2}
+  - {fileID: 11400000, guid: 0234739b7be14384182ef5d3a7cda3d8, type: 2}
+  - {fileID: 11400000, guid: 72956c6f04c1cef4fa08dba151eef0fa, type: 2}
+  - {fileID: 11400000, guid: f0d1c52e5af48ce4ca8106a81e26d167, type: 2}
+  - {fileID: 11400000, guid: cbf96e314a296f44b8f2e44e6964b771, type: 2}
+  - {fileID: 11400000, guid: e5170c80ee95af849b72ec58deac1366, type: 2}
+  - {fileID: 11400000, guid: ab15abd2fb09fa442aeeab76202184b9, type: 2}
+  - {fileID: 11400000, guid: eab661de32bf27d43a2e1851e742b6f6, type: 2}
+  - {fileID: 11400000, guid: 3b6af4bcdc082a8478432f2905c841ee, type: 2}
+  - {fileID: 11400000, guid: 2ceaf4760c11e2142aad5a645d344e2c, type: 2}
+  - {fileID: 11400000, guid: a90d547e2b91a7741b6fc78b8ea4905b, type: 2}
+  - {fileID: 11400000, guid: 1e54880f3985c4a41bcaf6cb1ae70c8b, type: 2}
+  - {fileID: 11400000, guid: 86d50f556a368f9469c9492a453ef390, type: 2}
+  - {fileID: 11400000, guid: 264f81ee073053245ada84d6589473a7, type: 2}
+  - {fileID: 11400000, guid: 834b46b408fcb3d47821c57c0721152f, type: 2}
+  - {fileID: 11400000, guid: 8d4e9da5f512a1545861816b30f37bcd, type: 2}
+  movementCost: 500
+  walkable: 1
+  type: dirt
