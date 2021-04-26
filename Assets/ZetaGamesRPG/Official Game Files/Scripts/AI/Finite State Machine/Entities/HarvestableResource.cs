@@ -7,7 +7,7 @@ namespace ZetaGames.RPG {
         [SerializeField] private GameObject prefabResource;
         [SerializeField] private ResourceType resourceType;
         [SerializeField] private int hitPoints = 20;
-        //private RecycleManager recycleManager;
+        private RecycleManager recycleManager;
         //private GameObject resourceToSpawn;
 
         private void Awake() {

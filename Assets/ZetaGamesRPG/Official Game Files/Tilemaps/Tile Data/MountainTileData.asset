@@ -45,6 +45,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51e710e50c09736438bd7b5084328b5f, type: 2}
   - {fileID: 11400000, guid: 409a7076b35bad545ad82ae21cbabc51, type: 2}
   - {fileID: 11400000, guid: 55d697bd22121f643a60c253aa5aa292, type: 2}
-  movementCost: 9999
+  pathPenalty: 0
+  speedPercent: 50
   walkable: 0
   type: mountain

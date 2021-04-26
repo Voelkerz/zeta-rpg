@@ -17,11 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 68e92ca1013be334f9489aa0d95bab84
   m_SerializeEntries:
-  - m_GUID: 959ae9c8c6ca3da4c87c2e58ec983431
-    m_Address: Assets/Game/Sprites/Minifantasy Sprites/Biome - Forgotten Plains/Tileset/_Minifantasy_ForgottenPlainsAllTiles.png
+  - m_GUID: c40b57f7cc8d2ca48a36d508bfc3a038
+    m_Address: Assets/ZetaGamesRPG/Development/TeamSharedAssets/Sprites_Minifantasy/Biome
+      - Forgotten Plains/Tileset/Minifactory_Grassland.spriteatlas
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
+    m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0

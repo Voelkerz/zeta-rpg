@@ -36,6 +36,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 675eea33dbb0b844fa22f0b6e4ee0379, type: 2}
   - {fileID: 11400000, guid: 17551b630572cfc4985bc0476c85d9fa, type: 2}
   - {fileID: 11400000, guid: bf17f84aeef7b624599d199edafc828b, type: 2}
-  movementCost: 1000
+  pathPenalty: 10000
+  speedPercent: 100
   walkable: 1
   type: grass

@@ -46,6 +46,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ae8919a37cc91e48b58509547445ca7, type: 2}
   - {fileID: 11400000, guid: d0292fd9ee0b23246ab912d0c46e2e14, type: 2}
   - {fileID: 11400000, guid: c578e166839656a4b8068cee89ed1bbf, type: 2}
-  movementCost: 9999
+  pathPenalty: 0
+  speedPercent: 50
   walkable: 0
   type: water
