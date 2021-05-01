@@ -73,3 +73,6 @@ crashlytics-build.properties
 # Personal Development Sections
 /[Aa]ssets/[Zz]etaGamesRPG/[Dd]evelopment/*
 !/[Aa]ssets/[Zz]etaGamesRPG/[Dd]evelopment/TeamSharedAssets
+
+# Ignore Atstar Pathfinding
+/[Aa]ssets/[Aa]starPathfindingProject/*

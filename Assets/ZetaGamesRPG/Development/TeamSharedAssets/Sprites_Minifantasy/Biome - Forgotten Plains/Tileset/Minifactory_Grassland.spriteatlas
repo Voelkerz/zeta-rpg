@@ -44,7 +44,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
-    totalSpriteSurfaceArea: 12096
+    - {fileID: -4842755666233738139, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+    totalSpriteSurfaceArea: 13120
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -239,6 +240,7 @@ SpriteAtlas:
   - {fileID: -5411679737409554135, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: -8885108771166411701, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: 2367239980171883332, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
+  - {fileID: -4842755666233738139, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
   m_PackedSpriteNamesToIndex:
   - _Minifantasy_ForgottenPlainsAllTiles_8
   - _Minifantasy_ForgottenPlainsAllTiles_9
@@ -429,6 +431,7 @@ SpriteAtlas:
   - _Minifantasy_ForgottenPlainsAllTiles_142
   - _Minifantasy_ForgottenPlainsAllTiles_141
   - _Minifantasy_ForgottenPlainsAllTiles_140
+  - Minifantasy_CraftingAndProfessionsOakTreeHit_0
   m_RenderDataMap: {}
   m_Tag: Minifactory_Grassland
   m_IsVariant: 0
