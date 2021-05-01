@@ -33,6 +33,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 264f81ee073053245ada84d6589473a7, type: 2}
   - {fileID: 11400000, guid: 834b46b408fcb3d47821c57c0721152f, type: 2}
   - {fileID: 11400000, guid: 8d4e9da5f512a1545861816b30f37bcd, type: 2}
-  movementCost: 500
+  pathPenalty: 5000
+  speedPercent: 120
   walkable: 1
   type: dirt

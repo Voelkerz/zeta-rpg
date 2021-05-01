@@ -7,14 +7,14 @@ namespace ZetaGames.RPG {
         public bool isInterruptable { get => timeInState > 10f; }
         private bool finished;
         private AIBrain npcBrain;
-        private NavMeshAgent navMeshAgent;
+        //private NavMeshAgent navMeshAgent;
         private readonly AnimationManager animationManager;
         private Vector3 lastPosition = Vector3.zero;
         private float timeInState;
 
         public GetUnstuck(AIBrain npcBrain) {
             this.npcBrain = npcBrain;
-            navMeshAgent = npcBrain.navMeshAgent;
+            //navMeshAgent = npcBrain.navMeshAgent;
             animationManager = npcBrain.animationManager;
         }
 
@@ -29,9 +29,9 @@ namespace ZetaGames.RPG {
             timeInState = 0;
             npcBrain.ResetAgent();
             npcBrain.timeStuck = 0f;
-            npcBrain.resourceTarget = null;
-            npcBrain.destination = (Vector3)npcBrain.npcMemory.RetrieveMemory("home");
-            navMeshAgent.destination = npcBrain.destination;
+            npcBrain.resourceTileTarget = null;
+            npcBrain.destinationPos = (Vector3)npcBrain.npcMemory.RetrieveMemory("home");
+            //navMeshAgent.destination = npcBrain.destinationPos;
         }
 
         public void OnExit() {

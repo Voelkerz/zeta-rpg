@@ -14,6 +14,8 @@ TagManager:
   - Wood
   - Structure
   - NPC
+  - Culled
+  - Unculled
   layers:
   - Default
   - TransparentFX

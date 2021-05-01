@@ -22,6 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef365e856b13c6d46bff8670d606e03d, type: 2}
   - {fileID: 11400000, guid: 4a80629f84e964b41ac32f9d3a56b3d3, type: 2}
   - {fileID: 11400000, guid: e3a337511e1df5e4090cc656a517d430, type: 2}
-  movementCost: 1500
+  pathPenalty: 1000
+  speedPercent: 50
   walkable: 1
   type: stair

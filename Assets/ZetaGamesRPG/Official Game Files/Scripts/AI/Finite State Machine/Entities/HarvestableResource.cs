@@ -1,47 +1,70 @@
-﻿using UnityEngine;
+﻿using Pathfinding;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class HarvestableResource : MonoBehaviour {
 
-        [SerializeField] private RecycleSubCategory recycleSubCategory;
-        [SerializeField] private GameObject prefabResource;
-        [SerializeField] private ResourceType resourceType;
-        [SerializeField] private int hitPoints = 20;
-        //private RecycleManager recycleManager;
-        //private GameObject resourceToSpawn;
+        public ResourceNodeData resourceData;
+        private int currentHitPoints;
 
-        private void Awake() {
-            //recycleManager = FindObjectOfType<RecycleManager>();
+        private void Start() {
+            currentHitPoints = resourceData.maxHitPoints;
         }
 
         public bool ToolHit(int hitAmount) {
-            if (hitPoints > 0) {
-                hitPoints -= hitAmount;
+            if (currentHitPoints > 0) {
+                currentHitPoints -= hitAmount;
                 return true;
             } else {
                 return false;
             }
         }
 
-        public ResourceType GetResourceType() {
-            return resourceType;
-        }
-
         public int GetHealth() {
-            return hitPoints;
+            return currentHitPoints;
         }
 
         public void RecycleAndSpawnLoot() {
-            // spawn resource loot from recycler
-            //resourceToSpawn = recycleManager.GetRecycledObject(RecycleCategory.Resource, recycleSubCategory, prefabResource);
-            //resourceToSpawn.transform.position = transform.position;
-            //resourceToSpawn.SetActive(true);
-            Instantiate(prefabResource, transform.position, Quaternion.identity);
+            List<WorldTile> tilesToUpdate = new List<WorldTile>();
 
-            // recycle the resource source (this object)
-            gameObject.SetActive(false);
-            Destroy(gameObject, 0.75f);
-            //recycleManager.RecycleObject(RecycleCategory.Resource, recycleSubCategory, gameObject);
+            // Adjust tile data
+            WorldTile curTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
+            tilesToUpdate.Add(curTile);
+            curTile.SetTileObject(Instantiate(resourceData.resourceLoot, gameObject.transform.position + new Vector3(0.5f, 0.5f), Quaternion.identity));
+            curTile.SetTileObjectPool(null);
+            curTile.occupied = true;
+            curTile.occupiedType = resourceData.resourceType.ToString() + "_drop";
+            curTile.walkable = true;
+
+            // Adjust adjacent tile data
+            foreach (Vector3Int adjGridPos in resourceData.adjacentGridOccupation) {
+                WorldTile adjTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(curTile.x + adjGridPos.x, curTile.y + adjGridPos.y);
+                tilesToUpdate.Add(adjTile);
+                adjTile.occupied = false;
+                adjTile.occupiedType = "none";
+                adjTile.walkable = true;
+            }
+
+            // Adjust pathfinding grid
+            AstarPath.active.AddWorkItem(new AstarWorkItem(() => {}, force => {
+                // Called each frame until returned true
+                var grid = AstarPath.active.data.gridGraph;
+
+                // Update all tiles in list
+                foreach (WorldTile tile in tilesToUpdate) {
+                    Vector3 tilePos = MapManager.Instance.GetWorldTileGrid().GetWorldPosition(tile.x, tile.y);
+                    grid.GetNode((int)tilePos.x, (int)tilePos.y).Walkable = true;
+                    grid.CalculateConnectionsForCellAndNeighbours((int)tilePos.x, (int)tilePos.y);
+                }
+
+                return true;
+            }));
+
+            // Reset resource and send back into reusable object pool
+            gameObject.transform.position = new Vector3Int(0, 0, 0);
+            gameObject.tag = "Culled";
+            currentHitPoints = resourceData.maxHitPoints;
         }
     }
 }
