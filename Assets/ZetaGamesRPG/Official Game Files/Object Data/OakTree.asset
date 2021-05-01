@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
+  m_Name: OakTree
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3621254233348824343, guid: 7a8db5b5ade76c946a398432b7b2d7f6, type: 3}
+  type: 0
+  resourceType: 0
+  resourceLoot: {fileID: 1136408400419902, guid: c26755fc3a5b7ce43bd54c2d0e1fd7aa,
+    type: 3}
+  maxHitPoints: 20
+  adjacentGridOccupation:
+  - {x: -1, y: 0, z: 0}
+  harvestSpots:
+  - {x: -1, y: -1, z: 0}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}

@@ -13,6 +13,7 @@ namespace ZetaGames.RPG {
         public float speedPercent;
         public bool walkable;
         public string type;
+        public bool animated;
     }
 }
 

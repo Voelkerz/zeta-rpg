@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
 
 /***********************************************
  * TODO:
@@ -15,7 +12,7 @@ namespace ZetaGames.RPG {
 
         private void Start() {
             // FORCED TEST PARAMETERS
-            resourceNeeded = ResourceType.Wood;
+            resourceTypeWanted = ResourceType.Wood;
             npcMemory.AddMemory("home", transform.position);
 
             // Create AI Personality
@@ -25,17 +22,17 @@ namespace ZetaGames.RPG {
             var searchForResource = new SearchForResource(this);
             var harvestResource = new HarvestResource(this);
             var storeResource = new StoreResource(this);
-            var getUnstuck = new GetUnstuck(this);
-            var wander = new Wander(this, personality.wanderRadius, personality.wanderCycle); // range and cycle time
+            //var getUnstuck = new GetUnstuck(this);
+            //var wander = new Wander(this, personality.wanderRadius, personality.wanderCycle);
 
             /***************************************************************
              * SPECIFIC STATE TRANSITIONS
             ***************************************************************/
             // FROM 'search for resource' to ...
-            AT(searchForResource, harvestResource, new List<Func<bool>> { AtDestinationNotMoving(), HasResourceTarget(), IsFalse(InventoryFull()), IsFalse(CarryingSomething()), () => resourceTarget.GetComponentInChildren<HarvestableResource>() != null, });
+            AT(searchForResource, harvestResource, new List<Func<bool>> { HasResourceTarget(), IsFalse(IsInventoryFull()), IsFalse(IsCarryingSomething()), IsResourceTargetANode() });
           
             // FROM 'harvest resource' to ...
-            AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(InventoryFull()), IsFalse(CarryingSomething()) });
+            AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(IsInventoryFull()), IsFalse(IsCarryingSomething()) });
 
             //
 
@@ -43,7 +40,7 @@ namespace ZetaGames.RPG {
              * FROM ANY STATE TRANSITIONS
             ***************************************************************/
             // TO 'return home' from *any state* when stuck
-            stateMachine.AddFromAnyTransition(getUnstuck, new List<Func<bool>> { StuckOnMove() });
+            //stateMachine.AddFromAnyTransition(getUnstuck, new List<Func<bool>> { StuckOnMove() });
 
             // TO 'wander' from *any*
             //stateMachine.AddFromAnyTransition(wander, new List<Func<bool>> { () => wanderCooldown > personality.wanderMaxCooldown });
@@ -55,7 +52,7 @@ namespace ZetaGames.RPG {
             //stateMachine.AddToAnyTransition(wander);
 
             // FROM 'get unstuck' to *any state*
-            stateMachine.AddToAnyTransition(getUnstuck);
+            //stateMachine.AddToAnyTransition(getUnstuck);
 
             /**********************************************************************************************************************************************************************************
              * END TRANSITIONS
@@ -68,10 +65,11 @@ namespace ZetaGames.RPG {
             void AT(IState from, IState to, List<Func<bool>> conditions) => stateMachine.AddTransition(from, to, conditions);
 
             // Conditionals for transitions
-            Func<bool> AtDestinationNotMoving() => () => Vector2.Distance(transform.position, destination) < 2f && animator.GetCurrentAnimatorStateInfo(0).IsTag("idle");
-            Func<bool> HasResourceTarget() => () => resourceTarget != null;
-            Func<bool> InventoryFull() => () => npcInventory.IsInventoryFull();
-            Func<bool> CarryingSomething() => () => npcInventory.IsCarryingSomething();
+            Func<bool> AtDestinationStopped() => () => pathAgent.remainingDistance < 1f && pathAgent.isStopped;
+            Func<bool> HasResourceTarget() => () => resourceTileTarget != null;
+            Func<bool> IsResourceTargetANode() => () => resourceTileTarget.occupiedType.Contains("_node_center");
+            Func<bool> IsInventoryFull() => () => npcInventory.IsInventoryFull();
+            Func<bool> IsCarryingSomething() => () => npcInventory.IsCarryingSomething();
 
             // Inverse a condition
             Func<bool> IsFalse(Func<bool> conditionToInverse) => () => {
@@ -82,6 +80,7 @@ namespace ZetaGames.RPG {
                 }
             };
 
+            /*
             // Stuck character timer
             Func<bool> StuckOnMove() => () => {
                 if (timeStuck > 30f) {
@@ -91,6 +90,7 @@ namespace ZetaGames.RPG {
                     return false;
                 }
             };
+            */
         }
     }
 }

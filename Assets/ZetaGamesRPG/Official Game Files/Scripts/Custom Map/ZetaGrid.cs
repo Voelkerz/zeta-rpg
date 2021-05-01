@@ -2,9 +2,10 @@
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class ZGrid<TGridObject> {
+    public class ZetaGrid<TGridObject> {
 
         public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
+        
         public class OnGridObjectChangedEventArgs : EventArgs {
             public int x;
             public int y;
@@ -16,7 +17,7 @@ namespace ZetaGames.RPG {
         private Vector3 originPosition;
         private TGridObject[,] gridArray;
 
-        public ZGrid(int width, int height, float cellSize, Vector3 originPosition, Func<ZGrid<TGridObject>, int, int, TGridObject> createGridObject) {
+        public ZetaGrid(int width, int height, float cellSize, Vector3 originPosition, Func<int, int, TGridObject> createGridObject) {
             this.width = width;
             this.height = height;
             this.cellSize = cellSize;
@@ -26,7 +27,7 @@ namespace ZetaGames.RPG {
 
             for (int x = 0; x < gridArray.GetLength(0); x++) {
                 for (int y = 0; y < gridArray.GetLength(1); y++) {
-                    gridArray[x, y] = createGridObject(this, x, y);
+                    gridArray[x, y] = createGridObject(x, y);
                 }
             }
 
@@ -102,6 +103,13 @@ namespace ZetaGames.RPG {
             return GetGridObject(x, y);
         }
 
+        public bool IsWithinGridBounds(int x, int y) {
+            if (x < gridArray.GetLength(0) && y < gridArray.GetLength(1) && x >= 0 && y >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
 

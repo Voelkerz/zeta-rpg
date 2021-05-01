@@ -9,7 +9,7 @@ namespace ZetaGames.RPG {
         public bool isInterruptable { get => npcBrain.inCombat || cycleCount > 3; } // state will not be interrupted until specified full 'wandering' cycles are finished (unless combat is initiated)
         private bool finished;
         private AIBrain npcBrain;
-        private NavMeshAgent navMeshAgent;
+        //private NavMeshAgent navMeshAgent;
         private readonly AnimationManager animationManager;
         //private Vector3 lastPosition = Vector3.zero;
 
@@ -22,7 +22,7 @@ namespace ZetaGames.RPG {
 
         public Wander(AIBrain npcBrain, float wanderRadius, float wanderTimer) {
             this.npcBrain = npcBrain;
-            navMeshAgent = npcBrain.navMeshAgent;
+            //navMeshAgent = npcBrain.navMeshAgent;
             animationManager = npcBrain.animationManager;
             this.wanderRadius = wanderRadius;
             this.wanderTimer = wanderTimer;
@@ -33,7 +33,7 @@ namespace ZetaGames.RPG {
 
             if (timer >= wanderTimer) {
                 Vector2 newPos = ZetaUtilities.RandomNavSphere(npcBrain.transform.position, wanderRadius, -1);
-                navMeshAgent.SetDestination(newPos);
+                //navMeshAgent.SetDestination(newPos);
                 timer = 0;
                 cycleCount++;
             }
