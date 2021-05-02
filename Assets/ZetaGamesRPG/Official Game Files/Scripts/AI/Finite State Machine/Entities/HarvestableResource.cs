@@ -56,6 +56,7 @@ namespace ZetaGames.RPG {
             // Spawn max number of loot on random viable adjacent tiles
             for (int i = 0; i < numLoot; i++) {
                 WorldTile chosenTile = possibleLootPositions[Random.Range(0, possibleLootPositions.Count - 1)];
+                possibleLootPositions.Remove(chosenTile);
                 chosenTile.SetTileObject(Instantiate(resourceData.lootPrefab, MapManager.Instance.GetWorldTileGrid().GetWorldPosition(chosenTile.x, chosenTile.y) + new Vector3(0.5f, 0.5f), Quaternion.identity));
 
                 // Adjust tile data

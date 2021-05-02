@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public enum NodeType {
+        None,
         Oak
     }
 

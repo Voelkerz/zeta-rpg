@@ -77,7 +77,7 @@ namespace ZetaGames.RPG {
         }
 
         private void Update() {
-            /*
+            
             if (Input.GetMouseButtonDown(0)) {
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -86,11 +86,11 @@ namespace ZetaGames.RPG {
 
                 WorldTile clickedTile = worldTileGrid.GetGridObject(mouseWorldPos);
 
-                Debug.Log("Type: " + clickedTile.type + " || Walkable: " + clickedTile.walkable + " || Move cost: " + clickedTile.pathPenalty);
+                Debug.Log("Occupied: " + clickedTile.occupied + " || Occupied Status: " + clickedTile.occupiedStatus + " || Occupied Type: " + clickedTile.occupiedType + " || GameObject: " + clickedTile.HasTileObject());
 
-                mapList[1].SetTile(mouseGridPos, null);
+                //mapList[1].SetTile(mouseGridPos, null);
             }
-            */
+            
         }
 
         /*

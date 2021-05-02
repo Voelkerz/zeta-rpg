@@ -28,12 +28,16 @@ namespace ZetaGames.RPG {
                 } else if (npcBrain.resourceTileTarget.occupiedStatus == npcBrain.resourceTypeWanted.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP && npcBrain.pathAgent.isStopped && npcBrain.pathAgent.remainingDistance < 0.65) {
                     if (npcBrain.resourceTileTarget.GetTileObject().TryGetComponent(out DroppedResource resource)) {
                         if (resource.GetResourceData().GetResourceType().Equals(npcBrain.resourceTypeWanted)) {
+                            if (npcBrain.debugLogs) {
+                                Debug.Log("SearchForResourceDrop.Tick(): Picking up dropped resource");
+                            }
+
                             resource.PickUp();
                             npcBrain.resourceTileTarget = null;
                         }
+                    } else {
+                        Debug.LogWarning("SearchForResource.Tick(): Failed to get 'DroppedResource' component.");
                     }
-                } else {
-                    npcBrain.resourceTileTarget = null;
                 }
             } else if (activelySearching && npcBrain.pathAgent.isStopped) {
                 activelySearching = false;
@@ -51,7 +55,7 @@ namespace ZetaGames.RPG {
         }
 
         public void OnExit() {
-            //npcBrain.timeStuck = 0f;
+            
         }
 
         private void GetTarget() {
@@ -78,10 +82,6 @@ namespace ZetaGames.RPG {
             // search for free dropped resources
             foreach (WorldTile tile in fullTileGridList) {
                 if (tile.occupiedStatus == npcBrain.resourceTypeWanted.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP && tile.HasTileObject()) {
-                    if (npcBrain.debugLogs) {
-                        Debug.Log("SearchForResourceDrop.Tick(): dropped resource found");
-                    }
-
                     if (closestTile == null) {
                         closestTile = tile;
                     } else if (Vector3.Distance(MapManager.Instance.GetWorldTileGrid().GetWorldPosition(tile.x, tile.y), npcBrain.transform.position) 
@@ -94,53 +94,58 @@ namespace ZetaGames.RPG {
 
             // if a dropped resource is found, target the closest one found
             if (closestTile != null) {
+                if (npcBrain.debugLogs) {
+                    Debug.Log("SearchForResourceDrop.Tick(): dropped resource found");
+                }
+
                 activelySearching = true;
                 npcBrain.resourceTileTarget = closestTile;
                 npcBrain.pathAgent.destination = MapManager.Instance.GetWorldTileGrid().GetWorldPosition(closestTile.x, closestTile.y) + new Vector3(0.5f, 0.5f);
                 npcBrain.pathAgent.SearchPath();
-            }
-
-            // otherwise, look for a resource node to harvest instead
-            if (npcBrain.resourceTileTarget == null) {
-                foreach (WorldTile tile in fullTileGridList) {
-                    if (tile.occupiedStatus == npcBrain.resourceTypeWanted.ToString() + ZetaUtilities.OCCUPIED_NODE_FULL) {
-                        if (npcBrain.debugLogs) {
-                            Debug.Log("SearchForResourceDrop.Tick(): resource node found");
-                        }
-
-                        if (closestTile == null) {
-                            closestTile = tile;
-                        } else if (Vector3.Distance(MapManager.Instance.GetWorldTileGrid().GetWorldPosition(tile.x, tile.y), npcBrain.transform.position)
-                            < Vector3.Distance(MapManager.Instance.GetWorldTileGrid().GetWorldPosition(closestTile.x, closestTile.y), npcBrain.transform.position)) {
-                            // If the distance between the targeted resource tile and the current position is less than the current closest tile and the current position, then make this the closest
-                            closestTile = tile;
+            } else {
+                // otherwise, look for a resource node to harvest instead
+                if (npcBrain.resourceTileTarget == null) {
+                    foreach (WorldTile tile in fullTileGridList) {
+                        if (tile.occupiedStatus == npcBrain.resourceTypeWanted.ToString() + ZetaUtilities.OCCUPIED_NODE_FULL) {
+                            if (closestTile == null) {
+                                closestTile = tile;
+                            } else if (Vector3.Distance(MapManager.Instance.GetWorldTileGrid().GetWorldPosition(tile.x, tile.y), npcBrain.transform.position)
+                                < Vector3.Distance(MapManager.Instance.GetWorldTileGrid().GetWorldPosition(closestTile.x, closestTile.y), npcBrain.transform.position)) {
+                                // If the distance between the targeted resource tile and the current position is less than the current closest tile and the current position, then make this the closest
+                                closestTile = tile;
+                            }
                         }
                     }
                 }
-            }
 
-            // if a resource node was found, target the closest one found
-            if (closestTile != null) {
-                npcBrain.npcMemory.AddMemory(lastKnownResourceLocation, MapManager.Instance.GetWorldTileGrid().GetWorldPosition(closestTile.x, closestTile.y));
-                npcBrain.resourceTileTarget = closestTile;
-            }
-
-            // otherwise, travel to last known location of the resource if there is one remembered and not too far away
-            if (npcBrain.resourceTileTarget == null) {
-                if (npcBrain.npcMemory.ContainsMemory(lastKnownResourceLocation)) {
+                // if a resource node was found, target the closest one found
+                if (closestTile != null) {
                     if (npcBrain.debugLogs) {
-                        Debug.Log("SearchForResourceDrop.Tick(): memory found");
+                        Debug.Log("SearchForResourceDrop.Tick(): resource node found");
                     }
 
-                    Vector3 memoryLocation = (Vector3)npcBrain.npcMemory.RetrieveMemory(lastKnownResourceLocation);
+                    npcBrain.npcMemory.AddMemory(lastKnownResourceLocation, MapManager.Instance.GetWorldTileGrid().GetWorldPosition(closestTile.x, closestTile.y));
+                    npcBrain.resourceTileTarget = closestTile;
+                } else {
+                    // otherwise, travel to last known location of the resource if there is one remembered and not too far away
+                    if (npcBrain.resourceTileTarget == null) {
+                        if (npcBrain.npcMemory.ContainsMemory(lastKnownResourceLocation)) {
+                            if (npcBrain.debugLogs) {
+                                Debug.Log("SearchForResourceDrop.Tick(): memory found");
+                            }
 
-                    npcBrain.mapManager.GetWorldTileGrid().GetXY(npcBrain.transform.position, out int curX, out int curY);
-                    npcBrain.mapManager.GetWorldTileGrid().GetXY(memoryLocation, out int memX, out int memY);
+                            Vector3 memoryLocation = (Vector3)npcBrain.npcMemory.RetrieveMemory(lastKnownResourceLocation);
 
-                    if (Mathf.Abs(memX - curX) < npcBrain.personality.maxDistanceFromPosition && Mathf.Abs(memY - curY) < npcBrain.personality.maxDistanceFromPosition) {
-                        npcBrain.pathAgent.destination = memoryLocation;
-                        npcBrain.pathAgent.SearchPath();
-                        npcBrain.npcMemory.RemoveMemory(lastKnownResourceLocation);
+                            npcBrain.mapManager.GetWorldTileGrid().GetXY(npcBrain.transform.position, out int curX, out int curY);
+                            npcBrain.mapManager.GetWorldTileGrid().GetXY(memoryLocation, out int memX, out int memY);
+
+                            if (Mathf.Abs(memX - curX) < npcBrain.personality.maxDistanceFromPosition && Mathf.Abs(memY - curY) < npcBrain.personality.maxDistanceFromPosition) {
+                                activelySearching = true;
+                                npcBrain.pathAgent.destination = memoryLocation;
+                                npcBrain.pathAgent.SearchPath();
+                                npcBrain.npcMemory.RemoveMemory(lastKnownResourceLocation);
+                            }
+                        }
                     }
                 }
             }

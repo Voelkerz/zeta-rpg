@@ -50,7 +50,7 @@ namespace ZetaGames.RPG {
                         pooledObjects[prefabName].Add(newPooledObject);
                         additionalAmount++;
 
-                        Debug.Log("Created an additional pooled object to use.");
+                        //Debug.Log("Created an additional pooled object to use.");
 
                         return newPooledObject;
                     } 

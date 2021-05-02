@@ -7,7 +7,7 @@ namespace ZetaGames.RPG {
 
         // Specific Tile Data
         public bool occupied = false;
-        public string occupiedType;
+        public string occupiedType = NodeType.None.ToString();
         public string occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
         private TileObjectPool tileObjectPool = null;
         private GameObject tileObject = null;
@@ -69,6 +69,7 @@ namespace ZetaGames.RPG {
         }
 
         public void InstantiatePooledObject() {
+            //Debug.Log("WorldTile.InstantiatePooledObject(): Pooling: " + occupiedType + occupiedStatus);
             tileObject = tileObjectPool.GetPooledObject(occupiedType + occupiedStatus);
             if (tileObject != null) {
                 tileObject.tag = ZetaUtilities.TAG_UNCULLED;
