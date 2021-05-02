@@ -7,7 +7,7 @@ namespace ZetaGames.RPG {
 
         [SerializeField] private string itemName;
         [SerializeField] private string description;
-        [SerializeField] private Sprite icon;
+        [SerializeField] private Sprite inventoryIcon;
         [SerializeField] private float weight;
 
         public string GetItemName() {

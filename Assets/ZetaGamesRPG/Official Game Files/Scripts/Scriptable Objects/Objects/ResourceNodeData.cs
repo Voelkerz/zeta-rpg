@@ -11,7 +11,8 @@ namespace ZetaGames.RPG {
     public class ResourceNodeData : BaseObject {
         public NodeType type;
         public ResourceType resourceType;
-        public GameObject resourceLoot;
+        public GameObject lootPrefab;
+        public int lootAmount;
         public int maxHitPoints;
 
         // extra grid tiles the tree occupies due to a large size

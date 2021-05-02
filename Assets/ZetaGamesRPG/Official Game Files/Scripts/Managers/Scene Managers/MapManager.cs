@@ -84,9 +84,11 @@ namespace ZetaGames.RPG {
                 worldTileGrid.GetXY(mouseWorldPos, out int x, out int y);
                 Vector3Int mouseGridPos = new Vector3Int(x, y, 0);
 
-                WorldTile clickedTile = worldTileDictionary[mouseGridPos];
+                WorldTile clickedTile = worldTileGrid.GetGridObject(mouseWorldPos);
 
-                Debug.Log("Type: " + clickedTile.type + " || Walkable: " + clickedTile.walkable + " || Move cost: " + clickedTile.movementCost);
+                Debug.Log("Type: " + clickedTile.type + " || Walkable: " + clickedTile.walkable + " || Move cost: " + clickedTile.pathPenalty);
+
+                mapList[1].SetTile(mouseGridPos, null);
             }
             */
         }
@@ -320,7 +322,7 @@ namespace ZetaGames.RPG {
                     WorldTile currentTile = worldTileGrid.GetGridObject(mapX, mapY);
 
                     // if current tile is grass and unoccupied, then plant trees!
-                    if (currentTile.type == "grass" && !currentTile.occupied) {
+                    if (currentTile.type == ZetaUtilities.TERRAIN_GRASS && !currentTile.occupied) {
                         // NW - N - NE
                         // W  - X - E
                         // SW - S - SE
@@ -384,7 +386,7 @@ namespace ZetaGames.RPG {
                         combinedNeighbors.AddRange(threeTileNeighbors);
                         foreach (WorldTile tile in combinedNeighbors) {
                             if (tile.occupied) {
-                                if (tile.occupiedType.Contains("Wood_node")) {
+                                if (tile.occupiedStatus.Contains(ResourceType.Wood.ToString() + ZetaUtilities.OCCUPIED_NODE)) {
                                     neighborsOccupied = true;
                                     break;
                                 }
@@ -396,8 +398,11 @@ namespace ZetaGames.RPG {
                                 if (!currentTile.HasTileObjectPool()) {
                                     currentTile.occupied = true;
                                     currentTile.walkable = false;
-                                    currentTile.occupiedType = "Wood_node_center";
-                                    currentTile.SetTileObjectPool(OakTreePool.SharedInstance);
+                                    currentTile.occupiedStatus = ResourceType.Wood.ToString() + ZetaUtilities.OCCUPIED_NODE_FULL;
+                                    currentTile.SetTileObjectPool(TileObjectPool.SharedInstance);
+
+                                    // Specific to oak tree. Will change later
+                                    currentTile.occupiedType = NodeType.Oak.ToString();
 
                                     // TODO: Possibly do a switch case to determine which tree is planted...base it on a biome type??
                                     // set additional tiles unwalkable depending on size of tree
@@ -410,7 +415,8 @@ namespace ZetaGames.RPG {
                                                         WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
                                                         otherTile.occupied = true;
                                                         otherTile.walkable = false;
-                                                        otherTile.occupiedType = "Wood_node_adjacency";
+                                                        otherTile.occupiedStatus = ResourceType.Wood.ToString() + ZetaUtilities.OCCUPIED_NODE_ADJACENT;
+                                                        currentTile.occupiedType = NodeType.Oak.ToString();
                                                     }
                                                 }
                                             }
@@ -430,7 +436,7 @@ namespace ZetaGames.RPG {
 
                         foreach (WorldTile tile in combinedNeighbors) {
                             if (tile.occupied) {
-                                if (tile.occupiedType.Contains("Wood_node")) {
+                                if (tile.occupiedStatus.Contains(ResourceType.Wood.ToString() + ZetaUtilities.OCCUPIED_NODE)) {
                                     neighborsOccupied = true;
                                     break;
                                 }
@@ -441,7 +447,7 @@ namespace ZetaGames.RPG {
                             // check for a tree occupying 3 tile neighbors
                             foreach (WorldTile tile in threeTileNeighbors) {
                                 if (tile.occupied) {
-                                    if (tile.occupiedType.Contains("Wood_node")) {
+                                    if (tile.occupiedStatus.Contains(ResourceType.Wood.ToString() + ZetaUtilities.OCCUPIED_NODE)) {
                                         neighborsOccupied = true;
                                         break;
                                     }
@@ -454,8 +460,12 @@ namespace ZetaGames.RPG {
                                     if (!currentTile.HasTileObjectPool()) {
                                         currentTile.occupied = true;
                                         currentTile.walkable = false;
-                                        currentTile.occupiedType = "Wood_node_center";
-                                        currentTile.SetTileObjectPool(OakTreePool.SharedInstance);
+                                        currentTile.occupiedStatus = ResourceType.Wood.ToString() + ZetaUtilities.OCCUPIED_NODE_FULL;
+                                        currentTile.SetTileObjectPool(TileObjectPool.SharedInstance);
+                                        
+                                        // Specific to oak tree. Will change later
+                                        currentTile.occupiedType = NodeType.Oak.ToString();
+                                        
 
                                         // set additional tiles unwalkable depending on size of tree
                                         foreach (var feature in mapFeaturesDataList) {
@@ -466,7 +476,8 @@ namespace ZetaGames.RPG {
                                                         WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
                                                         otherTile.occupied = true;
                                                         otherTile.walkable = false;
-                                                        otherTile.occupiedType = "Wood_node_adjacency";
+                                                        otherTile.occupiedStatus = ResourceType.Wood.ToString() + ZetaUtilities.OCCUPIED_NODE_ADJACENT;
+                                                        currentTile.occupiedType = NodeType.Oak.ToString();
                                                     }
                                                 }
                                             }

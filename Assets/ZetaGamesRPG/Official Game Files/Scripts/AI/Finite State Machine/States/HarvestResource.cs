@@ -23,6 +23,7 @@ namespace ZetaGames.RPG {
         public bool depleted = false;
         private int closestIndex;
         private bool hasHarvestPos;
+        //private bool calculating;
 
         public HarvestResource(AIBrain npcBrain) {
             this.npcBrain = npcBrain;
@@ -31,9 +32,10 @@ namespace ZetaGames.RPG {
 
         public void Tick() {
             if (!finished) {
-                if (npcBrain.resourceTileTarget.occupiedType.Contains("_node_center")) {
+                if (npcBrain.resourceTileTarget.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE_FULL)) {
                     if (npcBrain.useAdvAI) {
                         if (hasHarvestPos && npcBrain.pathAgent.isStopped && npcBrain.pathAgent.remainingDistance < 0.1) {
+                            Debug.Log("HarvestResource.Tick(): Stopped and near target. Harvesting now.");
                             if (harvestableResource.GetHealth() > 0) {
                                 if (animator.GetCurrentAnimatorStateInfo(0).IsTag("idle") && resourceAnimator.GetCurrentAnimatorStateInfo(0).IsTag("idle")) {
                                     HitResourceTarget();
@@ -43,25 +45,32 @@ namespace ZetaGames.RPG {
                                 npcBrain.resourceTileTarget = null;
                                 finished = true;
                             }
-                        } else {
+                        } else if (!hasHarvestPos) {
+                            Debug.Log("HarvestResource.Tick(): Going to find a harvest position");
+                            //calculating = true;
                             FindHarvestPosition();
                         }
                     } else {
+                        Debug.Log("HarvestResource.Tick(): Doing simple AI task");
                         // TODO: Create simple AI code for offscreen NPCs
                     }
                 } else {
+                    Debug.Log("HarvestResource.Tick(): Node not a full resource");
                     npcBrain.resourceTileTarget = null;
-                    finished = true;
+                    //finished = true;
                 }
+            } else {
+                Debug.Log("HarvestResource.Tick(): State finished. Nothing happening.");
             }
         }
 
         private void FindHarvestPosition() {
+            Debug.Log("HarvestResource.FindHarvestPosition() called");
             // determine resource node animations depending on character position
             Vector3 resourceTileWorldPos = MapManager.Instance.GetWorldTileGrid().GetWorldPosition(npcBrain.resourceTileTarget.x, npcBrain.resourceTileTarget.y) + new Vector3(0.5f, 0.5f); // offset to get center of tile
-            Vector3 closestHarvestPos = resourceTileWorldPos; 
             List<Vector3> harvestPosList = harvestableResource.resourceData.harvestSpots;
-            
+            Vector3 closestHarvestPos = harvestPosList[0];
+
             for (int i = 0; i < harvestPosList.Count; i++) {
                 Vector3 harvestPos = resourceTileWorldPos + harvestPosList[i];
                 
@@ -74,6 +83,7 @@ namespace ZetaGames.RPG {
             npcBrain.pathAgent.destination = closestHarvestPos;
             npcBrain.pathAgent.SearchPath();
             hasHarvestPos = true;
+            //calculating = false;
         }
 
         public void HitResourceTarget() {
@@ -113,34 +123,41 @@ namespace ZetaGames.RPG {
         }
 
         public void OnEnter() {
+            Debug.Log("HarvestResource.OnEnter()");
             //npcBrain.ResetAgent();
             finished = false;
 
-            if (npcBrain.resourceTileTarget.occupiedType.Contains("_node_center")) {
+            if (npcBrain.resourceTileTarget.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE_FULL)) {
+                Debug.Log("HarvestResource.OnEnter(): Target is a full node");
                 if (npcBrain.useAdvAI) {
-                    resourceAnimator = npcBrain.resourceTileTarget.GetTileObject().GetComponentInChildren<Animator>();
-                    //resourceAnimator.enabled = true;
                     harvestableResource = npcBrain.resourceTileTarget.GetTileObject().GetComponent<HarvestableResource>();
+                    resourceAnimator = npcBrain.resourceTileTarget.GetTileObject().GetComponentInChildren<Animator>();
+                    npcBrain.resourceTileTarget.GetTileObject().tag = ZetaUtilities.TAG_CULLLOCKED;
                 }
                 //DEBUG
                 if (npcBrain.debugLogs) {
-                    Debug.Log("HarvestResource.resourceTarget: " + npcBrain.resourceTileTarget.occupiedType);
+                    Debug.Log("HarvestResource.resourceTarget: " + npcBrain.resourceTileTarget.occupiedStatus);
                 }
             } else {
+                Debug.Log("HarvestResource.OnEnter(): ResourceTileTarget is not a full node.");
                 npcBrain.resourceTileTarget = null;
-                finished = true;
+                //finished = true;
             }
         }
 
         public void OnExit() {
-            finished = false;
-            hasHarvestPos = false;
-
             if (npcBrain.useAdvAI) {
                 resourceAnimator = null;
                 harvestableResource = null;
-                //resourceAnimator.enabled = false;
+
+                if (!finished) {
+                    npcBrain.resourceTileTarget.GetTileObject().tag = ZetaUtilities.TAG_CULLED;
+                }
             }
+
+            finished = false;
+            hasHarvestPos = false;
+            //calculating = false;
         }
     }
 }

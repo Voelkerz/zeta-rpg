@@ -65,4 +65,5 @@ MonoBehaviour:
   pathPenalty: 1000
   speedPercent: 150
   walkable: 1
-  type: path
+  type: Path
+  animated: 0

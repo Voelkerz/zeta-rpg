@@ -29,7 +29,7 @@ namespace ZetaGames.RPG {
              * SPECIFIC STATE TRANSITIONS
             ***************************************************************/
             // FROM 'search for resource' to ...
-            AT(searchForResource, harvestResource, new List<Func<bool>> { HasResourceTarget(), IsFalse(IsInventoryFull()), IsFalse(IsCarryingSomething()), IsResourceTargetANode() });
+            AT(searchForResource, harvestResource, new List<Func<bool>> { HasResourceTarget(), IsFalse(IsInventoryFull()), IsFalse(IsCarryingSomething()), IsResourceTargetHarvestable() });
           
             // FROM 'harvest resource' to ...
             AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(IsInventoryFull()), IsFalse(IsCarryingSomething()) });
@@ -65,9 +65,9 @@ namespace ZetaGames.RPG {
             void AT(IState from, IState to, List<Func<bool>> conditions) => stateMachine.AddTransition(from, to, conditions);
 
             // Conditionals for transitions
-            Func<bool> AtDestinationStopped() => () => pathAgent.remainingDistance < 1f && pathAgent.isStopped;
+            //Func<bool> AtDestinationStopped() => () => pathAgent.remainingDistance < 1f && pathAgent.isStopped;
             Func<bool> HasResourceTarget() => () => resourceTileTarget != null;
-            Func<bool> IsResourceTargetANode() => () => resourceTileTarget.occupiedType.Contains("_node_center");
+            Func<bool> IsResourceTargetHarvestable() => () => resourceTileTarget.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE_FULL);
             Func<bool> IsInventoryFull() => () => npcInventory.IsInventoryFull();
             Func<bool> IsCarryingSomething() => () => npcInventory.IsCarryingSomething();
 

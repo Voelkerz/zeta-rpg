@@ -19,16 +19,17 @@ namespace ZetaGames.RPG {
         public void Tick() {
             tickTimer += npcBrain.accumulatedTimeDelta;
 
-            //Check for resources every 1 second while in this state to reduce CPU usage
-            if (tickTimer > 1f && !activelySearching) {
+            //Check for resources on timer to reduce CPU usage
+            if (tickTimer > 0.5f && !activelySearching) {
                 tickTimer = 0;
                 // if we don't have a resource target and we're not carrying something, get one
-                if (npcBrain.resourceTileTarget == null && !npcBrain.npcInventory.IsCarryingSomething()) {
+                if (npcBrain.resourceTileTarget == null) {
                     GetTarget();
-                } else if (npcBrain.resourceTileTarget.occupiedType == npcBrain.resourceTypeWanted.ToString() + "_drop" && npcBrain.pathAgent.isStopped && npcBrain.pathAgent.remainingDistance < 0.65) {
+                } else if (npcBrain.resourceTileTarget.occupiedStatus == npcBrain.resourceTypeWanted.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP && npcBrain.pathAgent.isStopped && npcBrain.pathAgent.remainingDistance < 0.65) {
                     if (npcBrain.resourceTileTarget.GetTileObject().TryGetComponent(out DroppedResource resource)) {
                         if (resource.GetResourceData().GetResourceType().Equals(npcBrain.resourceTypeWanted)) {
                             resource.PickUp();
+                            npcBrain.resourceTileTarget = null;
                         }
                     }
                 } else {
@@ -44,7 +45,7 @@ namespace ZetaGames.RPG {
                 Debug.Log("SearchForResourceDrop.OnEnter()");
             }
             tickTimer = 0;
-            lastKnownResourceLocation = "last" + npcBrain.resourceTypeWanted.ToString() + "_node";
+            lastKnownResourceLocation = "last" + npcBrain.resourceTypeWanted.ToString() + "_Node";
             npcBrain.resourceTileTarget = null;
             activelySearching = false;
         }
@@ -76,7 +77,7 @@ namespace ZetaGames.RPG {
 
             // search for free dropped resources
             foreach (WorldTile tile in fullTileGridList) {
-                if (tile.occupiedType == npcBrain.resourceTypeWanted.ToString() + "_drop" && tile.HasTileObject()) {
+                if (tile.occupiedStatus == npcBrain.resourceTypeWanted.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP && tile.HasTileObject()) {
                     if (npcBrain.debugLogs) {
                         Debug.Log("SearchForResourceDrop.Tick(): dropped resource found");
                     }
@@ -93,6 +94,7 @@ namespace ZetaGames.RPG {
 
             // if a dropped resource is found, target the closest one found
             if (closestTile != null) {
+                activelySearching = true;
                 npcBrain.resourceTileTarget = closestTile;
                 npcBrain.pathAgent.destination = MapManager.Instance.GetWorldTileGrid().GetWorldPosition(closestTile.x, closestTile.y) + new Vector3(0.5f, 0.5f);
                 npcBrain.pathAgent.SearchPath();
@@ -101,7 +103,7 @@ namespace ZetaGames.RPG {
             // otherwise, look for a resource node to harvest instead
             if (npcBrain.resourceTileTarget == null) {
                 foreach (WorldTile tile in fullTileGridList) {
-                    if (tile.occupiedType == npcBrain.resourceTypeWanted.ToString() + "_node_center") {
+                    if (tile.occupiedStatus == npcBrain.resourceTypeWanted.ToString() + ZetaUtilities.OCCUPIED_NODE_FULL) {
                         if (npcBrain.debugLogs) {
                             Debug.Log("SearchForResourceDrop.Tick(): resource node found");
                         }

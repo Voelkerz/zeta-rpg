@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OakChopFromRight
+  m_Name: FromRight_OakShadow
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,31 +19,17 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: 0.25
-      value: {fileID: -8458467559854099684, guid: 5abbc78deb2685f489d6e897c03a9dc8,
-        type: 3}
-    - time: 0.5
-      value: {fileID: -4479096431232343817, guid: 5abbc78deb2685f489d6e897c03a9dc8,
-        type: 3}
-    - time: 0.75
-      value: {fileID: -6208307248259205135, guid: 5abbc78deb2685f489d6e897c03a9dc8,
-        type: 3}
-    attribute: m_Sprite
-    path: 
-    classID: 212
-    script: {fileID: 0}
-  - curve:
-    - time: 0.25
+    - time: 0
       value: {fileID: -4277055625861858072, guid: 653ad7c9217145e48bd6ae285e96edbe,
         type: 3}
-    - time: 0.5
+    - time: 0.25
       value: {fileID: 6594496583888654214, guid: 653ad7c9217145e48bd6ae285e96edbe,
         type: 3}
-    - time: 0.75
+    - time: 0.5
       value: {fileID: 3108990171744025959, guid: 653ad7c9217145e48bd6ae285e96edbe,
         type: 3}
     attribute: m_Sprite
-    path: OakTreeShadow
+    path: 
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 4
@@ -60,17 +46,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
-    - serializedVersion: 2
-      path: 3116111171
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -8458467559854099684, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
-    - {fileID: -4479096431232343817, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
-    - {fileID: -6208307248259205135, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
     - {fileID: -4277055625861858072, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
     - {fileID: 6594496583888654214, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
     - {fileID: 3108990171744025959, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
@@ -79,7 +55,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -98,11 +74,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.5
-    functionName: PlaySoundEffect
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

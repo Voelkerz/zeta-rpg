@@ -7,8 +7,9 @@ namespace ZetaGames.RPG {
 
         // Specific Tile Data
         public bool occupied = false;
-        public string occupiedType = "none";
-        private ObjectPool tileObjectPool = null;
+        public string occupiedType;
+        public string occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
+        private TileObjectPool tileObjectPool = null;
         private GameObject tileObject = null;
         private Vector3 tileObjectPos;
 
@@ -43,7 +44,7 @@ namespace ZetaGames.RPG {
             this.y = y;
         }
 
-        public void SetTileObjectPool(ObjectPool tileObjectPool) {
+        public void SetTileObjectPool(TileObjectPool tileObjectPool) {
             this.tileObjectPool = tileObjectPool;
         }
 
@@ -51,7 +52,7 @@ namespace ZetaGames.RPG {
             this.tileObject = tileObject;
         }
 
-        public ObjectPool GetTileObjectPool() {
+        public TileObjectPool GetTileObjectPool() {
             return tileObjectPool;
         }
 
@@ -68,9 +69,9 @@ namespace ZetaGames.RPG {
         }
 
         public void InstantiatePooledObject() {
-            tileObject = tileObjectPool.GetPooledObject();
+            tileObject = tileObjectPool.GetPooledObject(occupiedType + occupiedStatus);
             if (tileObject != null) {
-                tileObject.tag = "Unculled";
+                tileObject.tag = ZetaUtilities.TAG_UNCULLED;
                 tileObjectPos.x = x;
                 tileObjectPos.y = y;
                 tileObject.transform.position = tileObjectPos;
@@ -80,7 +81,7 @@ namespace ZetaGames.RPG {
 
         public void RemovePooledObject() {
             if (tileObject != null) {
-                tileObject.tag = "Culled";
+                tileObject.tag = ZetaUtilities.TAG_CULLED;
                 tileObject = null;
             }
         }
