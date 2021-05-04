@@ -10,7 +10,7 @@ namespace ZetaGames.RPG {
         private bool finished;
         private AIBrain npcBrain;
         //private NavMeshAgent navMeshAgent;
-        private readonly AnimationManager animationManager;
+        //private readonly AnimationManager animationManager;
         //private Vector3 lastPosition = Vector3.zero;
 
         public float wanderRadius;
@@ -23,7 +23,7 @@ namespace ZetaGames.RPG {
         public Wander(AIBrain npcBrain, float wanderRadius, float wanderTimer) {
             this.npcBrain = npcBrain;
             //navMeshAgent = npcBrain.navMeshAgent;
-            animationManager = npcBrain.animationManager;
+            //animationManager = npcBrain.animationManager;
             this.wanderRadius = wanderRadius;
             this.wanderTimer = wanderTimer;
         }
@@ -32,7 +32,7 @@ namespace ZetaGames.RPG {
             timer += Time.deltaTime;
 
             if (timer >= wanderTimer) {
-                Vector2 newPos = ZetaUtilities.RandomNavSphere(npcBrain.transform.position, wanderRadius, -1);
+                //Vector2 newPos = ZetaUtilities.RandomNavSphere(npcBrain.transform.position, wanderRadius, -1);
                 //navMeshAgent.SetDestination(newPos);
                 timer = 0;
                 cycleCount++;
@@ -45,7 +45,7 @@ namespace ZetaGames.RPG {
             npcBrain.ResetAgent();
             timer = wanderTimer;
             cycleCount = 0;
-            npcBrain.wanderCooldown = 0;
+            //npcBrain.wanderCooldown = 0;
         }
 
         public void OnExit() {

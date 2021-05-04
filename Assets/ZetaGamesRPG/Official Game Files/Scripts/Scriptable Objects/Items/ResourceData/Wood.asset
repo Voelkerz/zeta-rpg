@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Wood
   description: Wood Log
-  icon: {fileID: 0}
+  inventoryIcon: {fileID: 0}
   weight: 10
-  resourceType: 0
+  resourceType: 1

@@ -9,8 +9,11 @@ namespace ZetaGames.RPG {
     */
     public class NpcInventory : MonoBehaviour {
         private Dictionary<BaseItem, int> inventory;
-        private KeyValuePair<ResourceType, int> resourceCarried;
+        //private KeyValuePair<ResourceCategory, int> resourceCarried;
         private bool carryingSomething = false;
+        private ResourceCategory carriedResourceCategory;
+        private ResourceType carriedResourceType;
+        private ResourceState carriedResourceState;
         private int maxInventoryCapacity = 10; // base this on a bag item
         private int maxStackAmount = 20; // change to per item basis?
 
@@ -38,13 +41,15 @@ namespace ZetaGames.RPG {
             }
         }
 
-        public bool PickupResource(ResourceType resource) {
+        public bool PickupResource(ResourceCategory resourceCategory, ResourceType resourceType, ResourceState resourceState) {
             // if already carrying something
             if (carryingSomething) {
                 return false;
             } else {
-                resourceCarried = new KeyValuePair<ResourceType, int>(resource, 1);
                 carryingSomething = true;
+                carriedResourceCategory = resourceCategory;
+                carriedResourceType = resourceType;
+                carriedResourceState = resourceState;
                 return true;
             }
         }

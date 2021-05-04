@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,7 +8,8 @@ namespace ZetaGames.RPG {
 
         // Specific Tile Data
         public bool occupied = false;
-        public string occupiedType = NodeType.None.ToString();
+        public string occupiedCategory = ResourceCategory.None.ToString();
+        public string occupiedType = ResourceType.None.ToString();
         public string occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
         private TileObjectPool tileObjectPool = null;
         private GameObject tileObject = null;
@@ -16,12 +18,12 @@ namespace ZetaGames.RPG {
         // Global Tile Data
         public float pathPenalty;
         public bool walkable;
-        public string type;
+        public string terrainType;
         public float speedPercent;
         public bool animated;
 
         // Tilemap Data
-        public string spriteName;
+        public List<string> spriteNames = new List<string>();
         public int tilemap;
         public bool loaded = false;
         public string[] animSpriteNames;
@@ -70,7 +72,7 @@ namespace ZetaGames.RPG {
 
         public void InstantiatePooledObject() {
             //Debug.Log("WorldTile.InstantiatePooledObject(): Pooling: " + occupiedType + occupiedStatus);
-            tileObject = tileObjectPool.GetPooledObject(occupiedType + occupiedStatus);
+            tileObject = tileObjectPool.GetPooledObject(occupiedType + occupiedCategory + occupiedStatus);
             if (tileObject != null) {
                 tileObject.tag = ZetaUtilities.TAG_UNCULLED;
                 tileObjectPos.x = x;

@@ -28,9 +28,12 @@ namespace ZetaGames.RPG {
         public void RecycleAndSpawnLoot() {
             // Spawn depleted node in current tile
             WorldTile curTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
-            curTile.occupiedStatus = resourceData.resourceType.ToString() + ZetaUtilities.OCCUPIED_NODE_DEPLETED;
-            curTile.occupiedType = resourceData.type.ToString();
+            curTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_DEPLETED;
+            // are these others necessary since there should be info on it already??
+            curTile.occupiedCategory = resourceData.resourceCategory.ToString();
+            curTile.occupiedType = resourceData.resourceType.ToString();
             curTile.occupied = true;
+
             curTile.InstantiatePooledObject();
             Vector3 curTileWorldPos = MapManager.Instance.GetWorldTileGrid().GetWorldPosition(curTile.x, curTile.y);
 
@@ -60,15 +63,16 @@ namespace ZetaGames.RPG {
                 chosenTile.SetTileObject(Instantiate(resourceData.lootPrefab, MapManager.Instance.GetWorldTileGrid().GetWorldPosition(chosenTile.x, chosenTile.y) + new Vector3(0.5f, 0.5f), Quaternion.identity));
 
                 // Adjust tile data
-                chosenTile.occupiedStatus = resourceData.resourceType.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP;
-                chosenTile.occupiedType = resourceData.type.ToString();
+                chosenTile.occupiedCategory = resourceData.resourceCategory.ToString(); 
+                chosenTile.occupiedType = resourceData.resourceType.ToString();
+                chosenTile.occupiedStatus = ZetaUtilities.OCCUPIED_ITEMPICKUP;
                 chosenTile.occupied = true;
             }
 
             // TODO: Change layer or Z-level instead of moving to -50,-50?
             // Reset resource and send back into reusable object pool
             gameObject.transform.position = new Vector3Int(-50, -50, 0);
-            gameObject.tag = "Culled";
+            gameObject.tag = ZetaUtilities.TAG_CULLED;
             currentHitPoints = resourceData.maxHitPoints;
         }
     }

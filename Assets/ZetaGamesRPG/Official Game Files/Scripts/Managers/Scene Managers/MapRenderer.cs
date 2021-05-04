@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace ZetaGames.RPG {
     public class MapRenderer : MonoBehaviour {
@@ -28,7 +26,7 @@ namespace ZetaGames.RPG {
         void Update() {
             if (MapManager.Instance.initialized) {
                 if (!initialized) {
-                    InitializeStartingChunks();
+                    StartCoroutine(InitializeStartingChunks());
                 }
 
                 //TODO: Create a callback event on chunk position change
@@ -189,7 +187,9 @@ namespace ZetaGames.RPG {
             }
         }
 
-        private void InitializeStartingChunks() {
+        private IEnumerator InitializeStartingChunks() {
+            yield return new WaitForSeconds(2);
+
             //load current chunk
             LoadChunk(curChunkX, curChunkY);
 

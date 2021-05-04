@@ -12,7 +12,9 @@ namespace ZetaGames.RPG {
 
         private void Start() {
             // FORCED TEST PARAMETERS
-            resourceTypeWanted = ResourceType.Wood;
+            resourceCategoryWanted = ResourceCategory.Wood;
+            resourceTypeWanted = ResourceType.Oak;
+
             npcMemory.AddMemory("home", transform.position);
 
             // Create AI Personality
