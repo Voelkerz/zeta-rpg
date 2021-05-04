@@ -1,24 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class DroppedResource : MonoBehaviour {
-        [SerializeField] private ResourceData resourcecData;
+        [SerializeField] private ResourceItemData resourcecData;
 
         public void PickUp() {
+            //Debug.Log("DroppedResource.Pickup() called");
             gameObject.SetActive(false);
             
             // Adjust tile data that this resource drop resides on
             WorldTile currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
             currentTile.occupied = false;
-            currentTile.occupiedType = "none";
+            currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
+            currentTile.occupiedType = ResourceType.None.ToString();
+            currentTile.occupiedCategory = ResourceCategory.None.ToString();
             currentTile.SetTileObject(null);
 
-            Destroy(gameObject, 0.75f);
+            Destroy(gameObject, 0.5f);
         }
 
-        public ResourceData GetResourceData() {
+        public ResourceItemData GetResourceData() {
             return resourcecData;
         }
     }

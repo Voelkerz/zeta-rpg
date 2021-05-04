@@ -39,4 +39,5 @@ MonoBehaviour:
   pathPenalty: 10000
   speedPercent: 100
   walkable: 1
-  type: grass
+  type: Grass
+  animated: 0

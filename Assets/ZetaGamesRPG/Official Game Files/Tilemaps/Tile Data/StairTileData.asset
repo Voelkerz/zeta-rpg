@@ -25,4 +25,5 @@ MonoBehaviour:
   pathPenalty: 1000
   speedPercent: 50
   walkable: 1
-  type: stair
+  type: Stair
+  animated: 0

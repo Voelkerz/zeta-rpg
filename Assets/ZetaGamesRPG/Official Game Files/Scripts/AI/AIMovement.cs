@@ -29,11 +29,40 @@ namespace ZetaGames.RPG {
 
         public override void OnTargetReached() {
             isStopped = true;
+            currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
+            currentTile.walkable = false;
+
+            AstarPath.active.AddWorkItem(ctx => {
+                var grid = AstarPath.active.data.gridGraph;
+                int x = currentTile.x;
+                int y = currentTile.y;
+
+                // Mark a single node as unwalkable
+                grid.GetNode(x, y).Walkable = false;
+
+                // Recalculate the connections for that node as well as its neighbours
+                grid.CalculateConnectionsForCellAndNeighbours(x, y);
+            });
         }
 
         public override void SearchPath() {
-            isStopped = false;
+            currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
+            currentTile.walkable = true;
+
+            AstarPath.active.AddWorkItem(ctx => {
+                var grid = AstarPath.active.data.gridGraph;
+                int x = currentTile.x;
+                int y = currentTile.y;
+
+                // Mark a single node as walkable
+                grid.GetNode(x, y).Walkable = true;
+
+                // Recalculate the connections for that node as well as its neighbours
+                grid.CalculateConnectionsForCellAndNeighbours(x, y);
+            });
+
             base.SearchPath();
+            isStopped = false;
         }
 
         protected override void Update() {

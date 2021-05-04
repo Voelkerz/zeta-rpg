@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: OakTree
   m_EditorClassIdentifier: 
   prefab: {fileID: 3621254233348824343, guid: 7a8db5b5ade76c946a398432b7b2d7f6, type: 3}
-  type: 0
-  resourceType: 0
-  resourceLoot: {fileID: 1136408400419902, guid: c26755fc3a5b7ce43bd54c2d0e1fd7aa,
-    type: 3}
+  resourceType: 2
+  resourceCategory: 1
+  lootPrefab: {fileID: 1136408400419902, guid: c26755fc3a5b7ce43bd54c2d0e1fd7aa, type: 3}
+  lootAmount: 2
   maxHitPoints: 20
   adjacentGridOccupation:
   - {x: -1, y: 0, z: 0}

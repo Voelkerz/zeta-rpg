@@ -36,4 +36,5 @@ MonoBehaviour:
   pathPenalty: 5000
   speedPercent: 120
   walkable: 1
-  type: dirt
+  type: Dirt
+  animated: 0

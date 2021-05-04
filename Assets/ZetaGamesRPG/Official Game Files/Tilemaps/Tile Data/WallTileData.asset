@@ -18,4 +18,5 @@ MonoBehaviour:
   pathPenalty: 0
   speedPercent: 50
   walkable: 0
-  type: wall
+  type: Wall
+  animated: 0

@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public enum NodeType {
-        Oak
-    }
-
     [CreateAssetMenu(menuName = "Resource Node Data", fileName = "New Resource Node Data", order = 51)]
     public class ResourceNodeData : BaseObject {
-        public NodeType type;
         public ResourceType resourceType;
-        public GameObject resourceLoot;
+        public ResourceCategory resourceCategory;
+        public GameObject lootPrefab;
+        public int lootAmount;
         public int maxHitPoints;
 
         // extra grid tiles the tree occupies due to a large size

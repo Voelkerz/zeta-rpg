@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
     public class AnimationManager : MonoBehaviour {
-
+        /*
         private AIMovement agent;
         private Animator animator;
         private static readonly int velocityX = Animator.StringToHash("velx");
@@ -91,12 +91,14 @@ namespace ZetaGames.RPG {
             animator.SetFloat(velocityY, -direction.normalized.y);
             animator.SetFloat(lastDirection, 0f);
             */
-        }
-
+        /*
+    }
+        
         void OnAnimatorMove() {
             // Update position to agent position
             //transform.parent.transform.position = navMeshAgent.nextPosition;
         }
+        */
     }
 }
 

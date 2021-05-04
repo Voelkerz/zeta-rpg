@@ -9,13 +9,11 @@ TagManager:
   - Enemy
   - World
   - NoMask
-  - Resource
-  - ResourceSource
-  - Wood
   - Structure
   - NPC
   - Culled
   - Unculled
+  - CullLocked
   layers:
   - Default
   - TransparentFX

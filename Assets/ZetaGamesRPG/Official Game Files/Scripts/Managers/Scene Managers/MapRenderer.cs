@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace ZetaGames.RPG {
     public class MapRenderer : MonoBehaviour {
@@ -28,7 +26,7 @@ namespace ZetaGames.RPG {
         void Update() {
             if (MapManager.Instance.initialized) {
                 if (!initialized) {
-                    InitializeStartingChunks();
+                    StartCoroutine(InitializeStartingChunks());
                 }
 
                 //TODO: Create a callback event on chunk position change
@@ -189,24 +187,55 @@ namespace ZetaGames.RPG {
             }
         }
 
-        private void InitializeStartingChunks() {
+        private IEnumerator InitializeStartingChunks() {
+            yield return new WaitForSeconds(2);
+
+            //load current chunk
             LoadChunk(curChunkX, curChunkY);
+
             //load leftside chunks
-            LoadChunk(curChunkX - 1, curChunkY);
-            LoadChunk(curChunkX - 1, curChunkY + 1);
-            LoadChunk(curChunkX - 1, curChunkY - 1);
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX - 1, curChunkY)) {
+                LoadChunk(curChunkX - 1, curChunkY);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX - 1, curChunkY + 1)) {
+                LoadChunk(curChunkX - 1, curChunkY + 1);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX - 1, curChunkY - 1)) {
+                LoadChunk(curChunkX - 1, curChunkY - 1);
+            }
+
             //load rightside chunks
-            LoadChunk(curChunkX + 1, curChunkY);
-            LoadChunk(curChunkX + 1, curChunkY + 1);
-            LoadChunk(curChunkX + 1, curChunkY - 1);
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX + 1, curChunkY)) {
+                LoadChunk(curChunkX + 1, curChunkY);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX + 1, curChunkY + 1)) {
+                LoadChunk(curChunkX + 1, curChunkY + 1);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX + 1, curChunkY - 1)) {
+                LoadChunk(curChunkX + 1, curChunkY - 1);
+            }
+
             //load lower chunks
-            LoadChunk(curChunkX, curChunkY - 1);
-            LoadChunk(curChunkX + 1, curChunkY - 1);
-            LoadChunk(curChunkX - 1, curChunkY - 1);
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX, curChunkY - 1)) {
+                LoadChunk(curChunkX, curChunkY - 1);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX + 1, curChunkY - 1)) {
+                LoadChunk(curChunkX + 1, curChunkY - 1);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX - 1, curChunkY - 1)) {
+                LoadChunk(curChunkX - 1, curChunkY - 1);
+            }
+
             //load upper chunks
-            LoadChunk(curChunkX, curChunkY + 1);
-            LoadChunk(curChunkX + 1, curChunkY + 1);
-            LoadChunk(curChunkX - 1, curChunkY + 1);
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX, curChunkY + 1)) {
+                LoadChunk(curChunkX, curChunkY + 1);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX + 1, curChunkY + 1)) {
+                LoadChunk(curChunkX + 1, curChunkY + 1);
+            }
+            if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(curChunkX - 1, curChunkY + 1)) {
+                LoadChunk(curChunkX - 1, curChunkY + 1);
+            }
 
             initialized = true;
         }
