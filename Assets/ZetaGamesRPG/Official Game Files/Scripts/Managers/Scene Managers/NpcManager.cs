@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ZetaGames.RPG {
     
 
-    public class ResourceManager : MonoBehaviour {
+    public class NpcManager : MonoBehaviour {
         // A master list of NPCs that includes their unique ID and a list of resouces in their inventory
         private Dictionary<int, Dictionary<ResourceCategory, int>> npcList = new Dictionary<int, Dictionary<ResourceCategory, int>>();
         private Dictionary<ResourceCategory, int> inventory;

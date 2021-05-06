@@ -68,16 +68,16 @@ namespace ZetaGames.RPG {
                 Debug.Log("Getting resource target");
             }
 
-            // Get all of the tiles in the current and adjacent grids (3x3 chunk grid)
-            List<WorldTile> fullTileGridList = new List<WorldTile>();
-            MapManager.Instance.GetChunkGrid().GetXY(npcBrain.transform.position, out int chunkX, out int chunkY);
+            // Get all tiles in a 64x64 tile range of current position
+            List<WorldTile> worldTileList = new List<WorldTile>();
+            MapManager.Instance.GetWorldTileGrid().GetXY(npcBrain.transform.position, out int mapX, out int mapY);
 
-            for (int x = 0; x < 3; x++) {
-                for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 64; x++) {
+                for (int y = 0; y < 64; y++) {
                     // check grid bounds
-                    if (MapManager.Instance.GetChunkGrid().IsWithinGridBounds(chunkX + (x - 1), chunkY + (y - 1))) {
-                        List<WorldTile> gridTileList = MapManager.Instance.GetChunkGrid().GetGridObject(chunkX + (x - 1), chunkY + (y - 1));
-                        fullTileGridList.AddRange(gridTileList);
+                    if (MapManager.Instance.GetWorldTileGrid().IsWithinGridBounds(mapX + (x - 32), mapY + (y - 32))) {
+                        WorldTile worldTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(mapX + (x - 32), mapY + (y - 32));
+                        worldTileList.Add(worldTile);
                     }
                 }
             }
@@ -85,7 +85,7 @@ namespace ZetaGames.RPG {
             WorldTile closestTile = null;
 
             // search for free dropped resources
-            foreach (WorldTile tile in fullTileGridList) {
+            foreach (WorldTile tile in worldTileList) {
                 if (tile.occupiedCategory == npcBrain.resourceCategoryWanted.ToString() && tile.occupiedStatus == ZetaUtilities.OCCUPIED_ITEMPICKUP && tile.occupiedType == npcBrain.resourceTypeWanted.ToString() && tile.HasTileObject()) {
                     if (closestTile == null) {
                         closestTile = tile;
@@ -110,8 +110,8 @@ namespace ZetaGames.RPG {
             } else {
                 // otherwise, look for a resource node to harvest instead
                 if (npcBrain.resourceTileTarget == null) {
-                    foreach (WorldTile tile in fullTileGridList) {
-                        if (tile.occupiedCategory == npcBrain.resourceCategoryWanted.ToString() && tile.occupiedStatus == ZetaUtilities.OCCUPIED_NODE_FULL && tile.occupiedType == npcBrain.resourceTypeWanted.ToString() && tile.HasTileObject()) {
+                    foreach (WorldTile tile in worldTileList) {
+                        if (tile.occupiedCategory == npcBrain.resourceCategoryWanted.ToString() && tile.occupiedStatus == ZetaUtilities.OCCUPIED_NODE_FULL && tile.occupiedType == npcBrain.resourceTypeWanted.ToString()) {
                             if (closestTile == null) {
                                 closestTile = tile;
                             } else if (Vector3.Distance(MapManager.Instance.GetWorldTileGrid().GetWorldPosition(tile.x, tile.y), npcBrain.transform.position)

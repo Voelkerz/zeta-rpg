@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class MapRenderer : MonoBehaviour {
-
+        /*
         //private MapManager mapManager;
         //private ZetaGrid<List<WorldTile>> chunkGrid;
         private int curChunkX = 0;
@@ -249,5 +249,6 @@ namespace ZetaGames.RPG {
             yield return new WaitForSeconds(Random.Range(0f, 0.5f));
             worldTile.RemovePooledObject();
         }
+        */
     }
 }

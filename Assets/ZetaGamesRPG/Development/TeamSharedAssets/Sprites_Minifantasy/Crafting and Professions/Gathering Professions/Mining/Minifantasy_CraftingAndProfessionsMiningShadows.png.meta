@@ -1,12 +1,234 @@
 fileFormatVersion: 2
 guid: 611aea9085c0d204b98a9d95f196cd8b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1466514734049377148
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_0
+  - first:
+      213: 2973730025708142391
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_1
+  - first:
+      213: -9150646361730964588
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_2
+  - first:
+      213: -2379802210404588821
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_3
+  - first:
+      213: 1981937396626655159
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_4
+  - first:
+      213: -3605500677121424024
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_5
+  - first:
+      213: -2428551777004466963
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_6
+  - first:
+      213: -7538103254567654188
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_7
+  - first:
+      213: 551505092529061602
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_8
+  - first:
+      213: 4645184756314352924
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_9
+  - first:
+      213: -4648207276022207728
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_10
+  - first:
+      213: 2746212754065812175
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_11
+  - first:
+      213: -5375828723808933549
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_12
+  - first:
+      213: 3672797974960320164
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_13
+  - first:
+      213: -8215072784174827004
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_14
+  - first:
+      213: 6344345705495921817
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_15
+  - first:
+      213: 2060011442547311904
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_16
+  - first:
+      213: -2428836042638699382
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_17
+  - first:
+      213: -507197664845624054
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_18
+  - first:
+      213: 5960240903481568133
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_19
+  - first:
+      213: 5031755333759958312
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_20
+  - first:
+      213: -8984863172093079780
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_21
+  - first:
+      213: 4765170866772099173
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_22
+  - first:
+      213: 6825461282506587896
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_23
+  - first:
+      213: 739266510362607964
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_24
+  - first:
+      213: 6800008665210178478
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_25
+  - first:
+      213: -5185388428356845906
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_26
+  - first:
+      213: 5128359821948817432
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_27
+  - first:
+      213: 1031013514174947916
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_28
+  - first:
+      213: -2646295248238087330
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_29
+  - first:
+      213: 3664920435092440589
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_30
+  - first:
+      213: -3435292762974914281
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_31
+  - first:
+      213: -3767844849486291116
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_32
+  - first:
+      213: -4714228897416261153
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_33
+  - first:
+      213: -2706516618233144439
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_34
+  - first:
+      213: 2148954843470893712
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_35
+  - first:
+      213: -2087508339643007716
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_36
+  - first:
+      213: 2038074152726781042
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_37
+  - first:
+      213: 3783727033404375835
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_38
+  - first:
+      213: -5634528180231611818
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_39
+  - first:
+      213: -834256330987093653
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_40
+  - first:
+      213: -4880672031234862205
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_41
+  - first:
+      213: 2378118437936363829
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_42
+  - first:
+      213: -6575103246857782213
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_43
+  - first:
+      213: 8698798023864155881
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_44
+  - first:
+      213: 5590842327326716729
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_45
+  - first:
+      213: -2934134831369027383
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_46
+  - first:
+      213: 27349905859946376
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_47
+  - first:
+      213: 2167536321900507561
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_48
+  - first:
+      213: 1042151356616751726
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_49
+  - first:
+      213: 5735146544788869263
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_50
+  - first:
+      213: 6826452954791533047
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_51
+  - first:
+      213: -7549934870402228736
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_52
+  - first:
+      213: -492894976621615632
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_53
+  - first:
+      213: -1706043960643368962
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_54
+  - first:
+      213: 5830941384088356271
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_55
+  - first:
+      213: 4443802989792148248
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_56
+  - first:
+      213: -3262435820012897464
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_57
+  - first:
+      213: -6269356147278115865
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_58
+  - first:
+      213: -6955798540897465899
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_59
+  - first:
+      213: -3992671167407327413
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_60
+  - first:
+      213: 5276723540615999888
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_61
+  - first:
+      213: -3414406306974641655
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_62
+  - first:
+      213: 4235630479943695621
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_63
+  - first:
+      213: 5710256934358788648
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_64
+  - first:
+      213: -3886716395201297602
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_65
+  - first:
+      213: 847150167122474858
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_66
+  - first:
+      213: -4486611821375580074
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_67
+  - first:
+      213: -281608088727014188
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_68
+  - first:
+      213: -837441538375300260
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_69
+  - first:
+      213: 1364295772870711403
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_70
+  - first:
+      213: -9113195143474835658
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_71
+  - first:
+      213: 7846526684550993081
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_72
+  - first:
+      213: 8489759823353162603
+    second: Minifantasy_CraftingAndProfessionsMiningShadows_73
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -32,27 +254,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: -1
-    wrapV: -1
+    wrapU: 1
+    wrapV: 1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -68,7 +290,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,11 +311,788 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 120
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4844c1b8e94e5abe0800000000000000
+      internalID: -1466514734049377148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 120
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f3f30f3bfc44920800000000000000
+      internalID: 2973730025708142391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 120
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4932ecfbd9f520180800000000000000
+      internalID: -9150646361730964588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_3
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 120
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be225259f7e39fed0800000000000000
+      internalID: -2379802210404588821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_4
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 120
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b78efcbf81418b10800000000000000
+      internalID: 1981937396626655159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_5
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 120
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8654fb6ac30b6fdc0800000000000000
+      internalID: -3605500677121424024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_6
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec410d960d0c4ed0800000000000000
+      internalID: -2428551777004466963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_7
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dc674f4707436790800000000000000
+      internalID: -7538103254567654188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_8
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee730ca5f657a700800000000000000
+      internalID: 551505092529061602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_9
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d2d24bce2077040800000000000000
+      internalID: 4645184756314352924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_10
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b6f461c104e7fb0800000000000000
+      internalID: -4648207276022207728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_11
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 96
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fca6db323f18c1620800000000000000
+      internalID: 2746212754065812175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_12
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 96
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 359e60012483565b0800000000000000
+      internalID: -5375828723808933549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_13
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 96
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aea8458c4668f230800000000000000
+      internalID: 3672797974960320164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_14
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 96
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ab74ff3d23efd80800000000000000
+      internalID: -8215072784174827004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_15
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 96
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9940c5c2ec4ab0850800000000000000
+      internalID: 6344345705495921817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_16
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 88
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 025c54a1e71a69c10800000000000000
+      internalID: 2060011442547311904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 88
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a84dadcdc7a0b4ed0800000000000000
+      internalID: -2428836042638699382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_18
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 88
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0d08fb396216f8f0800000000000000
+      internalID: -507197664845624054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_19
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 88
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58ba5c3e58707b250800000000000000
+      internalID: 5960240903481568133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_20
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 88
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d707111d264d540800000000000000
+      internalID: 5031755333759958312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_21
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 80
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f07ef7c8a5f4380800000000000000
+      internalID: -8984863172093079780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_22
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 80
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 560cdf708a9412240800000000000000
+      internalID: 4765170866772099173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_23
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 80
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8febcf3afd8e8be50800000000000000
+      internalID: 6825461282506587896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_24
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 80
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51818079f6624a00800000000000000
+      internalID: 739266510362607964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_25
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 80
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab4e6f5adb7e5e50800000000000000
+      internalID: 6800008665210178478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_26
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae7e51a2bcc908b0800000000000000
+      internalID: -5185388428356845906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_27
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81015ab36189b2740800000000000000
+      internalID: 5128359821948817432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_28
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c42660f1455ee4e00800000000000000
+      internalID: 1031013514174947916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_29
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e53f6fd0e78764bd0800000000000000
+      internalID: -2646295248238087330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_30
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0641c7d7b96cd230800000000000000
+      internalID: 3664920435092440589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_31
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719f86bde636350d0800000000000000
+      internalID: -3435292762974914281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_32
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45f9591821de5bbc0800000000000000
+      internalID: -3767844849486291116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_33
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd15f9b7bc1b39eb0800000000000000
+      internalID: -4714228897416261153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_34
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98b9587b975807ad0800000000000000
+      internalID: -2706516618233144439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_35
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09210736b0f92dd10800000000000000
+      internalID: 2148954843470893712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_CraftingAndProfessionsMiningShadows_36
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1db9e5a93ea703e0800000000000000
+      internalID: -2087508339643007716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 70a1fa3b2682fba43b30c1c41f65c8fa
     internalID: 0
     vertices: []
     indices: 

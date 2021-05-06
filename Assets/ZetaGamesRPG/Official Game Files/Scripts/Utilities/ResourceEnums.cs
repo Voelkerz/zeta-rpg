@@ -17,14 +17,15 @@ namespace ZetaGames.RPG {
         None,
 
         // Stone
-        Rock,
+        Small,
+        Large,
 
         // Wood
-        Oak,
-        Hickory,
-        Pine,
-        Willow,
-        Birch,
+        Oak,        //grass
+        Hickory,    //eastern grass
+        Pine,       //mountain
+        Willow,     //swamp
+        Birch,      //northern grass
 
         // Ore
         Coal,
@@ -42,18 +43,18 @@ namespace ZetaGames.RPG {
         Topaz,
 
         // Fiber
-        Flax,
-        Cotton,
-        Hemp,
-        Ramie,
-        Agave,
+        Flax,       //grass
+        Cotton,     //swamp
+        Hemp,       //grass
+        Ramie,      //mountain
+        Agave,      //desert
 
         // Herb
-        Mandrake,
-        Mushroom,
-        Henbane,
-        Belladonna,
-        Poppy
+        Mandrake,   //swamp
+        Mushroom,   //anywhere
+        Henbane,    //desert
+        Belladonna, //grass
+        Poppy       //grass
     }
 
     public enum ResourceState {

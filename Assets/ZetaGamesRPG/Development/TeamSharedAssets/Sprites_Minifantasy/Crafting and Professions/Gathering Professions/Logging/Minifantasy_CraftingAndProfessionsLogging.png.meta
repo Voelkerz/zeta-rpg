@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1769834457459911374
-    second: Minifantasy_CraftingAndProfessionsLogging_0
+    second: OakWood_Node_Full
   - first:
       213: -4736120968749563215
     second: Minifantasy_CraftingAndProfessionsLogging_1
@@ -19,7 +19,7 @@ TextureImporter:
     second: Minifantasy_CraftingAndProfessionsLogging_4
   - first:
       213: -6395967301618122550
-    second: Minifantasy_CraftingAndProfessionsLogging_5
+    second: OakWood_Node_Depleted
   - first:
       213: 3567025270733565675
     second: Minifantasy_CraftingAndProfessionsLogging_6
@@ -123,7 +123,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -178,15 +178,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsLogging_0
+      name: OakWood_Node_Full
       rect:
         serializedVersion: 2
-        x: 13
+        x: 12
         y: 73
-        width: 21
+        width: 24
         height: 25
       alignment: 9
-      pivot: {x: 0.5, y: 0.11}
+      pivot: {x: 0.6666667, y: 0.16}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,7 +283,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsLogging_5
+      name: OakWood_Node_Depleted
       rect:
         serializedVersion: 2
         x: 19
@@ -291,7 +291,7 @@ TextureImporter:
         width: 10
         height: 9
       alignment: 9
-      pivot: {x: 0.5, y: 0.11}
+      pivot: {x: 0.9, y: 0.44444445}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -396,7 +396,7 @@ TextureImporter:
         width: 8
         height: 6
       alignment: 9
-      pivot: {x: 0.5, y: 0.11}
+      pivot: {x: 0, y: -0.16666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

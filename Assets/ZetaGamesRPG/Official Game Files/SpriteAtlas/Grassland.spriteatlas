@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Minifactory_Grassland
+  m_Name: Grassland
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -35,7 +35,7 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 2
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 0
@@ -46,12 +46,63 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
     - {fileID: 2800000, guid: 40e8132cfaf8e494c877a03aa40f030e, type: 3}
     - {fileID: 2800000, guid: bcfd1dbaaf768fa4b98ca4b123218087, type: 3}
-    totalSpriteSurfaceArea: 12736
+    - {fileID: 2800000, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+    - {fileID: 2800000, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
+    - {fileID: 2800000, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+    - {fileID: 2800000, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+    - {fileID: -949876186851695681, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+    - {fileID: -6688026519542131762, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+    - {fileID: 4994510249058914151, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+    - {fileID: -5411594189939067325, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+    - {fileID: -931343793185160270, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+    - {fileID: 2361370552029192998, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+    - {fileID: 1708204155200402127, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+    - {fileID: 8303573690327376359, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+    totalSpriteSurfaceArea: 43629
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 1769834457459911374, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 3386668413100262386, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -8250791808795354625, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -369788173972837831, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -3790635300491065072, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 7328803302303826300, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -6395967301618122550, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -7886400358069379765, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 7922076258424235239, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 3567025270733565675, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -4736120968749563215, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -1246949712442696593, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 4665939374394200699, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 2515922824550693269, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -7564378910291881189, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 6557829404605722908, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -394629369048865253, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -6862709694892204826, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -1832806990224960657, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -3523694591223063126, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: 7146911338629515879, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -6496755831669967362, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -4651969477385800700, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -6622283342578477379, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -8198205428816899660, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -694233021905763425, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: -5962181645515225787, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: -8349811569642435466, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: 6968170037225148655, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: -5846061120195914651, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: -5596631454146625521, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: 1601120127494346610, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: 4114135248629201530, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: 5442114210882104639, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: 3440786737717467395, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+  - {fileID: 4994510249058914151, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+  - {fileID: -6688026519542131762, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+  - {fileID: -5411594189939067325, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+  - {fileID: -949876186851695681, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
   - {fileID: -4352792109846227759, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: 276719045127543846, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: -4267099963075603422, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
@@ -241,6 +292,12 @@ SpriteAtlas:
   - {fileID: -5411679737409554135, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: -8885108771166411701, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: 2367239980171883332, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
+  - {fileID: -297471425267569260, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
+  - {fileID: -575450732779714553, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
+  - {fileID: 1019317555743219275, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
+  - {fileID: 3108990171744025959, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
+  - {fileID: 6594496583888654214, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
+  - {fileID: -4277055625861858072, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
   - {fileID: -2380600893817492558, guid: bcfd1dbaaf768fa4b98ca4b123218087, type: 3}
   - {fileID: -7598041309488376960, guid: bcfd1dbaaf768fa4b98ca4b123218087, type: 3}
   - {fileID: -9054988756916044247, guid: bcfd1dbaaf768fa4b98ca4b123218087, type: 3}
@@ -251,7 +308,56 @@ SpriteAtlas:
   - {fileID: 5516892592076969155, guid: 40e8132cfaf8e494c877a03aa40f030e, type: 3}
   - {fileID: 8608626288474059963, guid: 40e8132cfaf8e494c877a03aa40f030e, type: 3}
   - {fileID: 4511061992050464772, guid: 40e8132cfaf8e494c877a03aa40f030e, type: 3}
+  - {fileID: 5391644682397514672, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+  - {fileID: 6331887612355944533, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+  - {fileID: -4842755666233738139, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+  - {fileID: -8458467559854099684, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+  - {fileID: -4479096431232343817, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+  - {fileID: -6208307248259205135, guid: 5abbc78deb2685f489d6e897c03a9dc8, type: 3}
+  - {fileID: 2361370552029192998, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+  - {fileID: -931343793185160270, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+  - {fileID: 1708204155200402127, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+  - {fileID: 8303573690327376359, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
   m_PackedSpriteNamesToIndex:
+  - OakWood_Node_Full
+  - Minifantasy_CraftingAndProfessionsLogging_24
+  - Minifantasy_CraftingAndProfessionsLogging_21
+  - Minifantasy_CraftingAndProfessionsLogging_20
+  - Minifantasy_CraftingAndProfessionsLogging_23
+  - Minifantasy_CraftingAndProfessionsLogging_22
+  - OakWood_Node_Depleted
+  - Minifantasy_CraftingAndProfessionsLogging_4
+  - Minifantasy_CraftingAndProfessionsLogging_7
+  - Minifantasy_CraftingAndProfessionsLogging_6
+  - Minifantasy_CraftingAndProfessionsLogging_1
+  - Minifantasy_CraftingAndProfessionsLogging_18
+  - Minifantasy_CraftingAndProfessionsLogging_19
+  - Minifantasy_CraftingAndProfessionsLogging_3
+  - Minifantasy_CraftingAndProfessionsLogging_2
+  - Minifantasy_CraftingAndProfessionsLogging_14
+  - Minifantasy_CraftingAndProfessionsLogging_15
+  - Minifantasy_CraftingAndProfessionsLogging_16
+  - Minifantasy_CraftingAndProfessionsLogging_17
+  - Minifantasy_CraftingAndProfessionsLogging_9
+  - Minifantasy_CraftingAndProfessionsLogging_10
+  - Minifantasy_CraftingAndProfessionsLogging_8
+  - Minifantasy_CraftingAndProfessionsLogging_11
+  - Minifantasy_CraftingAndProfessionsLogging_12
+  - Minifantasy_CraftingAndProfessionsLogging_13
+  - OakWood_Node_Depleted_Shadow
+  - OakWood_Node_Full_Shadow
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_6
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_7
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_4
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_2
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_3
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_1
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_8
+  - Minifantasy_CraftingAndProfessionsLoggingShadows_9
+  - LargeStone_Node_Depleted
+  - SmallStone_Node_Full
+  - SmallStone_Node_Depleted
+  - LargeStone_Node_Full
   - _Minifantasy_ForgottenPlainsAllTiles_8
   - _Minifantasy_ForgottenPlainsAllTiles_9
   - _Minifantasy_ForgottenPlainsAllTiles_2
@@ -441,6 +547,12 @@ SpriteAtlas:
   - _Minifantasy_ForgottenPlainsAllTiles_142
   - _Minifantasy_ForgottenPlainsAllTiles_141
   - _Minifantasy_ForgottenPlainsAllTiles_140
+  - OakWood_Node_Full_Shadow_HitLeft2
+  - OakWood_Node_Full_Shadow_HitLeft3
+  - OakWood_Node_Full_Shadow_HitLeft1
+  - OakWood_Node_Full_Shadow_HitRight3
+  - OakWood_Node_Full_Shadow_HitRight2
+  - OakWood_Node_Full_Shadow_HitRight1
   - Minifantasy_ForgottenPlainsFlowerShadows_1
   - Minifantasy_ForgottenPlainsFlowerShadows_0
   - Minifantasy_ForgottenPlainsFlowerShadows_3
@@ -451,6 +563,16 @@ SpriteAtlas:
   - Minifantasy_ForgottenPlainsFlowers_3
   - Minifantasy_ForgottenPlainsFlowers_2
   - Minifantasy_ForgottenPlainsFlowers_4
+  - OakWood_Node_Full_HitLeft3
+  - OakWood_Node_Full_HitLeft2
+  - OakWood_Node_Full_HitLeft1
+  - OakWood_Node_Full_HitRight1
+  - OakWood_Node_Full_HitRight2
+  - OakWood_Node_Full_HitRight3
+  - SmallStone_Node_Depleted_Shadow
+  - SmallStone_Node_Full_Shadow
+  - LargeStone_Node_Depleted_Shadow
+  - LargeStone_Node_Full_Shadow
   m_RenderDataMap: {}
-  m_Tag: Minifactory_Grassland
+  m_Tag: Grassland
   m_IsVariant: 0

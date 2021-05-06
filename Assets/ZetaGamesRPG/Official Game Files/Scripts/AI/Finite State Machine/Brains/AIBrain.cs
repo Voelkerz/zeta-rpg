@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace ZetaGames.RPG {
     public abstract class AIBrain : MonoBehaviour {
@@ -37,6 +39,7 @@ namespace ZetaGames.RPG {
         }
 
         private IEnumerator Start() {
+            useAdvAI = true;
             // Provide a random wakeup for NPCs
             yield return new WaitForSeconds(Random.Range(3, 6));
         }
@@ -52,9 +55,10 @@ namespace ZetaGames.RPG {
             } else {
                 tickTimer = Time.deltaTime;
             }
+        }
 
-            // TODO: write code to change AI complexity depending on whether offscreen or not
-            useAdvAI = true;
+        public virtual void ResetAgent() {
+
         }
 
         protected virtual void updateNeeds() {
@@ -70,8 +74,16 @@ namespace ZetaGames.RPG {
             Destroy(gameObject, delay);
         }
 
-        public virtual void ResetAgent() {
-            
+        public virtual GameObject InstantiateObject(GameObject gameObject, Vector3 position) {
+            return Instantiate(gameObject, position, Quaternion.identity);
+        }
+
+        public virtual void SetTilemapSpriteAsync(WorldTile worldTile, int tilemapIndex, string spriteName) {
+           StartCoroutine(MapManager.Instance.SetAtlasedSpriteAsync(worldTile, tilemapIndex, spriteName));
+        }
+
+        public virtual void PlayResourceSpriteAnimation(WorldTile worldTile, int tilemapIndex, List<string> spriteNames, int startIndex) {
+            StartCoroutine(MapManager.Instance.PlayResourceSpriteAnimation(worldTile, tilemapIndex, spriteNames, startIndex));
         }
     }
 }

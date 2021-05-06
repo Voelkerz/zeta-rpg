@@ -86,9 +86,11 @@ namespace ZetaGames.RPG {
                 animator.SetFloat(animLastMoveX, previousDirection.normalized.x);
                 animator.SetFloat(animLastMoveY, previousDirection.normalized.y);
                 animator.SetBool(animShouldMove, false);
-            } else {
-                //animator.SetBool(animShouldMove, !isStopped);
-            }
+            } 
+        }
+
+        public void SetPreviousDirection(Vector3 previousDirection) {
+            this.previousDirection = previousDirection;
         }
     }
 }

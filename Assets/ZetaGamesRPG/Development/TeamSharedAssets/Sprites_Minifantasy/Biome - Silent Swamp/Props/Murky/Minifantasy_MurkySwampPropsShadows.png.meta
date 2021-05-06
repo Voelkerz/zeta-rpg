@@ -1,12 +1,240 @@
 fileFormatVersion: 2
 guid: aaf9c10e642d0b3498b7656d8e4748d5
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -281632729376515227
+    second: Minifantasy_MurkySwampPropsShadows_0
+  - first:
+      213: 8170898587972803524
+    second: Minifantasy_MurkySwampPropsShadows_1
+  - first:
+      213: -5964810245356626644
+    second: Minifantasy_MurkySwampPropsShadows_2
+  - first:
+      213: -6974855704328199170
+    second: Minifantasy_MurkySwampPropsShadows_3
+  - first:
+      213: 7494440689092640998
+    second: Minifantasy_MurkySwampPropsShadows_4
+  - first:
+      213: -390972930440976432
+    second: Minifantasy_MurkySwampPropsShadows_5
+  - first:
+      213: 8125332310452995161
+    second: Minifantasy_MurkySwampPropsShadows_6
+  - first:
+      213: -8652796887609525011
+    second: Minifantasy_MurkySwampPropsShadows_7
+  - first:
+      213: 4038570139969110649
+    second: Minifantasy_MurkySwampPropsShadows_8
+  - first:
+      213: -7787579888774276421
+    second: Minifantasy_MurkySwampPropsShadows_9
+  - first:
+      213: -4142416584958179378
+    second: Minifantasy_MurkySwampPropsShadows_10
+  - first:
+      213: 2524657593996146071
+    second: Minifantasy_MurkySwampPropsShadows_11
+  - first:
+      213: 4832152687693332403
+    second: Minifantasy_MurkySwampPropsShadows_12
+  - first:
+      213: -6015238338863951448
+    second: Minifantasy_MurkySwampPropsShadows_13
+  - first:
+      213: -5866490591086682412
+    second: Minifantasy_MurkySwampPropsShadows_14
+  - first:
+      213: -6633753802869647423
+    second: Minifantasy_MurkySwampPropsShadows_15
+  - first:
+      213: -6730767023085401100
+    second: Minifantasy_MurkySwampPropsShadows_16
+  - first:
+      213: -7990613652146296864
+    second: Minifantasy_MurkySwampPropsShadows_17
+  - first:
+      213: -931343793185160270
+    second: SmallStone_Node_Full_Shadow
+  - first:
+      213: -4931778583191744748
+    second: Minifantasy_MurkySwampPropsShadows_19
+  - first:
+      213: 2361370552029192998
+    second: SmallStone_Node_Depleted_Shadow
+  - first:
+      213: 1708204155200402127
+    second: LargeStone_Node_Depleted_Shadow
+  - first:
+      213: -6681177680027957503
+    second: Minifantasy_MurkySwampPropsShadows_22
+  - first:
+      213: 8303573690327376359
+    second: LargeStone_Node_Full_Shadow
+  - first:
+      213: 9040956146429641698
+    second: Minifantasy_MurkySwampPropsShadows_24
+  - first:
+      213: 4812885420514338136
+    second: Minifantasy_MurkySwampPropsShadows_25
+  - first:
+      213: 1383596070553470194
+    second: Minifantasy_MurkySwampPropsShadows_26
+  - first:
+      213: 2437492347329734920
+    second: Minifantasy_MurkySwampPropsShadows_27
+  - first:
+      213: -1702043415164954902
+    second: Minifantasy_MurkySwampPropsShadows_28
+  - first:
+      213: -4027697428747535510
+    second: Minifantasy_MurkySwampPropsShadows_29
+  - first:
+      213: 5201786088970678069
+    second: Minifantasy_MurkySwampPropsShadows_30
+  - first:
+      213: 7986550743758281555
+    second: Minifantasy_MurkySwampPropsShadows_31
+  - first:
+      213: 5810741228321551932
+    second: Minifantasy_MurkySwampPropsShadows_32
+  - first:
+      213: 5695355068887982197
+    second: Minifantasy_MurkySwampPropsShadows_33
+  - first:
+      213: 7867705027060324505
+    second: Minifantasy_MurkySwampPropsShadows_34
+  - first:
+      213: -6342531235571606115
+    second: Minifantasy_MurkySwampPropsShadows_35
+  - first:
+      213: 5673971425216548947
+    second: Minifantasy_MurkySwampPropsShadows_36
+  - first:
+      213: -1539845810682861338
+    second: Minifantasy_MurkySwampPropsShadows_37
+  - first:
+      213: 5098324689125017329
+    second: Minifantasy_MurkySwampPropsShadows_38
+  - first:
+      213: 854874943960981709
+    second: Minifantasy_MurkySwampPropsShadows_39
+  - first:
+      213: -2373573822946012994
+    second: Minifantasy_MurkySwampPropsShadows_40
+  - first:
+      213: 5992946467238394619
+    second: Minifantasy_MurkySwampPropsShadows_41
+  - first:
+      213: -2802088468199132795
+    second: Minifantasy_MurkySwampPropsShadows_42
+  - first:
+      213: 5770442422655715125
+    second: Minifantasy_MurkySwampPropsShadows_43
+  - first:
+      213: 3794206282216126184
+    second: Minifantasy_MurkySwampPropsShadows_44
+  - first:
+      213: 5782805512103211209
+    second: Minifantasy_MurkySwampPropsShadows_45
+  - first:
+      213: 5976656135039392517
+    second: Minifantasy_MurkySwampPropsShadows_46
+  - first:
+      213: -7753659738823566829
+    second: Minifantasy_MurkySwampPropsShadows_47
+  - first:
+      213: -6658677877290296825
+    second: Minifantasy_MurkySwampPropsShadows_48
+  - first:
+      213: 9137451094781351781
+    second: Minifantasy_MurkySwampPropsShadows_49
+  - first:
+      213: 7273531225786496264
+    second: Minifantasy_MurkySwampPropsShadows_50
+  - first:
+      213: -8790943657531026969
+    second: Minifantasy_MurkySwampPropsShadows_51
+  - first:
+      213: 8540932012283746997
+    second: Minifantasy_MurkySwampPropsShadows_52
+  - first:
+      213: -8444939185440774893
+    second: Minifantasy_MurkySwampPropsShadows_53
+  - first:
+      213: -8817133401503082031
+    second: Minifantasy_MurkySwampPropsShadows_54
+  - first:
+      213: -871876686279712329
+    second: Minifantasy_MurkySwampPropsShadows_55
+  - first:
+      213: 1744621765920866937
+    second: Minifantasy_MurkySwampPropsShadows_56
+  - first:
+      213: -4460717383096782779
+    second: Minifantasy_MurkySwampPropsShadows_57
+  - first:
+      213: -2815819942056745324
+    second: Minifantasy_MurkySwampPropsShadows_58
+  - first:
+      213: -2081390905458972675
+    second: Minifantasy_MurkySwampPropsShadows_59
+  - first:
+      213: 6701777876228714417
+    second: Minifantasy_MurkySwampPropsShadows_60
+  - first:
+      213: 7772134481534894308
+    second: Minifantasy_MurkySwampPropsShadows_61
+  - first:
+      213: -8683459075845283488
+    second: Minifantasy_MurkySwampPropsShadows_62
+  - first:
+      213: -5618404175479020274
+    second: Minifantasy_MurkySwampPropsShadows_63
+  - first:
+      213: -1735483835653699137
+    second: Minifantasy_MurkySwampPropsShadows_64
+  - first:
+      213: -5287548894146135720
+    second: Minifantasy_MurkySwampPropsShadows_65
+  - first:
+      213: -4062949749276187322
+    second: Minifantasy_MurkySwampPropsShadows_66
+  - first:
+      213: 2713144273017642223
+    second: Minifantasy_MurkySwampPropsShadows_67
+  - first:
+      213: 392331523928420153
+    second: Minifantasy_MurkySwampPropsShadows_68
+  - first:
+      213: -3470910918711052708
+    second: Minifantasy_MurkySwampPropsShadows_69
+  - first:
+      213: -7102994288085362545
+    second: Minifantasy_MurkySwampPropsShadows_70
+  - first:
+      213: -5109457557003731427
+    second: Minifantasy_MurkySwampPropsShadows_71
+  - first:
+      213: -5132788678026595414
+    second: Minifantasy_MurkySwampPropsShadows_72
+  - first:
+      213: 1160827299092046386
+    second: Minifantasy_MurkySwampPropsShadows_73
+  - first:
+      213: 3696821697047111056
+    second: Minifantasy_MurkySwampPropsShadows_74
+  - first:
+      213: 538437688535222517
+    second: Minifantasy_MurkySwampPropsShadows_75
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -32,27 +260,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: -1
-    wrapV: -1
+    wrapU: 1
+    wrapV: 1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -68,7 +296,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,11 +317,1586 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b93685680771cf0800000000000000
+      internalID: -281632729376515227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb1cd779fcd46170800000000000000
+      internalID: 8170898587972803524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2d58ec4facb83da0800000000000000
+      internalID: -5964810245356626644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef329e7f0b5543f90800000000000000
+      internalID: -6974855704328199170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e0c997791a910860800000000000000
+      internalID: 7494440689092640998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_5
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d7a544f03cf29af0800000000000000
+      internalID: -390972930440976432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_6
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 176
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9540e8ebfaaf2c070800000000000000
+      internalID: 8125332310452995161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_7
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 176
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decbd6043171be780800000000000000
+      internalID: -8652796887609525011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_8
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 176
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972cb512522eb0830800000000000000
+      internalID: 4038570139969110649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_9
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 176
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba12adf955fce390800000000000000
+      internalID: -7787579888774276421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_10
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 176
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec781ed301e2386c0800000000000000
+      internalID: -4142416584958179378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_11
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 176
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795f1ad94b2690320800000000000000
+      internalID: 2524657593996146071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_12
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bff86284414f0340800000000000000
+      internalID: 4832152687693332403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_13
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a114b4d994958ca0800000000000000
+      internalID: -6015238338863951448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_14
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4de5b10b3e9069ea0800000000000000
+      internalID: -5866490591086682412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_15
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c7de8c301c20f3a0800000000000000
+      internalID: -6633753802869647423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_16
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fbc41bbd038792a0800000000000000
+      internalID: -6730767023085401100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_17
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e7ee6e2833ab1190800000000000000
+      internalID: -7990613652146296864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallStone_Node_Full_Shadow
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 128
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b30f6b21c33313f0800000000000000
+      internalID: -931343793185160270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_19
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 128
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41f0afd128dce8bb0800000000000000
+      internalID: -4931778583191744748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallStone_Node_Depleted_Shadow
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 128
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 623a4c8810645c020800000000000000
+      internalID: 2361370552029192998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargeStone_Node_Depleted_Shadow
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 128
+        width: 18
+        height: 8
+      alignment: 9
+      pivot: {x: 0.7222222, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc2f092f0a2c4b710800000000000000
+      internalID: 1708204155200402127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargeStone_Node_Full_Shadow
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 128
+        width: 20
+        height: 16
+      alignment: 9
+      pivot: {x: 0.7, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e12e32f6483c3370800000000000000
+      internalID: 8303573690327376359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_24
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e3c2d1d6bde77d70800000000000000
+      internalID: 9040956146429641698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_25
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855e96a4acdcac240800000000000000
+      internalID: 4812885420514338136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_26
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f447f9ab45833310800000000000000
+      internalID: 1383596070553470194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_27
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80962512066b3d120800000000000000
+      internalID: 2437492347329734920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_28
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae6dcce18802168e0800000000000000
+      internalID: -1702043415164954902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_29
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 104
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6bbfb8378eba18c0800000000000000
+      internalID: -4027697428747535510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_30
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f6aae33e4703840800000000000000
+      internalID: 5201786088970678069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_31
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35b185e369de5de60800000000000000
+      internalID: 7986550743758281555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_32
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c36b2db4c56e3a050800000000000000
+      internalID: 5810741228321551932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_33
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 570e9c68247f90f40800000000000000
+      internalID: 5695355068887982197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_34
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9985c778904bf2d60800000000000000
+      internalID: 7867705027060324505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_35
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d5fe6027dcaf7a0800000000000000
+      internalID: -6342531235571606115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_36
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 64
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350dfb103fefdbe40800000000000000
+      internalID: 5673971425216548947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_37
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e8ef55c46e51aae0800000000000000
+      internalID: -1539845810682861338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_38
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f686ecea43e0c640800000000000000
+      internalID: 5098324689125017329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_39
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc02d227b302ddb00800000000000000
+      internalID: 854874943960981709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_40
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb0132b0f2f5f0fd0800000000000000
+      internalID: -2373573822946012994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_41
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 56
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa3da95f093b2350800000000000000
+      internalID: 5992946467238394619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_42
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 581b5cf526bfc19d0800000000000000
+      internalID: -2802088468199132795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_43
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5370d3f6fcab41050800000000000000
+      internalID: 5770442422655715125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_44
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e63c08d28ab7a430800000000000000
+      internalID: 3794206282216126184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_45
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0351289f6a04050800000000000000
+      internalID: 5782805512103211209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_46
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50b9ea1d61951f250800000000000000
+      internalID: 5976656135039392517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_47
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31a5c265c87756490800000000000000
+      internalID: -7753659738823566829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_48
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70a1c52ffbf9793a0800000000000000
+      internalID: -6658677877290296825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_49
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56752f0cb5fbece70800000000000000
+      internalID: 9137451094781351781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_50
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80537bfec16c0f460800000000000000
+      internalID: 7273531225786496264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_51
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 48
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e1d364e15b400680800000000000000
+      internalID: -8790943657531026969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_52
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 32
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba5fe2d96c778670800000000000000
+      internalID: 8540932012283746997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_53
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 32
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315a606dd8c8dca80800000000000000
+      internalID: -8444939185440774893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_54
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 32
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d95d22f2ef33a580800000000000000
+      internalID: -8817133401503082031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_55
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 32
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b16a52f5c876e3f0800000000000000
+      internalID: -871876686279712329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_56
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972c021b044263810800000000000000
+      internalID: 1744621765920866937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_57
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5403b198c295812c0800000000000000
+      internalID: -4460717383096782779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_58
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4962f3a7ea23ce8d0800000000000000
+      internalID: -2815819942056745324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_59
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df7a369cff96d13e0800000000000000
+      internalID: -2081390905458972675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_60
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf2f2c887f710d50800000000000000
+      internalID: 6701777876228714417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_61
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e0c376e12b2cdb60800000000000000
+      internalID: 7772134481534894308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_62
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061a99a3af72e7780800000000000000
+      internalID: -8683459075845283488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_63
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0560048b2b6702b0800000000000000
+      internalID: -5618404175479020274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_64
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb9cd6e75a25ae7e0800000000000000
+      internalID: -1735483835653699137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_65
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 16
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 859f8ef9b4ade96b0800000000000000
+      internalID: -5287548894146135720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_66
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 16
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645612ebab08d97c0800000000000000
+      internalID: -4062949749276187322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_67
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 16
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fec1a99675607a520800000000000000
+      internalID: 2713144273017642223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_68
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93fe0fd3177d17500800000000000000
+      internalID: 392331523928420153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_69
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56f33bb8e8d4dfc0800000000000000
+      internalID: -3470910918711052708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_70
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f881b0904581d6d90800000000000000
+      internalID: -7102994288085362545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_71
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e7bd74c6f8719b0800000000000000
+      internalID: -5109457557003731427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_72
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3f31b54eba4c8b0800000000000000
+      internalID: -5132788678026595414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_73
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23225f737461c1010800000000000000
+      internalID: 1160827299092046386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_74
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09523723fbfbd4330800000000000000
+      internalID: 3696821697047111056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_MurkySwampPropsShadows_75
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 8
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f803d6993ae87700800000000000000
+      internalID: 538437688535222517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d04de4a68028573489514f3710b0d951
     internalID: 0
     vertices: []
     indices: 

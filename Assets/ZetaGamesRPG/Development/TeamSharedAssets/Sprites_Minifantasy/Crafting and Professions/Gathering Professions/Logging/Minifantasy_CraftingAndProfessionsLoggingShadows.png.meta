@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -5962181645515225787
-    second: Minifantasy_CraftingAndProfessionsLoggingShadows_0
+    second: OakWood_Node_Full_Shadow
   - first:
       213: 4114135248629201530
     second: Minifantasy_CraftingAndProfessionsLoggingShadows_1
@@ -19,7 +19,7 @@ TextureImporter:
     second: Minifantasy_CraftingAndProfessionsLoggingShadows_4
   - first:
       213: -694233021905763425
-    second: Minifantasy_CraftingAndProfessionsLoggingShadows_5
+    second: OakWood_Node_Depleted_Shadow
   - first:
       213: -8349811569642435466
     second: Minifantasy_CraftingAndProfessionsLoggingShadows_6
@@ -78,7 +78,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -121,15 +121,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsLoggingShadows_0
+      name: OakWood_Node_Full_Shadow
       rect:
         serializedVersion: 2
-        x: 0
-        y: 72
-        width: 40
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 11
+        y: 73
+        width: 24
+        height: 10
+      alignment: 9
+      pivot: {x: 0.7083333, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,7 +150,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,7 +171,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,7 +192,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,7 +213,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,15 +226,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsLoggingShadows_5
+      name: OakWood_Node_Depleted_Shadow
       rect:
         serializedVersion: 2
-        x: 0
-        y: 40
-        width: 40
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 18
+        y: 56
+        width: 10
+        height: 9
+      alignment: 9
+      pivot: {x: 1, y: 0.5555556}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -255,7 +255,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -276,7 +276,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -297,7 +297,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -318,7 +318,7 @@ TextureImporter:
         width: 40
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -9,7 +9,6 @@ namespace ZetaGames.RPG {
     */
     public class NpcInventory : MonoBehaviour {
         private Dictionary<BaseItem, int> inventory;
-        //private KeyValuePair<ResourceCategory, int> resourceCarried;
         private bool carryingSomething = false;
         private ResourceCategory carriedResourceCategory;
         private ResourceType carriedResourceType;

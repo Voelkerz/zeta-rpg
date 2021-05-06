@@ -4,22 +4,22 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -4842755666233738139
-    second: Minifantasy_CraftingAndProfessionsOakTreeHit_0
+    second: OakWood_Node_Full_HitLeft1
   - first:
       213: 6331887612355944533
-    second: Minifantasy_CraftingAndProfessionsOakTreeHit_1
+    second: OakWood_Node_Full_HitLeft2
   - first:
       213: 5391644682397514672
-    second: Minifantasy_CraftingAndProfessionsOakTreeHit_2
+    second: OakWood_Node_Full_HitLeft3
   - first:
       213: -8458467559854099684
-    second: Minifantasy_CraftingAndProfessionsOakTreeHit_3
+    second: OakWood_Node_Full_HitRight1
   - first:
       213: -4479096431232343817
-    second: Minifantasy_CraftingAndProfessionsOakTreeHit_4
+    second: OakWood_Node_Full_HitRight2
   - first:
       213: -6208307248259205135
-    second: Minifantasy_CraftingAndProfessionsOakTreeHit_5
+    second: OakWood_Node_Full_HitRight3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsOakTreeHit_0
+      name: OakWood_Node_Full_HitLeft1
       rect:
         serializedVersion: 2
         x: 0
@@ -129,7 +129,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.625, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,7 +142,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsOakTreeHit_1
+      name: OakWood_Node_Full_HitLeft2
       rect:
         serializedVersion: 2
         x: 32
@@ -150,7 +150,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.625, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,7 +163,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsOakTreeHit_2
+      name: OakWood_Node_Full_HitLeft3
       rect:
         serializedVersion: 2
         x: 64
@@ -171,7 +171,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.625, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,7 +184,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsOakTreeHit_3
+      name: OakWood_Node_Full_HitRight1
       rect:
         serializedVersion: 2
         x: 0
@@ -192,7 +192,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.625, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,7 +205,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsOakTreeHit_4
+      name: OakWood_Node_Full_HitRight2
       rect:
         serializedVersion: 2
         x: 32
@@ -213,7 +213,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.625, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,7 +226,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsOakTreeHit_5
+      name: OakWood_Node_Full_HitRight3
       rect:
         serializedVersion: 2
         x: 64
@@ -234,7 +234,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.625, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
