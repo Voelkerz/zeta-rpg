@@ -3,10 +3,11 @@ using UnityEngine.AI;
 
 namespace ZetaGames {
     static class ZetaUtilities {
-        // GameObject Tag Constants
+        // Tile Tag Constants
         public static readonly string TAG_CULLED = "Culled";
         public static readonly string TAG_UNCULLED = "Unculled";
-        public static readonly string TAG_CULLLOCKED = "CullLocked";
+        //public static readonly string TAG_CULLLOCKED = "CullLocked";
+        public static readonly string TAG_NONE = "None";
 
         // Tile Occupied Type Constants
         public static readonly string OCCUPIED_NONE = "_None";

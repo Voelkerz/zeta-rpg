@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class DroppedResource : MonoBehaviour {
-        [SerializeField] private ResourceItemData resourcecData;
+        [SerializeField] private ResourceDropData resourcecData;
 
         public void PickUp() {
             //Debug.Log("DroppedResource.Pickup() called");
@@ -12,14 +12,13 @@ namespace ZetaGames.RPG {
             WorldTile currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
             currentTile.occupied = false;
             currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
-            currentTile.occupiedType = ResourceType.None.ToString();
-            currentTile.occupiedCategory = ResourceCategory.None.ToString();
+            currentTile.tileObjectData = null;
             currentTile.SetTileObject(null);
 
             Destroy(gameObject, 0.5f);
         }
 
-        public ResourceItemData GetResourceData() {
+        public ResourceDropData GetResourceData() {
             return resourcecData;
         }
     }

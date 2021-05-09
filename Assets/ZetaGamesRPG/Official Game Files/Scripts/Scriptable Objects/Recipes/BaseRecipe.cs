@@ -5,12 +5,12 @@ using UnityEngine;
 namespace ZetaGames.RPG {
     [CreateAssetMenu(menuName = "Recipe", fileName = "New Recipe", order = 51)]
     public class BaseRecipe : ScriptableObject {
-        public BaseItem[] ingredients;
-        public BaseItem successReward;
+        public BaseItemData[] ingredients;
+        public BaseItemData successReward;
 
         [Range(0, 100)]
         public int successChance = 65;
-        public BaseItem failReward;
+        public BaseItemData failReward;
     }
 }
 

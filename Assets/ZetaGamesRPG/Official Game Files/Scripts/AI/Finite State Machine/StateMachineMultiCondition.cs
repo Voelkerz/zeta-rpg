@@ -13,6 +13,7 @@ namespace ZetaGames.RPG {
         private static List<Transition> emptyTransitions = new List<Transition>(0);
         private bool thinking;
         private bool conditionsMet;
+        private WaitForSeconds thinkPauseTime = new WaitForSeconds(0.5f);
 
         public void Tick() {
             if (currentState.isInterruptable) {
@@ -131,10 +132,10 @@ namespace ZetaGames.RPG {
         }
 
         IEnumerator ThinkPause(Transition transition) {
-            yield return new WaitForSeconds(0.5f);
+            yield return thinkPauseTime;
             thinking = false;
             SetState(transition.to);
-            Debug.Log("Changing State To: " + transition.to);
+            //Debug.Log("Changing State To: " + transition.to);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /***********************************************
  * TODO:
@@ -31,16 +32,17 @@ namespace ZetaGames.RPG {
              * SPECIFIC STATE TRANSITIONS
             ***************************************************************/
             // FROM 'search for resource' to ...
-            AT(searchForResource, harvestResource, new List<Func<bool>> { HasResourceTarget(), IsFalse(IsInventoryFull()), IsFalse(IsCarryingSomething()), IsResourceTargetHarvestable() });
-          
+            AT(searchForResource, harvestResource, new List<Func<bool>> { HasResourceTarget(), IsFalse(IsInventoryFull()), IsFalse(IsCarryingResource()), IsResourceTargetHarvestable() });
+           
             // FROM 'harvest resource' to ...
-            AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(IsInventoryFull()), IsFalse(IsCarryingSomething()) });
-
-            //
+            AT(harvestResource, searchForResource, new List<Func<bool>> { IsFalse(HasResourceTarget()), IsFalse(IsInventoryFull()), IsFalse(IsCarryingResource()) });
 
             /***************************************************************
              * FROM ANY STATE TRANSITIONS
             ***************************************************************/
+            // TO 'store resource' from *any* if carrying a resource
+            stateMachine.AddFromAnyTransition(storeResource, new List<Func<bool>> { IsCarryingResource() });
+
             // TO 'return home' from *any state* when stuck
             //stateMachine.AddFromAnyTransition(getUnstuck, new List<Func<bool>> { StuckOnMove() });
 
@@ -50,6 +52,9 @@ namespace ZetaGames.RPG {
             /***************************************************************
              * TO ANY STATE TRANSITIONS ((use caution as this opens a lot of unintended transitions))
             ***************************************************************/
+            // FROM 'store resource' to *any state*
+            stateMachine.AddToAnyTransition(storeResource);
+            
             // FROM 'wander' to *any state*
             //stateMachine.AddToAnyTransition(wander);
 
@@ -71,7 +76,7 @@ namespace ZetaGames.RPG {
             Func<bool> HasResourceTarget() => () => resourceTileTarget != null;
             Func<bool> IsResourceTargetHarvestable() => () => resourceTileTarget.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE_FULL);
             Func<bool> IsInventoryFull() => () => npcInventory.IsInventoryFull();
-            Func<bool> IsCarryingSomething() => () => npcInventory.IsCarryingSomething();
+            Func<bool> IsCarryingResource() => () => npcInventory.IsCarryingSomething();
 
             // Inverse a condition
             Func<bool> IsFalse(Func<bool> conditionToInverse) => () => {

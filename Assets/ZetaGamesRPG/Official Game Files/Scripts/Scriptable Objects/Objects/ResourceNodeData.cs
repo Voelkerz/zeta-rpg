@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     [CreateAssetMenu(menuName = "Resource Node Data", fileName = "New Resource Node Data", order = 51)]
-    public class ResourceNodeData : BaseObject {
+    public class ResourceNodeData : BaseObjectData {
+        public ResourceDropData resourceDropData;
         public string spriteFull;
         public string spriteFullShadow;
         public string spriteDepleted;
@@ -11,7 +12,6 @@ namespace ZetaGames.RPG {
         public List<string> spriteAnimationList;
         public ResourceType resourceType;
         public ResourceCategory resourceCategory;
-        public GameObject lootPrefab;
         public int lootPerDrop;
         public int maxLoot;
         public int maxHitPoints;

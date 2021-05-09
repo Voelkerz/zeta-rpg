@@ -64,13 +64,15 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 7146911338629515879, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: 1769834457459911374, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -369788173972837831, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: 3386668413100262386, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -8250791808795354625, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
-  - {fileID: -369788173972837831, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -3790635300491065072, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: 7328803302303826300, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -6395967301618122550, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
+  - {fileID: -394629369048865253, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -7886400358069379765, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: 7922076258424235239, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: 3567025270733565675, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
@@ -80,11 +82,9 @@ SpriteAtlas:
   - {fileID: 2515922824550693269, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -7564378910291881189, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: 6557829404605722908, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
-  - {fileID: -394629369048865253, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -6862709694892204826, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -1832806990224960657, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -3523694591223063126, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
-  - {fileID: 7146911338629515879, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -6496755831669967362, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -4651969477385800700, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -6622283342578477379, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
@@ -319,13 +319,15 @@ SpriteAtlas:
   - {fileID: 1708204155200402127, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
   - {fileID: 8303573690327376359, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
   m_PackedSpriteNamesToIndex:
+  - OakRaw_ItemDrop
   - OakWood_Node_Full
+  - OakPlank_InventoryIcon
   - Minifantasy_CraftingAndProfessionsLogging_24
   - Minifantasy_CraftingAndProfessionsLogging_21
-  - Minifantasy_CraftingAndProfessionsLogging_20
   - Minifantasy_CraftingAndProfessionsLogging_23
   - Minifantasy_CraftingAndProfessionsLogging_22
   - OakWood_Node_Depleted
+  - OakRaw_InventoryIcon
   - Minifantasy_CraftingAndProfessionsLogging_4
   - Minifantasy_CraftingAndProfessionsLogging_7
   - Minifantasy_CraftingAndProfessionsLogging_6
@@ -335,11 +337,9 @@ SpriteAtlas:
   - Minifantasy_CraftingAndProfessionsLogging_3
   - Minifantasy_CraftingAndProfessionsLogging_2
   - Minifantasy_CraftingAndProfessionsLogging_14
-  - Minifantasy_CraftingAndProfessionsLogging_15
   - Minifantasy_CraftingAndProfessionsLogging_16
   - Minifantasy_CraftingAndProfessionsLogging_17
   - Minifantasy_CraftingAndProfessionsLogging_9
-  - Minifantasy_CraftingAndProfessionsLogging_10
   - Minifantasy_CraftingAndProfessionsLogging_8
   - Minifantasy_CraftingAndProfessionsLogging_11
   - Minifantasy_CraftingAndProfessionsLogging_12

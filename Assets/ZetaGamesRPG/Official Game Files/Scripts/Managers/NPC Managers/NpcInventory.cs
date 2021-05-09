@@ -8,7 +8,7 @@ namespace ZetaGames.RPG {
      *  
     */
     public class NpcInventory : MonoBehaviour {
-        private Dictionary<BaseItem, int> inventory;
+        private Dictionary<BaseItemData, int> inventory;
         private bool carryingSomething = false;
         private ResourceCategory carriedResourceCategory;
         private ResourceType carriedResourceType;
@@ -17,7 +17,7 @@ namespace ZetaGames.RPG {
         private int maxStackAmount = 20; // change to per item basis?
 
         private void Awake() {
-            inventory = new Dictionary<BaseItem, int>();
+            inventory = new Dictionary<BaseItemData, int>();
         }
 
         public bool IsCarryingSomething() {
@@ -59,11 +59,14 @@ namespace ZetaGames.RPG {
                 return false;
             } else {
                 carryingSomething = false;
+                carriedResourceCategory = ResourceCategory.None;
+                carriedResourceType = ResourceType.None;
+                carriedResourceState = ResourceState.None;
                 return true;
             }
         }
 
-        public bool AddItem(BaseItem item) {
+        public bool AddItem(BaseItemData item) {
             // if similar item is already in inventory
             if (inventory.ContainsKey(item)) {
                 // then add item to the stack if not over max
@@ -89,7 +92,7 @@ namespace ZetaGames.RPG {
         }
 
         public void PrintInventory() {
-            foreach (BaseItem key in inventory.Keys) {
+            foreach (BaseItemData key in inventory.Keys) {
                 Debug.Log("Item: " + key.ToString() + " || " + inventory[key]);
             }
         }

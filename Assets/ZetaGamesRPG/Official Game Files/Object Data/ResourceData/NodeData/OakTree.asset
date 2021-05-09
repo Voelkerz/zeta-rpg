@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
   m_Name: OakTree
   m_EditorClassIdentifier: 
+  resourceDropData: {fileID: 11400000, guid: ae61143631f94494f9f722ef2016961e, type: 2}
   spriteFull: OakWood_Node_Full
   spriteFullShadow: OakWood_Node_Full_Shadow
   spriteDepleted: OakWood_Node_Depleted
@@ -31,7 +32,6 @@ MonoBehaviour:
   - OakWood_Node_Full_Shadow_HitRight3
   resourceType: 3
   resourceCategory: 1
-  lootPrefab: {fileID: 1136408400419902, guid: c26755fc3a5b7ce43bd54c2d0e1fd7aa, type: 3}
   lootPerDrop: 2
   maxLoot: 2
   maxHitPoints: 20

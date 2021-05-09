@@ -1,13 +1,10 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.U2D;
 using UnityEngine.Tilemaps;
-using Newtonsoft.Json;
-
+using System;
+using Random = UnityEngine.Random;
 
 namespace ZetaGames.RPG {
     public class MapManager : MonoBehaviour {
@@ -15,21 +12,29 @@ namespace ZetaGames.RPG {
         public static MapManager Instance;
         public List<Tilemap> tileMapList;
         [SerializeField] private List<GlobalTileData> globalTileDataList;
-        [SerializeField] private List<BaseObject> mapFeaturesDataList;
-        [SerializeField] private int mapWidth = 256;
-        [SerializeField] private int mapHeight = 256;
+        [SerializeField] private List<BaseObjectData> mapFeaturesDataList;
+        public int mapWidth = 256;
+        public int mapHeight = 256;
+        public int regionSize = 128;
         private ZetaGrid<WorldTile> worldTileGrid;
+        private ZetaGrid<WorldTile[]> worldRegionGrid;
+        public float thickGrassStarterChance = 1f;
+        public float thickGrassAdjacencyChance = 20f;
+        public float lightGrassChance = 5f;
         public float treeStarterChance = 0.1f;
-        public float treeAdjacencyChance = 15f;
+        public float treeAdjacencyChance = 15;
         public float stoneStarterChance = 0.05f;
         public float stoneAdjacencyChance = 5f;
         public float flowerStarterChance = 0.5f;
-        public float flowerAdjacencyChance = 50;
+        public float flowerAdjacencyChance = 50f;
         public bool saveMapToFile;
         public bool loadMapFromFile;
         public string fileName = "mapData";
         private string filePath;
         private string grasslandSpriteAtlas = "Assets/ZetaGamesRPG/Official Game Files/SpriteAtlas/Grassland.spriteatlas";
+        private string ruleTileAddress = "Assets/ZetaGamesRPG/Official Game Files/Tilemaps/Tile Rulesets/";
+        private Vector3 tileOffset;
+        private Vector3Int tilemapPos;
 
         private void Awake() {
             // Create instance
@@ -37,7 +42,9 @@ namespace ZetaGames.RPG {
 
             // Initialize
             filePath = @"d:\GameDevProjects\Team\ZetaRPG\Assets\ZetaGamesRPG\Development\Zach\Json\" + fileName + ".json";
+            worldRegionGrid = new ZetaGrid<WorldTile[]>(mapWidth / regionSize, mapHeight / regionSize, regionSize, new Vector3(0, 0), (int x, int y) => new WorldTile[regionSize * regionSize]);
             worldTileGrid = new ZetaGrid<WorldTile>(mapWidth, mapHeight, 1, new Vector3(0, 0), (int x, int y) => new WorldTile(x, y));
+            tileOffset = new Vector3(0.5f, 0.5f);
 
             if (loadMapFromFile) {
                 //LoadJson();
@@ -50,6 +57,7 @@ namespace ZetaGames.RPG {
                 //SaveJson();
             } else {
                 // Randomize world features
+                CreateGrassPatches();
                 CreateRandomTrees();
                 CreateRandomStoneNodes();
 
@@ -67,6 +75,13 @@ namespace ZetaGames.RPG {
             return worldTileGrid;
         }
 
+        public ZetaGrid<WorldTile[]> GetWorldRegionGrid() {
+            return worldRegionGrid;
+        }
+
+        public Vector3 GetTileOffset() {
+            return tileOffset;
+        }
 
         private void Update() {
 
@@ -76,7 +91,9 @@ namespace ZetaGames.RPG {
                 worldTileGrid.GetXY(mouseWorldPos, out int x, out int y);
                 Vector3Int mouseGridPos = new Vector3Int(x, y, 0);
 
-                WorldTile clickedTile = worldTileGrid.GetGridObject(mouseWorldPos);
+                //WorldTile clickedTile = worldTileGrid.GetGridObject(mouseWorldPos);
+                //WorldTile[] clickedTile = worldRegionGrid.GetGridObject(mouseWorldPos);
+
 
                 //Debug.Log("Occupied: " + clickedTile.occupied + " || Occupied Status: " + clickedTile.occupiedStatus + " || Occupied Type: " + clickedTile.occupiedType + " || GameObject: " + clickedTile.HasTileObject());
 
@@ -160,8 +177,34 @@ namespace ZetaGames.RPG {
             tile.sprite = asyncOperationHandle.Result;
 
             Vector3 worldPos = worldTileGrid.GetWorldPosition(worldTile.x, worldTile.y);
-            Vector3Int tilemapPos = new Vector3Int((int)worldPos.x, (int)worldPos.y, 0);
+            tilemapPos.x = (int)worldPos.x;
+            tilemapPos.y = (int)worldPos.y;
+            tilemapPos.z = 0;
             tileMapList[tilemapIndex].SetTile(tilemapPos, tile);
+
+            // Release at some point
+            yield return new WaitForSeconds(3);
+            Addressables.Release(asyncOperationHandle);
+        }
+
+        public IEnumerator SetAddressableRuleTileAsync(WorldTile worldTile, int tilemapIndex, string ruleTile) {
+            string fullAddress = ruleTileAddress + ruleTile + ".asset";
+            var asyncOperationHandle = Addressables.LoadAssetAsync<TileBase>(fullAddress);
+
+            if (worldTile.tileSprites.ContainsKey(tilemapIndex)) {
+                worldTile.tileSprites[tilemapIndex] = ruleTile;
+                worldTile.ruleTileName = ruleTile;
+            } else {
+                worldTile.tileSprites.Add(tilemapIndex, ruleTile);
+                worldTile.ruleTileName = ruleTile;
+            }
+
+            yield return asyncOperationHandle;
+            Vector3 worldPos = worldTileGrid.GetWorldPosition(worldTile.x, worldTile.y);
+            tilemapPos.x = (int)worldPos.x;
+            tilemapPos.y = (int)worldPos.y;
+            tilemapPos.z = 0;
+            tileMapList[tilemapIndex].SetTile(tilemapPos, asyncOperationHandle.Result);
 
             // Release at some point
             yield return new WaitForSeconds(3);
@@ -248,7 +291,7 @@ namespace ZetaGames.RPG {
 
                         WorldTile worldTile = worldTileGrid.GetGridObject(mapTilePos);
 
-                        node.Penalty = (uint)(1000 * worldTile.pathPenalty);
+                        node.Penalty = (uint)(1000 * worldTile.pathingPenalty);
 
                         if (!worldTile.walkable) {
                             node.Walkable = false;
@@ -259,6 +302,8 @@ namespace ZetaGames.RPG {
         }
 
         private void FillWorldTileGrid() {
+            int regionTileListSize = regionSize * regionSize;
+
             // Create global dictionary for world creation use
             Dictionary<TileBase, GlobalTileData> globalTileDataDictionary = new Dictionary<TileBase, GlobalTileData>();
 
@@ -271,27 +316,181 @@ namespace ZetaGames.RPG {
             }
 
             // Iterate through every map grid square
+            for (int regionX = 0; regionX < mapWidth / regionSize; regionX++) {
+                for (int regionY = 0; regionY < mapHeight / regionSize; regionY++) {
+                    for (int mapX = 0 + (regionX * regionSize); mapX < regionSize + (regionX * regionSize); mapX++) {
+                        for (int mapY = 0 + (regionY * regionSize); mapY < regionSize + (regionY * regionSize); mapY++) {
+                            WorldTile[] regionTileList = worldRegionGrid.GetGridObject(regionX, regionY);
+                            WorldTile worldTile = worldTileGrid.GetGridObject(mapX, mapY);
+                            Vector3Int mapGridPos = new Vector3Int(mapX, mapY, 0);
+
+                            foreach (Tilemap tilemap in tileMapList) {
+                                if (tilemap.HasTile(mapGridPos)) {
+                                    TileBase tile = tilemap.GetTile(mapGridPos);
+
+                                    if (tile != null) {
+                                        if (globalTileDataDictionary.TryGetValue(tile, out GlobalTileData globalTileData)) {
+                                            // set the global data per tile
+                                            worldTile.pathingPenalty = globalTileData.pathPenalty;
+                                            worldTile.walkable = globalTileData.walkable;
+                                            worldTile.terrainType = globalTileData.type;
+                                            worldTile.speedPercent = globalTileData.speedPercent;
+
+                                            // set tilemap data
+                                            worldTile.tileSprites.Add(tileMapList.IndexOf(tilemap), tilemap.GetSprite(mapGridPos).name);
+                                            worldTile.regionX = regionX;
+                                            worldTile.regionY = regionY;
+
+                                            // add map tile to region grid
+                                            for (int i = 0; i < regionTileListSize; i++) {
+                                                WorldTile regionTile = regionTileList[i];
+                                                if (regionTile != null) {
+                                                    if (regionTile.x == worldTile.x && regionTile.y == worldTile.y) {
+                                                        regionTileList[i] = worldTile;
+                                                        break;
+                                                    }
+                                                } else {
+                                                    regionTileList[i] = worldTile;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        Debug.LogWarning("TileBase not found in global tile dictionary: " + tile.name);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CreateGrassPatches() {
+            List<string> lightGrassSpriteList = new List<string>();
+            lightGrassSpriteList.Add("_Minifantasy_ForgottenPlainsAllTiles_13");
+            lightGrassSpriteList.Add("_Minifantasy_ForgottenPlainsAllTiles_15");
+            lightGrassSpriteList.Add("_Minifantasy_ForgottenPlainsAllTiles_55");
+            lightGrassSpriteList.Add("_Minifantasy_ForgottenPlainsAllTiles_57");
+            lightGrassSpriteList.Add("_Minifantasy_ForgottenPlainsAllTiles_78");
+            lightGrassSpriteList.Add("_Minifantasy_ForgottenPlainsAllTiles_99");
+            lightGrassSpriteList.Add("_Minifantasy_ForgottenPlainsAllTiles_3");
+            string thickGrassRuleTile = "RuleTile_Grass";
+            int step = 1;
+            int adjGridSize = 3;
+            int numGrass;
+            bool hasGrass;
+
+            // Iterate through every WorldTile
             for (int mapX = 0; mapX < worldTileGrid.GetWidth(); mapX++) {
                 for (int mapY = 0; mapY < worldTileGrid.GetHeight(); mapY++) {
-                    WorldTile worldTile = worldTileGrid.GetGridObject(mapX, mapY);
-                    Vector3Int mapGridPos = new Vector3Int(mapX, mapY, 0);
+                    // get current tile
+                    WorldTile currentTile = worldTileGrid.GetGridObject(mapX, mapY);
 
-                    foreach (Tilemap tilemap in tileMapList) {
-                        TileBase tile = tilemap.GetTile(mapGridPos);
+                    // if current tile is plain grass, then give low chance of planting tall grass!
+                    if (currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) && currentTile.ruleTileName.Equals("none")) {
+                        bool planted = false;
 
-                        if (tile != null) {
-                            if (globalTileDataDictionary.TryGetValue(tile, out GlobalTileData globalTileData)) {
-                                // set the global data per tile
-                                worldTile.pathPenalty = globalTileData.pathPenalty;
-                                worldTile.walkable = globalTileData.walkable;
-                                worldTile.terrainType = globalTileData.type;
-                                worldTile.speedPercent = globalTileData.speedPercent;
+                        // low chance to plant grass in tile
+                        if (Random.Range(0, 100f) <= thickGrassStarterChance) {
+                            Debug.Log("Creating grass patch!");
+                            planted = true;
+                            StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
+                        }
 
-                                // set tilemap data
-                                worldTile.tileSprites.Add(tileMapList.IndexOf(tilemap), tilemap.GetSprite(mapGridPos).name);
-                            } else {
-                                Debug.LogWarning("TileBase not found in global tile dictionary: " + tile.name);
+                        // if not planted, check neighbors
+                        if (!planted) {
+                            hasGrass = false;
+
+                            // Check neighbor tiles one tile away (3x3 grid with one step from origin)
+                            for (int x = 0; x < adjGridSize; x++) {
+                                for (int y = 0; y < adjGridSize; y++) {
+                                    if (Mathf.Abs(x - step) < step && Mathf.Abs(y - step) < step) {
+                                        // skip inner tiles
+                                        continue;
+                                    }
+                                    // check grid bounds
+                                    if (worldTileGrid.IsWithinGridBounds(mapX + (x - step), mapY + (y - step))) {
+                                        WorldTile neighborTile = worldTileGrid.GetGridObject(mapX + (x - step), mapY + (y - step));
+
+                                        // if a neighbor tile has tall grass in it
+                                        if (neighborTile.ruleTileName != null) {
+                                            if (neighborTile.ruleTileName.Equals(thickGrassRuleTile)) {
+                                                hasGrass = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (hasGrass) {
+                                    break;
+                                }
                             }
+
+                            if (hasGrass) {
+                                if (Random.Range(0, 100f) <= thickGrassAdjacencyChance) {
+                                    Debug.Log("Creating grass neighbor!");
+                                    StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // reiterate every tile and anneal to fill in weird gaps
+            for (int mapX = 0; mapX < worldTileGrid.GetWidth(); mapX++) {
+                for (int mapY = 0; mapY < worldTileGrid.GetHeight(); mapY++) {
+                    // get current tile
+                    WorldTile currentTile = worldTileGrid.GetGridObject(mapX, mapY);
+
+                    // if current tile is plain grass, then give low chance of planting tall grass!
+                    if (currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) && currentTile.ruleTileName.Equals("none")) {
+                        numGrass = 0;
+                        hasGrass = false;
+
+                        // Check neighbor tiles one tile away (3x3 grid with one step from origin)
+                        for (int x = 0; x < adjGridSize; x++) {
+                            for (int y = 0; y < adjGridSize; y++) {
+                                if (Mathf.Abs(x - step) < step && Mathf.Abs(y - step) < step) {
+                                    // skip inner tiles
+                                    continue;
+                                }
+                                // check grid bounds
+                                if (worldTileGrid.IsWithinGridBounds(mapX + (x - step), mapY + (y - step))) {
+                                    WorldTile neighborTile = worldTileGrid.GetGridObject(mapX + (x - step), mapY + (y - step));
+
+                                    // if a neighbor tile has tall grass in it
+                                    if (neighborTile.ruleTileName != null) {
+                                        if (neighborTile.ruleTileName.Equals(thickGrassRuleTile)) {
+                                            hasGrass = true;
+                                            numGrass++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (hasGrass && numGrass >= 4) {
+                            StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
+                        }
+                    }
+                }
+            }
+
+            // reiterate again to add light grass spotted around world
+            for (int mapX = 0; mapX < worldTileGrid.GetWidth(); mapX++) {
+                for (int mapY = 0; mapY < worldTileGrid.GetHeight(); mapY++) {
+                    // get current tile
+                    WorldTile currentTile = worldTileGrid.GetGridObject(mapX, mapY);
+
+                    // if current tile is plain grass, then give low chance of planting light grass!
+                    if (currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) && currentTile.ruleTileName.Equals("none")) {
+                        int randomIndex = Random.Range(0, lightGrassSpriteList.Count);
+                        // low chance to plant grass in tile
+                        if (Random.Range(0, 100f) <= lightGrassChance) {
+                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, 1, lightGrassSpriteList[randomIndex]));
                         }
                     }
                 }
@@ -321,12 +520,13 @@ namespace ZetaGames.RPG {
                     int step;
                     int adjGridSize;
                     bool neighborsOccupied = false;
+                    bool isValidPosition = true;
 
                     // get current tile
                     WorldTile currentTile = worldTileGrid.GetGridObject(mapX, mapY);
 
                     // if current tile is grass and unoccupied, then plant trees!
-                    if (currentTile.terrainType == ZetaUtilities.TERRAIN_GRASS && !currentTile.occupied) {
+                    if (currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) && !currentTile.occupied) {
                         // NW - N - NE
                         // W  - X - E
                         // SW - S - SE
@@ -389,9 +589,10 @@ namespace ZetaGames.RPG {
                         combinedNeighbors.AddRange(oneTileNeighbors);
                         combinedNeighbors.AddRange(twoTileNeighbors);
                         combinedNeighbors.AddRange(threeTileNeighbors);
+
                         foreach (WorldTile tile in combinedNeighbors) {
                             if (tile.occupied) {
-                                if (tile.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE) && tile.occupiedCategory == ResourceCategory.Wood.ToString()) {
+                                if (tile.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE) && tile.occupiedCategory == ResourceCategory.Wood) {
                                     neighborsOccupied = true;
                                     break;
                                 }
@@ -404,11 +605,11 @@ namespace ZetaGames.RPG {
                                     currentTile.occupied = true;
                                     currentTile.walkable = false;
                                     currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
-                                    currentTile.occupiedCategory = ResourceCategory.Wood.ToString();
+                                    currentTile.occupiedCategory = ResourceCategory.Wood;
 
                                     // Specific to oak tree. Will change later
-                                    currentTile.occupiedType = ResourceType.Oak.ToString();
-                                    currentTile.resourceNodeData = oakTreeData;
+                                    currentTile.occupiedType = ResourceType.Oak;
+                                    currentTile.tileObjectData = oakTreeData;
 
                                     StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, oakTreeData.spriteFull));
                                     StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, oakTreeData.spriteFullShadow));
@@ -426,83 +627,91 @@ namespace ZetaGames.RPG {
                                                         otherTile.occupied = true;
                                                         otherTile.walkable = false;
                                                         otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
-                                                        otherTile.occupiedCategory = ResourceCategory.Wood.ToString();
+                                                        otherTile.occupiedCategory = ResourceCategory.Wood;
 
                                                         // Specific to oak tree. Will change later
-                                                        otherTile.occupiedType = ResourceType.Oak.ToString();
+                                                        otherTile.occupiedType = ResourceType.Oak;
+                                                    } else {
+                                                        isValidPosition = false;
+                                                        break;
                                                     }
                                                 }
                                             }
                                         }
                                     }
-
-                                    Debug.Log("Tree cluster seeded");
+                                    //Debug.Log("Tree cluster seeded");
                                 }
                             }
                         }
 
-                        // If one and two tile neighbors are not occupied, but a tree is found in a three tile neighbor, then allow a good chance to spawn an additional tree (helps create clusters)
-                        neighborsOccupied = false;
-                        combinedNeighbors.Clear();
-                        combinedNeighbors.AddRange(oneTileNeighbors);
-                        combinedNeighbors.AddRange(twoTileNeighbors);
+                        if (isValidPosition) {
+                            // If one and two tile neighbors are not occupied, but a tree is found in a three tile neighbor, then allow a good chance to spawn an additional tree (helps create clusters)
+                            neighborsOccupied = false;
+                            combinedNeighbors.Clear();
+                            combinedNeighbors.AddRange(oneTileNeighbors);
+                            combinedNeighbors.AddRange(twoTileNeighbors);
 
-                        foreach (WorldTile tile in combinedNeighbors) {
-                            if (tile.occupied) {
-                                if (tile.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE) && tile.occupiedCategory == ResourceCategory.Wood.ToString()) {
-                                    neighborsOccupied = true;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (!neighborsOccupied) {
-                            // check for a tree occupying 3 tile neighbors
-                            foreach (WorldTile tile in threeTileNeighbors) {
+                            foreach (WorldTile tile in combinedNeighbors) {
                                 if (tile.occupied) {
-                                    if (tile.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE) && tile.occupiedCategory == ResourceCategory.Wood.ToString()) {
+                                    if (tile.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE) && tile.occupiedCategory == ResourceCategory.Wood) {
                                         neighborsOccupied = true;
                                         break;
                                     }
                                 }
                             }
 
-                            // if tree occupies a 3 tile neighbor, then roll to plant a tree
-                            if (neighborsOccupied) {
-                                if (Random.Range(0, 100f) <= treeAdjacencyChance) {
-                                    if (currentTile.occupiedStatus != ZetaUtilities.OCCUPIED_NODE_FULL) {
-                                        currentTile.occupied = true;
-                                        currentTile.walkable = false;
-                                        currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
-                                        currentTile.occupiedCategory = ResourceCategory.Wood.ToString();
+                            if (!neighborsOccupied) {
+                                // check for a tree occupying 3 tile neighbors
+                                foreach (WorldTile tile in threeTileNeighbors) {
+                                    if (tile.occupied) {
+                                        if (tile.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE) && tile.occupiedCategory == ResourceCategory.Wood) {
+                                            neighborsOccupied = true;
+                                            break;
+                                        }
+                                    }
+                                }
 
-                                        // Specific to oak tree. Will change later
-                                        currentTile.occupiedType = ResourceType.Oak.ToString();
-                                        currentTile.resourceNodeData = oakTreeData;
+                                // if tree occupies a 3 tile neighbor, then roll to plant a tree
+                                if (neighborsOccupied) {
+                                    if (Random.Range(0, 100f) <= treeAdjacencyChance) {
+                                        if (!currentTile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NODE_FULL)) {
+                                            currentTile.occupied = true;
+                                            currentTile.walkable = false;
+                                            currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
+                                            currentTile.occupiedCategory = ResourceCategory.Wood;
 
-                                        StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, oakTreeData.spriteFull));
-                                        StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, oakTreeData.spriteFullShadow));
+                                            // Specific to oak tree. Will change later
+                                            currentTile.occupiedType = ResourceType.Oak;
+                                            currentTile.tileObjectData = oakTreeData;
 
-                                        // set additional tiles unwalkable depending on size of tree
-                                        foreach (var feature in mapFeaturesDataList) {
-                                            if (typeof(ResourceNodeData).IsInstanceOfType(feature)) {
-                                                ResourceNodeData tree = (ResourceNodeData)feature;
-                                                if (tree.resourceType.Equals(ResourceType.Oak)) {
-                                                    foreach (Vector3Int modPos in tree.adjacentGridOccupation) {
-                                                        WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
-                                                        otherTile.occupied = true;
-                                                        otherTile.walkable = false;
-                                                        otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
-                                                        otherTile.occupiedCategory = ResourceCategory.Wood.ToString();
+                                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, oakTreeData.spriteFull));
+                                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, oakTreeData.spriteFullShadow));
 
-                                                        // Specific to oak tree. Will change later
-                                                        otherTile.occupiedType = ResourceType.Oak.ToString();
+                                            // set additional tiles unwalkable depending on size of tree
+                                            foreach (var feature in mapFeaturesDataList) {
+                                                if (typeof(ResourceNodeData).IsInstanceOfType(feature)) {
+                                                    ResourceNodeData tree = (ResourceNodeData)feature;
+                                                    if (tree.resourceType.Equals(ResourceType.Oak)) {
+                                                        foreach (Vector3Int modPos in tree.adjacentGridOccupation) {
+                                                            if (GetWorldTileGrid().IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
+                                                                WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
+                                                                otherTile.occupied = true;
+                                                                otherTile.walkable = false;
+                                                                otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
+                                                                otherTile.occupiedCategory = ResourceCategory.Wood;
+
+                                                                // Specific to oak tree. Will change later
+                                                                otherTile.occupiedType = ResourceType.Oak;
+                                                            } else {
+                                                                isValidPosition = false;
+                                                                break;
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
+                                            //Debug.Log("Tree neighbor created");
                                         }
-
-                                        Debug.Log("Tree neighbor created");
                                     }
                                 }
                             }
@@ -534,7 +743,7 @@ namespace ZetaGames.RPG {
                     WorldTile currentTile = worldTileGrid.GetGridObject(mapX, mapY);
 
                     // if current tile is grass and unoccupied, then plant a flower!
-                    if (currentTile.terrainType == ZetaUtilities.TERRAIN_GRASS && !currentTile.occupied) {
+                    if (currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) && !currentTile.occupied) {
                         // pick random flower from list
                         int randomIndex = Random.Range(0, grasslandsFlowerList.Count);
                         string flower = grasslandsFlowerList[randomIndex];
@@ -544,7 +753,7 @@ namespace ZetaGames.RPG {
 
                         // low chance to plant flower in tile
                         if (Random.Range(0, 100f) <= flowerStarterChance) {
-                            Debug.Log("Creating flower!");
+                            //Debug.Log("Creating flower!");
                             planted = true;
                             StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, flower));
                             StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, flowerShadow));
@@ -628,7 +837,7 @@ namespace ZetaGames.RPG {
                             if (hasFlower) {
                                 if (Random.Range(0, 100f) <= flowerAdjacencyChance) {
                                     // if a neighbor tile has same flower type, then plant!
-                                    Debug.Log("Creating flower neighbor!");
+                                    //Debug.Log("Creating flower neighbor!");
                                     StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, flower));
                                     StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, flowerShadow));
                                 }
@@ -661,7 +870,7 @@ namespace ZetaGames.RPG {
                     WorldTile currentTile = worldTileGrid.GetGridObject(mapX, mapY);
 
                     // if current tile is grass and unoccupied, then place a starter stone node!
-                    if (currentTile.terrainType == ZetaUtilities.TERRAIN_GRASS && !currentTile.occupied) {
+                    if (currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) && !currentTile.occupied) {
                         // pick random stone node from list
                         int randomIndex = Random.Range(0, stoneNodeList.Count);
                         string stoneNode = stoneNodeList[randomIndex].spriteFull;
@@ -671,9 +880,8 @@ namespace ZetaGames.RPG {
 
                         // low chance to place starter node in tile
                         if (Random.Range(0, 100f) <= stoneStarterChance) {
-                            Debug.Log("Creating stone node starter!");
+                            //Debug.Log("Creating stone node starter!");
                             placed = true;
-                            Debug.Log("Placing: " + stoneNodeList[randomIndex].spriteFull);
 
                             // set additional tiles unwalkable depending on size of node (nullify placement if node won't fit)
                             foreach (Vector3Int modPos in stoneNodeList[randomIndex].adjacentGridOccupation) {
@@ -688,15 +896,15 @@ namespace ZetaGames.RPG {
                                     otherTile.occupied = true;
                                     otherTile.walkable = false;
                                     otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
-                                    otherTile.occupiedCategory = ResourceCategory.Stone.ToString();
-                                    otherTile.occupiedType = stoneNodeList[randomIndex].resourceType.ToString();
+                                    otherTile.occupiedCategory = ResourceCategory.Stone;
+                                    otherTile.occupiedType = stoneNodeList[randomIndex].resourceType;
                                 }
                             }
 
                             if (placed) {
                                 currentTile.occupied = true;
-                                currentTile.occupiedCategory = ResourceCategory.Stone.ToString();
-                                currentTile.occupiedType = stoneNodeList[randomIndex].resourceType.ToString();
+                                currentTile.occupiedCategory = ResourceCategory.Stone;
+                                currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
                                 currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
                                 currentTile.walkable = false;
 
@@ -727,7 +935,7 @@ namespace ZetaGames.RPG {
                                         WorldTile neighborTile = worldTileGrid.GetGridObject(mapX + (x - step), mapY + (y - step));
 
                                         // if a neighbor tile has a stone node
-                                        if (neighborTile.occupiedStatus == ZetaUtilities.OCCUPIED_NODE_FULL && neighborTile.occupiedCategory == ResourceCategory.Stone.ToString()) {
+                                        if (neighborTile.occupiedStatus == ZetaUtilities.OCCUPIED_NODE_FULL && neighborTile.occupiedCategory.Equals(ResourceCategory.Stone)) {
                                             placed = true;
                                             break;
                                         }
@@ -756,7 +964,7 @@ namespace ZetaGames.RPG {
                                             WorldTile neighborTile = worldTileGrid.GetGridObject(mapX + (x - step), mapY + (y - step));
 
                                             // if a neighbor tile has a stone node
-                                            if (neighborTile.occupiedStatus == ZetaUtilities.OCCUPIED_NODE_FULL && neighborTile.occupiedCategory == ResourceCategory.Stone.ToString()) {
+                                            if (neighborTile.occupiedStatus == ZetaUtilities.OCCUPIED_NODE_FULL && neighborTile.occupiedCategory.Equals(ResourceCategory.Stone.ToString())) {
                                                 placed = true;
                                                 break;
                                             }
@@ -772,28 +980,33 @@ namespace ZetaGames.RPG {
 
                             if (placed) {
                                 if (Random.Range(0, 100f) <= stoneAdjacencyChance) {
-                                    Debug.Log("Creating stone node neighbor!");
+                                    //Debug.Log("Creating stone node neighbor!");
 
                                     // set additional tiles unwalkable depending on size of node (nullify placement if node won't fit)
                                     foreach (Vector3Int modPos in stoneNodeList[randomIndex].adjacentGridOccupation) {
-                                        WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
+                                        if (worldTileGrid.IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
+                                            WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
 
-                                        if (otherTile.occupied) {
+                                            if (otherTile.occupied) {
+                                                placed = false;
+                                                break;
+                                            }
+
+                                            otherTile.occupied = true;
+                                            otherTile.walkable = false;
+                                            otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
+                                            otherTile.occupiedCategory = ResourceCategory.Stone;
+                                            otherTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                        } else {
                                             placed = false;
                                             break;
                                         }
-
-                                        otherTile.occupied = true;
-                                        otherTile.walkable = false;
-                                        otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
-                                        otherTile.occupiedCategory = ResourceCategory.Stone.ToString();
-                                        otherTile.occupiedType = stoneNodeList[randomIndex].resourceType.ToString();
                                     }
 
                                     if (placed) {
                                         currentTile.occupied = true;
-                                        currentTile.occupiedCategory = ResourceCategory.Stone.ToString();
-                                        currentTile.occupiedType = stoneNodeList[randomIndex].resourceType.ToString();
+                                        currentTile.occupiedCategory = ResourceCategory.Stone;
+                                        currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
                                         currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
                                         currentTile.walkable = false;
 

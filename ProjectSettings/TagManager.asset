@@ -11,9 +11,7 @@ TagManager:
   - NoMask
   - Structure
   - NPC
-  - Culled
-  - Unculled
-  - CullLocked
+  - Locked
   layers:
   - Default
   - TransparentFX

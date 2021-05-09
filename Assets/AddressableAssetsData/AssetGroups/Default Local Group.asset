@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 078160166ee0c0244b9a704420a6ea27
+    m_Address: Assets/ZetaGamesRPG/Official Game Files/Tilemaps/Tile Rulesets/RuleTile_Grass.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 208ed9e5f62d6a24b87a089963053f39, type: 2}
   m_SchemaSet:

@@ -58,6 +58,7 @@ namespace ZetaGames.RPG {
     }
 
     public enum ResourceState {
+        None,
         Raw,
         Refined
     }

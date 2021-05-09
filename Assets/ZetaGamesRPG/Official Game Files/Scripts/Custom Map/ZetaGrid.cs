@@ -104,7 +104,7 @@ namespace ZetaGames.RPG {
         }
 
         public bool IsWithinGridBounds(int x, int y) {
-            if (x < gridArray.GetLength(0) && y < gridArray.GetLength(1) && x >= 0 && y >= 0) {
+            if (x < width && y < height && x >= 0 && y >= 0) {
                 return true;
             } else {
                 return false;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4656451670903446178}
   m_Layer: 6
   m_Name: OakWood_ItemPickup
-  m_TagString: Wood
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

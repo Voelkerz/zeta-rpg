@@ -1,13 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using Pathfinding;
+using System.Collections;
 
 namespace ZetaGames.RPG {
     public abstract class AIBrain : MonoBehaviour {
         protected StateMachineMultiCondition stateMachine;
         [HideInInspector] public Personality personality { get; set; }
-        [HideInInspector] public AIMovement pathAgent { get; set; }
+        [HideInInspector] public AIMovement pathMovement { get; set; }
+        [HideInInspector] public Seeker pathSeeker { get; set; }
         [HideInInspector] public Animator animator { get; set; }
         [HideInInspector] public WorldTile resourceTileTarget { get; set; }
         [HideInInspector] public NpcMemory npcMemory { get; set; }
@@ -15,7 +16,10 @@ namespace ZetaGames.RPG {
         [HideInInspector] public ResourceCategory resourceCategoryWanted { get; set; }
         [HideInInspector] public ResourceType resourceTypeWanted { get; set; }
         [HideInInspector] public bool useAdvAI { get; set; }
-        private float tickTimer;
+        [HideInInspector] public string npcLockTag { get; set; }
+        [HideInInspector] public float deltaTime { get; set; }
+
+        private WaitForSeconds[] waitTimers = new WaitForSeconds[3];
 
         // EDITOR PROPERTIES
         public bool inCombat;
@@ -23,7 +27,8 @@ namespace ZetaGames.RPG {
 
         private void Awake() {
             // Cache NPC components
-            pathAgent = GetComponent<AIMovement>();
+            pathMovement = GetComponent<AIMovement>();
+            pathSeeker = GetComponent<Seeker>();
             animator = GetComponentInChildren<Animator>();
             npcInventory = GetComponent<NpcInventory>();
 
@@ -34,27 +39,29 @@ namespace ZetaGames.RPG {
             // Create a memory for npc
             npcMemory = new NpcMemory();
 
-            // Set update timer to zero
-            tickTimer = 0;
-        }
+            // Set unique NPC lock tag
+            npcLockTag = gameObject.GetInstanceID().ToString();
 
-        private IEnumerator Start() {
-            useAdvAI = true;
-            // Provide a random wakeup for NPCs
-            yield return new WaitForSeconds(Random.Range(3, 6));
+            deltaTime = 0;
+            useAdvAI = false;
+            pathMovement.useSimplePathing = true;
+
+            // Initialize commonly used wait timers
+            waitTimers[0] = new WaitForSeconds(10f);
+            waitTimers[1] = new WaitForSeconds(15f);
+            waitTimers[2] = new WaitForSeconds(20f);
         }
 
         protected virtual void Update() {
-            stateMachine.Tick();
-
-            if (tickTimer > 0.1f) {
-                tickTimer = 0;
-
+            if (deltaTime > 1f) {
+                stateMachine.Tick();
                 updateCooldownTimers();
                 updateNeeds();
-            } else {
-                tickTimer = Time.deltaTime;
+
+                deltaTime = 0;
             }
+
+            deltaTime += Time.deltaTime;
         }
 
         public virtual void ResetAgent() {
@@ -79,11 +86,31 @@ namespace ZetaGames.RPG {
         }
 
         public virtual void SetTilemapSpriteAsync(WorldTile worldTile, int tilemapIndex, string spriteName) {
-           StartCoroutine(MapManager.Instance.SetAtlasedSpriteAsync(worldTile, tilemapIndex, spriteName));
+            StartCoroutine(MapManager.Instance.SetAtlasedSpriteAsync(worldTile, tilemapIndex, spriteName));
         }
 
         public virtual void PlayResourceSpriteAnimation(WorldTile worldTile, int tilemapIndex, List<string> spriteNames, int startIndex) {
             StartCoroutine(MapManager.Instance.PlayResourceSpriteAnimation(worldTile, tilemapIndex, spriteNames, startIndex));
+        }
+
+        public virtual void OnVisible() {
+            useAdvAI = true;
+            pathMovement.useSimplePathing = false;
+        }
+
+        public virtual void OnInvisible() {
+            useAdvAI = false;
+            pathMovement.useSimplePathing = true;
+        }
+
+        public virtual void UnloadResources() {
+            int randIndex = Random.Range(0, waitTimers.Length);
+            StartCoroutine(TakeTimeToUnload(randIndex));
+        }
+
+        private IEnumerator TakeTimeToUnload(int randIndex) {
+            yield return waitTimers[randIndex];
+            npcInventory.DropResource();
         }
     }
 }
