@@ -50,6 +50,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
     - {fileID: 2800000, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
     - {fileID: 2800000, guid: 3dc4af0483f068f4780a2bf98d3c1c4d, type: 3}
+    - {fileID: 2800000, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+    - {fileID: 2800000, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
     - {fileID: -949876186851695681, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
     - {fileID: -6688026519542131762, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
     - {fileID: 4994510249058914151, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
@@ -58,12 +60,49 @@ SpriteAtlas:
     - {fileID: 2361370552029192998, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
     - {fileID: 1708204155200402127, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
     - {fileID: 8303573690327376359, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
-    totalSpriteSurfaceArea: 43629
+    totalSpriteSurfaceArea: 51605
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: -507197664845624054, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 5960240903481568133, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -4648207276022207728, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 2746212754065812175, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -5375828723808933549, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 3672797974960320164, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -8215072784174827004, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 6344345705495921817, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 2060011442547311904, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -2087508339643007716, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -2428836042638699382, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -2706516618233144439, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 2148954843470893712, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -3767844849486291116, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -4714228897416261153, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 3664920435092440589, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -3435292762974914281, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -8984863172093079780, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 5031755333759958312, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 6825461282506587896, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 4765170866772099173, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 6800008665210178478, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 739266510362607964, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 5128359821948817432, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -5185388428356845906, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -2646295248238087330, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 1031013514174947916, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 4645184756314352924, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 551505092529061602, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 2973730025708142391, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -1466514734049377148, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -2379802210404588821, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -9150646361730964588, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -3605500677121424024, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: 1981937396626655159, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -7538103254567654188, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
+  - {fileID: -2428551777004466963, guid: 611aea9085c0d204b98a9d95f196cd8b, type: 3}
   - {fileID: 7146911338629515879, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: 1769834457459911374, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
   - {fileID: -369788173972837831, guid: 48b6a2034460b574cae323c79122f23a, type: 3}
@@ -103,6 +142,89 @@ SpriteAtlas:
   - {fileID: -6688026519542131762, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
   - {fileID: -5411594189939067325, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
   - {fileID: -949876186851695681, guid: b6f1b2959d1cc9747b200e001e8be59f, type: 3}
+  - {fileID: -8601063788607002653, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -2672294108224497472, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -812209113933881704, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 6664636715291219813, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 8944747871413701611, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -251667396266797929, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -5597661198156913888, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 4056182635888094224, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 8161337284070695125, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 7410013720413701917, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 385324625367252484, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 2188114379948922902, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 593770195222990516, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 8011843399052004288, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 775683488711365987, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -1126554326525920686, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -5700628629681208182, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 1431050826350498979, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 5238313640689864860, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -764315414396501226, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 1609453180398434308, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 9009547013508644810, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -3245717398998650246, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 4712532247326250627, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 3290663867081318233, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 5702249866657600444, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -4644996824432179312, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -8959169380068046548, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 7948568545457385211, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -2535867782950106835, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 8209026407698909742, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 5628039888634348188, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 1689943285234705155, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 3003616424985191222, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 6934762796424969387, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -5378387634424789308, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 1925479865101491279, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 7904035712072651751, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 5164748985211617454, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -3216347826135993152, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -3364155033202158222, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 3652824898771712784, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 6402328716655561959, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -8935345017987380407, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 6423406072196675461, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -1650091292497499434, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -4799084116552895508, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -264481063809246796, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 1714934033807574246, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -8972447303706363663, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 7532436253605003489, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 993892458663917995, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -7622786971164148564, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -175413553535595255, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 4402925445484594401, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -2395479975862497022, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -2797270384714498340, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 8225513782144554537, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 8201218186155338544, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -6066559831401313056, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 3052037734932295320, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 3931509857371282334, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 6377566102402715917, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -2330657456845927002, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -5215891139581103432, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -2909194712169817782, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -4888012818268563156, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 4814877361468655308, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -3019901633704415087, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -187636676398911028, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -651954370689815326, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 3926814161999102263, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -2134980520178632898, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 3203097810390883077, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 1069073762454443326, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -4523121265190911916, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 883340296379499248, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 9197084372935080609, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -170690027776776415, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 8404004357140769291, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: -1809004504659966491, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 1029178725065190188, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
+  - {fileID: 6243643268480771996, guid: 6dcf95f785449b94c911592dffbeb96e, type: 3}
   - {fileID: -4352792109846227759, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: 276719045127543846, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: -4267099963075603422, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
@@ -319,6 +441,43 @@ SpriteAtlas:
   - {fileID: 1708204155200402127, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
   - {fileID: 8303573690327376359, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Minifantasy_CraftingAndProfessionsMiningShadows_18
+  - Minifantasy_CraftingAndProfessionsMiningShadows_19
+  - Minifantasy_CraftingAndProfessionsMiningShadows_10
+  - Minifantasy_CraftingAndProfessionsMiningShadows_11
+  - Minifantasy_CraftingAndProfessionsMiningShadows_12
+  - Minifantasy_CraftingAndProfessionsMiningShadows_13
+  - Minifantasy_CraftingAndProfessionsMiningShadows_14
+  - Minifantasy_CraftingAndProfessionsMiningShadows_15
+  - Minifantasy_CraftingAndProfessionsMiningShadows_16
+  - Minifantasy_CraftingAndProfessionsMiningShadows_36
+  - Minifantasy_CraftingAndProfessionsMiningShadows_17
+  - Minifantasy_CraftingAndProfessionsMiningShadows_34
+  - Minifantasy_CraftingAndProfessionsMiningShadows_35
+  - Minifantasy_CraftingAndProfessionsMiningShadows_32
+  - Minifantasy_CraftingAndProfessionsMiningShadows_33
+  - Minifantasy_CraftingAndProfessionsMiningShadows_30
+  - Minifantasy_CraftingAndProfessionsMiningShadows_31
+  - Minifantasy_CraftingAndProfessionsMiningShadows_21
+  - Minifantasy_CraftingAndProfessionsMiningShadows_20
+  - Minifantasy_CraftingAndProfessionsMiningShadows_23
+  - Minifantasy_CraftingAndProfessionsMiningShadows_22
+  - Minifantasy_CraftingAndProfessionsMiningShadows_25
+  - Minifantasy_CraftingAndProfessionsMiningShadows_24
+  - Minifantasy_CraftingAndProfessionsMiningShadows_27
+  - Minifantasy_CraftingAndProfessionsMiningShadows_26
+  - Minifantasy_CraftingAndProfessionsMiningShadows_29
+  - Minifantasy_CraftingAndProfessionsMiningShadows_28
+  - Minifantasy_CraftingAndProfessionsMiningShadows_9
+  - Minifantasy_CraftingAndProfessionsMiningShadows_8
+  - Minifantasy_CraftingAndProfessionsMiningShadows_1
+  - Minifantasy_CraftingAndProfessionsMiningShadows_0
+  - Minifantasy_CraftingAndProfessionsMiningShadows_3
+  - Minifantasy_CraftingAndProfessionsMiningShadows_2
+  - Minifantasy_CraftingAndProfessionsMiningShadows_5
+  - Minifantasy_CraftingAndProfessionsMiningShadows_4
+  - Minifantasy_CraftingAndProfessionsMiningShadows_7
+  - Minifantasy_CraftingAndProfessionsMiningShadows_6
   - OakRaw_ItemDrop
   - OakWood_Node_Full
   - OakPlank_InventoryIcon
@@ -358,6 +517,89 @@ SpriteAtlas:
   - SmallStone_Node_Full
   - SmallStone_Node_Depleted
   - LargeStone_Node_Full
+  - Minifantasy_CraftingAndProfessionsMining_62
+  - Minifantasy_CraftingAndProfessionsMining_13
+  - Minifantasy_CraftingAndProfessionsMining_63
+  - Minifantasy_CraftingAndProfessionsMining_12
+  - Minifantasy_CraftingAndProfessionsMining_60
+  - Minifantasy_CraftingAndProfessionsMining_11
+  - Minifantasy_CraftingAndProfessionsMining_61
+  - Minifantasy_CraftingAndProfessionsMining_75
+  - Minifantasy_CraftingAndProfessionsMining_10
+  - Minifantasy_CraftingAndProfessionsMining_26
+  - Minifantasy_CraftingAndProfessionsMining_66
+  - Minifantasy_CraftingAndProfessionsMining_74
+  - Minifantasy_CraftingAndProfessionsMining_17
+  - Minifantasy_CraftingAndProfessionsMining_27
+  - Minifantasy_CraftingAndProfessionsMining_67
+  - Minifantasy_CraftingAndProfessionsMining_77
+  - Minifantasy_CraftingAndProfessionsMining_16
+  - Minifantasy_CraftingAndProfessionsMining_24
+  - Minifantasy_CraftingAndProfessionsMining_64
+  - Minifantasy_CraftingAndProfessionsMining_76
+  - Minifantasy_CraftingAndProfessionsMining_15
+  - Minifantasy_CraftingAndProfessionsMining_25
+  - Minifantasy_CraftingAndProfessionsMining_65
+  - Minifantasy_CraftingAndProfessionsMining_14
+  - Minifantasy_CraftingAndProfessionsMining_22
+  - Minifantasy_CraftingAndProfessionsMining_70
+  - Minifantasy_CraftingAndProfessionsMining_23
+  - Minifantasy_CraftingAndProfessionsMining_73
+  - Minifantasy_CraftingAndProfessionsMining_20
+  - Minifantasy_CraftingAndProfessionsMining_68
+  - Minifantasy_CraftingAndProfessionsMining_72
+  - Minifantasy_CraftingAndProfessionsMining_19
+  - Minifantasy_CraftingAndProfessionsMining_21
+  - Minifantasy_CraftingAndProfessionsMining_69
+  - Minifantasy_CraftingAndProfessionsMining_18
+  - Minifantasy_CraftingAndProfessionsMining_80
+  - Minifantasy_CraftingAndProfessionsMining_79
+  - Minifantasy_CraftingAndProfessionsMining_81
+  - Minifantasy_CraftingAndProfessionsMining_78
+  - Minifantasy_CraftingAndProfessionsMining_82
+  - Minifantasy_CraftingAndProfessionsMining_28
+  - Minifantasy_CraftingAndProfessionsMining_29
+  - Stone_ItemPickup
+  - Minifantasy_CraftingAndProfessionsMining_0
+  - Minifantasy_CraftingAndProfessionsMining_1
+  - Minifantasy_CraftingAndProfessionsMining_2
+  - Minifantasy_CraftingAndProfessionsMining_3
+  - Minifantasy_CraftingAndProfessionsMining_4
+  - Minifantasy_CraftingAndProfessionsMining_5
+  - Minifantasy_CraftingAndProfessionsMining_6
+  - Minifantasy_CraftingAndProfessionsMining_7
+  - Minifantasy_CraftingAndProfessionsMining_8
+  - Minifantasy_CraftingAndProfessionsMining_9
+  - Minifantasy_CraftingAndProfessionsMining_39
+  - Minifantasy_CraftingAndProfessionsMining_38
+  - Stone_InventoryIcon
+  - Minifantasy_CraftingAndProfessionsMining_48
+  - Minifantasy_CraftingAndProfessionsMining_31
+  - Minifantasy_CraftingAndProfessionsMining_49
+  - Minifantasy_CraftingAndProfessionsMining_30
+  - Minifantasy_CraftingAndProfessionsMining_33
+  - Minifantasy_CraftingAndProfessionsMining_32
+  - Minifantasy_CraftingAndProfessionsMining_44
+  - Minifantasy_CraftingAndProfessionsMining_35
+  - Minifantasy_CraftingAndProfessionsMining_45
+  - Minifantasy_CraftingAndProfessionsMining_59
+  - Minifantasy_CraftingAndProfessionsMining_34
+  - Minifantasy_CraftingAndProfessionsMining_46
+  - Minifantasy_CraftingAndProfessionsMining_58
+  - Minifantasy_CraftingAndProfessionsMining_37
+  - Minifantasy_CraftingAndProfessionsMining_47
+  - Minifantasy_CraftingAndProfessionsMining_36
+  - Minifantasy_CraftingAndProfessionsMining_40
+  - Minifantasy_CraftingAndProfessionsMining_56
+  - Minifantasy_CraftingAndProfessionsMining_41
+  - Minifantasy_CraftingAndProfessionsMining_55
+  - Minifantasy_CraftingAndProfessionsMining_42
+  - Minifantasy_CraftingAndProfessionsMining_54
+  - Minifantasy_CraftingAndProfessionsMining_43
+  - Minifantasy_CraftingAndProfessionsMining_53
+  - Minifantasy_CraftingAndProfessionsMining_52
+  - Minifantasy_CraftingAndProfessionsMining_51
+  - Minifantasy_CraftingAndProfessionsMining_50
   - _Minifantasy_ForgottenPlainsAllTiles_8
   - _Minifantasy_ForgottenPlainsAllTiles_9
   - _Minifantasy_ForgottenPlainsAllTiles_2

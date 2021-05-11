@@ -2,9 +2,9 @@
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
-    internal class GetUnstuck : IState {
-        public bool isFinished { get => finished; }
-        public bool isInterruptable { get => timeInState > 10f; }
+    internal class GetUnstuck : State {
+        public override bool IsFinished { get => finished; }
+        public override bool IsInterruptable { get => timeInState > 10f; }
         private bool finished;
         private AIBrain npcBrain;
         //private NavMeshAgent navMeshAgent;
@@ -18,13 +18,13 @@ namespace ZetaGames.RPG {
             //animationManager = npcBrain.animationManager;
         }
 
-        public void Tick() {
+        public override void Tick() {
             timeInState += Time.deltaTime;
 
             //animationManager.Move();
         }
 
-        public void OnEnter() {
+        public override void OnEnter() {
             //npcBrain.timeStuck = 0f;
             timeInState = 0;
             npcBrain.ResetAgent();
@@ -34,7 +34,7 @@ namespace ZetaGames.RPG {
             //navMeshAgent.destination = npcBrain.destinationPos;
         }
 
-        public void OnExit() {
+        public override void OnExit() {
             
         }
     }

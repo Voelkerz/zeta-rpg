@@ -30,7 +30,7 @@ MonoBehaviour:
   - OakWood_Node_Full_Shadow_HitRight2
   - OakWood_Node_Full_HitRight3
   - OakWood_Node_Full_Shadow_HitRight3
-  resourceType: 3
+  resourceType: 1
   resourceCategory: 1
   lootPerDrop: 2
   maxLoot: 2
@@ -38,7 +38,7 @@ MonoBehaviour:
   adjacentGridOccupation:
   - {x: -1, y: 0, z: 0}
   harvestPositions:
-  - {x: -2, y: -1, z: 0}
+  - {x: -1, y: -1, z: 0}
   - {x: -2, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
   - {x: 0, y: -1, z: 0}

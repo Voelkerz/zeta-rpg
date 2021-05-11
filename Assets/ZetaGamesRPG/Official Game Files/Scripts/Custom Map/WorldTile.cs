@@ -11,9 +11,10 @@ namespace ZetaGames.RPG {
         public ResourceCategory occupiedCategory = ResourceCategory.None;
         public ResourceType occupiedType = ResourceType.None;
         public string occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
-        public string lockTag = ZetaUtilities.TAG_NONE;
+        public int lockTag = -1;
         public BaseObjectData tileObjectData = null;
         private GameObject tileObject = null;
+        public int lootAvailable;
         
         // Global Tile Data
         public float pathingPenalty;

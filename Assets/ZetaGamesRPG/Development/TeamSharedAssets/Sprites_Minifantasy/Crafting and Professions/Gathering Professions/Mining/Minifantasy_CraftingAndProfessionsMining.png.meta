@@ -175,7 +175,7 @@ TextureImporter:
     second: Minifantasy_CraftingAndProfessionsMining_56
   - first:
       213: 6402328716655561959
-    second: Minifantasy_CraftingAndProfessionsMining_57
+    second: Stone_ItemPickup
   - first:
       213: -3019901633704415087
     second: Minifantasy_CraftingAndProfessionsMining_58
@@ -217,7 +217,7 @@ TextureImporter:
     second: Minifantasy_CraftingAndProfessionsMining_70
   - first:
       213: -2395479975862497022
-    second: Minifantasy_CraftingAndProfessionsMining_71
+    second: Stone_InventoryIcon
   - first:
       213: 8209026407698909742
     second: Minifantasy_CraftingAndProfessionsMining_72
@@ -1537,15 +1537,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsMining_57
+      name: Stone_ItemPickup
       rect:
         serializedVersion: 2
         x: 8
         y: 40
         width: 8
         height: 8
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1831,15 +1831,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minifantasy_CraftingAndProfessionsMining_71
+      name: Stone_InventoryIcon
       rect:
         serializedVersion: 2
         x: 8
         y: 16
         width: 8
         height: 8
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

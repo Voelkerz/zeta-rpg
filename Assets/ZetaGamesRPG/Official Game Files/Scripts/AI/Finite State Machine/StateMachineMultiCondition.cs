@@ -5,25 +5,26 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class StateMachineMultiCondition {
-        private IState currentState;
+        private State currentState;
         private MonoBehaviour monoBehaviour;
-        private Dictionary<IState, List<Transition>> transitionDict = new Dictionary<IState, List<Transition>>();
+        private Dictionary<State, List<Transition>> transitionDict = new Dictionary<State, List<Transition>>();
         private List<Transition> currentTransitions = new List<Transition>();
         private List<Transition> anyTransitions = new List<Transition>();
         private static List<Transition> emptyTransitions = new List<Transition>(0);
         private bool thinking;
         private bool conditionsMet;
+        public bool debugLog;
         private WaitForSeconds thinkPauseTime = new WaitForSeconds(0.5f);
 
         public void Tick() {
-            if (currentState.isInterruptable) {
+            if (currentState.IsInterruptable) {
                 var transition = GetTransition();
 
                 if (transition != null && !thinking) {
                     thinking = true;
                     monoBehaviour.StartCoroutine(ThinkPause(transition));
                 }
-            } else if (currentState.isFinished) {
+            } else if (currentState.IsFinished) {
                 var transition = GetTransition();
 
                 if (transition != null && !thinking) {
@@ -37,7 +38,7 @@ namespace ZetaGames.RPG {
             }
         }
 
-        public void SetState(IState state) {
+        public void SetState(State state) {
             if (state == currentState)
                 return;
 
@@ -51,7 +52,7 @@ namespace ZetaGames.RPG {
             currentState.OnEnter();
         }
 
-        public void AddTransition(IState from, IState to, List<Func<bool>> conditions) {
+        public void AddTransition(State from, State to, List<Func<bool>> conditions) {
             if (transitionDict.TryGetValue(from, out var transitionList) == false) {
                 transitionList = new List<Transition>();
                 transitionDict[from] = transitionList;
@@ -60,31 +61,33 @@ namespace ZetaGames.RPG {
             transitionList.Add(new Transition(to, conditions));
         }
 
-        public void AddToAnyTransition(IState from) {
-            List<IState> stateBuffer = new List<IState>();
+        public void AddToAnyTransition(State from) {
+            List<State> stateBuffer = new List<State>();
 
-            foreach (IState to in transitionDict.Keys) {
-                stateBuffer.Add(to);
+            foreach (State to in transitionDict.Keys) {
+                if (!to.Equals(from)) {
+                    stateBuffer.Add(to);
+                }
             }
 
-            foreach (IState to in stateBuffer) {
+            foreach (State to in stateBuffer) {
                 foreach (Transition transition in transitionDict[to]) {
                     AddTransition(from, to, transition.conditions);
                 }
             }
         }
 
-        public void AddFromAnyTransition(IState state, List<Func<bool>> conditions) {
+        public void AddFromAnyTransition(State state, List<Func<bool>> conditions) {
             anyTransitions.Add(new Transition(state, conditions));
         }
 
         private class Transition {
             //TODO: should each transition have a priority?
             public List<Func<bool>> conditions { get; }
-            public IState to { get; }
+            public State to { get; }
             public int priority { get; }
 
-            public Transition(IState to, List<Func<bool>> conditions) {
+            public Transition(State to, List<Func<bool>> conditions) {
                 this.to = to;
                 this.priority = 1; //not implemented
                 this.conditions = conditions;
@@ -95,17 +98,19 @@ namespace ZetaGames.RPG {
             //TODO: Sort possible transition based on action priority, if multiple transitions are true
 
             foreach (Transition transition in anyTransitions) {
-                conditionsMet = true; //start by assuming all true
+                if (!transition.to.Equals(currentState)) {
+                    conditionsMet = true; //start by assuming all true
 
-                foreach (Func<bool> condition in transition.conditions) {
-                    if (!condition()) {
-                        conditionsMet = false;
-                        break; // break on first false condition
+                    foreach (Func<bool> condition in transition.conditions) {
+                        if (!condition()) {
+                            conditionsMet = false;
+                            break; // break on first false condition
+                        }
                     }
-                }
 
-                if (conditionsMet) {
-                    return transition;
+                    if (conditionsMet) {
+                        return transition;
+                    }
                 }
             }
 
@@ -135,7 +140,10 @@ namespace ZetaGames.RPG {
             yield return thinkPauseTime;
             thinking = false;
             SetState(transition.to);
-            //Debug.Log("Changing State To: " + transition.to);
+
+            if (debugLog) {
+                Debug.Log("Changing State To: " + transition.to);
+            }
         }
     }
 }

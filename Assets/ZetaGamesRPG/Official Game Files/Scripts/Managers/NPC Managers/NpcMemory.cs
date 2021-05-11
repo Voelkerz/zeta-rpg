@@ -38,6 +38,10 @@ namespace ZetaGames.RPG {
                 Debug.LogWarning("RetrieveMemory(): Cannot find key in memory to remove.");
             }
         }
+
+        public Dictionary<string, object> GetAllMemories() {
+            return memoryBank;
+        }
     }
 }
 

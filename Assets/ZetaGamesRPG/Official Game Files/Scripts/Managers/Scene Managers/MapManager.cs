@@ -393,7 +393,6 @@ namespace ZetaGames.RPG {
 
                         // low chance to plant grass in tile
                         if (Random.Range(0, 100f) <= thickGrassStarterChance) {
-                            Debug.Log("Creating grass patch!");
                             planted = true;
                             StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
                         }
@@ -430,7 +429,6 @@ namespace ZetaGames.RPG {
 
                             if (hasGrass) {
                                 if (Random.Range(0, 100f) <= thickGrassAdjacencyChance) {
-                                    Debug.Log("Creating grass neighbor!");
                                     StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
                                 }
                             }
@@ -610,6 +608,7 @@ namespace ZetaGames.RPG {
                                     // Specific to oak tree. Will change later
                                     currentTile.occupiedType = ResourceType.Oak;
                                     currentTile.tileObjectData = oakTreeData;
+                                    currentTile.lootAvailable = oakTreeData.maxLoot;
 
                                     StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, oakTreeData.spriteFull));
                                     StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, oakTreeData.spriteFullShadow));
@@ -683,6 +682,7 @@ namespace ZetaGames.RPG {
                                             // Specific to oak tree. Will change later
                                             currentTile.occupiedType = ResourceType.Oak;
                                             currentTile.tileObjectData = oakTreeData;
+                                            currentTile.lootAvailable = oakTreeData.maxLoot;
 
                                             StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, oakTreeData.spriteFull));
                                             StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, oakTreeData.spriteFullShadow));
@@ -856,7 +856,7 @@ namespace ZetaGames.RPG {
                 if (typeof(ResourceNodeData).IsInstanceOfType(feature)) {
                     ResourceNodeData temp = (ResourceNodeData)feature;
 
-                    if (temp.resourceType.Equals(ResourceType.Small) || temp.resourceType.Equals(ResourceType.Large)) {
+                    if (temp.resourceCategory.Equals(ResourceCategory.Stone)) {
                         stoneNodeList.Add(temp);
                     }
                 }
@@ -897,16 +897,20 @@ namespace ZetaGames.RPG {
                                     otherTile.walkable = false;
                                     otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
                                     otherTile.occupiedCategory = ResourceCategory.Stone;
-                                    otherTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                    //otherTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                    otherTile.occupiedType = ResourceType.Rock;
                                 }
                             }
 
                             if (placed) {
                                 currentTile.occupied = true;
                                 currentTile.occupiedCategory = ResourceCategory.Stone;
-                                currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                //currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                currentTile.occupiedType = ResourceType.Rock;
                                 currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
+                                currentTile.tileObjectData = stoneNodeList[randomIndex];
                                 currentTile.walkable = false;
+                                currentTile.lootAvailable = stoneNodeList[randomIndex].maxLoot;
 
                                 StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, stoneNode));
                                 StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, stoneShadow));
@@ -996,7 +1000,8 @@ namespace ZetaGames.RPG {
                                             otherTile.walkable = false;
                                             otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
                                             otherTile.occupiedCategory = ResourceCategory.Stone;
-                                            otherTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                            //otherTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                            otherTile.occupiedType = ResourceType.Rock;
                                         } else {
                                             placed = false;
                                             break;
@@ -1006,9 +1011,12 @@ namespace ZetaGames.RPG {
                                     if (placed) {
                                         currentTile.occupied = true;
                                         currentTile.occupiedCategory = ResourceCategory.Stone;
-                                        currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                        //currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
+                                        currentTile.occupiedType = ResourceType.Rock;
                                         currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
+                                        currentTile.tileObjectData = stoneNodeList[randomIndex];
                                         currentTile.walkable = false;
+                                        currentTile.lootAvailable = stoneNodeList[randomIndex].maxLoot;
 
                                         StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, stoneNode));
                                         StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, stoneShadow));

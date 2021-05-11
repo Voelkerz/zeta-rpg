@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
   m_Name: LargeStone
   m_EditorClassIdentifier: 
+  resourceDropData: {fileID: 11400000, guid: c6c6d41f304f0e14bae9aa523e768d83, type: 2}
   spriteFull: LargeStone_Node_Full
   spriteFullShadow: LargeStone_Node_Full_Shadow
   spriteDepleted: LargeStone_Node_Depleted
   spriteDepletedShadow: LargeStone_Node_Depleted_Shadow
-  resourceType: 2
+  spriteAnimationList: []
+  resourceType: 6
   resourceCategory: 6
-  lootPrefab: {fileID: 0}
   lootPerDrop: 1
-  maxLoot: 20
+  maxLoot: 5
   maxHitPoints: 20
   adjacentGridOccupation:
   - {x: -1, y: 0, z: 0}
   harvestPositions:
-  - {x: -2, y: -1, z: 0}
+  - {x: -1, y: -1, z: 0}
   - {x: -2, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
   - {x: 0, y: -1, z: 0}

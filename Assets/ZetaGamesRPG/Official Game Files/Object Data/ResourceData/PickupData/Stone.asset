@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d64d52f604ab354dafe81bedf75ff02, type: 3}
-  m_Name: OakLog
+  m_Name: Stone
   m_EditorClassIdentifier: 
-  itemDropSprite: OakRaw_ItemDrop
-  inventoryIconSprite: OakRaw_InventoryIcon
-  itemName: Oak Log
-  description: An oak log used in building many structures
-  weight: 10
-  resourceState: 1
-  resourceType: 1
-  resourceCategory: 1
+  itemDropSprite: Stone_ItemPickup
+  inventoryIconSprite: Stone_InventoryIcon
+  itemName: Stone
+  description: A piece of stone to be used in building structures
+  weight: 2
+  resourceState: 0
+  resourceType: 6
+  resourceCategory: 6

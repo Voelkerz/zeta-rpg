@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class SearchForResource : IState {
-        public bool isFinished { get => finished; }
-        public bool isInterruptable { get => true; }
+    public class SearchForResource : State {
+        public override bool IsFinished { get => finished; }
+        public override bool IsInterruptable { get => true; }
         private bool finished;
         private readonly AIBrain npcBrain;
         private ResourceDropData resourceDropData;
@@ -11,12 +12,13 @@ namespace ZetaGames.RPG {
         private string lastKnownResourceNodeLocation;
         private bool activelySearching;
         private Vector3Int tileMapPos;
+        private string memoryTag;
 
         public SearchForResource(AIBrain npcBrain) {
             this.npcBrain = npcBrain;
         }
 
-        public void Tick() {
+        public override void Tick() {
             tickTimer += npcBrain.deltaTime;
 
             //Check for resources on timer to reduce CPU usage
@@ -24,6 +26,7 @@ namespace ZetaGames.RPG {
                 tickTimer = 0;
                 // if we don't have a resource target, get one
                 if (npcBrain.resourceTileTarget == null) {
+                    DetermineResourceNeeded();
                     GetTarget();
                 } else if (npcBrain.resourceTileTarget.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_ITEMPICKUP) && resourceDropData != null) {
                     // If our target tile is a resource item drop, then go pick it up
@@ -34,6 +37,11 @@ namespace ZetaGames.RPG {
 
                         // Pickup item
                         npcBrain.npcInventory.PickupResource(resourceDropData.resourceCategory, resourceDropData.resourceType, resourceDropData.resourceState);
+                        npcBrain.numMaterialsRequiredList[resourceDropData.resourceCategory] -= 1;
+
+                        if (npcBrain.numMaterialsRequiredList[resourceDropData.resourceCategory] == 0) {
+                            Debug.Log("Collected all the " + resourceDropData.resourceCategory.ToString() + " that I needed.");
+                        }
 
                         // Nullify tilemap sprite of item
                         Vector3 tileWorldPos = npcBrain.resourceTileTarget.GetWorldPosition();
@@ -41,6 +49,26 @@ namespace ZetaGames.RPG {
                         tileMapPos.y = (int)tileWorldPos.y;
                         tileMapPos.z = 0;
                         MapManager.Instance.tileMapList[4].SetTile(tileMapPos, null);
+
+                        // remove memory if there was one
+                        memoryTag = npcBrain.resourceTypeWanted.ToString() + npcBrain.resourceCategoryWanted.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP;
+                        string memory = null;
+
+                        foreach (string memoryKey in npcBrain.npcMemory.GetAllMemories().Keys) {
+                            if (memoryKey != null) {
+                                if (memoryKey.Contains(memoryTag) && Vector3.Distance(npcBrain.transform.position, (Vector3)npcBrain.npcMemory.RetrieveMemory(memoryKey)) < 1f) {
+                                    memory = memoryKey;
+                                }
+                            }
+                        }
+
+                        if (memory != null) {
+                            npcBrain.npcMemory.RemoveMemory(memory);
+
+                            if (npcBrain.debugLogs) {
+                                Debug.Log("SearchForResource.Tick(): Memory found and being removed: " + memory);
+                            }
+                        }
 
                         // Alter tile data
                         npcBrain.resourceTileTarget.occupied = false;
@@ -51,13 +79,15 @@ namespace ZetaGames.RPG {
                         npcBrain.resourceTileTarget = null;
                         resourceDropData = null;
                     }
+                } else if (npcBrain.resourceTileTarget.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NONE)) {
+                    npcBrain.resourceTileTarget = null;
                 }
             } else if (activelySearching && npcBrain.pathMovement.isStopped) {
                 activelySearching = false;
             }
         }
 
-        public void OnEnter() {
+        public override void OnEnter() {
             if (npcBrain.debugLogs) {
                 Debug.Log("SearchForResource.OnEnter()");
             }
@@ -65,10 +95,24 @@ namespace ZetaGames.RPG {
             lastKnownResourceNodeLocation = "last" + npcBrain.resourceTypeWanted + npcBrain.resourceCategoryWanted.ToString() + "Node";
             npcBrain.resourceTileTarget = null;
             activelySearching = false;
+            memoryTag = null;
+            npcBrain.resourceCategoryWanted = ResourceCategory.None;
+            npcBrain.resourceTypeWanted = ResourceType.None;
         }
 
-        public void OnExit() {
+        public override void OnExit() {
             resourceDropData = null;
+        }
+
+        private void DetermineResourceNeeded() {
+            // Determine which resource to search
+            foreach (ResourceCategory materialCategory in npcBrain.numMaterialsRequiredList.Keys) {
+                if (npcBrain.numMaterialsRequiredList[materialCategory] > 0) {
+                    npcBrain.resourceCategoryWanted = materialCategory;
+                    npcBrain.resourceTypeWanted = npcBrain.specificMaterialTypeList[materialCategory];
+                    break;
+                }
+            }
         }
 
         private void GetTarget() {
@@ -91,9 +135,15 @@ namespace ZetaGames.RPG {
                         if (tile.occupied && tile.tileObjectData != null && tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_ITEMPICKUP)) {
                             if (typeof(ResourceDropData).IsInstanceOfType(tile.tileObjectData)) {
                                 resourceDropData = (ResourceDropData)tile.tileObjectData;
-                                if (resourceDropData.resourceCategory == npcBrain.resourceCategoryWanted && resourceDropData.resourceType == npcBrain.resourceTypeWanted) {
-                                    npcBrain.resourceTileTarget = tile;
-                                    break;
+                                if (resourceDropData.resourceCategory == npcBrain.resourceCategoryWanted) {
+                                    if (npcBrain.resourceTypeWanted == ResourceType.None) {
+                                        npcBrain.resourceTypeWanted = resourceDropData.resourceType;
+                                    }
+
+                                    if (resourceDropData.resourceType == npcBrain.resourceTypeWanted) {
+                                        npcBrain.resourceTileTarget = tile;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -115,6 +165,28 @@ namespace ZetaGames.RPG {
                 npcBrain.pathMovement.destination = npcBrain.resourceTileTarget.GetWorldPosition() + MapManager.Instance.GetTileOffset();
                 npcBrain.pathMovement.SearchPath();
             } else {
+                // retrieve memory if there was one and it's close by
+                if (npcBrain.resourceTypeWanted == ResourceType.None) {
+                    memoryTag = npcBrain.resourceCategoryWanted.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP;
+                } else {
+                    memoryTag = npcBrain.resourceTypeWanted.ToString() + npcBrain.resourceCategoryWanted.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP;
+                }
+
+                foreach (var memoryKey in npcBrain.npcMemory.GetAllMemories().Keys) {
+                    if (memoryKey != null) {
+                        if (memoryKey.Contains(memoryTag) && Vector3.Distance(npcBrain.transform.position, (Vector3)npcBrain.npcMemory.RetrieveMemory(memoryKey)) < 60f) {
+                            if (npcBrain.debugLogs) {
+                                Debug.Log("SearchForResource.GetTarget(): Remembered resource drop and moving towards: " + memoryKey);
+                            }
+
+                            activelySearching = true;
+                            npcBrain.pathMovement.destination = (Vector3)npcBrain.npcMemory.RetrieveMemory(memoryKey);
+                            npcBrain.pathMovement.SearchPath();
+                            return;
+                        }
+                    }
+                }
+
                 // look for a resource node
                 int adjGridSize = 1;
                 int step = 0;
@@ -130,25 +202,30 @@ namespace ZetaGames.RPG {
                                 WorldTile tile = mapGrid.GetGridObject((int)currentPos.x + (x - step), (int)currentPos.y + (y - step));
                                 if (tile.occupied) {
                                     if (tile.tileObjectData != null && tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NODE_FULL)) {
-                                        if (tile.occupiedCategory == npcBrain.resourceCategoryWanted && tile.occupiedType == npcBrain.resourceTypeWanted) {
-                                            if (closestTile == null) {
-                                                closestTile = tile;
-                                            } else if (Vector3.Distance(tile.GetWorldPosition(), currentPos) < Vector3.Distance(closestTile.GetWorldPosition(), currentPos)) {
-                                                // If the distance between the targeted resource tile and the current position is less than the current closest tile and the current position, then make this the closest
-                                                closestTile = tile;
+                                        if (tile.occupiedCategory == npcBrain.resourceCategoryWanted) {
+                                            if (npcBrain.resourceTypeWanted == ResourceType.None) {
+                                                npcBrain.resourceTypeWanted = tile.occupiedType;
+                                            }
+
+                                            if (tile.occupiedType == npcBrain.resourceTypeWanted) {
+                                                if (closestTile == null) {
+                                                    closestTile = tile;
+                                                } else if (Vector3.Distance(tile.GetWorldPosition(), currentPos) < Vector3.Distance(closestTile.GetWorldPosition(), currentPos)) {
+                                                    // If the distance between the targeted resource tile and the current position is less than the current closest tile and the current position, then make this the closest
+                                                    closestTile = tile;
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    if (closestTile != null) {
-                        break;
+                        if (closestTile != null) {
+                            break;
+                        }
                     }
                 }
-
 
                 // if a resource node was found, target the closest one found
                 if (closestTile != null) {
@@ -156,7 +233,8 @@ namespace ZetaGames.RPG {
                         Debug.Log("SearchForResourceDrop.Tick(): resource node found");
                     }
 
-                    closestTile.lockTag = npcBrain.npcLockTag;
+                    activelySearching = true;
+                    closestTile.lockTag = npcBrain.GetNpcLockTag();
                     npcBrain.npcMemory.AddMemory(lastKnownResourceNodeLocation, closestTile.GetWorldPosition());
                     npcBrain.resourceTileTarget = closestTile;
                 } else {
@@ -179,8 +257,18 @@ namespace ZetaGames.RPG {
                                 npcBrain.npcMemory.RemoveMemory(lastKnownResourceNodeLocation);
                             }
                         } else {
-                            // DEBUG - No trees in sight, so stop trying to search for them
-                            npcBrain.npcInventory.PickupResource(npcBrain.resourceCategoryWanted, npcBrain.resourceTypeWanted, ResourceState.Raw);
+                            // DEBUG - No trees in search range. Walk 30 tiles in a random direction to find some more.
+                            Vector3 destination = new Vector3(npcBrain.transform.position.x + Random.Range(-30f, 30f), npcBrain.transform.position.x + Random.Range(-30f, 30f));
+
+                            if (destination.x < mapWidth && destination.y < mapHeight && destination.x >= 0 && destination.y >= 0) {
+                                WorldTile destinationTile = mapGrid.GetGridObject((int)destination.x, (int)destination.y);
+                                if (destinationTile.walkable) {
+                                    npcBrain.pathMovement.destination = destination;
+                                    npcBrain.pathMovement.SearchPath();
+                                }
+                            }
+
+                            activelySearching = true;
                         }
                     }
                 }

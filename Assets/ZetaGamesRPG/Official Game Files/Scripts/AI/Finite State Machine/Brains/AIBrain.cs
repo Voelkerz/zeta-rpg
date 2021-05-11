@@ -16,10 +16,13 @@ namespace ZetaGames.RPG {
         [HideInInspector] public ResourceCategory resourceCategoryWanted { get; set; }
         [HideInInspector] public ResourceType resourceTypeWanted { get; set; }
         [HideInInspector] public bool useAdvAI { get; set; }
-        [HideInInspector] public string npcLockTag { get; set; }
         [HideInInspector] public float deltaTime { get; set; }
 
+        [HideInInspector] public Dictionary<ResourceCategory, int> numMaterialsRequiredList = new Dictionary<ResourceCategory, int>();
+        [HideInInspector] public Dictionary<ResourceCategory, ResourceType> specificMaterialTypeList = new Dictionary<ResourceCategory, ResourceType>();
+
         private WaitForSeconds[] waitTimers = new WaitForSeconds[3];
+        private int npcLockTag;
 
         // EDITOR PROPERTIES
         public bool inCombat;
@@ -36,20 +39,24 @@ namespace ZetaGames.RPG {
             stateMachine = new StateMachineMultiCondition();
             stateMachine.MonoParser(this);
 
+            if (debugLogs) {
+                stateMachine.debugLog = true;
+            }
+
             // Create a memory for npc
             npcMemory = new NpcMemory();
 
             // Set unique NPC lock tag
-            npcLockTag = gameObject.GetInstanceID().ToString();
+            npcLockTag = gameObject.GetInstanceID();
 
             deltaTime = 0;
             useAdvAI = false;
             pathMovement.useSimplePathing = true;
 
             // Initialize commonly used wait timers
-            waitTimers[0] = new WaitForSeconds(10f);
-            waitTimers[1] = new WaitForSeconds(15f);
-            waitTimers[2] = new WaitForSeconds(20f);
+            waitTimers[0] = new WaitForSeconds(1f);
+            waitTimers[1] = new WaitForSeconds(1f);
+            waitTimers[2] = new WaitForSeconds(1f);
         }
 
         protected virtual void Update() {
@@ -62,6 +69,10 @@ namespace ZetaGames.RPG {
             }
 
             deltaTime += Time.deltaTime;
+        }
+
+        public virtual int GetNpcLockTag() {
+            return npcLockTag;
         }
 
         public virtual void ResetAgent() {

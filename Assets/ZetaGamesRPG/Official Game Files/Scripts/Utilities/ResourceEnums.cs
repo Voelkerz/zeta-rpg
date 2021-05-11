@@ -16,10 +16,6 @@ namespace ZetaGames.RPG {
     public enum ResourceType {
         None,
 
-        // Stone
-        Small,
-        Large,
-
         // Wood
         Oak,        //grass
         Hickory,    //eastern grass
@@ -28,6 +24,7 @@ namespace ZetaGames.RPG {
         Birch,      //northern grass
 
         // Ore
+        Rock,
         Coal,
         Tin,
         Iron,

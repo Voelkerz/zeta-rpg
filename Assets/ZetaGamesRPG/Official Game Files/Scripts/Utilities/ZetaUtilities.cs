@@ -3,11 +3,16 @@ using UnityEngine.AI;
 
 namespace ZetaGames {
     static class ZetaUtilities {
-        // Tile Tag Constants
+        // Object Pooling Constants
         public static readonly string TAG_CULLED = "Culled";
         public static readonly string TAG_UNCULLED = "Unculled";
-        //public static readonly string TAG_CULLLOCKED = "CullLocked";
+        public static readonly string TAG_CULLLOCKED = "CullLocked";
         public static readonly string TAG_NONE = "None";
+
+        // Memory Key Constants
+        public static readonly string MEMORY_HOME = "Home";
+        public static readonly string MEMORY_RESOURCE_DROP = "ResourceDrop";
+        public static readonly string MEMORY_RESOURCE_NODE = "ResourceNode";
 
         // Tile Occupied Type Constants
         public static readonly string OCCUPIED_NONE = "_None";

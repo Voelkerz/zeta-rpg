@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
-    public class Wander : IState {
-        public bool isFinished { get => finished; }
-        public bool isInterruptable { get => npcBrain.inCombat || cycleCount > 3; } // state will not be interrupted until specified full 'wandering' cycles are finished (unless combat is initiated)
+    public class Wander : State {
+        public override bool IsFinished { get => finished; }
+        public override bool IsInterruptable { get => npcBrain.inCombat || cycleCount > 3; } // state will not be interrupted until specified full 'wandering' cycles are finished (unless combat is initiated)
         private bool finished;
         private AIBrain npcBrain;
         //private NavMeshAgent navMeshAgent;
@@ -28,7 +28,7 @@ namespace ZetaGames.RPG {
             this.wanderTimer = wanderTimer;
         }
 
-        public void Tick() {
+        public override void Tick() {
             timer += Time.deltaTime;
 
             if (timer >= wanderTimer) {
@@ -41,14 +41,14 @@ namespace ZetaGames.RPG {
             //animationManager.Move();
         }
 
-        public void OnEnter() {
+        public override void OnEnter() {
             npcBrain.ResetAgent();
             timer = wanderTimer;
             cycleCount = 0;
             //npcBrain.wanderCooldown = 0;
         }
 
-        public void OnExit() {
+        public override void OnExit() {
            
         }
 

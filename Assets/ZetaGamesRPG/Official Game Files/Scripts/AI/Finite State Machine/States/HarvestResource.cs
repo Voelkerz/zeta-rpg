@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace ZetaGames.RPG {
     /*
@@ -10,15 +9,16 @@ namespace ZetaGames.RPG {
      *   
     */
 
-    public class HarvestResource : IState {
-        public bool isFinished { get => finished; }
-        public bool isInterruptable { get => true; }
+    public class HarvestResource : State {
+        public override bool IsFinished { get => finished; }
+        public override bool IsInterruptable { get => true; }
         private bool finished;
         private static readonly int lastDirectionX = Animator.StringToHash("AnimLastMoveX");
         private static readonly int lastDirectionY = Animator.StringToHash("AnimLastMoveY");
         private readonly AIBrain npcBrain;
         private readonly Animator animator;
         private ResourceNodeData resourceNodeData;
+        private string memoryTag;
         //private bool depleted = false;
         private int currentHitPoints;
         private int closestIndex;
@@ -35,9 +35,9 @@ namespace ZetaGames.RPG {
             animator = npcBrain.animator;
         }
 
-        public void Tick() {
+        public override void Tick() {
             if (!finished) {
-                if (hasHarvestPos && Vector3.Distance(npcBrain.transform.position, npcBrain.resourceTileTarget.GetWorldPosition()) <= 1.6f) {
+                if (hasHarvestPos && npcBrain.resourceTileTarget.lockTag == npcBrain.GetNpcLockTag() && npcBrain.pathMovement.isStopped && Vector3.Distance(npcBrain.transform.position, npcBrain.resourceTileTarget.GetWorldPosition() + MapManager.Instance.GetTileOffset()) <= 4f) {
                     //Debug.Log("HarvestResource.Tick(): Found harvest position and in place.");
                     if (currentHitPoints > 0) {
                         //Debug.Log("HarvestResource.Tick(): Current hitpoints above 0.");
@@ -52,7 +52,7 @@ namespace ZetaGames.RPG {
                     } else if (harvestTimer >= 0f) {
                         //Debug.Log("HarvestResource.Tick(): Finished harvesting.");
                         RecycleAndSpawnLoot();
-                        npcBrain.resourceTileTarget.lockTag = ZetaUtilities.TAG_NONE;
+                        npcBrain.resourceTileTarget.lockTag = -1;
                         npcBrain.resourceTileTarget = null;
                         finished = true;
                     } else {
@@ -105,25 +105,37 @@ namespace ZetaGames.RPG {
                         npcBrain.pathMovement.SetPreviousDirection(northEast);
                         animator.SetFloat(lastDirectionX, 1);
                         animator.SetFloat(lastDirectionY, 1);
-                        npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 0);
+
+                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
+                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 0);
+                        }
                         break;
                     case 1:
                         npcBrain.pathMovement.SetPreviousDirection(southEast);
                         animator.SetFloat(lastDirectionX, 1);
                         animator.SetFloat(lastDirectionY, -1);
-                        npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 0);
+
+                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
+                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 0);
+                        }
                         break;
                     case 2:
                         npcBrain.pathMovement.SetPreviousDirection(southWest);
                         animator.SetFloat(lastDirectionX, -1);
                         animator.SetFloat(lastDirectionY, -1);
-                        npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 6);
+
+                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
+                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 6);
+                        }
                         break;
                     case 3:
                         npcBrain.pathMovement.SetPreviousDirection(northWest);
                         animator.SetFloat(lastDirectionX, -1);
                         animator.SetFloat(lastDirectionY, 1);
-                        npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 6);
+
+                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
+                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 6);
+                        }
                         break;
                     default:
                         break;
@@ -132,6 +144,8 @@ namespace ZetaGames.RPG {
                 // determine which character animation to play
                 if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
                     animator.Play("HarvestWood");
+                } else if (resourceNodeData.resourceCategory == ResourceCategory.Stone || resourceNodeData.resourceCategory == ResourceCategory.Ore) {
+                    animator.Play("Mining");
                 }
             }
 
@@ -150,14 +164,21 @@ namespace ZetaGames.RPG {
         }
 
         public void RecycleAndSpawnLoot() {
-            // Spawn depleted node in current tile
-            npcBrain.resourceTileTarget.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_DEPLETED;
-            npcBrain.resourceTileTarget.lockTag = ZetaUtilities.TAG_NONE;
-            npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteDepleted);
-            npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 3, resourceNodeData.spriteDepletedShadow);
+            int lootPerDrop = resourceNodeData.lootPerDrop;
+            int currentTileLoot = npcBrain.resourceTileTarget.lootAvailable - lootPerDrop;
+            memoryTag = resourceNodeData.resourceDropData.resourceType.ToString() + resourceNodeData.resourceDropData.resourceCategory.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP;
+
+            if (currentTileLoot <= 0) {
+                // Spawn depleted node in current tile
+                npcBrain.resourceTileTarget.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_DEPLETED;
+                npcBrain.resourceTileTarget.lockTag = -1;
+                npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteDepleted);
+                npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 3, resourceNodeData.spriteDepletedShadow);
+            } else {
+                npcBrain.resourceTileTarget.lootAvailable -= lootPerDrop;
+            }
 
             // Spawn loot in the adjacent tiles around node
-            int numLoot = resourceNodeData.lootPerDrop;
             List<WorldTile> possibleLootPositions = new List<WorldTile>();
 
             // create list of possible locations for loot to spawn
@@ -176,27 +197,30 @@ namespace ZetaGames.RPG {
             }
 
             // Spawn max number of loot on random viable adjacent tiles
-            for (int i = 0; i < numLoot; i++) {
+            for (int i = 0; i < lootPerDrop; i++) {
                 WorldTile chosenTile = possibleLootPositions[Random.Range(0, possibleLootPositions.Count - 1)];
                 possibleLootPositions.Remove(chosenTile);
-                
+
                 npcBrain.SetTilemapSpriteAsync(chosenTile, 4, resourceNodeData.resourceDropData.itemDropSprite);
-                
+
                 // Adjust tile data
                 chosenTile.tileObjectData = resourceNodeData.resourceDropData;
                 chosenTile.occupiedStatus = ZetaUtilities.OCCUPIED_ITEMPICKUP;
                 chosenTile.occupiedCategory = resourceNodeData.resourceDropData.resourceCategory;
                 chosenTile.occupiedType = resourceNodeData.resourceDropData.resourceType;
                 chosenTile.occupied = true;
+
+                // add resource drop to NPC memory so they'll go back for it later, if needed
+                npcBrain.npcMemory.AddMemory(memoryTag + chosenTile.GetHashCode(), chosenTile.GetWorldPosition() + MapManager.Instance.GetTileOffset());
             }
         }
 
-        public void OnEnter() {
+        public override void OnEnter() {
             finished = false;
             harvestTimer = 0;
 
             if (npcBrain.resourceTileTarget != null) {
-                if (npcBrain.resourceTileTarget.tileObjectData != null && npcBrain.resourceTileTarget.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE_FULL) && npcBrain.resourceTileTarget.lockTag.Equals(npcBrain.npcLockTag)) {
+                if (npcBrain.resourceTileTarget.tileObjectData != null && npcBrain.resourceTileTarget.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE_FULL) && npcBrain.resourceTileTarget.lockTag == npcBrain.GetNpcLockTag()) {
                     // Get the resource node data
                     if (typeof(ResourceNodeData).IsInstanceOfType(npcBrain.resourceTileTarget.tileObjectData)) {
                         resourceNodeData = (ResourceNodeData)npcBrain.resourceTileTarget.tileObjectData;
@@ -211,7 +235,7 @@ namespace ZetaGames.RPG {
 
                     //DEBUG
                     if (npcBrain.debugLogs) {
-                        Debug.Log("HarvestResource.OnEnter(): Resource target tile status: " + npcBrain.resourceTileTarget.occupiedStatus);
+                        Debug.Log("HarvestResource.OnEnter(): Resource target tile: " + npcBrain.resourceTileTarget.occupiedCategory);
                     }
                 } else {
                     Debug.LogWarning("HarvestResource.OnEnter(): ResourceTileTarget is not a harvestable node or already locked by other NPC.");
@@ -223,16 +247,17 @@ namespace ZetaGames.RPG {
             }
         }
 
-        public void OnExit() {
+        public override void OnExit() {
             if (!finished) {
                 npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteFull);
                 npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 3, resourceNodeData.spriteFullShadow);
-                npcBrain.resourceTileTarget.lockTag = ZetaUtilities.TAG_NONE;
-                npcBrain.resourceTileTarget = null;
+                npcBrain.resourceTileTarget.lockTag = -1;
             }
 
+            npcBrain.resourceTileTarget = null;
             resourceNodeData = null;
             hasHarvestPos = false;
+            memoryTag = null;
         }
     }
 }

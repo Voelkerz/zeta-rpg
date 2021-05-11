@@ -13,8 +13,10 @@ namespace ZetaGames.RPG {
 
         private void Start() {
             // FORCED TEST PARAMETERS
-            resourceCategoryWanted = ResourceCategory.Wood;
-            resourceTypeWanted = ResourceType.Oak;
+            numMaterialsRequiredList.Add(ResourceCategory.Wood, 6);
+            specificMaterialTypeList.Add(ResourceCategory.Wood, ResourceType.None);
+            numMaterialsRequiredList.Add(ResourceCategory.Stone, 6);
+            specificMaterialTypeList.Add(ResourceCategory.Stone, ResourceType.Rock);
 
             npcMemory.AddMemory("home", transform.position);
 
@@ -69,7 +71,7 @@ namespace ZetaGames.RPG {
             stateMachine.SetState(searchForResource);
 
             // AT(Add Transition) -- Internal function to provide a shorter name to declutter the transition list above (not technically needed)
-            void AT(IState from, IState to, List<Func<bool>> conditions) => stateMachine.AddTransition(from, to, conditions);
+            void AT(State from, State to, List<Func<bool>> conditions) => stateMachine.AddTransition(from, to, conditions);
 
             // Conditionals for transitions
             //Func<bool> AtDestinationStopped() => () => pathAgent.remainingDistance < 1f && pathAgent.isStopped;
