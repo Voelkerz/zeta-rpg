@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
+  m_Name: SmallStone
+  m_EditorClassIdentifier: 
+  resourceItemData: {fileID: 11400000, guid: c6c6d41f304f0e14bae9aa523e768d83, type: 2}
+  spriteFull: SmallStone_Node_Full
+  spriteFullShadow: SmallStone_Node_Full_Shadow
+  spriteDepleted: SmallStone_Node_Depleted
+  spriteDepletedShadow: SmallStone_Node_Depleted_Shadow
+  spriteAnimationList: []
+  resourceType: 6
+  resourceCategory: 6
+  lootPerDrop: 1
+  maxLoot: 1
+  maxHitPoints: 20
+  adjacentGridOccupation: []
+  harvestPositions:
+  - {x: -1, y: -1, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: -1, z: 0}

@@ -79,4 +79,6 @@ crashlytics-build.properties
 
 # Ignore All Assets Except Official Game
 /[Aa]ssets/*
+!/[Aa]ssets/ZetaGamesRPG/
+/[Aa]ssets/ZetaGamesRPG/*
 !/[Aa]ssets/ZetaGamesRPG/OfficialGame

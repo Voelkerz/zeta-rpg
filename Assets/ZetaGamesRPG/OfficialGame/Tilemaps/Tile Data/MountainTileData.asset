@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: MountainTileData
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 3eeb8ab051e832043a04abf014709426, type: 2}
+  - {fileID: 11400000, guid: bc8565c59b29eeb4fa15f4095662e518, type: 2}
+  - {fileID: 11400000, guid: 28e876cb46e91f94ba62bd32d60910f1, type: 2}
+  - {fileID: 11400000, guid: 457c134d692cd8b41891813bdf257946, type: 2}
+  - {fileID: 11400000, guid: 49c7270bdcb141242b7dab994e2f34ec, type: 2}
+  - {fileID: 11400000, guid: b0533db846aa1d34eb98bd177d74233d, type: 2}
+  - {fileID: 11400000, guid: 95f1885c48b79cb4a86e17372e39acdd, type: 2}
+  - {fileID: 11400000, guid: ec61ec38562b9ac479b0305d6be07edd, type: 2}
+  - {fileID: 11400000, guid: 6f6c1e19af7d4a1458007ab48c096cf4, type: 2}
+  - {fileID: 11400000, guid: 2817e7e895dbddb43928046959634efe, type: 2}
+  - {fileID: 11400000, guid: 466f0e0caa700a042af0e70e930cf6d4, type: 2}
+  - {fileID: 11400000, guid: 12e052ee0f531d24cbd19d3beafb7364, type: 2}
+  - {fileID: 11400000, guid: b1767a9d2aeaa0240851c7d0b815ff73, type: 2}
+  - {fileID: 11400000, guid: 4def34adce6159444b9df6cc6cfa9192, type: 2}
+  - {fileID: 11400000, guid: c396df726bef2144db96d05ce6ce2bd2, type: 2}
+  - {fileID: 11400000, guid: 4fce5916ae4c06b479dc75a8e8264ee6, type: 2}
+  - {fileID: 11400000, guid: 6da5babecbf42db4c93ee15e546bbddd, type: 2}
+  - {fileID: 11400000, guid: 5b32a1bd0b773b04f97d11f29ab19201, type: 2}
+  - {fileID: 11400000, guid: 8ca7d1dd6d6f95a4baed572b3dafb36c, type: 2}
+  - {fileID: 11400000, guid: 1c704d2621f87134ea2706bf151b5c09, type: 2}
+  - {fileID: 11400000, guid: 99b4b91a2a164a04ea65118182dede06, type: 2}
+  - {fileID: 11400000, guid: a11d11dbd5de5ba4a82bca2f8a43282b, type: 2}
+  - {fileID: 11400000, guid: be0b81a48efcb5940be429b6145e0968, type: 2}
+  - {fileID: 11400000, guid: 1bd51be82fa457e438381d51921d6686, type: 2}
+  - {fileID: 11400000, guid: 9efd1229dbaa5164697ed1d1346ee109, type: 2}
+  - {fileID: 11400000, guid: fb07cbf46714c234da52b056e9c6eddd, type: 2}
+  - {fileID: 11400000, guid: de609c5728390254aa79d9e4075d6d5c, type: 2}
+  - {fileID: 11400000, guid: ea772199c8761be48bc46fffc88e4f2b, type: 2}
+  - {fileID: 11400000, guid: 022888c19af551b45850aeba2991873e, type: 2}
+  - {fileID: 11400000, guid: 51e710e50c09736438bd7b5084328b5f, type: 2}
+  - {fileID: 11400000, guid: 409a7076b35bad545ad82ae21cbabc51, type: 2}
+  - {fileID: 11400000, guid: 55d697bd22121f643a60c253aa5aa292, type: 2}
+  pathPenalty: 0
+  speedPercent: 50
+  walkable: 0
+  type: Mountain
+  animated: 0
