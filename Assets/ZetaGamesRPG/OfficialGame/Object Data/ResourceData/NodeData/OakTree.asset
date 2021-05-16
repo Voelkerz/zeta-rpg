@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
+  m_Name: OakTree
+  m_EditorClassIdentifier: 
+  resourceItemData: {fileID: 11400000, guid: ae61143631f94494f9f722ef2016961e, type: 2}
+  spriteFull: OakWood_Node_Full
+  spriteFullShadow: OakWood_Node_Full_Shadow
+  spriteDepleted: OakWood_Node_Depleted
+  spriteDepletedShadow: OakWood_Node_Depleted_Shadow
+  spriteAnimationList:
+  - OakWood_Node_Full_HitLeft1
+  - OakWood_Node_Full_Shadow_HitLeft1
+  - OakWood_Node_Full_HitLeft2
+  - OakWood_Node_Full_Shadow_HitLeft2
+  - OakWood_Node_Full_HitLeft3
+  - OakWood_Node_Full_Shadow_HitLeft3
+  - OakWood_Node_Full_HitRight1
+  - OakWood_Node_Full_Shadow_HitRight1
+  - OakWood_Node_Full_HitRight2
+  - OakWood_Node_Full_Shadow_HitRight2
+  - OakWood_Node_Full_HitRight3
+  - OakWood_Node_Full_Shadow_HitRight3
+  resourceType: 1
+  resourceCategory: 1
+  lootPerDrop: 2
+  maxLoot: 2
+  maxHitPoints: 20
+  adjacentGridOccupation:
+  - {x: -1, y: 0, z: 0}
+  harvestPositions:
+  - {x: -1, y: -1, z: 0}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
