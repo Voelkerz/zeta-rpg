@@ -12,7 +12,7 @@ namespace ZetaGames.RPG {
         public static MapManager Instance;
         public List<Tilemap> tileMapList;
         [SerializeField] private List<GlobalTileData> globalTileDataList;
-        [SerializeField] private List<BaseObjectData> mapFeaturesDataList;
+        [SerializeField] private List<BaseObject> mapFeaturesDataList;
         public int mapWidth = 256;
         public int mapHeight = 256;
         public int regionSize = 128;
@@ -497,11 +497,11 @@ namespace ZetaGames.RPG {
 
         private void CreateRandomTrees() {
             // Cache tree data
-            ResourceNodeData oakTreeData = null;
+            ResourceNode oakTreeData = null;
 
             foreach (var feature in mapFeaturesDataList) {
-                if (typeof(ResourceNodeData).IsInstanceOfType(feature)) {
-                    ResourceNodeData temp = (ResourceNodeData)feature;
+                if (typeof(ResourceNode).IsInstanceOfType(feature)) {
+                    ResourceNode temp = (ResourceNode)feature;
                     if (temp.resourceType.Equals(ResourceType.Oak)) {
                         oakTreeData = temp;
                     }
@@ -607,7 +607,7 @@ namespace ZetaGames.RPG {
 
                                     // Specific to oak tree. Will change later
                                     currentTile.occupiedType = ResourceType.Oak;
-                                    currentTile.tileObjectData = oakTreeData;
+                                    currentTile.tileObject = oakTreeData;
                                     currentTile.lootAvailable = oakTreeData.maxLoot;
 
                                     StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, oakTreeData.spriteFull));
@@ -617,8 +617,8 @@ namespace ZetaGames.RPG {
 
                                     // set additional tiles unwalkable depending on size of tree
                                     foreach (var featureData in mapFeaturesDataList) {
-                                        if (typeof(ResourceNodeData).IsInstanceOfType(featureData)) {
-                                            ResourceNodeData treeData = (ResourceNodeData)featureData;
+                                        if (typeof(ResourceNode).IsInstanceOfType(featureData)) {
+                                            ResourceNode treeData = (ResourceNode)featureData;
                                             if (treeData.resourceType.Equals(ResourceType.Oak)) {
                                                 foreach (Vector3Int modPos in treeData.adjacentGridOccupation) {
                                                     if (worldTileGrid.IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
@@ -681,7 +681,7 @@ namespace ZetaGames.RPG {
 
                                             // Specific to oak tree. Will change later
                                             currentTile.occupiedType = ResourceType.Oak;
-                                            currentTile.tileObjectData = oakTreeData;
+                                            currentTile.tileObject = oakTreeData;
                                             currentTile.lootAvailable = oakTreeData.maxLoot;
 
                                             StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, oakTreeData.spriteFull));
@@ -689,8 +689,8 @@ namespace ZetaGames.RPG {
 
                                             // set additional tiles unwalkable depending on size of tree
                                             foreach (var feature in mapFeaturesDataList) {
-                                                if (typeof(ResourceNodeData).IsInstanceOfType(feature)) {
-                                                    ResourceNodeData tree = (ResourceNodeData)feature;
+                                                if (typeof(ResourceNode).IsInstanceOfType(feature)) {
+                                                    ResourceNode tree = (ResourceNode)feature;
                                                     if (tree.resourceType.Equals(ResourceType.Oak)) {
                                                         foreach (Vector3Int modPos in tree.adjacentGridOccupation) {
                                                             if (GetWorldTileGrid().IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
@@ -850,11 +850,11 @@ namespace ZetaGames.RPG {
 
         public void CreateRandomStoneNodes() {
             // Cache stone node data
-            List<ResourceNodeData> stoneNodeList = new List<ResourceNodeData>();
+            List<ResourceNode> stoneNodeList = new List<ResourceNode>();
 
             foreach (var feature in mapFeaturesDataList) {
-                if (typeof(ResourceNodeData).IsInstanceOfType(feature)) {
-                    ResourceNodeData temp = (ResourceNodeData)feature;
+                if (typeof(ResourceNode).IsInstanceOfType(feature)) {
+                    ResourceNode temp = (ResourceNode)feature;
 
                     if (temp.resourceCategory.Equals(ResourceCategory.Stone)) {
                         stoneNodeList.Add(temp);
@@ -908,7 +908,7 @@ namespace ZetaGames.RPG {
                                 //currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
                                 currentTile.occupiedType = ResourceType.Rock;
                                 currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
-                                currentTile.tileObjectData = stoneNodeList[randomIndex];
+                                currentTile.tileObject = stoneNodeList[randomIndex];
                                 currentTile.walkable = false;
                                 currentTile.lootAvailable = stoneNodeList[randomIndex].maxLoot;
 
@@ -1014,7 +1014,7 @@ namespace ZetaGames.RPG {
                                         //currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
                                         currentTile.occupiedType = ResourceType.Rock;
                                         currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
-                                        currentTile.tileObjectData = stoneNodeList[randomIndex];
+                                        currentTile.tileObject = stoneNodeList[randomIndex];
                                         currentTile.walkable = false;
                                         currentTile.lootAvailable = stoneNodeList[randomIndex].maxLoot;
 

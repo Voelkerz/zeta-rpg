@@ -29,6 +29,7 @@ namespace ZetaGames.RPG {
         public override void OnTargetReached() {
             isStopped = true;
 
+            /*
             if (!useSimplePathing) {
                 currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
                 currentTile.walkable = false;
@@ -45,9 +46,11 @@ namespace ZetaGames.RPG {
                     grid.CalculateConnectionsForCellAndNeighbours(x, y);
                 });
             }
+            */
         }
 
         public override void SearchPath() {
+            /*
             if (!useSimplePathing) {
                 currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
                 currentTile.walkable = true;
@@ -64,7 +67,8 @@ namespace ZetaGames.RPG {
                     grid.CalculateConnectionsForCellAndNeighbours(x, y);
                 });
             }
-            
+            */
+
             base.SearchPath();
             isStopped = false;
         }

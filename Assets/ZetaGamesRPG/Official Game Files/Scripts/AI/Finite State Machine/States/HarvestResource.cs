@@ -10,78 +10,75 @@ namespace ZetaGames.RPG {
     */
 
     public class HarvestResource : State {
-        public override bool IsFinished { get => finished; }
-        public override bool IsInterruptable { get => true; }
+        public override int priority => 10;
+        public override bool isFinished { get => finished; }
+        public override bool isInterruptable { get => true; }
+
         private bool finished;
         private static readonly int lastDirectionX = Animator.StringToHash("AnimLastMoveX");
         private static readonly int lastDirectionY = Animator.StringToHash("AnimLastMoveY");
-        private readonly AIBrain npcBrain;
+        private readonly AIBrain npc;
         private readonly Animator animator;
-        private ResourceNodeData resourceNodeData;
+        private ResourceNode resourceNode;
+        public WorldTile harvestTarget;
+        public bool hasHarvestTarget;
         private string memoryTag;
-        //private bool depleted = false;
         private int currentHitPoints;
         private int closestIndex;
         private bool hasHarvestPos;
-        private float harvestTimer;
-        private Vector3 resourceTileWorldPos;
+        //private float harvestTimer;
+        private Vector3 harvestTargetWorldPos;
         private Vector3 northEast;
         private Vector3 northWest;
         private Vector3 southEast;
         private Vector3 southWest;
 
-        public HarvestResource(AIBrain npcBrain) {
-            this.npcBrain = npcBrain;
-            animator = npcBrain.animator;
+        public HarvestResource(AIBrain npc) {
+            this.npc = npc;
+            animator = npc.animator;
         }
 
         public override void Tick() {
             if (!finished) {
-                if (hasHarvestPos && npcBrain.resourceTileTarget.lockTag == npcBrain.GetNpcLockTag() && npcBrain.pathMovement.isStopped && Vector3.Distance(npcBrain.transform.position, npcBrain.resourceTileTarget.GetWorldPosition() + MapManager.Instance.GetTileOffset()) <= 4f) {
-                    //Debug.Log("HarvestResource.Tick(): Found harvest position and in place.");
+                if (hasHarvestPos && harvestTarget.lockTag == npc.GetNpcLockTag() && npc.pathMovement.isStopped && Vector3.Distance(npc.transform.position, harvestTarget.GetWorldPosition() + MapManager.Instance.GetTileOffset()) <= 4f) {
+                    //Debug.Log("HarvestResource.Tick(): Have harvest position and in place.");
                     if (currentHitPoints > 0) {
-                        //Debug.Log("HarvestResource.Tick(): Current hitpoints above 0.");
-                        if (harvestTimer >= 0f) {
-                            //Debug.Log("HarvestResource.Tick(): Harvesting.");
-                            harvestTimer = 0;
-                            HitResourceTarget();
-                        } else {
-                            //Debug.Log("HarvestResource.Tick(): Waiting on harvest timer here.");
-                            harvestTimer += npcBrain.deltaTime;
-                        }
-                    } else if (harvestTimer >= 0f) {
+                        // Hit resource node with correct tool
+                        HitResourceTarget();
+                    } else {
                         //Debug.Log("HarvestResource.Tick(): Finished harvesting.");
                         RecycleAndSpawnLoot();
-                        npcBrain.resourceTileTarget.lockTag = -1;
-                        npcBrain.resourceTileTarget = null;
+                        harvestTarget.lockTag = -1;
+                        hasHarvestTarget = false;
                         finished = true;
-                    } else {
-                        //Debug.Log("HarvestResource.Tick(): Waiting on harvest timer.");
-                        harvestTimer += npcBrain.deltaTime;
                     }
                 } else if (!hasHarvestPos) {
                     //Debug.Log("HarvestResource.Tick(): Going to find a harvest position");
                     FindHarvestPosition();
+                } else if (harvestTarget.lockTag != npc.GetNpcLockTag()) {
+                    Debug.LogWarning("HarvestResource.Tick(): Harvest tile target locked by another NPC.");
+                    hasHarvestTarget = false;
+                    finished = true;
                 } else {
                     //Debug.Log("HarvestResource.Tick(): Moving closer to position");
                 }
             } else {
-                //Debug.LogWarning("HarvestResource.Tick(): State finished. Nothing happening.");
+                Debug.LogWarning("HarvestResource.Tick(): State finished. Nothing happening.");
             }
         }
 
         private void FindHarvestPosition() {
             // determine resource node animations depending on character position
-            List<Vector3> harvestPosList = resourceNodeData.harvestPositions;
+            List<Vector3> harvestPosList = resourceNode.harvestPositions;
             Vector3 closestHarvestPos = harvestPosList[0];
 
             for (int i = 0; i < harvestPosList.Count; i++) {
-                Vector3 harvestPos = resourceTileWorldPos + harvestPosList[i];
+                Vector3 harvestPos = harvestTargetWorldPos + harvestPosList[i];
 
                 if (MapManager.Instance.GetWorldTileGrid().IsWithinGridBounds((int)harvestPos.x, (int)harvestPos.y)) {
                     if (MapManager.Instance.GetWorldTileGrid().GetGridObject(harvestPos) != null) {
                         if (MapManager.Instance.GetWorldTileGrid().GetGridObject(harvestPos).walkable) {
-                            if (Vector3.Distance(npcBrain.transform.position, harvestPos) < Vector3.Distance(npcBrain.transform.position, closestHarvestPos)) {
+                            if (Vector3.Distance(npc.transform.position, harvestPos) < Vector3.Distance(npc.transform.position, closestHarvestPos)) {
                                 closestHarvestPos = harvestPos;
                                 closestIndex = i;
                             }
@@ -90,51 +87,49 @@ namespace ZetaGames.RPG {
                 }
             }
             //Debug.Log("HarvestResource.Tick(): Have harvest position.");
-            npcBrain.pathMovement.destination = closestHarvestPos;
-            npcBrain.pathMovement.SearchPath();
+            npc.pathMovement.destination = closestHarvestPos;
+            npc.pathMovement.SearchPath();
             hasHarvestPos = true;
         }
 
         private void HitResourceTarget() {
-            if (npcBrain.useAdvAI) {
-                //Debug.LogWarning("Using advanced AI!");
-
+            if (npc.useAdvAI) {
                 // resource node animation
                 switch (closestIndex) {
                     case 0:
-                        npcBrain.pathMovement.SetPreviousDirection(northEast);
+                        npc.pathMovement.SetPreviousDirection(northEast);
                         animator.SetFloat(lastDirectionX, 1);
                         animator.SetFloat(lastDirectionY, 1);
 
-                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
-                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 0);
+                        if (resourceNode.resourceCategory == ResourceCategory.Wood) {
+                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
                         }
                         break;
                     case 1:
-                        npcBrain.pathMovement.SetPreviousDirection(southEast);
+                        npc.pathMovement.SetPreviousDirection(southEast);
                         animator.SetFloat(lastDirectionX, 1);
                         animator.SetFloat(lastDirectionY, -1);
 
-                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
-                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 0);
+                        if (resourceNode.resourceCategory == ResourceCategory.Wood) {
+                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
                         }
                         break;
                     case 2:
-                        npcBrain.pathMovement.SetPreviousDirection(southWest);
+                        npc.pathMovement.SetPreviousDirection(southWest);
                         animator.SetFloat(lastDirectionX, -1);
                         animator.SetFloat(lastDirectionY, -1);
 
-                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
-                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 6);
+                        if (resourceNode.resourceCategory == ResourceCategory.Wood) {
+                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
                         }
                         break;
                     case 3:
-                        npcBrain.pathMovement.SetPreviousDirection(northWest);
+                        npc.pathMovement.SetPreviousDirection(northWest);
                         animator.SetFloat(lastDirectionX, -1);
                         animator.SetFloat(lastDirectionY, 1);
 
-                        if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
-                            npcBrain.PlayResourceSpriteAnimation(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteAnimationList, 6);
+                        if (resourceNode.resourceCategory == ResourceCategory.Wood) {
+                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
                         }
                         break;
                     default:
@@ -142,9 +137,9 @@ namespace ZetaGames.RPG {
                 }
 
                 // determine which character animation to play
-                if (resourceNodeData.resourceCategory == ResourceCategory.Wood) {
+                if (resourceNode.resourceCategory == ResourceCategory.Wood) {
                     animator.Play("HarvestWood");
-                } else if (resourceNodeData.resourceCategory == ResourceCategory.Stone || resourceNodeData.resourceCategory == ResourceCategory.Ore) {
+                } else if (resourceNode.resourceCategory == ResourceCategory.Stone || resourceNode.resourceCategory == ResourceCategory.Ore) {
                     animator.Play("Mining");
                 }
             }
@@ -164,18 +159,18 @@ namespace ZetaGames.RPG {
         }
 
         public void RecycleAndSpawnLoot() {
-            int lootPerDrop = resourceNodeData.lootPerDrop;
-            int currentTileLoot = npcBrain.resourceTileTarget.lootAvailable - lootPerDrop;
-            memoryTag = resourceNodeData.resourceDropData.resourceType.ToString() + resourceNodeData.resourceDropData.resourceCategory.ToString() + ZetaUtilities.OCCUPIED_ITEMPICKUP;
+            int lootPerDrop = resourceNode.lootPerDrop;
+            int currentTileLoot = harvestTarget.lootAvailable - lootPerDrop;
+            memoryTag = resourceNode.resourceItemData.name + ZetaUtilities.OCCUPIED_ITEMPICKUP;
 
             if (currentTileLoot <= 0) {
                 // Spawn depleted node in current tile
-                npcBrain.resourceTileTarget.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_DEPLETED;
-                npcBrain.resourceTileTarget.lockTag = -1;
-                npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteDepleted);
-                npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 3, resourceNodeData.spriteDepletedShadow);
+                harvestTarget.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_DEPLETED;
+                harvestTarget.lockTag = -1;
+                npc.SetTilemapSpriteAsync(harvestTarget, 2, resourceNode.spriteDepleted);
+                npc.SetTilemapSpriteAsync(harvestTarget, 3, resourceNode.spriteDepletedShadow);
             } else {
-                npcBrain.resourceTileTarget.lootAvailable -= lootPerDrop;
+                harvestTarget.lootAvailable -= lootPerDrop;
             }
 
             // Spawn loot in the adjacent tiles around node
@@ -185,8 +180,8 @@ namespace ZetaGames.RPG {
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 3; y++) {
                     // check grid bounds
-                    if (MapManager.Instance.GetWorldTileGrid().IsWithinGridBounds((int)resourceTileWorldPos.x + (x - 1), (int)resourceTileWorldPos.y + (y - 1))) {
-                        WorldTile adjTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)resourceTileWorldPos.x + (x - 1), (int)resourceTileWorldPos.y + (y - 1));
+                    if (MapManager.Instance.GetWorldTileGrid().IsWithinGridBounds((int)harvestTargetWorldPos.x + (x - 1), (int)harvestTargetWorldPos.y + (y - 1))) {
+                        WorldTile adjTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)harvestTargetWorldPos.x + (x - 1), (int)harvestTargetWorldPos.y + (y - 1));
 
                         // If adjacent tile is not occupied and is walkable
                         if (!adjTile.occupied && adjTile.walkable) {
@@ -201,45 +196,55 @@ namespace ZetaGames.RPG {
                 WorldTile chosenTile = possibleLootPositions[Random.Range(0, possibleLootPositions.Count - 1)];
                 possibleLootPositions.Remove(chosenTile);
 
-                npcBrain.SetTilemapSpriteAsync(chosenTile, 4, resourceNodeData.resourceDropData.itemDropSprite);
+                npc.SetTilemapSpriteAsync(chosenTile, 4, resourceNode.resourceItemData.itemDropSprite);
 
                 // Adjust tile data
-                chosenTile.tileObjectData = resourceNodeData.resourceDropData;
+                chosenTile.tileObject = resourceNode.resourceItemData;
                 chosenTile.occupiedStatus = ZetaUtilities.OCCUPIED_ITEMPICKUP;
-                chosenTile.occupiedCategory = resourceNodeData.resourceDropData.resourceCategory;
-                chosenTile.occupiedType = resourceNodeData.resourceDropData.resourceType;
+                chosenTile.occupiedCategory = resourceNode.resourceItemData.resourceCategory;
+                chosenTile.occupiedType = resourceNode.resourceItemData.resourceType;
                 chosenTile.occupied = true;
 
-                // add resource drop to NPC memory so they'll go back for it later, if needed
-                npcBrain.npcMemory.AddMemory(memoryTag + chosenTile.GetHashCode(), chosenTile.GetWorldPosition() + MapManager.Instance.GetTileOffset());
+                // Add resource drop to NPC memory so they'll go back for it later, if needed
+                npc.memory.AddMemory(memoryTag + chosenTile.GetHashCode(), chosenTile.GetWorldPosition() + MapManager.Instance.GetTileOffset());
             }
         }
 
         public override void OnEnter() {
             finished = false;
-            harvestTimer = 0;
+            hasHarvestPos = false;
 
-            if (npcBrain.resourceTileTarget != null) {
-                if (npcBrain.resourceTileTarget.tileObjectData != null && npcBrain.resourceTileTarget.occupiedStatus.Contains(ZetaUtilities.OCCUPIED_NODE_FULL) && npcBrain.resourceTileTarget.lockTag == npcBrain.GetNpcLockTag()) {
-                    // Get the resource node data
-                    if (typeof(ResourceNodeData).IsInstanceOfType(npcBrain.resourceTileTarget.tileObjectData)) {
-                        resourceNodeData = (ResourceNodeData)npcBrain.resourceTileTarget.tileObjectData;
-                    }
+            if (hasHarvestTarget) {
+                if (harvestTarget.tileObject != null && harvestTarget.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NODE_FULL)) {
+                    if (harvestTarget.lockTag == npc.GetNpcLockTag()) {
+                        // Get the resource node data
+                        if (typeof(ResourceNode).IsInstanceOfType(harvestTarget.tileObject)) {
+                            resourceNode = (ResourceNode)harvestTarget.tileObject;
 
-                    resourceTileWorldPos = npcBrain.resourceTileTarget.GetWorldPosition() + MapManager.Instance.GetTileOffset(); // offset to get center of tile
-                    currentHitPoints = resourceNodeData.maxHitPoints;
-                    northEast = new Vector3(1, 1);
-                    southEast = new Vector3(1, -1);
-                    northWest = new Vector3(-1, 1);
-                    southWest = new Vector3(-1, -1);
+                            harvestTargetWorldPos = harvestTarget.GetWorldPosition() + MapManager.Instance.GetTileOffset(); // offset to get center of tile
+                            currentHitPoints = resourceNode.maxHitPoints;
+                            northEast = new Vector3(1, 1);
+                            southEast = new Vector3(1, -1);
+                            northWest = new Vector3(-1, 1);
+                            southWest = new Vector3(-1, -1);
 
-                    //DEBUG
-                    if (npcBrain.debugLogs) {
-                        Debug.Log("HarvestResource.OnEnter(): Resource target tile: " + npcBrain.resourceTileTarget.occupiedCategory);
+                            //DEBUG
+                            if (npc.debugLogs) {
+                                Debug.Log("HarvestResource.OnEnter(): Harvest target: " + harvestTarget.occupiedCategory + " node");
+                            }
+                        } else {
+                            Debug.LogError("HarvestResource.OnEnter(): Harvest tile target does not contain proper resource node data.");
+                            hasHarvestTarget = false;
+                            finished = true;
+                        }
+                    } else {
+                        Debug.LogWarning("HarvestResource.OnEnter(): Harvest tile is locked by another NPC.");
+                        hasHarvestTarget = false;
+                        finished = true;
                     }
                 } else {
-                    Debug.LogWarning("HarvestResource.OnEnter(): ResourceTileTarget is not a harvestable node or already locked by other NPC.");
-                    npcBrain.resourceTileTarget = null;
+                    Debug.LogWarning("HarvestResource.OnEnter(): ResourceTileTarget is not a harvestable node.");
+                    hasHarvestTarget = false;
                     finished = true;
                 }
             } else {
@@ -249,15 +254,15 @@ namespace ZetaGames.RPG {
 
         public override void OnExit() {
             if (!finished) {
-                npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 2, resourceNodeData.spriteFull);
-                npcBrain.SetTilemapSpriteAsync(npcBrain.resourceTileTarget, 3, resourceNodeData.spriteFullShadow);
-                npcBrain.resourceTileTarget.lockTag = -1;
+                npc.SetTilemapSpriteAsync(harvestTarget, 2, resourceNode.spriteFull);
+                npc.SetTilemapSpriteAsync(harvestTarget, 3, resourceNode.spriteFullShadow);
+                harvestTarget.lockTag = -1;
             }
 
-            npcBrain.resourceTileTarget = null;
-            resourceNodeData = null;
-            hasHarvestPos = false;
+            resourceNode = null;
             memoryTag = null;
+            harvestTarget = null;
+            hasHarvestPos = false;
         }
     }
 }

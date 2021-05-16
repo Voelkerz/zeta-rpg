@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
   m_Name: OakTree
   m_EditorClassIdentifier: 
-  resourceDropData: {fileID: 11400000, guid: ae61143631f94494f9f722ef2016961e, type: 2}
+  resourceItemData: {fileID: 11400000, guid: ae61143631f94494f9f722ef2016961e, type: 2}
   spriteFull: OakWood_Node_Full
   spriteFullShadow: OakWood_Node_Full_Shadow
   spriteDepleted: OakWood_Node_Depleted

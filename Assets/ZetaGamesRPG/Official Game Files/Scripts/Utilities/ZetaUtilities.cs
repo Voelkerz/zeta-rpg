@@ -21,11 +21,17 @@ namespace ZetaGames {
         public static readonly string OCCUPIED_NODE_DEPLETED = "_Node_Depleted";
         public static readonly string OCCUPIED_NODE_ADJACENT = "_Node_Adjacent";
         public static readonly string OCCUPIED_ITEMPICKUP = "_ItemPickup";
+        public static readonly string OCCUPIED_BUILDING = "Building";
 
         // Terrain Constants
         public static readonly string TERRAIN_GRASS = "Grass";
         public static readonly string TERRAIN_WATER = "Water";
         public static readonly string TERRAIN_DIRT = "Dirt";
+
+        // NPC Ownership Constants
+        public static readonly string OWNED_HOME = "Home";
+        public static readonly string OWNED_BUSINESS = "Business";
+        public static readonly string OWNED_CONTAINER = "Container";
     }
 }
 

@@ -12,8 +12,8 @@ namespace ZetaGames.RPG {
         public ResourceType occupiedType = ResourceType.None;
         public string occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
         public int lockTag = -1;
-        public BaseObjectData tileObjectData = null;
-        private GameObject tileObject = null;
+        public BaseObject tileObject = null;
+        //private GameObject tileObject = null;
         public int lootAvailable;
         
         // Global Tile Data
@@ -44,10 +44,11 @@ namespace ZetaGames.RPG {
         public Vector3 GetWorldPosition() {
             return new Vector3(x, y);
         }
-
+        /*
         public GameObject GetTileObject() {
             return tileObject;
         }
+        
         public void SetTileObject(GameObject tileObject) {
             this.tileObject = tileObject;
         }
@@ -55,6 +56,7 @@ namespace ZetaGames.RPG {
         public bool HasTileObject() {
             return tileObject != null;
         }
+        */
     }
 }
 

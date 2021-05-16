@@ -8,19 +8,27 @@ namespace ZetaGames.RPG {
         protected StateMachineMultiCondition stateMachine;
         [HideInInspector] public Personality personality { get; set; }
         [HideInInspector] public AIMovement pathMovement { get; set; }
-        [HideInInspector] public Seeker pathSeeker { get; set; }
         [HideInInspector] public Animator animator { get; set; }
-        [HideInInspector] public WorldTile resourceTileTarget { get; set; }
-        [HideInInspector] public NpcMemory npcMemory { get; set; }
-        [HideInInspector] public NpcInventory npcInventory { get; set; }
-        [HideInInspector] public ResourceCategory resourceCategoryWanted { get; set; }
-        [HideInInspector] public ResourceType resourceTypeWanted { get; set; }
+        //[HideInInspector] public WorldTile resourceTileTarget { get; set; }
+        [HideInInspector] public NpcMemory memory { get; set; }
+        [HideInInspector] public NpcInventory inventory { get; set; }
+        [HideInInspector] public BuildingManager buildingManager { get; set; }
+        [HideInInspector] public NpcBuildGoal buildGoal { get; set; }
+        [HideInInspector] public NpcStats stats { get; set; }
+        [HideInInspector] public NpcNeeds needs { get; set; }
         [HideInInspector] public bool useAdvAI { get; set; }
         [HideInInspector] public float deltaTime { get; set; }
+        [HideInInspector] public float wanderCooldown { get; set; }
 
-        [HideInInspector] public Dictionary<ResourceCategory, int> numMaterialsRequiredList = new Dictionary<ResourceCategory, int>();
-        [HideInInspector] public Dictionary<ResourceCategory, ResourceType> specificMaterialTypeList = new Dictionary<ResourceCategory, ResourceType>();
+        // NPC States
+        public BuildStructure buildStructure;
+        public SearchForResource searchForResource;
+        public HarvestResource harvestResource;
+        public StoreResource storeResource;
+        public PickupItem pickupItem;
+        public Wander wander;
 
+        // Tools
         private WaitForSeconds[] waitTimers = new WaitForSeconds[3];
         private int npcLockTag;
 
@@ -31,9 +39,8 @@ namespace ZetaGames.RPG {
         private void Awake() {
             // Cache NPC components
             pathMovement = GetComponent<AIMovement>();
-            pathSeeker = GetComponent<Seeker>();
             animator = GetComponentInChildren<Animator>();
-            npcInventory = GetComponent<NpcInventory>();
+            buildingManager = FindObjectOfType<BuildingManager>();
 
             // Create state machine for NPC
             stateMachine = new StateMachineMultiCondition();
@@ -43,8 +50,12 @@ namespace ZetaGames.RPG {
                 stateMachine.debugLog = true;
             }
 
-            // Create a memory for npc
-            npcMemory = new NpcMemory();
+            // Create necessary parts for AI
+            memory = new NpcMemory();
+            buildGoal = new NpcBuildGoal(this);
+            needs = new NpcNeeds(this);
+            inventory = new NpcInventory();
+            stats = new NpcStats();
 
             // Set unique NPC lock tag
             npcLockTag = gameObject.GetInstanceID();
@@ -63,7 +74,7 @@ namespace ZetaGames.RPG {
             if (deltaTime > 1f) {
                 stateMachine.Tick();
                 updateCooldownTimers();
-                updateNeeds();
+                evaluateNeeds();
 
                 deltaTime = 0;
             }
@@ -79,13 +90,39 @@ namespace ZetaGames.RPG {
 
         }
 
-        protected virtual void updateNeeds() {
-            // Food
-            // Energy (sleep)
+        protected virtual void evaluateNeeds() {
+            // Shelter Need
+            if (needs.CalculateShelterScore() < 100) {
+                if (!buildGoal.planned) {
+                    buildGoal.CreateShelterBuildGoal();
+                }
+            }
+
+            // Community Need
+            
+            
+            // Physiological Needs
+            // - Food (will start with food)
+            // - Energy (will start with full energy)
+            // - Clothing (will start with basic clothing)
+            // - Shelter = npcNeeds.EvaluateShelter();
+            // - Health (will start with full health)
+
+            // Safety Needs
+            // - Security
+            // - Employment
+            // - Health
+            // - Property
+            // - Finances
+
+            // Social Needs
+            // - Family
+            // - Intimacy
+            // - Belonging to social group
         }
 
         protected virtual void updateCooldownTimers() {
-            //wanderCooldown += Time.deltaTime;
+            wanderCooldown += deltaTime;
         }
 
         public virtual void DestroyObject(GameObject gameObject, float delay) {
@@ -121,7 +158,7 @@ namespace ZetaGames.RPG {
 
         private IEnumerator TakeTimeToUnload(int randIndex) {
             yield return waitTimers[randIndex];
-            npcInventory.DropResource();
+            //inventory.DropResource();
         }
     }
 }

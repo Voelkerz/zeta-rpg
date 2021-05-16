@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class StoreResource : State {
-        public override bool IsFinished { get => finished; }
-        public override bool IsInterruptable { get => true; }
+        public override int priority => 5;
+        public override bool isFinished { get => finished; }
+        public override bool isInterruptable { get => true; }
+        
         private bool finished;
         private AIBrain npcBrain;
         private Vector3 stockpilePos;
@@ -18,9 +18,9 @@ namespace ZetaGames.RPG {
             if (npcBrain.debugLogs) {
                 Debug.Log("StoreResource.OnEnter(): Unloading resources.");
             }
-            npcBrain.resourceTileTarget = null;
+            //npcBrain.resourceTileTarget = null;
             finished = false;
-            stockpilePos = (Vector3)npcBrain.npcMemory.RetrieveMemory("home");
+            stockpilePos = (Vector3)npcBrain.memory.RetrieveMemory("home");
             npcBrain.pathMovement.destination = stockpilePos;
             npcBrain.pathMovement.SearchPath();
         }
@@ -32,12 +32,14 @@ namespace ZetaGames.RPG {
         }
 
         public override void Tick() {
-            if (npcBrain.pathMovement.isStopped && Vector3.Distance(npcBrain.transform.position, stockpilePos) < 2f) {
-                if (npcBrain.debugLogs) {
-                    Debug.Log("StoreResource.Tick(): Waiting to unload resources");
+            if (!finished) {
+                if (npcBrain.pathMovement.isStopped && Vector3.Distance(npcBrain.transform.position, stockpilePos) < 2f) {
+                    if (npcBrain.debugLogs) {
+                        Debug.Log("StoreResource.Tick(): Waiting to unload resources");
+                    }
+                    npcBrain.UnloadResources();
+                    finished = true;
                 }
-                npcBrain.UnloadResources();
-                finished = true;
             }
         }
     }

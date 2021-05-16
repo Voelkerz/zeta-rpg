@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 3165365329481791426}
   - component: {fileID: 6921067812355791876}
   - component: {fileID: 6921067812355791898}
-  - component: {fileID: 6921067812355791897}
   m_Layer: 13
   m_Name: TestNPCDude
   m_TagString: NPC
@@ -163,7 +162,7 @@ MonoBehaviour:
   subdivisions: 1
   iterations: 2
   strength: 0.6
-  uniformLength: 1
+  uniformLength: 0
   maxSegmentLength: 1
   bezierTangentLength: 0.4
   offset: 0.2
@@ -206,18 +205,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inCombat: 0
   debugLogs: 0
---- !u!114 &6921067812355791897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6921067812355791877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 174b6a5321d168f4d8b8c6bda3f8bd7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6921208820802499739
 GameObject:
   m_ObjectHideFlags: 0

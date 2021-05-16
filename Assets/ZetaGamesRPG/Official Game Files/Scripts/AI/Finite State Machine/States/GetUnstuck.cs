@@ -3,8 +3,12 @@ using UnityEngine.AI;
 
 namespace ZetaGames.RPG {
     internal class GetUnstuck : State {
-        public override bool IsFinished { get => finished; }
-        public override bool IsInterruptable { get => timeInState > 10f; }
+        public override int priority => 0;
+        public override bool isFinished { get => finished; }
+        public override bool isInterruptable { get => timeInState > 10f; }
+
+        
+
         private bool finished;
         private AIBrain npcBrain;
         //private NavMeshAgent navMeshAgent;
@@ -29,7 +33,7 @@ namespace ZetaGames.RPG {
             timeInState = 0;
             npcBrain.ResetAgent();
             //npcBrain.timeStuck = 0f;
-            npcBrain.resourceTileTarget = null;
+            //npcBrain.resourceTileTarget = null;
             //npcBrain.destinationPos = (Vector3)npcBrain.npcMemory.RetrieveMemory("home");
             //navMeshAgent.destination = npcBrain.destinationPos;
         }

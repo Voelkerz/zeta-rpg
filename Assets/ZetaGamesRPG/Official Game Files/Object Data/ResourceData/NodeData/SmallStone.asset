@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
   m_Name: SmallStone
   m_EditorClassIdentifier: 
-  resourceDropData: {fileID: 11400000, guid: c6c6d41f304f0e14bae9aa523e768d83, type: 2}
+  resourceItemData: {fileID: 11400000, guid: c6c6d41f304f0e14bae9aa523e768d83, type: 2}
   spriteFull: SmallStone_Node_Full
   spriteFullShadow: SmallStone_Node_Full_Shadow
   spriteDepleted: SmallStone_Node_Depleted

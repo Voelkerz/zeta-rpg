@@ -1,12 +1,186 @@
 fileFormatVersion: 2
 guid: 8aec7c560264f1644a6661f3165b799d
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5698053529263082204
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_6
+  - first:
+      213: -33659147041767169
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_7
+  - first:
+      213: 6131277697616387032
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_8
+  - first:
+      213: 2913803699766527422
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_9
+  - first:
+      213: -8308350928415981137
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_10
+  - first:
+      213: 1556335541417725722
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_11
+  - first:
+      213: 364397992190355427
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_12
+  - first:
+      213: 3821581462561638488
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_13
+  - first:
+      213: 4143359750333891862
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_14
+  - first:
+      213: -6039143426979756671
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_24
+  - first:
+      213: -8966158112473718849
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_25
+  - first:
+      213: 1470525202434814350
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_26
+  - first:
+      213: -7675983514897924187
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_27
+  - first:
+      213: -7132027035290705868
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_28
+  - first:
+      213: -6340625389889480144
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_29
+  - first:
+      213: -1598720870116534489
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_30
+  - first:
+      213: -7022471226092901679
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_31
+  - first:
+      213: -9010885043322567601
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_32
+  - first:
+      213: -939286488450854358
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_40
+  - first:
+      213: 7334037084025880983
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_41
+  - first:
+      213: 2843146123501494392
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_42
+  - first:
+      213: -4741817589633138605
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_43
+  - first:
+      213: 6554909134322084328
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_44
+  - first:
+      213: -2277332657928995938
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_45
+  - first:
+      213: 3826206152822932031
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_48
+  - first:
+      213: 3049954621770896361
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_54
+  - first:
+      213: 6539238580939401827
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_55
+  - first:
+      213: 3447420642385861101
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_56
+  - first:
+      213: 1455563209637138189
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_57
+  - first:
+      213: -3045727166904282856
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_58
+  - first:
+      213: 7212211193946299685
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_59
+  - first:
+      213: -2246512220942155219
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_60
+  - first:
+      213: -3412459184518861600
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_63
+  - first:
+      213: -7054532705212554358
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_64
+  - first:
+      213: -378043448948378689
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_75
+  - first:
+      213: 725659274002964466
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_76
+  - first:
+      213: -7044548979053253969
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_77
+  - first:
+      213: 5988882371945945650
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_78
+  - first:
+      213: -254555669265339385
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_79
+  - first:
+      213: 2747152446730735287
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_88
+  - first:
+      213: -1541441728359842342
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_89
+  - first:
+      213: 3008976410654893508
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_90
+  - first:
+      213: -7571195828207445847
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_91
+  - first:
+      213: 928746490430922090
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_94
+  - first:
+      213: -739415702680273868
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_97
+  - first:
+      213: 7422868751007535582
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_98
+  - first:
+      213: 8619066862874079381
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_99
+  - first:
+      213: -3183431050552490878
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_104
+  - first:
+      213: 8114525192531841724
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_105
+  - first:
+      213: -2223688872591558406
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_106
+  - first:
+      213: 169591323727889741
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_107
+  - first:
+      213: -9119685609649862984
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_111
+  - first:
+      213: -140711118932752153
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_115
+  - first:
+      213: 3229888855676862813
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_117
+  - first:
+      213: -5665839319118257914
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_118
+  - first:
+      213: -1456726822585019556
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_120
+  - first:
+      213: -7672480878736807479
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_121
+  - first:
+      213: 4573759525611319949
+    second: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_122
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -32,27 +206,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: -1
-    wrapV: -1
+    wrapU: 1
+    wrapV: 1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -68,7 +242,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,11 +263,1229 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_6
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 248
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 425fc1531827ce0b0800000000000000
+      internalID: -5698053529263082204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 248
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff002212f2b688ff0800000000000000
+      internalID: -33659147041767169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_8
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 248
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8db13b1c49ca61550800000000000000
+      internalID: 6131277697616387032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 248
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb58dc5e609ef6820800000000000000
+      internalID: 2913803699766527422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_10
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 248
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa18a72a9dec2bc80800000000000000
+      internalID: -8308350928415981137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 248
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1fc489dde6399510800000000000000
+      internalID: 1556335541417725722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_12
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 240
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e72f511b0a9e0500800000000000000
+      internalID: 364397992190355427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8584434b71cf80530800000000000000
+      internalID: 3821581462561638488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_14
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 240
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6158d4f8dbb208930800000000000000
+      internalID: 4143359750333891862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_24
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 232
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1858c37cc07a03ca0800000000000000
+      internalID: -6039143426979756671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_25
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 232
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbf540293bec19380800000000000000
+      internalID: -8966158112473718849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_26
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 232
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e81f26461ea586410800000000000000
+      internalID: 1470525202434814350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 232
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af31cc89ad697590800000000000000
+      internalID: -7675983514897924187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_28
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 232
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 430e301d233f50d90800000000000000
+      internalID: -7132027035290705868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_29
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03a90dd4dc29108a0800000000000000
+      internalID: -6340625389889480144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72753b9c6d330d9e0800000000000000
+      internalID: -1598720870116534489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_31
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1daa45360ab2b8e90800000000000000
+      internalID: -7022471226092901679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_32
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f44c0e87bc7e2f280800000000000000
+      internalID: -9010885043322567601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_40
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 216
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2210915aebf6f2f0800000000000000
+      internalID: -939286488450854358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_41
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 216
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79187eadedbb7c560800000000000000
+      internalID: 7334037084025880983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_42
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 216
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 870e5dfe552e47720800000000000000
+      internalID: 2843146123501494392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_43
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 216
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350c734860ea13eb0800000000000000
+      internalID: -4741817589633138605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_44
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 216
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e92b36d027b7fa50800000000000000
+      internalID: 6554909134322084328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_45
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 216
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9bfeb0730a4560e0800000000000000
+      internalID: -2277332657928995938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_48
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 208
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32cc60593a691530800000000000000
+      internalID: 3826206152822932031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_54
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 200
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e317b3b19d935a20800000000000000
+      internalID: 3049954621770896361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_55
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 200
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36a2c6ec7da00ca50800000000000000
+      internalID: 6539238580939401827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_56
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 200
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de912cc1fc2b7df20800000000000000
+      internalID: 3447420642385861101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_57
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 200
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0f8c8af603333410800000000000000
+      internalID: 1455563209637138189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_58
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 200
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811d9e557476bb5d0800000000000000
+      internalID: -3045727166904282856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_59
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 200
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52dd3447edbe61460800000000000000
+      internalID: 7212211193946299685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_60
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 200
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d224b2f9909c2d0e0800000000000000
+      internalID: -2246512220942155219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_63
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eceb30a37284a0d0800000000000000
+      internalID: -3412459184518861600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_64
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a832e6191e3491e90800000000000000
+      internalID: -7054532705212554358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_75
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 160
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3b4c37c7be0caf0800000000000000
+      internalID: -378043448948378689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_76
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 152
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff1ae6d34f021a00800000000000000
+      internalID: 725659274002964466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_77
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 152
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faaa0b4f60cbc3e90800000000000000
+      internalID: -7044548979053253969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_78
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 152
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23adf6d69c8cc1350800000000000000
+      internalID: 5988882371945945650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_79
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 152
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70ca0eda7f2a77cf0800000000000000
+      internalID: -254555669265339385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_88
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 120
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be0b336898df1620800000000000000
+      internalID: 2747152446730735287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_89
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 120
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: addb52b3ae2bb9ae0800000000000000
+      internalID: -1541441728359842342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_90
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 120
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c56d9e6a1802c920800000000000000
+      internalID: 3008976410654893508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_91
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 120
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a896c61285bde690800000000000000
+      internalID: -7571195828207445847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_94
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d9688230293ec00800000000000000
+      internalID: 928746490430922090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_97
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c756406511db5f0800000000000000
+      internalID: -739415702680273868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_98
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed1d62e0dc3530760800000000000000
+      internalID: 7422868751007535582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_99
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 96
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59033f065a31d9770800000000000000
+      internalID: 8619066862874079381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_104
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 72
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 284ced8735e22d3d0800000000000000
+      internalID: -3183431050552490878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_105
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb291d58ba59c9070800000000000000
+      internalID: 8114525192531841724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_106
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8f03280ced321e0800000000000000
+      internalID: -2223688872591558406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_107
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 72
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d450acf09628a5200800000000000000
+      internalID: 169591323727889741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_111
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 24
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b60495914e507180800000000000000
+      internalID: -9119685609649862984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_115
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e8c01c9bf71c0ef0800000000000000
+      internalID: -140711118932752153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_117
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d51cc923dced2dc20800000000000000
+      internalID: 3229888855676862813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_118
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 601e38d7825ee51b0800000000000000
+      internalID: -5665839319118257914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_120
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5359054caaa8cbe0800000000000000
+      internalID: -1456726822585019556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_121
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c96ae49a4fd58590800000000000000
+      internalID: -7672480878736807479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIWoodenPlankBuildingIndoorTileset_122
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d823f144e02497f30800000000000000
+      internalID: 4573759525611319949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e31795cc9aa650745884a5893b1e1a01
     internalID: 0
     vertices: []
     indices: 

@@ -11,30 +11,39 @@ namespace ZetaGames.RPG {
         private List<Transition> currentTransitions = new List<Transition>();
         private List<Transition> anyTransitions = new List<Transition>();
         private static List<Transition> emptyTransitions = new List<Transition>(0);
+        private List<Transition> viableTransitions = new List<Transition>();
+        private Transition highestPriorityTransition;
         private bool thinking;
         private bool conditionsMet;
         public bool debugLog;
         private WaitForSeconds thinkPauseTime = new WaitForSeconds(0.5f);
 
         public void Tick() {
-            if (currentState.IsInterruptable) {
-                var transition = GetTransition();
-
-                if (transition != null && !thinking) {
-                    thinking = true;
-                    monoBehaviour.StartCoroutine(ThinkPause(transition));
-                }
-            } else if (currentState.IsFinished) {
-                var transition = GetTransition();
-
-                if (transition != null && !thinking) {
-                    thinking = true;
-                    monoBehaviour.StartCoroutine(ThinkPause(transition));
-                }
-            }
-
             if (!thinking) {
-                currentState?.Tick();
+                if (currentState.isInterruptable) {
+                    Transition transition = GetTransition();
+
+                    if (transition != null) {
+                        if (transition.to.priority > currentState.priority) {
+                            thinking = true;
+                            monoBehaviour.StartCoroutine(ThinkPause(transition));
+                        } else if (currentState.isFinished) {
+                            thinking = true;
+                            monoBehaviour.StartCoroutine(ThinkPause(transition));
+                        }
+                    }
+                } else if (currentState.isFinished) {
+                    Transition transition = GetTransition();
+
+                    if (transition != null) {
+                        thinking = true;
+                        monoBehaviour.StartCoroutine(ThinkPause(transition));
+                    }
+                }
+
+                if (!thinking) {
+                    currentState?.Tick();
+                }
             }
         }
 
@@ -82,21 +91,37 @@ namespace ZetaGames.RPG {
         }
 
         private class Transition {
-            //TODO: should each transition have a priority?
             public List<Func<bool>> conditions { get; }
             public State to { get; }
-            public int priority { get; }
 
             public Transition(State to, List<Func<bool>> conditions) {
                 this.to = to;
-                this.priority = 1; //not implemented
                 this.conditions = conditions;
             }
         }
 
         private Transition GetTransition() {
-            //TODO: Sort possible transition based on action priority, if multiple transitions are true
+            // Start with fresh transition list
+            viableTransitions.Clear();
+            highestPriorityTransition = null;
 
+            // Check specific transitions (higher priority with same priority number)
+            foreach (Transition transition in currentTransitions) {
+                conditionsMet = true; //start by assuming all true
+
+                foreach (Func<bool> condition in transition.conditions) {
+                    if (!condition()) {
+                        conditionsMet = false;
+                        break; // break on first false condition
+                    }
+                }
+
+                if (conditionsMet) {
+                    viableTransitions.Add(transition);
+                }
+            }
+
+            // Check transitions to non-specific transition
             foreach (Transition transition in anyTransitions) {
                 if (!transition.to.Equals(currentState)) {
                     conditionsMet = true; //start by assuming all true
@@ -109,27 +134,23 @@ namespace ZetaGames.RPG {
                     }
 
                     if (conditionsMet) {
-                        return transition;
+                        viableTransitions.Add(transition);
                     }
                 }
             }
 
-            foreach (Transition transition in currentTransitions) {
-                conditionsMet = true; //start by assuming all true
-
-                foreach (Func<bool> condition in transition.conditions) {
-                    if (!condition()) {
-                        conditionsMet = false;
-                        break; // break on first false condition
-                    }
+            foreach (Transition transition in viableTransitions) {
+                if (highestPriorityTransition == null) {
+                    highestPriorityTransition = transition;
+                    continue;
                 }
 
-                if (conditionsMet) {
-                    return transition;
+                if (transition.to.priority > highestPriorityTransition.to.priority) {
+                    highestPriorityTransition = transition;
                 }
             }
 
-            return null;
+            return highestPriorityTransition;
         }
 
         public void MonoParser(MonoBehaviour monoBehaviour) {

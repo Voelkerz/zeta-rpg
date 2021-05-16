@@ -1,12 +1,219 @@
 fileFormatVersion: 2
 guid: 85d50b5a552c30b40bb7e1aea850b54b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2775048718864058565
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_6
+  - first:
+      213: -6907917566879397713
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_7
+  - first:
+      213: 6819582889653715356
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_8
+  - first:
+      213: 4875217890369892992
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_9
+  - first:
+      213: -3389990807884328124
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_10
+  - first:
+      213: 9060754384969823232
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_11
+  - first:
+      213: -557820939967376722
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_12
+  - first:
+      213: -824255359151219509
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_13
+  - first:
+      213: 2020684304724358784
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_14
+  - first:
+      213: 5661084343084194165
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_23
+  - first:
+      213: -7771956793070222794
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_24
+  - first:
+      213: -8323362246613536128
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_25
+  - first:
+      213: 6817084628704884266
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_26
+  - first:
+      213: -1957503788715607319
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_27
+  - first:
+      213: -478952170190063535
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_28
+  - first:
+      213: 7403096606835597220
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_29
+  - first:
+      213: -4177249806931998466
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_30
+  - first:
+      213: -6829288368037761729
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_31
+  - first:
+      213: -3944911507733455167
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_34
+  - first:
+      213: -4804959052552197578
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_43
+  - first:
+      213: -2754449813012798690
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_44
+  - first:
+      213: -3610070441056238117
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_45
+  - first:
+      213: -992529893149756681
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_46
+  - first:
+      213: 6978259589032097203
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_47
+  - first:
+      213: -6827942876079587820
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_48
+  - first:
+      213: 1914015741907587995
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_49
+  - first:
+      213: -4092847600365983156
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_50
+  - first:
+      213: -2465394096438725934
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_56
+  - first:
+      213: -2067937034369974942
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_57
+  - first:
+      213: -2884459352667452222
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_58
+  - first:
+      213: -1256024145954396786
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_59
+  - first:
+      213: 7776399507349019866
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_60
+  - first:
+      213: -8168313557758963230
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_61
+  - first:
+      213: 5925637486658168281
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_62
+  - first:
+      213: -5708553750961354340
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_64
+  - first:
+      213: -236688087467140033
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_66
+  - first:
+      213: 2183077679855944769
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_67
+  - first:
+      213: 3916864206034761721
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_72
+  - first:
+      213: 5398573898605441457
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_92
+  - first:
+      213: -4262945274977155751
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_95
+  - first:
+      213: 2002445738959301699
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_98
+  - first:
+      213: 1516681518107468906
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_99
+  - first:
+      213: 4318642462415949655
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_100
+  - first:
+      213: -6451005530161352396
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_101
+  - first:
+      213: -1878480755378508491
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_102
+  - first:
+      213: -7902348161947486700
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_103
+  - first:
+      213: -2534611295779078017
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_115
+  - first:
+      213: -8724047822044150700
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_123
+  - first:
+      213: 5009658501332354729
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_124
+  - first:
+      213: -4049730240880067329
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_125
+  - first:
+      213: 3006075634917950867
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_126
+  - first:
+      213: 766894988985270664
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_127
+  - first:
+      213: 4446030531823121386
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_128
+  - first:
+      213: 552911525906691973
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_129
+  - first:
+      213: 7754099129245804436
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_133
+  - first:
+      213: -5643294424195707428
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_142
+  - first:
+      213: -15239394986752139
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_145
+  - first:
+      213: 2060752988399558095
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_159
+  - first:
+      213: -7710483074295936031
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_162
+  - first:
+      213: 4257800488520910708
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_165
+  - first:
+      213: -5455002801883227314
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_166
+  - first:
+      213: 7395932446056137276
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_167
+  - first:
+      213: -4349601255177845637
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_168
+  - first:
+      213: 7341122211758089519
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_169
+  - first:
+      213: 7546963713563676320
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_187
+  - first:
+      213: -482551836886007197
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_190
+  - first:
+      213: 154975221051655302
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_193
+  - first:
+      213: 6601700394163291219
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_194
+  - first:
+      213: -2035040503899858596
+    second: Minifantasy_TownsIIStuccoBuildingIndoorTileset_197
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -32,27 +239,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: -1
-    wrapV: -1
+    wrapU: 1
+    wrapV: 1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -68,7 +275,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,11 +296,1460 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3774bd94eb0d79d0800000000000000
+      internalID: -2775048718864058565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_7
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa8097892952220a0800000000000000
+      internalID: -6907917566879397713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c914426a18604ae50800000000000000
+      internalID: 6819582889653715356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_9
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082702e57d048a340800000000000000
+      internalID: 4875217890369892992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_10
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4431738325554f0d0800000000000000
+      internalID: -3389990807884328124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_11
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00470317b144ebd70800000000000000
+      internalID: 9060754384969823232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea258f08fc83248f0800000000000000
+      internalID: -557820939967376722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_13
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc54913e18af84f0800000000000000
+      internalID: -824255359151219509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 200
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0867d4a4ba9ea0c10800000000000000
+      internalID: 2020684304724358784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_23
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5791f016736309e40800000000000000
+      internalID: 5661084343084194165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_24
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6328d5b6976742490800000000000000
+      internalID: -7771956793070222794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_25
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082f3b1c22a7d7c80800000000000000
+      internalID: -8323362246613536128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_26
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 184
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26fab1f9562b9e50800000000000000
+      internalID: 6817084628704884266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eaff1becac85d4e0800000000000000
+      internalID: -1957503788715607319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_28
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1583b6fe98b6a59f0800000000000000
+      internalID: -478952170190063535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_29
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afd55004251db660800000000000000
+      internalID: 7403096606835597220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_30
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef8cfbfbe6d6706c0800000000000000
+      internalID: -4177249806931998466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_31
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 184
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3de662996e7931a0800000000000000
+      internalID: -6829288368037761729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_34
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 176
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ce523f72ebd049c0800000000000000
+      internalID: -3944911507733455167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_43
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 168
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63a2450133b515db0800000000000000
+      internalID: -4804959052552197578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_44
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 168
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e132bbf1d7a36c9d0800000000000000
+      internalID: -2754449813012798690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_45
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 168
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd584b29f0476edc0800000000000000
+      internalID: -3610070441056238117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_46
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 168
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f23ad12253d932f0800000000000000
+      internalID: -992529893149756681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_47
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 168
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b5b8b2bf12c7d060800000000000000
+      internalID: 6978259589032097203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_48
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41efd9451264e31a0800000000000000
+      internalID: -6827942876079587820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_49
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 8
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9358e62d23ff8a10800000000000000
+      internalID: 1914015741907587995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_50
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4a2064dac84337c0800000000000000
+      internalID: -4092847600365983156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_56
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2bc6aa12929cdd0800000000000000
+      internalID: -2465394096438725934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_57
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 152
+        width: 8
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26db08049363d43e0800000000000000
+      internalID: -2067937034369974942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 152
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cc0433508758f7d0800000000000000
+      internalID: -2884459352667452222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_59
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 152
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e852317a1b4b19ee0800000000000000
+      internalID: -1256024145954396786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_60
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 152
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adc9f0b96225beb60800000000000000
+      internalID: 7776399507349019866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_61
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 152
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e115c7c81254ae80800000000000000
+      internalID: -8168313557758963230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_62
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 152
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d5aff316e71c3250800000000000000
+      internalID: 5925637486658168281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_64
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9989b4db9427c0b0800000000000000
+      internalID: -5708553750961354340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_66
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c54ff307d17bcf0800000000000000
+      internalID: -236688087467140033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_67
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 144c5e85599db4e10800000000000000
+      internalID: 2183077679855944769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_72
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 112
+        width: 32
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7f4223e3f7b5630800000000000000
+      internalID: 3916864206034761721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_92
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 112
+        width: 32
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b1b210ab569bea40800000000000000
+      internalID: 5398573898605441457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_95
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 104
+        width: 24
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9558e04cbd9f6d4c0800000000000000
+      internalID: -4262945274977155751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_98
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 104
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34ce9a84acd1acb10800000000000000
+      internalID: 2002445738959301699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_99
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 104
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6422341ec55c0510800000000000000
+      internalID: 1516681518107468906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_100
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 104
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f883c3076eeeb30800000000000000
+      internalID: 4318642462415949655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_101
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 104
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431f6a236ac6976a0800000000000000
+      internalID: -6451005530161352396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_102
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 104
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53da142a4bb4ee5e0800000000000000
+      internalID: -1878480755378508491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_103
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 104
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 416b8a31738355290800000000000000
+      internalID: -7902348161947486700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_115
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 80
+        width: 32
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f704567947043dcd0800000000000000
+      internalID: -2534611295779078017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_123
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 454c9835ab4fde680800000000000000
+      internalID: -8724047822044150700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_124
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a64ee95dd1e58540800000000000000
+      internalID: 5009658501332354729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_125
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffcbf246dc77cc7c0800000000000000
+      internalID: -4049730240880067329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_126
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 395cd33fcd9b7b920800000000000000
+      internalID: 3006075634917950867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_127
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8818e76edee84aa00800000000000000
+      internalID: 766894988985270664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_128
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3bbdd663973bd30800000000000000
+      internalID: 4446030531823121386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_129
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58733e57a165ca700800000000000000
+      internalID: 552911525906691973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_133
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 80
+        width: 32
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 497acd733181c9b60800000000000000
+      internalID: 7754099129245804436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_142
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 56
+        width: 24
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd4fd2ee9dfea1b0800000000000000
+      internalID: -5643294424195707428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_145
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 56
+        width: 24
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 577093bd9dbd9cff0800000000000000
+      internalID: -15239394986752139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_159
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 40
+        width: 24
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd5163bce3499c10800000000000000
+      internalID: 2060752988399558095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_162
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 40
+        width: 24
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ebcdedee7cdef490800000000000000
+      internalID: -7710483074295936031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_165
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47706ca4cfeb61b30800000000000000
+      internalID: 4257800488520910708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_166
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b5df08adfeb44b0800000000000000
+      internalID: -5455002801883227314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_167
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3246f5df51a3a660800000000000000
+      internalID: 7395932446056137276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_168
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b74088e14bc13a3c0800000000000000
+      internalID: -4349601255177845637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_169
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f252294b1c7e0e560800000000000000
+      internalID: 7341122211758089519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_187
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 24
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aec9bf03833cb860800000000000000
+      internalID: 7546963713563676320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_190
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 16
+        width: 24
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36282b839a1ad49f0800000000000000
+      internalID: -482551836886007197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_193
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68485c77425962200800000000000000
+      internalID: 154975221051655302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_194
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 8
+        width: 24
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 354c8abf783fd9b50800000000000000
+      internalID: 6601700394163291219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minifantasy_TownsIIStuccoBuildingIndoorTileset_197
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 8
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c59548d917512c3e0800000000000000
+      internalID: -2035040503899858596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

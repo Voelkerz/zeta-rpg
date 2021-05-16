@@ -7,7 +7,7 @@ namespace ZetaGames.RPG {
     }
 
     public class Personality {
-        public float wanderMaxCooldown;
+        public float wanderMinCooldown;
         public float wanderRadius;
         public float wanderCycle;
         public float resourceMaxSearchTime;
@@ -18,7 +18,7 @@ namespace ZetaGames.RPG {
         public Personality(PersonalityType type) {
             switch (type) {
                 case PersonalityType.Default:
-                    wanderMaxCooldown = 180f; // 2 minute wander cooldown
+                    wanderMinCooldown = 10f; // wander cooldown timer
                     wanderRadius = 10f; // 10 unit walking range around position
                     wanderCycle = 10f; // 10 second delay before choosing another wander position
                     resourceMaxSearchTime = 1f; // 5 seconds of resource search uninterruptable
