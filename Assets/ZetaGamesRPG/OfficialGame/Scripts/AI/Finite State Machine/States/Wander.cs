@@ -12,7 +12,6 @@ namespace ZetaGames.RPG {
         public float wanderRadius;
         public float wanderCycle;
         private float tickTimer;
-        private int cycleCount;
         Vector3 destination;
 
         public Wander(AIBrain npcBrain) {
@@ -23,26 +22,34 @@ namespace ZetaGames.RPG {
 
         public override void Tick() {
             tickTimer += npcBrain.deltaTime;
-
+            
             if (tickTimer >= wanderCycle) {
-                if (npcBrain.debugLogs) {
-                    Debug.Log("Wander.Tick(): Just wandering, nothing better to do...");
-                }
+                tickTimer = 0;
 
                 if (npcBrain.pathMovement.isStopped && Vector3.Distance(npcBrain.transform.position, destination) <= 1f) {
-                    destination = new Vector3(npcBrain.transform.position.x + Random.Range(-wanderRadius, wanderRadius), npcBrain.transform.position.x + Random.Range(-wanderRadius, wanderRadius));
-                    npcBrain.pathMovement.destination = destination;
-                    npcBrain.pathMovement.SearchPath();
-                    tickTimer = 0;
-                    cycleCount++;
-                }
-            }
+                    destination = new Vector3(npcBrain.transform.position.x + Random.Range(-wanderRadius, wanderRadius), npcBrain.transform.position.y + Random.Range(-wanderRadius, wanderRadius));
+                   
+                    if ((int)destination.x < MapManager.Instance.mapWidth && (int)destination.y < MapManager.Instance.mapHeight && (int)destination.x >= 0 && (int)destination.y >= 0) {
+                        WorldTile destinationTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(destination);
+                        if (destinationTile.walkable) {
+                            npcBrain.pathMovement.destination = destination;
+                            npcBrain.pathMovement.SearchPath();
+
+                            if (npcBrain.debugLogs) {
+                                Debug.Log("Wander.Tick(): Just wandering, nothing better to do...");
+                            }
+                        } else {
+                            destination = npcBrain.transform.position;
+                        }
+                    } else {
+                        destination = npcBrain.transform.position;
+                    }
+                } 
+            } 
         }
 
         public override void OnEnter() {
-            //npcBrain.ResetAgent();
-            tickTimer = wanderCycle;
-            cycleCount = 0;
+            tickTimer = 0;
             destination = npcBrain.transform.position;
             npcBrain.wanderCooldown = 0;
         }

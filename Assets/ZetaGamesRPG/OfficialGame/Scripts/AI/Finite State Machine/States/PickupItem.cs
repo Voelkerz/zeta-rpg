@@ -44,23 +44,36 @@ namespace ZetaGames.RPG {
                             // Pickup item
                             int leftovers = npc.inventory.AddItem(item, itemAmount);
 
-                            // If there are leftovers, NPC needs to store items to make room
+                            npc.inventory.PrintInventory();
+
                             if (leftovers > 0) {
+                                // If there are leftovers, NPC needs to store items to make room
                                 npc.inventory.needToStoreItems = true;
-                            }
 
-                            // If leftovers does not equal the amount picked up, it means some were picked up
-                            if (leftovers != itemAmount) {
-                                // Subtract amount that was left behind
-                                itemAmount -= leftovers;
+                                // If leftovers does not equal the amount picked up, it means some were picked up
+                                if (leftovers != itemAmount) {
+                                    // Subtract amount that was left behind
+                                    itemAmount -= leftovers;
 
-                                // Subtract from build goal if one is planned and this is a needed resource
-                                if (npc.buildGoal.planned) {
-                                    if (typeof(ResourceItem).IsInstanceOfType(itemTarget.tileObject)) {
-                                        ResourceItem resourceItem = (ResourceItem)itemTarget.tileObject;
-                                        npc.buildGoal.AlterResourceAmount(resourceItem.resourceCategory, -itemAmount);
+
+
+                                    //TODO: Add code to put the leftover itemAmount back on the ground.
+
+
+
+                                    // Finished
+                                    finished = true;
+                                } else {
+                                    // Leftover equalled the amount picked up, which means nothing was picked up.
+                                    finished = true;
+
+                                    if (npc.debugLogs) {
+                                        Debug.Log("PickupItem.Tick(): Item(s) not picked up, inventory is full.");
                                     }
                                 }
+
+                            } else {
+                                // no leftovers. remove sprite and alter tile data
 
                                 // remove memory if there was one
                                 string memoryTag = item.name + ZetaUtilities.OCCUPIED_ITEMPICKUP;
@@ -96,13 +109,6 @@ namespace ZetaGames.RPG {
                                 // Finished
                                 finished = true;
                                 hasItemTarget = false;
-                            } else {
-                                // Leftover equalled the amount picked up, which means nothing was picked up.
-                                finished = true;
-
-                                if (npc.debugLogs) {
-                                    Debug.Log("PickupItem.Tick(): Item(s) not picked up, inventory is full.");
-                                }
                             }
                         } else {
                             Debug.LogWarning("Object is not an item that can be picked up");

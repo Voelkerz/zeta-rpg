@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: Grassland_Stone
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 627a42839bd4926429a8dabf692b1fa4, type: 2}
+  - {fileID: 11400000, guid: 55d21cdc97b54d24b808606144d28b37, type: 2}
+  - {fileID: 11400000, guid: 1acd3ec64d2124c4e862f6fc41322aaa, type: 2}
+  - {fileID: 11400000, guid: ea34fba82c3a4e641884c301978b6349, type: 2}
+  - {fileID: 11400000, guid: 6637de79d0fec834098dc2e56cfd9091, type: 2}
+  - {fileID: 11400000, guid: 558c32968c1b564448c9242c380ccc25, type: 2}
+  - {fileID: 11400000, guid: 4a016da688d3c384785e3a35c0deedcc, type: 2}
+  - {fileID: 11400000, guid: 53a6e77a9b4420f42b287d05f9f97c96, type: 2}
+  - {fileID: 11400000, guid: f3fef3091e780604b9084dc6dfd8906c, type: 2}
+  - {fileID: 11400000, guid: edf9249af1287704a805e7a39aa29722, type: 2}
+  - {fileID: 11400000, guid: 71c2345f0f136a641aa8cdb3b246604b, type: 2}
+  - {fileID: 11400000, guid: 6519e93f40f83e84e82ca3abd28fa0af, type: 2}
+  - {fileID: 11400000, guid: 814d7b6095e6634409b3e24bdec9403d, type: 2}
+  - {fileID: 11400000, guid: acf054dc0242fde41ba6e44059ead8d3, type: 2}
+  - {fileID: 11400000, guid: 9cf4b3cdc710c884ba8d98ef91ce78ee, type: 2}
+  - {fileID: 11400000, guid: c59f2490271f12e4f9acf71836f26c60, type: 2}
+  - {fileID: 11400000, guid: 8d17974d4676a2940b41fb9bc92028a8, type: 2}
+  - {fileID: 11400000, guid: 16937455c9891df448ffd672c70c1373, type: 2}
+  - {fileID: 11400000, guid: 668def7042c7ade49a941174032e65c2, type: 2}
+  - {fileID: 11400000, guid: 493ad271211afd549b72f16b7940c820, type: 2}
+  - {fileID: 11400000, guid: d12a69e72e694f048a99ca177b725799, type: 2}
+  - {fileID: 11400000, guid: d09082051f0805c4db4dfc2102f659b6, type: 2}
+  - {fileID: 11400000, guid: e1ba6c8e4aeadca44ad5864b78eda657, type: 2}
+  - {fileID: 11400000, guid: aee32910d3f5298478f5e23db0ba6450, type: 2}
+  - {fileID: 11400000, guid: e2cd10b902a209249a13ed38498ec33f, type: 2}
+  - {fileID: 11400000, guid: 1ff9557a319ea1e4289b0fd83de49d71, type: 2}
+  - {fileID: 11400000, guid: 3d79c97262e07d14ebdd4bd8cf97e71f, type: 2}
+  - {fileID: 11400000, guid: f0fc65e15557a9d4bb0bc0611908e25c, type: 2}
+  - {fileID: 11400000, guid: 7d0b43c06cc6f024d98825cc41da493d, type: 2}
+  - {fileID: 11400000, guid: 36d0e7f82f98fa949b84bc954713ac6e, type: 2}
+  - {fileID: 11400000, guid: 9c89cd1b0d0814042ae4872a58a306f7, type: 2}
+  - {fileID: 11400000, guid: 2dfc0db9140bcf148a2ca254994af105, type: 2}
+  - {fileID: 11400000, guid: 26c846ce35bab644fafa011621ca08e6, type: 2}
+  - {fileID: 11400000, guid: d88e1893fb992084f96fb0c850ebb004, type: 2}
+  - {fileID: 11400000, guid: 75515cf02c465cd4f818e0216915afbb, type: 2}
+  - {fileID: 11400000, guid: 3cf84d6b204445140a21ea60fffe8f37, type: 2}
+  - {fileID: 11400000, guid: 1c9f8928a346d1742a77b930a3a884dc, type: 2}
+  - {fileID: 11400000, guid: fcabacdb91d77204e8d0a65a20211a98, type: 2}
+  - {fileID: 11400000, guid: 9ebefd64518a49741999b609bcd23312, type: 2}
+  - {fileID: 11400000, guid: 461b968536a426e4e91f54f09d5533e9, type: 2}
+  - {fileID: 11400000, guid: e425f757f6fab1741b9955804bca70e9, type: 2}
+  - {fileID: 11400000, guid: eb6b1e1eafb018e49a2abaec909bd979, type: 2}
+  - {fileID: 11400000, guid: 386a03f7402041344875ce3fe2b2d0a7, type: 2}
+  - {fileID: 11400000, guid: 32e1aa5b0c2a15b4ebea68f003a8c7a5, type: 2}
+  - {fileID: 11400000, guid: 848acc724c4fa254aad13170cd99d2fc, type: 2}
+  - {fileID: 11400000, guid: be8a599c0dddc4e449d7fa7512452d31, type: 2}
+  - {fileID: 11400000, guid: deb764fd7256a2b408f9cc7659301c13, type: 2}
+  - {fileID: 11400000, guid: 109ca877ddf8804408adc1d589cb32d8, type: 2}
+  pathPenalty: 8000
+  speedPercent: 125
+  walkable: 1
+  type: Path
+  animated: 0

@@ -1,6 +1,3 @@
-using UnityEngine;
-using UnityEngine.AI;
-
 namespace ZetaGames {
     static class ZetaUtilities {
         // Object Pooling Constants
@@ -10,7 +7,8 @@ namespace ZetaGames {
         public static readonly string TAG_NONE = "None";
 
         // Memory Key Constants
-        public static readonly string MEMORY_HOME = "Home";
+        public static readonly string MEMORY_LOCATION_HOME = "Home";
+        public static readonly string MEMORY_LOCATION_SETTLEMENT = "Settlement";
         public static readonly string MEMORY_RESOURCE_DROP = "ResourceDrop";
         public static readonly string MEMORY_RESOURCE_NODE = "ResourceNode";
 
@@ -21,7 +19,9 @@ namespace ZetaGames {
         public static readonly string OCCUPIED_NODE_DEPLETED = "_Node_Depleted";
         public static readonly string OCCUPIED_NODE_ADJACENT = "_Node_Adjacent";
         public static readonly string OCCUPIED_ITEMPICKUP = "_ItemPickup";
-        public static readonly string OCCUPIED_BUILDING = "Building";
+        public static readonly string OCCUPIED_STRUCTURE = "Structure";
+        public static readonly string OCCUPIED_STRUCTURE_WALL = "Structure_Wall";
+        public static readonly string OCCUPIED_STRUCTURE_DOOR = "Structure_Door";
 
         // Terrain Constants
         public static readonly string TERRAIN_GRASS = "Grass";
@@ -29,7 +29,7 @@ namespace ZetaGames {
         public static readonly string TERRAIN_DIRT = "Dirt";
 
         // NPC Ownership Constants
-        public static readonly string OWNED_HOME = "Home";
+        public static readonly string OWNED_HOME = "House";
         public static readonly string OWNED_BUSINESS = "Business";
         public static readonly string OWNED_CONTAINER = "Container";
     }

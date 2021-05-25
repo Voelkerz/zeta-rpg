@@ -212,7 +212,7 @@ namespace ZetaGames.RPG {
                     }
 
                     activelySearching = true;
-                    closestTile.lockTag = npc.GetNpcLockTag();
+                    closestTile.lockTag = npc.lockTag;
                     npc.memory.AddMemory(lastKnownResourceNodeLocation, closestTile.GetWorldPosition());
                     npc.harvestResource.harvestTarget = closestTile;
                     npc.harvestResource.hasHarvestTarget = true;
@@ -244,7 +244,7 @@ namespace ZetaGames.RPG {
                                 Debug.Log("SearchForResourceDrop.Tick(): No resources found. Wandering until I find some.");
                             }
 
-                            Vector3 destination = new Vector3(npc.transform.position.x + Random.Range(-30f, 30f), npc.transform.position.x + Random.Range(-30f, 30f));
+                            Vector3 destination = new Vector3(npc.transform.position.x + Random.Range(-30f, 30f), npc.transform.position.y + Random.Range(-30f, 30f));
 
                             if (destination.x < mapWidth && destination.y < mapHeight && destination.x >= 0 && destination.y >= 0) {
                                 WorldTile destinationTile = mapGrid.GetGridObject((int)destination.x, (int)destination.y);

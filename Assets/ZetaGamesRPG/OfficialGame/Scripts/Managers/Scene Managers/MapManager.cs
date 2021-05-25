@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Tilemaps;
-using System;
 using Random = UnityEngine.Random;
 
 namespace ZetaGames.RPG {
@@ -31,7 +30,7 @@ namespace ZetaGames.RPG {
         public bool loadMapFromFile;
         public string fileName = "mapData";
         private string filePath;
-        private string grasslandSpriteAtlas = "Assets/ZetaGamesRPG/Official Game Files/SpriteAtlas/Grassland.spriteatlas";
+        private string masterSpriteAtlas = "Assets/ZetaGamesRPG/Official Game Files/SpriteAtlas/Master.spriteatlas";
         private string ruleTileAddress = "Assets/ZetaGamesRPG/Official Game Files/Tilemaps/Tile Rulesets/";
         private Vector3 tileOffset;
         private Vector3Int tilemapPos;
@@ -163,7 +162,7 @@ namespace ZetaGames.RPG {
         */
 
         public IEnumerator SetAtlasedSpriteAsync(WorldTile worldTile, int tilemapIndex, string spriteName) {
-            string atlasedSpriteAddress = grasslandSpriteAtlas + '[' + spriteName + ']';
+            string atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteName + ']';
             var asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
 
             if (worldTile.tileSprites.ContainsKey(tilemapIndex)) {
@@ -215,42 +214,42 @@ namespace ZetaGames.RPG {
             int curIndex = startIndex;
 
             // first animation frame
-            string atlasedSpriteAddress = grasslandSpriteAtlas + '[' + spriteNames[curIndex] + ']';
+            string atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteNames[curIndex] + ']';
             var asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
             yield return asyncOperationHandle;
             Tile frame1 = ScriptableObject.CreateInstance<Tile>();
             frame1.sprite = asyncOperationHandle.Result;
 
             // first animation frame shadow
-            atlasedSpriteAddress = grasslandSpriteAtlas + '[' + spriteNames[curIndex + 1] + ']';
+            atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteNames[curIndex + 1] + ']';
             asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
             yield return asyncOperationHandle;
             Tile frame1_shadow = ScriptableObject.CreateInstance<Tile>();
             frame1_shadow.sprite = asyncOperationHandle.Result;
 
             // second animation frame
-            atlasedSpriteAddress = grasslandSpriteAtlas + '[' + spriteNames[curIndex + 2] + ']';
+            atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteNames[curIndex + 2] + ']';
             asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
             yield return asyncOperationHandle;
             Tile frame2 = ScriptableObject.CreateInstance<Tile>();
             frame2.sprite = asyncOperationHandle.Result;
 
             // second animation frame shadow
-            atlasedSpriteAddress = grasslandSpriteAtlas + '[' + spriteNames[curIndex + 3] + ']';
+            atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteNames[curIndex + 3] + ']';
             asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
             yield return asyncOperationHandle;
             Tile frame2_shadow = ScriptableObject.CreateInstance<Tile>();
             frame2_shadow.sprite = asyncOperationHandle.Result;
 
             // third animation frame
-            atlasedSpriteAddress = grasslandSpriteAtlas + '[' + spriteNames[curIndex + 4] + ']';
+            atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteNames[curIndex + 4] + ']';
             asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
             yield return asyncOperationHandle;
             Tile frame3 = ScriptableObject.CreateInstance<Tile>();
             frame3.sprite = asyncOperationHandle.Result;
 
             // third animation frame shadow
-            atlasedSpriteAddress = grasslandSpriteAtlas + '[' + spriteNames[curIndex + 5] + ']';
+            atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteNames[curIndex + 5] + ']';
             asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
             yield return asyncOperationHandle;
             Tile frame3_shadow = ScriptableObject.CreateInstance<Tile>();
@@ -291,7 +290,7 @@ namespace ZetaGames.RPG {
 
                         WorldTile worldTile = worldTileGrid.GetGridObject(mapTilePos);
 
-                        node.Penalty = (uint)(1000 * worldTile.pathingPenalty);
+                        node.Penalty = worldTile.pathPenalty;
 
                         if (!worldTile.walkable) {
                             node.Walkable = false;
@@ -331,7 +330,7 @@ namespace ZetaGames.RPG {
                                     if (tile != null) {
                                         if (globalTileDataDictionary.TryGetValue(tile, out GlobalTileData globalTileData)) {
                                             // set the global data per tile
-                                            worldTile.pathingPenalty = globalTileData.pathPenalty;
+                                            worldTile.pathPenalty = globalTileData.pathPenalty;
                                             worldTile.walkable = globalTileData.walkable;
                                             worldTile.terrainType = globalTileData.type;
                                             worldTile.speedPercent = globalTileData.speedPercent;
@@ -623,13 +622,18 @@ namespace ZetaGames.RPG {
                                                 foreach (Vector3Int modPos in treeData.adjacentGridOccupation) {
                                                     if (worldTileGrid.IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
                                                         WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
-                                                        otherTile.occupied = true;
-                                                        otherTile.walkable = false;
-                                                        otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
-                                                        otherTile.occupiedCategory = ResourceCategory.Wood;
+                                                        if (otherTile.walkable) {
+                                                            otherTile.occupied = true;
+                                                            otherTile.walkable = false;
+                                                            otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
+                                                            otherTile.occupiedCategory = ResourceCategory.Wood;
 
-                                                        // Specific to oak tree. Will change later
-                                                        otherTile.occupiedType = ResourceType.Oak;
+                                                            // Specific to oak tree. Will change later
+                                                            otherTile.occupiedType = ResourceType.Oak;
+                                                        } else {
+                                                            isValidPosition = false;
+                                                            break;
+                                                        }
                                                     } else {
                                                         isValidPosition = false;
                                                         break;
@@ -695,13 +699,18 @@ namespace ZetaGames.RPG {
                                                         foreach (Vector3Int modPos in tree.adjacentGridOccupation) {
                                                             if (GetWorldTileGrid().IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
                                                                 WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
-                                                                otherTile.occupied = true;
-                                                                otherTile.walkable = false;
-                                                                otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
-                                                                otherTile.occupiedCategory = ResourceCategory.Wood;
+                                                                if (otherTile.walkable) {
+                                                                    otherTile.occupied = true;
+                                                                    otherTile.walkable = false;
+                                                                    otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
+                                                                    otherTile.occupiedCategory = ResourceCategory.Wood;
 
-                                                                // Specific to oak tree. Will change later
-                                                                otherTile.occupiedType = ResourceType.Oak;
+                                                                    // Specific to oak tree. Will change later
+                                                                    otherTile.occupiedType = ResourceType.Oak;
+                                                                } else {
+                                                                    isValidPosition = false;
+                                                                    break;
+                                                                }
                                                             } else {
                                                                 isValidPosition = false;
                                                                 break;
@@ -888,7 +897,7 @@ namespace ZetaGames.RPG {
                                 if (worldTileGrid.IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
                                     WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
 
-                                    if (otherTile.occupied) {
+                                    if (otherTile.occupied || !otherTile.walkable) {
                                         placed = false;
                                         break;
                                     }
@@ -991,7 +1000,7 @@ namespace ZetaGames.RPG {
                                         if (worldTileGrid.IsWithinGridBounds(mapX + modPos.x, mapY + modPos.y)) {
                                             WorldTile otherTile = worldTileGrid.GetGridObject(mapX + modPos.x, mapY + modPos.y);
 
-                                            if (otherTile.occupied) {
+                                            if (otherTile.occupied || !otherTile.walkable) {
                                                 placed = false;
                                                 break;
                                             }
@@ -1000,7 +1009,6 @@ namespace ZetaGames.RPG {
                                             otherTile.walkable = false;
                                             otherTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_ADJACENT;
                                             otherTile.occupiedCategory = ResourceCategory.Stone;
-                                            //otherTile.occupiedType = stoneNodeList[randomIndex].resourceType;
                                             otherTile.occupiedType = ResourceType.Rock;
                                         } else {
                                             placed = false;
@@ -1011,7 +1019,6 @@ namespace ZetaGames.RPG {
                                     if (placed) {
                                         currentTile.occupied = true;
                                         currentTile.occupiedCategory = ResourceCategory.Stone;
-                                        //currentTile.occupiedType = stoneNodeList[randomIndex].resourceType;
                                         currentTile.occupiedType = ResourceType.Rock;
                                         currentTile.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_FULL;
                                         currentTile.tileObject = stoneNodeList[randomIndex];

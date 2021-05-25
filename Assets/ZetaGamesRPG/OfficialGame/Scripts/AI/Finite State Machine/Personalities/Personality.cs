@@ -14,6 +14,7 @@ namespace ZetaGames.RPG {
         public float resourceMaxSearchRange;
         public float resourceMaxWanderRange;
         public int maxDistanceFromPosition;
+        public float startCommunityChance;
 
         public Personality(PersonalityType type) {
             switch (type) {
@@ -24,7 +25,8 @@ namespace ZetaGames.RPG {
                     resourceMaxSearchTime = 1f; // 5 seconds of resource search uninterruptable
                     resourceMaxSearchRange = 10f; // 10 unit range around current position to look for resources
                     resourceMaxWanderRange = 25f; // range for walking and searching for a resource
-                    maxDistanceFromPosition = 200; // a max distance to consider to keep from doing actions too far away (in grid tiles)
+                    maxDistanceFromPosition = 100; // a max distance to consider to keep from doing actions too far away (in grid tiles)
+                    startCommunityChance = 20f;
                     break;
                 default:
                     break;

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: Grassland_Water
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 067db644a849f544cbf547d0585bba79, type: 2}
+  - {fileID: 11400000, guid: 7a03045fed818bd4c8070dc5b7cff932, type: 2}
+  - {fileID: 11400000, guid: 7af06b95f54621b4a96bdb573199c431, type: 2}
+  - {fileID: 11400000, guid: df667d1a1273e714d9df1ae4ce108062, type: 2}
+  - {fileID: 11400000, guid: 41b4640c2da14c945ba5ad4f11947b73, type: 2}
+  - {fileID: 11400000, guid: 989eae91642c4244c8d70a9a20f8ec55, type: 2}
+  - {fileID: 11400000, guid: 05d6e67c89e4bd2479dfe702bc7cd914, type: 2}
+  - {fileID: 11400000, guid: 99adf74c56b8c3c41aff3bbdf61141ce, type: 2}
+  - {fileID: 11400000, guid: 159d2a5aa0d1c2f419b161ae91c3fece, type: 2}
+  - {fileID: 11400000, guid: 37e4c57a521bee74eb58f83139c6a46d, type: 2}
+  - {fileID: 11400000, guid: 105c895b0fb0c0f42b24c77c01565492, type: 2}
+  - {fileID: 11400000, guid: e5deb1871a88d5342bca99f2bc26bdea, type: 2}
+  - {fileID: 11400000, guid: 803c6fff5273eab408db4708346e4f85, type: 2}
+  - {fileID: 11400000, guid: 76a0eba27c275b4458a68bf3e34b519e, type: 2}
+  - {fileID: 11400000, guid: 490189f52a6d6324588cd7d706f459e1, type: 2}
+  pathPenalty: 0
+  speedPercent: 50
+  walkable: 0
+  type: Water
+  animated: 1

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: Grassland_Mountain
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 96825b054cb4d004e8e004652b313f49, type: 2}
+  - {fileID: 11400000, guid: fc579b9c30b7ebc4a9284cb73f79cce8, type: 2}
+  - {fileID: 11400000, guid: b23d9b2c4a56cd0419865f09319ff908, type: 2}
+  - {fileID: 11400000, guid: 1ec0176fabee1be46b735b46cb9e3c3e, type: 2}
+  - {fileID: 11400000, guid: d1a1180c587e17b458707d573229d187, type: 2}
+  - {fileID: 11400000, guid: c3eb0e57800e28b48a02e3f2cd8927e0, type: 2}
+  - {fileID: 11400000, guid: d0133a660789dc4448ff5cb315937204, type: 2}
+  - {fileID: 11400000, guid: 963f50b47f743334b87cf4538c1d3a65, type: 2}
+  - {fileID: 11400000, guid: eedecd1a125b09146a502f7459a6a55c, type: 2}
+  - {fileID: 11400000, guid: 23cdc4bdd46cd5345a3f6b91c156c73f, type: 2}
+  - {fileID: 11400000, guid: e67b8c3be18b26941b8488e965de7eff, type: 2}
+  - {fileID: 11400000, guid: 0f432897639a7134bbe52d3459188f52, type: 2}
+  - {fileID: 11400000, guid: f894ecfbcc8358c4fbe2178efd80e234, type: 2}
+  - {fileID: 11400000, guid: fd814da8ff2f4b646b24e8d436ebf4c0, type: 2}
+  - {fileID: 11400000, guid: 98ca666dde1737d47b9fc2b0b714e89e, type: 2}
+  - {fileID: 11400000, guid: 6f51e54b770fd114ea66ccc868680796, type: 2}
+  - {fileID: 11400000, guid: 9e3520e198e15e14da00390834952779, type: 2}
+  - {fileID: 11400000, guid: eac9ea4e3a8214d42b941c9f177791f9, type: 2}
+  - {fileID: 11400000, guid: ae7d80afe0fa6b240b95c7343931a74b, type: 2}
+  - {fileID: 11400000, guid: 3e4317eaab631cc479ccb259b3604087, type: 2}
+  - {fileID: 11400000, guid: f2b4184f68d35e14f936bc3566b405c5, type: 2}
+  - {fileID: 11400000, guid: 1d55fa18056c4b94589b2d405ddddbc6, type: 2}
+  - {fileID: 11400000, guid: abb2763977849d34dbf493e76ce4ef56, type: 2}
+  - {fileID: 11400000, guid: 4eae013f345c82d4e8ccc184c69f2501, type: 2}
+  - {fileID: 11400000, guid: 4f8ec7980d3784a4b9a26057ff656701, type: 2}
+  - {fileID: 11400000, guid: a33753996a0319e49ab3316fc0059ae6, type: 2}
+  - {fileID: 11400000, guid: a25d8779bde193f4085914b4141a7e8f, type: 2}
+  - {fileID: 11400000, guid: 651d82e51ab35ae48b17b49219740f9a, type: 2}
+  - {fileID: 11400000, guid: 247a264732d18af4baaa6c4cadffd2d4, type: 2}
+  - {fileID: 11400000, guid: 82dbdd0589869a8478ae9ed788d15b0c, type: 2}
+  - {fileID: 11400000, guid: 22b431622ed1afa48bf3767b176057db, type: 2}
+  - {fileID: 11400000, guid: 37bc05f633df3ff40ae4631a74202a14, type: 2}
+  - {fileID: 11400000, guid: 1b25998207fab4a4084f5aa4f79d9bdd, type: 2}
+  - {fileID: 11400000, guid: f3bcec6d63544ec4c9b487da5cb92300, type: 2}
+  - {fileID: 11400000, guid: 67b3c5d0fc10f9a458b20bedb7ee271d, type: 2}
+  - {fileID: 11400000, guid: 71af0d56841d4ad46a3a46a7cccbeccd, type: 2}
+  - {fileID: 11400000, guid: 004450a2879a65a4eaa85855b2542ed9, type: 2}
+  - {fileID: 11400000, guid: 0474fcf4874739849803aff7673f85fd, type: 2}
+  - {fileID: 11400000, guid: a272990bb6f704e4293a6b6be6eaf646, type: 2}
+  - {fileID: 11400000, guid: 35a2ed4168865f94680c6f4f3f39078e, type: 2}
+  - {fileID: 11400000, guid: 989645114df35a6488c71f47213a5236, type: 2}
+  - {fileID: 11400000, guid: 3fe6cb976ad470241b67dd8763ca56f7, type: 2}
+  - {fileID: 11400000, guid: 45d0975ca5ea3a24ebab3fc460cc3c13, type: 2}
+  - {fileID: 11400000, guid: 590f26929381a0f4e981e70f6a8b8007, type: 2}
+  - {fileID: 11400000, guid: 6574ba6418ade7c4faf20ba9c769df9c, type: 2}
+  - {fileID: 11400000, guid: cc9b4ddd8b6555f4d8e51c1a7b102793, type: 2}
+  - {fileID: 11400000, guid: f35e32f7a01412148a64a485e9ab1311, type: 2}
+  - {fileID: 11400000, guid: d46ef49df9d74104194bb0c896d77650, type: 2}
+  - {fileID: 11400000, guid: a3261a8191eedb848a5bbfe20cb8dcc5, type: 2}
+  - {fileID: 11400000, guid: 5978c3e76d489284482a48720508ec48, type: 2}
+  - {fileID: 11400000, guid: c4296213e75b9bf43873e6124f82b913, type: 2}
+  - {fileID: 11400000, guid: f80e79bfcd26898459dca40db4edf02f, type: 2}
+  pathPenalty: 0
+  speedPercent: 50
+  walkable: 0
+  type: Mountain
+  animated: 0

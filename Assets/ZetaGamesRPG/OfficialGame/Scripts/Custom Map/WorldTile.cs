@@ -17,7 +17,7 @@ namespace ZetaGames.RPG {
         public int lootAvailable;
         
         // Global Tile Data
-        public float pathingPenalty;
+        public uint pathPenalty;
         public bool walkable;
         public string terrainType;
         public float speedPercent;

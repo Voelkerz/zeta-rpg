@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: Grassland_Stairs
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: c64d015407b5635459a4d6d7225ab146, type: 2}
+  - {fileID: 11400000, guid: 5ca5597c8ab5cfa489f68d1f3c81cd1e, type: 2}
+  - {fileID: 11400000, guid: 7daa37214b29a2b46af2b30b8cee936f, type: 2}
+  - {fileID: 11400000, guid: 4456829d7bdbb7245ae30af673583322, type: 2}
+  - {fileID: 11400000, guid: d34d147eaab42d1479c44c85829d48d1, type: 2}
+  - {fileID: 11400000, guid: ffa01432851c68f44976333306bea956, type: 2}
+  - {fileID: 11400000, guid: a6ec59cb5900a8645b9d91b83d25c0c5, type: 2}
+  - {fileID: 11400000, guid: ad69c2a8da08d5f40a4282d1084f5ebd, type: 2}
+  - {fileID: 11400000, guid: a600b2363e9c12640ada8c9333291aac, type: 2}
+  pathPenalty: 0
+  speedPercent: 50
+  walkable: 1
+  type: Stair
+  animated: 0

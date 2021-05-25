@@ -9,7 +9,7 @@ namespace ZetaGames.RPG {
 
         public TileBase[] tiles;
 
-        public float pathPenalty;
+        public uint pathPenalty;
         public float speedPercent;
         public bool walkable;
         public string type;

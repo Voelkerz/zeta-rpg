@@ -20,7 +20,7 @@ namespace ZetaGames.RPG {
             }
             //npcBrain.resourceTileTarget = null;
             finished = false;
-            stockpilePos = (Vector3)npcBrain.memory.RetrieveMemory("home");
+            stockpilePos = npcBrain.transform.position + new Vector3(10, 10);
             npcBrain.pathMovement.destination = stockpilePos;
             npcBrain.pathMovement.SearchPath();
         }

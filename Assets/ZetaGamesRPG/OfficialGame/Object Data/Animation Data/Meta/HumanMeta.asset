@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd18fe76691e0354097721748e8a9864, type: 3}
+  m_Name: HumanMeta
+  m_EditorClassIdentifier: 
+  idleAnimationLength: 16
+  idleFramerate: 3
+  idleLoop: 1
+  walkAnimationLength: 4
+  walkFramerate: 5
+  walkLoop: 1
+  deathAnimationLength: 0
+  deathFramerate: 0
+  deathLoop: 0
+  damageAnimationLength: 0
+  damageFramerate: 0
+  damageLoop: 0
+  chargeAttackAnimationLength: 0
+  chargeAttackFramerate: 0
+  chargeAttackLoop: 0
+  attackAnimationLength: 0
+  attackFramerate: 0
+  attackLoop: 0
+  loggingAnimationLength: 6
+  loggingFramerate: 8
+  loggingLoop: 0
+  miningAnimationLength: 6
+  miningFramerate: 8
+  miningLoop: 0
+  harvestingAnimationLength: 0
+  harvestingFramerate: 0
+  harvestingLoop: 0
+  woodWorkAnimationLength: 0
+  woodWorkFramerate: 0
+  woodWorkLoop: 0
+  jewelryWorkAnimationLength: 0
+  jewelryWorkFramerate: 0
+  jewelryWorkLoop: 0
+  blacksmithWorkAnimationLength: 0
+  blacksmithWorkFramerate: 0
+  blacksmithWorkLoop: 0
+  alchemyWorkAnimationLength: 0
+  alchemyWorkFramerate: 0
+  alchemyWorkLoop: 0

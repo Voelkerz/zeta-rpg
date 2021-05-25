@@ -9,7 +9,8 @@ namespace ZetaGames.RPG {
         private static readonly int animMoveY = Animator.StringToHash("AnimMoveY");
         private static readonly int animLastMoveX = Animator.StringToHash("AnimLastMoveX");
         private static readonly int animLastMoveY = Animator.StringToHash("AnimLastMoveY");
-        private Animator animator;
+        //private Animator animator;
+        private AnimationController animationController;
         private float baseSpeed = 2;
         private WorldTile currentTile;
         private Vector3 direction, previousDirection;
@@ -17,7 +18,8 @@ namespace ZetaGames.RPG {
 
         protected override void Awake() {
             base.Awake();
-            animator = GetComponentInChildren<Animator>();
+            animationController = GetComponent<AnimationController>();
+            //animator = GetComponentInChildren<Animator>();
         }
 
         protected override void Start() {
@@ -28,6 +30,7 @@ namespace ZetaGames.RPG {
 
         public override void OnTargetReached() {
             isStopped = true;
+            animationController.PlayAnimation(AnimationType.Idle);
 
             /*
             if (!useSimplePathing) {
@@ -71,12 +74,15 @@ namespace ZetaGames.RPG {
 
             base.SearchPath();
             isStopped = false;
+            animationController.PlayAnimation(AnimationType.Walk);
         }
 
         protected override void Update() {
             base.Update();
 
             if (!useSimplePathing) {
+                animationController.isPlaying = true;
+
                 if (!isStopped && path != null && remainingDistance > 0.1) {
                     currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
 
@@ -87,15 +93,18 @@ namespace ZetaGames.RPG {
                     CalculateNextPosition(out direction, Time.deltaTime);
 
                     previousDirection = direction;
-
-                    animator.SetFloat(animMoveX, direction.normalized.x);
-                    animator.SetFloat(animMoveY, direction.normalized.y);
-                    animator.SetBool(animShouldMove, true);
+                    animationController.animMoveX = direction.normalized.x;
+                    animationController.animMoveY = direction.normalized.y;
+                    //animator.SetFloat(animMoveX, direction.normalized.x);
+                    //animator.SetFloat(animMoveY, direction.normalized.y);
+                    //animator.SetBool(animShouldMove, true);
                 } else if (!isStopped) {
-                    animator.SetFloat(animLastMoveX, previousDirection.normalized.x);
-                    animator.SetFloat(animLastMoveY, previousDirection.normalized.y);
-                    animator.SetBool(animShouldMove, false);
+                    //animator.SetFloat(animLastMoveX, previousDirection.normalized.x);
+                    //animator.SetFloat(animLastMoveY, previousDirection.normalized.y);
+                    //animator.SetBool(animShouldMove, false);
                 }
+            } else {
+                animationController.isPlaying = false;
             }
         }
 

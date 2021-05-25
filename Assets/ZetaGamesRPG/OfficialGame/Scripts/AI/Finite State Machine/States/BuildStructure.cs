@@ -8,84 +8,147 @@ namespace ZetaGames.RPG {
         public override int priority => 10;
         public override bool isFinished => finished;
         public override bool isInterruptable => true;
-        
+
         private bool finished;
         private readonly AIBrain npc;
         private BaseStructureData buildData;
+        private float buildTimer;
 
         public BuildStructure(AIBrain npc) {
             this.npc = npc;
         }
 
         public override void OnEnter() {
-            if (npc.debugLogs) {
-                Debug.Log("BuildStructure.OnEnter(): Beginning to build");
-            }
+            finished = false;
+            buildData = npc.buildGoal.structureData;
+            npc.pathMovement.destination = npc.buildGoal.buildSiteLocation + new Vector3(-1, -1);
+            npc.pathMovement.SearchPath();
 
-            if (npc.buildGoal.planned && npc.buildGoal.IsReadyToBuild()) {
-                finished = false;
-                buildData = npc.buildGoal.structureData;
-                npc.pathMovement.destination = npc.buildGoal.buildSiteLocation + new Vector3(-1, -1);
-                npc.pathMovement.SearchPath();
-            } else {
-                finished = true;
+            if (npc.debugLogs) {
+                Debug.Log("BuildStructure.OnEnter(): Entering build mode.");
             }
         }
 
         public override void OnExit() {
+            buildData = null;
+
             if (npc.debugLogs) {
-                Debug.Log("BuildStructure.OnExit(): Finished building!");
+                Debug.Log("BuildStructure.OnExit(): Exiting build mode.");
             }
         }
 
         public override void Tick() {
             if (!finished) {
-                if (npc.buildGoal.planned && npc.buildGoal.IsReadyToBuild()) {
-                    if (npc.pathMovement.isStopped && Vector3.Distance(npc.transform.position, npc.buildGoal.buildSiteLocation) <= 2.5f) {
-                        List<Vector3> buildingTileList = new List<Vector3>();
-                        buildingTileList.AddRange(buildData.blockedTiles);
-                        buildingTileList.AddRange(buildData.walkableTiles);
-                        buildingTileList.AddRange(buildData.wallBoundary);
-                        buildingTileList.Add(buildData.doorTile);
+                if (npc.pathMovement.isStopped && Vector3.Distance(npc.transform.position, npc.buildGoal.buildSiteLocation) <= 2.5f) {
+                    if (!npc.buildGoal.hasBuildSite) {
+                        // Place the build site
+                        PlaceBuildSite();
+                        npc.buildGoal.hasBuildSite = true;
+                    } else if (npc.buildGoal.HasRequiredMaterialsInInventory() && npc.buildGoal.hasBuildSite) {
+                        // Use build tool to progress the construction (better tools will mean faster construction)
+                        ConstructionAction();
 
-                        foreach (Vector3 tilePos in buildData.blockedTiles) {
-                            WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
-                            tile.occupied = true;
-                            tile.occupiedStatus = ZetaUtilities.OCCUPIED_BUILDING;
-                            tile.walkable = false;
+                        // Check to see if all materials have been supplied to build site
+                        if (npc.buildGoal.HasAllMaterials()) {
+                            InstantiateStructure();
+                            npc.buildGoal.FinishBuildGoal();
+                            finished = true;
                         }
-
-                        foreach (Vector3 tilePos in buildData.wallBoundary) {
-                            WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
-                            tile.occupied = true;
-                            tile.occupiedStatus = ZetaUtilities.OCCUPIED_BUILDING;
-                            tile.walkable = false;
-                        }
-
-                        foreach (Vector3 tilePos in buildData.walkableTiles) {
-                            WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
-                            tile.occupied = true;
-                            tile.occupiedStatus = ZetaUtilities.OCCUPIED_BUILDING;
-                            tile.walkable = true;
-                        }
-
-                        // Door
-                        WorldTile doorTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + buildData.doorTile);
-                        doorTile.occupied = true;
-                        doorTile.occupiedStatus = ZetaUtilities.OCCUPIED_BUILDING;
-                        doorTile.walkable = true;
-
-                        UpdateAstarGraph();
-
-                        npc.InstantiateObject(buildData.prefab, npc.buildGoal.buildSiteLocation);
-
-                        npc.buildGoal.FinishBuildGoal();
+                    } else {
                         finished = true;
                     }
                 } else {
-                    finished = true;
+                    if (npc.debugLogs) {
+                        Debug.Log("BuildStructure.Tick(): Moving towards build site.");
+                    }
                 }
             }
+        }
+
+        private void ConstructionAction() {
+            if (npc.useAdvAI) {
+                //TODO: Put in building npc animations here
+                // or anything you want to see on screen.
+            }
+
+            // Place construction materials in buildsite with tool
+            if (!ToolHit(1)) {
+                if (npc.debugLogs) {
+                    Debug.LogError("Failed to do construction action");
+                }
+            }
+        }
+
+        public bool ToolHit(int materials) {
+            ResourceCategory resource = ResourceCategory.None;
+
+            if (npc.inventory.GetAmountOfResource(buildData.material1) > 0) {
+                resource = buildData.material1;
+            } else if (npc.inventory.GetAmountOfResource(buildData.material2) > 0) {
+                resource = buildData.material2;
+            }
+
+            if (!resource.Equals(ResourceCategory.None)) {
+                // Remove from NPC held inventory
+                int leftovers = npc.inventory.RemoveResource(resource, materials);
+
+                // If there are leftovers, it means the tool tried to use more resources than what the NPC had.
+                // Change to hit with the amount of resources the NPC did have in its inventory.
+                if (leftovers > 0) {
+                    materials -= leftovers;
+                }
+
+                // Remove from tracked build goal resource list
+                npc.buildGoal.AlterResourceAmount(resource, -materials);
+
+                // Evaluate inventory fullness
+                npc.inventory.needToStoreItems = npc.inventory.IsInventoryFullOfResource(resource);
+                
+                Debug.Log("Moved " + materials + " material(s). BuildGoal at: " + npc.buildGoal.GetResourceAmount(resource) + " || Inventory at: " + npc.inventory.GetAmountOfResource(resource));
+                return true;
+            } else {
+                return false;
+            }
+            
+        }
+
+        private void InstantiateStructure() {
+            List<Vector3> buildingTileList = new List<Vector3>();
+            buildingTileList.AddRange(buildData.blockedTiles);
+            buildingTileList.AddRange(buildData.walkableTiles);
+            buildingTileList.AddRange(buildData.wallBoundary);
+            buildingTileList.Add(buildData.doorTile);
+
+            foreach (Vector3 tilePos in buildData.blockedTiles) {
+                WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
+                tile.occupied = true;
+                tile.occupiedStatus = ZetaUtilities.OCCUPIED_STRUCTURE;
+                tile.walkable = false;
+            }
+
+            foreach (Vector3 tilePos in buildData.wallBoundary) {
+                WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
+                tile.occupied = true;
+                tile.occupiedStatus = ZetaUtilities.OCCUPIED_STRUCTURE_WALL;
+                tile.walkable = false;
+            }
+
+            foreach (Vector3 tilePos in buildData.walkableTiles) {
+                WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
+                tile.occupied = true;
+                tile.occupiedStatus = ZetaUtilities.OCCUPIED_STRUCTURE;
+                tile.walkable = true;
+            }
+
+            // Door
+            WorldTile doorTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + buildData.doorTile);
+            doorTile.occupied = true;
+            doorTile.occupiedStatus = ZetaUtilities.OCCUPIED_STRUCTURE_DOOR;
+            doorTile.walkable = true;
+
+            UpdateAstarGraph();
+
+            npc.InstantiateObject(buildData.prefab, npc.buildGoal.buildSiteLocation);
         }
 
         private void UpdateAstarGraph() {
@@ -103,6 +166,19 @@ namespace ZetaGames.RPG {
 
                 gg.GetNodes(node => gg.CalculateConnections((GridNodeBase)node));
             }));
+        }
+
+        private void PlaceBuildSite() {
+            List<Vector3> buildingTileList = new List<Vector3>();
+            buildingTileList.AddRange(buildData.blockedTiles);
+            buildingTileList.AddRange(buildData.walkableTiles);
+            buildingTileList.AddRange(buildData.wallBoundary);
+            buildingTileList.Add(buildData.doorTile);
+
+            foreach (Vector3 tilePos in buildingTileList) {
+                WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
+                MapManager.Instance.tileMapList[1].SetTile(new Vector3Int(tile.x, tile.y, 0), null);
+            }
         }
     }
 }

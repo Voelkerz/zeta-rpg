@@ -8,17 +8,17 @@ namespace ZetaGames.RPG {
         protected StateMachineMultiCondition stateMachine;
         [HideInInspector] public Personality personality { get; set; }
         [HideInInspector] public AIMovement pathMovement { get; set; }
-        [HideInInspector] public Animator animator { get; set; }
-        //[HideInInspector] public WorldTile resourceTileTarget { get; set; }
+        [HideInInspector] public AnimationController animationController { get; set; }
+        [HideInInspector] public CharacterInfo info { get; set; }
         [HideInInspector] public NpcMemory memory { get; set; }
         [HideInInspector] public NpcInventory inventory { get; set; }
-        [HideInInspector] public BuildingManager buildingManager { get; set; }
         [HideInInspector] public NpcBuildGoal buildGoal { get; set; }
         [HideInInspector] public NpcStats stats { get; set; }
         [HideInInspector] public NpcNeeds needs { get; set; }
         [HideInInspector] public bool useAdvAI { get; set; }
         [HideInInspector] public float deltaTime { get; set; }
         [HideInInspector] public float wanderCooldown { get; set; }
+        [HideInInspector] public int lockTag { get => gameObject.GetInstanceID(); }
 
         // NPC States
         public BuildStructure buildStructure;
@@ -30,8 +30,8 @@ namespace ZetaGames.RPG {
 
         // Tools
         private WaitForSeconds[] waitTimers = new WaitForSeconds[3];
-        private int npcLockTag;
-
+        private float needsEvalTimer;
+        
         // EDITOR PROPERTIES
         public bool inCombat;
         public bool debugLogs;
@@ -39,8 +39,8 @@ namespace ZetaGames.RPG {
         private void Awake() {
             // Cache NPC components
             pathMovement = GetComponent<AIMovement>();
-            animator = GetComponentInChildren<Animator>();
-            buildingManager = FindObjectOfType<BuildingManager>();
+            animationController = GetComponent<AnimationController>();
+            info = GetComponent<CharacterInfo>();
 
             // Create state machine for NPC
             stateMachine = new StateMachineMultiCondition();
@@ -57,68 +57,64 @@ namespace ZetaGames.RPG {
             inventory = new NpcInventory();
             stats = new NpcStats();
 
-            // Set unique NPC lock tag
-            npcLockTag = gameObject.GetInstanceID();
-
             deltaTime = 0;
             useAdvAI = false;
             pathMovement.useSimplePathing = true;
 
             // Initialize commonly used wait timers
-            waitTimers[0] = new WaitForSeconds(1f);
-            waitTimers[1] = new WaitForSeconds(1f);
-            waitTimers[2] = new WaitForSeconds(1f);
+            waitTimers[0] = new WaitForSeconds(5f);
+            waitTimers[1] = new WaitForSeconds(5f);
+            waitTimers[2] = new WaitForSeconds(5f);
         }
 
         protected virtual void Update() {
+            deltaTime += Time.deltaTime;
+            needsEvalTimer += Time.deltaTime;
+
             if (deltaTime > 1f) {
                 stateMachine.Tick();
                 updateCooldownTimers();
-                evaluateNeeds();
-
                 deltaTime = 0;
+
+                if (needsEvalTimer > 5f) {
+                    evaluateNeeds();
+                }
             }
-
-            deltaTime += Time.deltaTime;
-        }
-
-        public virtual int GetNpcLockTag() {
-            return npcLockTag;
-        }
-
-        public virtual void ResetAgent() {
-
         }
 
         protected virtual void evaluateNeeds() {
-            // Shelter Need
-            if (needs.CalculateShelterScore() < 100) {
-                if (!buildGoal.planned) {
-                    buildGoal.CreateShelterBuildGoal();
-                }
-            }
+            int communityScore = needs.CalculateCommunityScore();
+            int shelterScore = needs.CalculateShelterScore();
 
             // Community Need
-            
-            
-            // Physiological Needs
-            // - Food (will start with food)
-            // - Energy (will start with full energy)
-            // - Clothing (will start with basic clothing)
-            // - Shelter = npcNeeds.EvaluateShelter();
-            // - Health (will start with full health)
+            if (communityScore > 0) {
+                // do stuff
+            }
 
-            // Safety Needs
-            // - Security
-            // - Employment
-            // - Health
-            // - Property
-            // - Finances
+            // Shelter Need
+            if (shelterScore == 101) {
+                // Special score. NPC needs a house.
+                if (!buildGoal.hasBuildGoal) {
+                    //TODO: More logic behind what house the NPC builds (not everyone will start poor)
+                    buildGoal.CreateBuildGoal(StructureCategory.Home, StructureType.Small_House, EconomicClass.Poor);
+                }
+            } else if (shelterScore >= 40) { //&& nighttime=true
+                if (!buildGoal.hasBuildGoal) {
+                    // Build a campsite because it's night and we're 200+ tiles away from home.
+                }
+            } else if (shelterScore >= 80) {
+                if (!buildGoal.hasBuildGoal) {
+                    // Build a campsite far from home. Won't make it back before nightfall.
+                }
+            }
+        }
 
-            // Social Needs
-            // - Family
-            // - Intimacy
-            // - Belonging to social group
+        public abstract void JoinCommunity();
+
+        public abstract void PickProfession();
+
+        public virtual void ResetAgent() {
+
         }
 
         protected virtual void updateCooldownTimers() {

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8822d00ef6d2a6e44b2c5957ade69e3f, type: 3}
+  m_Name: GrasslandWater5
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -738536153646838853, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
+  - {fileID: 1837596189240019564, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
+  m_MinSpeed: 0.5
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_TileColliderType: 0

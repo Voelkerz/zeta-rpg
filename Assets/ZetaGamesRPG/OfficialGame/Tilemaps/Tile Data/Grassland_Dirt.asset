@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: Grassland_Dirt
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: e30decea0ed2fb046a7c5fe1221c1f2a, type: 2}
+  - {fileID: 11400000, guid: cb759b754c1d3884298044b56c621a49, type: 2}
+  - {fileID: 11400000, guid: f00d22d19e617654c9e8334564d6329c, type: 2}
+  - {fileID: 11400000, guid: 959c16cfb28c6b8478a91980e89bfa75, type: 2}
+  - {fileID: 11400000, guid: d766bd9d24cda6646a7d95b35cc08507, type: 2}
+  - {fileID: 11400000, guid: 1ded5991a84db174f98c1b4d98a61f0c, type: 2}
+  - {fileID: 11400000, guid: 53107bed850b2384b8724435da30b9a7, type: 2}
+  - {fileID: 11400000, guid: fe44c680978d7454c89d4984173f2d3c, type: 2}
+  - {fileID: 11400000, guid: e51eede67632045478469386665678d8, type: 2}
+  - {fileID: 11400000, guid: 7b90bcd1183a88a43a1bf7d8e7d16507, type: 2}
+  - {fileID: 11400000, guid: 5a057e54ab8547642bcb7afeacbdff82, type: 2}
+  - {fileID: 11400000, guid: ee67a5700e6f15441bb429d4e6d89371, type: 2}
+  - {fileID: 11400000, guid: 5413d3f08d2d361438f36ff958ec0e59, type: 2}
+  - {fileID: 11400000, guid: 241e2115374869c49849a512da5dec8f, type: 2}
+  - {fileID: 11400000, guid: 00bdca6fd82fa384784c37b390e8514b, type: 2}
+  - {fileID: 11400000, guid: a5a599a140655ad4d991989b675f630c, type: 2}
+  - {fileID: 11400000, guid: 86eb37b6ccd06684b8c0397f3f7b048d, type: 2}
+  - {fileID: 11400000, guid: c7c5248abcc7d504ead6247770e54667, type: 2}
+  - {fileID: 11400000, guid: 2049f637ed216fa4780a7998df51a0ea, type: 2}
+  pathPenalty: 10000
+  speedPercent: 100
+  walkable: 1
+  type: Dirt
+  animated: 0
