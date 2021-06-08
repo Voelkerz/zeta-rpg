@@ -34,7 +34,7 @@ namespace ZetaGames.RPG {
                 shelter += (int)Mathf.Clamp(Vector3.Distance((Vector3)npc.memory.RetrieveMemory(ZetaUtilities.MEMORY_LOCATION_HOME), npc.transform.position) / 5, 0f, 100f);
             } else if (npc.stats.homeProperty == null) {
                 // No Home
-                shelter += 101;
+                shelter = 100;
             }
             return shelter;
         }
@@ -46,7 +46,16 @@ namespace ZetaGames.RPG {
              * leader. For the leader, demands will cause the score to move
              * and eventually take action.
             *************************************************************/
-            return 0;
+            community = 0;
+
+            // Does NPC belong to a community?
+            if (npc.joinCommunity.hasCommunity) {
+                
+            } else {
+                community = 100;
+            }
+
+            return community;
         }
     }
 }

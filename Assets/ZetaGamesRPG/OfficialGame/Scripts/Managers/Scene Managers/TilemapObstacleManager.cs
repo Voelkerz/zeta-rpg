@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class BuildingManager : MonoBehaviour {
+    public class TilemapObstacleManager : MonoBehaviour {
 
-        public static BuildingManager Instance;
+        public static TilemapObstacleManager
+            Instance;
         public List<BaseStructureData> buildableStructures;
+        public List<MapObstacle> tilemapObstacles;
 
         private void Awake() {
             Instance = this;

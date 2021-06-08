@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
   m_Name: SmallStone
   m_EditorClassIdentifier: 
+  spriteName: SmallStone_Node_Full
+  spriteShadowName: SmallStone_Node_Full_Shadow
+  walkable: 0
+  additionalGridOccupation: []
   resourceItemData: {fileID: 11400000, guid: c6c6d41f304f0e14bae9aa523e768d83, type: 2}
   spriteFull: SmallStone_Node_Full
   spriteFullShadow: SmallStone_Node_Full_Shadow
@@ -23,7 +27,6 @@ MonoBehaviour:
   lootPerDrop: 1
   maxLoot: 1
   maxHitPoints: 20
-  adjacentGridOccupation: []
   harvestPositions:
   - {x: -1, y: -1, z: 0}
   - {x: -1, y: 0, z: 0}

@@ -20,13 +20,18 @@ namespace ZetaGames.RPG {
         [HideInInspector] public float wanderCooldown { get; set; }
         [HideInInspector] public int lockTag { get => gameObject.GetInstanceID(); }
 
+        // NPC Needs Scores
+        public int communityScore;
+        public int shelterScore;
+
         // NPC States
         public BuildStructure buildStructure;
-        public SearchForResource searchForResource;
+        public FindResource findResource;
         public HarvestResource harvestResource;
         public StoreResource storeResource;
         public PickupItem pickupItem;
         public Wander wander;
+        public JoinCommunity joinCommunity;
 
         // Tools
         private WaitForSeconds[] waitTimers = new WaitForSeconds[3];
@@ -83,18 +88,13 @@ namespace ZetaGames.RPG {
         }
 
         protected virtual void evaluateNeeds() {
-            int communityScore = needs.CalculateCommunityScore();
-            int shelterScore = needs.CalculateShelterScore();
-
-            // Community Need
-            if (communityScore > 0) {
-                // do stuff
-            }
+            communityScore = needs.CalculateCommunityScore();
+            shelterScore = needs.CalculateShelterScore();
 
             // Shelter Need
-            if (shelterScore == 101) {
+            if (shelterScore == 100) {
                 // Special score. NPC needs a house.
-                if (!buildGoal.hasBuildGoal) {
+                if (!buildGoal.hasBuildGoal && stats.settlement != null && Vector3.Distance(transform.position, stats.settlement.bulletinBoardPos) <= 2f) {
                     //TODO: More logic behind what house the NPC builds (not everyone will start poor)
                     buildGoal.CreateBuildGoal(StructureCategory.Home, StructureType.Small_House, EconomicClass.Poor);
                 }
@@ -127,14 +127,6 @@ namespace ZetaGames.RPG {
 
         public virtual GameObject InstantiateObject(GameObject gameObject, Vector3 position) {
             return Instantiate(gameObject, position, Quaternion.identity);
-        }
-
-        public virtual void SetTilemapSpriteAsync(WorldTile worldTile, int tilemapIndex, string spriteName) {
-            StartCoroutine(MapManager.Instance.SetAtlasedSpriteAsync(worldTile, tilemapIndex, spriteName));
-        }
-
-        public virtual void PlayResourceSpriteAnimation(WorldTile worldTile, int tilemapIndex, List<string> spriteNames, int startIndex) {
-            StartCoroutine(MapManager.Instance.PlayResourceSpriteAnimation(worldTile, tilemapIndex, spriteNames, startIndex));
         }
 
         public virtual void OnVisible() {

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class BaseItem : BaseObject {
+    public class BaseItem : TilemapObstacle {
 
         public string itemDropSprite;
         public string inventoryIconSprite;

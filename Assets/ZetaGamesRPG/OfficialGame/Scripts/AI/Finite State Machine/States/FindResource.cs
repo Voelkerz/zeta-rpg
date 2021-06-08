@@ -2,11 +2,11 @@
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class SearchForResource : State {
+    public class FindResource : State {
         public override int priority => 5;
         public override bool isFinished { get => finished; }
         public override bool isInterruptable { get => npc.inCombat; }
-        
+
         private bool finished;
         private readonly AIBrain npc;
         private ResourceItem resourceItemData;
@@ -18,7 +18,7 @@ namespace ZetaGames.RPG {
         public WorldTile resourceTarget;
         public bool hasResourceTarget;
 
-        public SearchForResource(AIBrain npc) {
+        public FindResource(AIBrain npc) {
             this.npc = npc;
         }
 
@@ -67,7 +67,10 @@ namespace ZetaGames.RPG {
             }
 
             WorldTile closestTile = null;
+            WorldTile[] originRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(npc.stats.settlement.originRegion.x, npc.stats.settlement.originRegion.y);
             Vector3 currentPos = npc.transform.position;
+            Vector3 homePos = (npc.stats.settlement != null) ? originRegionTiles[Random.Range(0, originRegionTiles.Length)].GetWorldPosition() : npc.buildGoal.buildSiteLocation;
+           
             ZetaGrid<WorldTile> mapGrid = MapManager.Instance.GetWorldTileGrid();
             int mapWidth = MapManager.Instance.mapWidth;
             int mapHeight = MapManager.Instance.mapHeight;
@@ -78,9 +81,9 @@ namespace ZetaGames.RPG {
                     // check grid bounds
                     if ((int)currentPos.x + (x - 5) < mapWidth && (int)currentPos.y + (y - 5) < mapHeight && (int)currentPos.x + (x - 5) >= 0 && (int)currentPos.y + (y - 5) >= 0) {
                         WorldTile tile = mapGrid.GetGridObject((int)currentPos.x + (x - 5), (int)currentPos.y + (y - 5));
-                        if (tile.occupied && tile.tileObject != null && tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_ITEMPICKUP)) {
-                            if (typeof(ResourceItem).IsInstanceOfType(tile.tileObject)) {
-                                resourceItemData = (ResourceItem)tile.tileObject;
+                        if (tile.occupied && tile.tileObstacle != null && tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_ITEMPICKUP)) {
+                            if (typeof(ResourceItem).IsInstanceOfType(tile.tileObstacle)) {
+                                resourceItemData = (ResourceItem)tile.tileObstacle;
                                 if (resourceItemData.resourceCategory == resourceCategoryWanted) {
                                     // If inventory is not full of that specific type of resource
                                     if (!npc.inventory.IsInventoryFull(resourceItemData)) {
@@ -164,23 +167,22 @@ namespace ZetaGames.RPG {
                     for (int x = 0; x < adjGridSize; x++) {
                         for (int y = 0; y < adjGridSize; y++) {
                             // check grid bounds
-                            if (currentPos.x + (x - step) < mapWidth && currentPos.y + (y - step) < mapHeight && currentPos.x + (x - step) >= 0 && currentPos.y + (y - step) >= 0) {
-                                WorldTile tile = mapGrid.GetGridObject((int)currentPos.x + (x - step), (int)currentPos.y + (y - step));
+                            if (homePos.x + (x - step) < mapWidth && homePos.y + (y - step) < mapHeight && homePos.x + (x - step) >= 0 && homePos.y + (y - step) >= 0) {
+                                WorldTile tile = mapGrid.GetGridObject((int)homePos.x + (x - step), (int)homePos.y + (y - step));
                                 if (tile.occupied) {
-                                    if (tile.tileObject != null && tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NODE_FULL)) {
-                                        if (tile.occupiedCategory == resourceCategoryWanted) {
-                                            if (typeof(ResourceNode).IsInstanceOfType(tile.tileObject)) {
-                                                ResourceNode resourceNode = (ResourceNode)tile.tileObject;
-
+                                    if (tile.tileObstacle != null && tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NODE_FULL)) {
+                                        if (typeof(ResourceNode).IsInstanceOfType(tile.tileObstacle)) {
+                                            ResourceNode resourceNode = (ResourceNode)tile.tileObstacle;
+                                            if (resourceNode.resourceCategory == resourceCategoryWanted) {
                                                 // If inventory is not full of that specific type of resource
                                                 if (!npc.inventory.IsInventoryFull(resourceNode.resourceItemData)) {
                                                     npc.inventory.needToStoreItems = false;
 
                                                     if (resourceTypeWanted == ResourceType.None) {
-                                                        resourceTypeWanted = tile.occupiedType;
+                                                        resourceTypeWanted = resourceNode.resourceType;
                                                     }
 
-                                                    if (tile.occupiedType == resourceTypeWanted) {
+                                                    if (resourceNode.resourceType == resourceTypeWanted && tile.lockTag == -1) {
                                                         if (closestTile == null) {
                                                             closestTile = tile;
                                                         } else if (Vector3.Distance(tile.GetWorldPosition(), currentPos) < Vector3.Distance(closestTile.GetWorldPosition(), currentPos)) {

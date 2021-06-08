@@ -98,44 +98,36 @@ namespace ZetaGames.RPG {
                         npc.pathMovement.SetPreviousDirection(northEast);
                         npc.animationController.animMoveX = 1;
                         npc.animationController.animMoveY = 1;
-                        //animator.SetFloat(lastDirectionX, 1);
-                        //animator.SetFloat(lastDirectionY, 1);
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
                         }
                         break;
                     case 1:
                         npc.pathMovement.SetPreviousDirection(southEast);
                         npc.animationController.animMoveX = 1;
                         npc.animationController.animMoveY = -1;
-                        //animator.SetFloat(lastDirectionX, 1);
-                        //animator.SetFloat(lastDirectionY, -1);
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
                         }
                         break;
                     case 2:
                         npc.pathMovement.SetPreviousDirection(southWest);
                         npc.animationController.animMoveX = -1;
                         npc.animationController.animMoveY = -1;
-                        //animator.SetFloat(lastDirectionX, -1);
-                        //animator.SetFloat(lastDirectionY, -1);
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
                         }
                         break;
                     case 3:
                         npc.pathMovement.SetPreviousDirection(northWest);
                         npc.animationController.animMoveX = -1;
                         npc.animationController.animMoveY = 1;
-                        //animator.SetFloat(lastDirectionX, -1);
-                        //animator.SetFloat(lastDirectionY, 1);
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            npc.PlayResourceSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
                         }
                         break;
                     default:
@@ -145,10 +137,8 @@ namespace ZetaGames.RPG {
                 // determine which character animation to play
                 if (resourceNode.resourceCategory == ResourceCategory.Wood) {
                     npc.animationController.PlayAnimation(AnimationType.Logging);
-                    //animator.Play("HarvestWood");
                 } else if (resourceNode.resourceCategory == ResourceCategory.Stone || resourceNode.resourceCategory == ResourceCategory.Ore) {
                     npc.animationController.PlayAnimation(AnimationType.Mining);
-                    //animator.Play("Mining");
                 }
             }
 
@@ -175,8 +165,8 @@ namespace ZetaGames.RPG {
                 // Spawn depleted node in current tile
                 harvestTarget.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_DEPLETED;
                 harvestTarget.lockTag = -1;
-                npc.SetTilemapSpriteAsync(harvestTarget, 2, resourceNode.spriteDepleted);
-                npc.SetTilemapSpriteAsync(harvestTarget, 3, resourceNode.spriteDepletedShadow);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, 2, resourceNode.spriteDepleted);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, 3, resourceNode.spriteDepletedShadow);
             } else {
                 harvestTarget.lootAvailable -= lootPerDrop;
             }
@@ -204,13 +194,11 @@ namespace ZetaGames.RPG {
                 WorldTile chosenTile = possibleLootPositions[Random.Range(0, possibleLootPositions.Count - 1)];
                 possibleLootPositions.Remove(chosenTile);
 
-                npc.SetTilemapSpriteAsync(chosenTile, 4, resourceNode.resourceItemData.itemDropSprite);
+                MapManager.Instance.SetMapSpriteTile(chosenTile, 6, resourceNode.resourceItemData.itemDropSprite);
 
                 // Adjust tile data
-                chosenTile.tileObject = resourceNode.resourceItemData;
+                chosenTile.tileObstacle = resourceNode.resourceItemData;
                 chosenTile.occupiedStatus = ZetaUtilities.OCCUPIED_ITEMPICKUP;
-                chosenTile.occupiedCategory = resourceNode.resourceItemData.resourceCategory;
-                chosenTile.occupiedType = resourceNode.resourceItemData.resourceType;
                 chosenTile.occupied = true;
 
                 // Add resource drop to NPC memory so they'll go back for it later, if needed
@@ -223,11 +211,11 @@ namespace ZetaGames.RPG {
             hasHarvestPos = false;
 
             if (hasHarvestTarget) {
-                if (harvestTarget.tileObject != null && harvestTarget.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NODE_FULL)) {
+                if (harvestTarget.tileObstacle != null && harvestTarget.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_NODE_FULL)) {
                     if (harvestTarget.lockTag == npc.lockTag) {
                         // Get the resource node data
-                        if (typeof(ResourceNode).IsInstanceOfType(harvestTarget.tileObject)) {
-                            resourceNode = (ResourceNode)harvestTarget.tileObject;
+                        if (typeof(ResourceNode).IsInstanceOfType(harvestTarget.tileObstacle)) {
+                            resourceNode = (ResourceNode)harvestTarget.tileObstacle;
 
                             harvestTargetWorldPos = harvestTarget.GetWorldPosition() + MapManager.Instance.GetTileOffset(); // offset to get center of tile
                             currentHitPoints = resourceNode.maxHitPoints;
@@ -238,7 +226,7 @@ namespace ZetaGames.RPG {
 
                             //DEBUG
                             if (npc.debugLogs) {
-                                Debug.Log("HarvestResource.OnEnter(): Harvest target: " + harvestTarget.occupiedCategory + " node");
+                                Debug.Log("HarvestResource.OnEnter(): Harvest target: " + harvestTarget.tileObstacle.name + " node");
                             }
                         } else {
                             Debug.LogError("HarvestResource.OnEnter(): Harvest tile target does not contain proper resource node data.");
@@ -262,8 +250,8 @@ namespace ZetaGames.RPG {
 
         public override void OnExit() {
             if (!finished) {
-                npc.SetTilemapSpriteAsync(harvestTarget, 2, resourceNode.spriteFull);
-                npc.SetTilemapSpriteAsync(harvestTarget, 3, resourceNode.spriteFullShadow);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, 2, resourceNode.spriteFull);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, 3, resourceNode.spriteFullShadow);
                 harvestTarget.lockTag = -1;
             }
 

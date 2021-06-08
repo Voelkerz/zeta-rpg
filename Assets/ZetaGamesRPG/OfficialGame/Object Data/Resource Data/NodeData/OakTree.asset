@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60331b09f89d2ae41a06f34f14eae940, type: 3}
   m_Name: OakTree
   m_EditorClassIdentifier: 
+  spriteName: OakWood_Node_Full
+  spriteShadowName: OakWood_Node_Full_Shadow
+  walkable: 0
+  additionalGridOccupation:
+  - {x: -1, y: 0, z: 0}
   resourceItemData: {fileID: 11400000, guid: ae61143631f94494f9f722ef2016961e, type: 2}
   spriteFull: OakWood_Node_Full
   spriteFullShadow: OakWood_Node_Full_Shadow
@@ -35,8 +40,6 @@ MonoBehaviour:
   lootPerDrop: 2
   maxLoot: 2
   maxHitPoints: 20
-  adjacentGridOccupation:
-  - {x: -1, y: 0, z: 0}
   harvestPositions:
   - {x: -1, y: -1, z: 0}
   - {x: -2, y: 0, z: 0}

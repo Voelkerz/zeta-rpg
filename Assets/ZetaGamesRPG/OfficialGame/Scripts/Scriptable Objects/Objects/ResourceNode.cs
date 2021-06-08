@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     [CreateAssetMenu(menuName = "Resource Node Data", fileName = "New Resource Node Data", order = 51)]
-    public class ResourceNode : BaseObject {
+    public class ResourceNode : TilemapObstacle {
         public ResourceItem resourceItemData;
         public string spriteFull;
         public string spriteFullShadow;
@@ -15,9 +15,6 @@ namespace ZetaGames.RPG {
         public int lootPerDrop;
         public int maxLoot;
         public int maxHitPoints;
-
-        // extra grid tiles the resource node occupies due to a large size
-        public List<Vector3Int> adjacentGridOccupation;
 
         // the four tiles around the node the character can harvest from
         public List<Vector3> harvestPositions;

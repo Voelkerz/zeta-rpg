@@ -39,11 +39,10 @@ namespace ZetaGames.RPG {
 
         public override void Tick() {
             if (!finished) {
-                if (npc.pathMovement.isStopped && Vector3.Distance(npc.transform.position, npc.buildGoal.buildSiteLocation) <= 2.5f) {
+                if (npc.pathMovement.isStopped && Vector3.Distance(npc.transform.position, npc.buildGoal.buildSiteLocation) <= 3f) {
                     if (!npc.buildGoal.hasBuildSite) {
                         // Place the build site
-                        PlaceBuildSite();
-                        npc.buildGoal.hasBuildSite = true;
+                        npc.buildGoal.hasBuildSite = PlaceBuildSite();
                     } else if (npc.buildGoal.HasRequiredMaterialsInInventory() && npc.buildGoal.hasBuildSite) {
                         // Use build tool to progress the construction (better tools will mean faster construction)
                         ConstructionAction();
@@ -104,7 +103,7 @@ namespace ZetaGames.RPG {
                 // Evaluate inventory fullness
                 npc.inventory.needToStoreItems = npc.inventory.IsInventoryFullOfResource(resource);
                 
-                Debug.Log("Moved " + materials + " material(s). BuildGoal at: " + npc.buildGoal.GetResourceAmount(resource) + " || Inventory at: " + npc.inventory.GetAmountOfResource(resource));
+                //Debug.Log("Moved " + materials + " material(s). BuildGoal at: " + npc.buildGoal.GetResourceAmount(resource) + " || Inventory at: " + npc.inventory.GetAmountOfResource(resource));
                 return true;
             } else {
                 return false;
@@ -168,7 +167,18 @@ namespace ZetaGames.RPG {
             }));
         }
 
-        private void PlaceBuildSite() {
+        private bool PlaceBuildSite() {
+            // Final check for build site validity
+            foreach (WorldTile tile in npc.buildGoal.siteTiles) {
+                Vector3 tileRegion = MapManager.Instance.GetWorldRegionGrid().GetWorldPosition(tile.x, tile.y);
+                if (tile.occupied && !tile.walkable && tile.lockTag != npc.lockTag && !npc.stats.settlement.ContainsRegion((int)tileRegion.x, (int)tileRegion.y)) {
+                    npc.buildGoal.ResetBuildGoal();
+                    finished = true;
+                    return false;
+                }
+            }
+
+            List<WorldTile> updatedTiles = new List<WorldTile>();
             List<Vector3> buildingTileList = new List<Vector3>();
             buildingTileList.AddRange(buildData.blockedTiles);
             buildingTileList.AddRange(buildData.walkableTiles);
@@ -177,8 +187,31 @@ namespace ZetaGames.RPG {
 
             foreach (Vector3 tilePos in buildingTileList) {
                 WorldTile tile = MapManager.Instance.GetWorldTileGrid().GetGridObject(npc.buildGoal.buildSiteLocation + tilePos);
-                MapManager.Instance.tileMapList[1].SetTile(new Vector3Int(tile.x, tile.y, 0), null);
+
+                if (tile == null) {
+                    npc.buildGoal.ResetBuildGoal();
+                    finished = true;
+                    return false;
+                }
+
+                // Set dirt ground as base
+                MapManager.Instance.SetMapSpriteTile(tile, 1, "Minifantasy_TownsDirt");
+
+                // Nullify map decor layer
+                MapManager.Instance.tileMapList[4].SetTile(tile.GetWorldPositionInt(), null);
+                MapManager.Instance.tileMapList[5].SetTile(tile.GetWorldPositionInt(), null);
+
+                // Update tile data
+                tile.occupied = true;
+                tile.occupiedStatus = ZetaUtilities.OCCUPIED_STRUCTURE_BUILDSITE;
+                tile.walkable = false;
+
+                updatedTiles.Add(tile);
             }
+
+            ZetaUtilities.UpdateMultipleAstarGraphNodes(updatedTiles);
+
+            return true;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace ZetaGames.RPG {
         private StructureType structTypeGoal = StructureType.None;
         private EconomicClass structQualityGoal = EconomicClass.None;
         public BaseStructureData structureData;
+        public List<WorldTile> siteTiles = new List<WorldTile>();
         public Vector3 buildSiteLocation;
         public bool hasBuildSite;
         public bool hasBuildGoal;
@@ -86,12 +87,7 @@ namespace ZetaGames.RPG {
                 npc.memory.AddMemory("Home", buildSiteLocation);
             }
 
-            hasBuildGoal = false;
-            hasBuildSite = false;
-            structureData = null;
-            structCatGoal = StructureCategory.None;
-            structTypeGoal = StructureType.None;
-            structQualityGoal = EconomicClass.None;
+            ResetBuildGoal();
         }
 
         public void CreateBuildGoal(StructureCategory category, StructureType type, EconomicClass quality) {
@@ -104,6 +100,22 @@ namespace ZetaGames.RPG {
 
             CalculateResourcesNeeded();
             FindBuildSite();
+        }
+
+        public void ResetBuildGoal() {
+            hasBuildGoal = false;
+            hasBuildSite = false;
+            structureData = null;
+            structCatGoal = StructureCategory.None;
+            structTypeGoal = StructureType.None;
+            structQualityGoal = EconomicClass.None;
+
+            totalMaterialsRequired[ResourceCategory.Wood] = 0;
+            totalMaterialsRequired[ResourceCategory.Stone] = 0;
+            totalMaterialsRequired[ResourceCategory.Ore] = 0;
+            totalMaterialsRequired[ResourceCategory.Herb] = 0;
+            totalMaterialsRequired[ResourceCategory.Gem] = 0;
+            totalMaterialsRequired[ResourceCategory.Fiber] = 0;
         }
 
         public void AlterResourceAmount(ResourceCategory resourceCategory, int amount) {
@@ -121,7 +133,7 @@ namespace ZetaGames.RPG {
         }
 
         private BaseStructureData GetStructureData() {
-            foreach (BaseStructureData data in BuildingManager.Instance.buildableStructures) {
+            foreach (BaseStructureData data in TilemapObstacleManager.Instance.buildableStructures) {
                 if (data.category.Equals(structCatGoal)
                     && data.type.Equals(structTypeGoal)
                     && data.quality.Equals(structQualityGoal)) {
@@ -152,60 +164,119 @@ namespace ZetaGames.RPG {
             }
         }
 
-        public void FindBuildSite() {
-            Vector3 currentPos = npc.transform.position;
+        private bool CalculateSiteLocation(WorldTile[] worldTiles) {
             ZetaGrid<WorldTile> mapGrid = MapManager.Instance.GetWorldTileGrid();
             int mapWidth = MapManager.Instance.mapWidth;
             int mapHeight = MapManager.Instance.mapHeight;
             bool siteTilesOccupied;
+            int randomBuffer = Random.Range(2, 7);
 
-            for (int x = 0; x < 65; x++) {
-                for (int y = 0; y < 65; y++) {
-                    // check grid bounds
-                    if ((int)currentPos.x + (x - 32) < mapWidth && (int)currentPos.y + (y - 32) < mapHeight && (int)currentPos.x + (x - 32) >= 0 && (int)currentPos.y + (y - 32) >= 0) {
-                        WorldTile tile = mapGrid.GetGridObject((int)currentPos.x + (x - 32), (int)currentPos.y + (y - 32));
-                        siteTilesOccupied = false;
+            foreach (WorldTile settlementTiles in worldTiles) {
+                siteTilesOccupied = false;
+                siteTiles.Clear();
 
-                        if (!tile.occupied && tile.walkable) {
-                            for (int siteX = 0; siteX < structureData.sizeX + 10; siteX++) {
-                                for (int siteY = 0; siteY < structureData.sizeY + 10; siteY++) {
-                                    if (siteX + tile.x < mapWidth && siteY + tile.y < mapHeight && siteX + tile.x >= 0 && siteY + tile.y >= 0) {
-                                        WorldTile siteTile = mapGrid.GetGridObject(siteX + tile.x, siteY + tile.y);
+                if (!settlementTiles.occupied && settlementTiles.walkable && !settlementTiles.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
+                    for (int siteX = 0; siteX < structureData.sizeX + randomBuffer; siteX++) {
+                        for (int siteY = 0; siteY < structureData.sizeY + randomBuffer; siteY++) {
+                            if (siteX + settlementTiles.x < mapWidth && siteY + settlementTiles.y < mapHeight && siteX + settlementTiles.x >= 0 && siteY + settlementTiles.y >= 0) {
+                                WorldTile siteTile = mapGrid.GetGridObject(siteX + settlementTiles.x, siteY + settlementTiles.y);
+                                siteTiles.Add(siteTile);
 
-                                        if (siteTile.occupied) {
-                                            siteTilesOccupied = true;
-                                            break;
-                                        }
-                                    }
-                                }
-
-                                if (siteTilesOccupied) {
+                                if (siteTile.occupied || siteTile.lockTag != -1 || siteTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
+                                    siteTilesOccupied = true;
                                     break;
                                 }
                             }
-
-                            // site for building found
-                            if (!siteTilesOccupied) {
-                                buildSiteLocation = new Vector3(tile.x + 5, tile.y + 5);
-                                return;
-                            }
                         }
+
+                        if (siteTilesOccupied) {
+                            break;
+                        }
+                    }
+
+                    // site for building found
+                    if (!siteTilesOccupied) {
+                        buildSiteLocation = new Vector3(settlementTiles.x + (randomBuffer / 2), settlementTiles.y + (randomBuffer / 2));
+
+                        // Lock this site to this NPC so no others build there
+                        siteTiles.Add(settlementTiles);
+
+                        foreach (WorldTile sTile in siteTiles) {
+                            sTile.lockTag = npc.lockTag;
+                        }
+
+                        return true;
                     }
                 }
             }
 
-            /*
-            // No suitable site found (walk around to find one)
-            Vector3 destination = new Vector3(npc.transform.position.x + Random.Range(-30f, 30f), npc.transform.position.x + Random.Range(-30f, 30f));
+            return false;
+        }
 
-            if (destination.x < mapWidth && destination.y < mapHeight && destination.x >= 0 && destination.y >= 0) {
-                WorldTile destinationTile = mapGrid.GetGridObject((int)destination.x, (int)destination.y);
-                if (destinationTile.walkable) {
-                    npc.pathMovement.destination = destination;
-                    npc.pathMovement.SearchPath();
+        public void FindBuildSite() {
+            if (npc.stats.settlement != null) {
+                bool foundBuildSite;
+                int randIndex;
+
+                //***************************//
+                // Check origin region first
+                //***************************//
+                WorldTile[] originRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(npc.stats.settlement.originRegion.x, npc.stats.settlement.originRegion.y);
+                foundBuildSite = CalculateSiteLocation(originRegionTiles);
+                if (foundBuildSite) return;
+
+                //**************************************************//
+                // Check random settled regions in this settlement
+                //**************************************************//
+                List<Settlement.Region> settledRegions = new List<Settlement.Region>();
+
+                foreach (Settlement.Region region in npc.stats.settlement.growthRegions) {
+                    if (region.settled) {
+                        settledRegions.Add(region);
+                    }
                 }
+
+                if (settledRegions.Count != 0) {
+                    randIndex = Random.Range(0, settledRegions.Count);
+                    WorldTile[] settledRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(settledRegions[randIndex].x, settledRegions[randIndex].y);
+                    foundBuildSite = CalculateSiteLocation(settledRegionTiles);
+                    if (foundBuildSite) return;
+                } else {
+                    Debug.LogWarning("No settled regions added");
+                }
+
+                //******************************************************************//
+                // Check empty regions immediately bordering a settlement entrance
+                //******************************************************************//
+                List<Settlement.Region> unsettledRegions = new List<Settlement.Region>();
+
+                foreach (Settlement.Region region in npc.stats.settlement.growthRegions) {
+                    if (!region.settled && (region.eastExit || region.westExit || region.northExit || region.southExit)) {
+                        unsettledRegions.Add(region);
+                    }
+                }
+
+                if (unsettledRegions.Count != 0) {
+                    randIndex = Random.Range(0, unsettledRegions.Count);
+                    WorldTile[] unsettledRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(unsettledRegions[randIndex].x, unsettledRegions[randIndex].y);
+                    foundBuildSite = CalculateSiteLocation(unsettledRegionTiles);
+                    if (foundBuildSite) return;
+                } else {
+                    Debug.LogWarning("No unsettled regions added");
+                }
+
+
+                //**********************************************************//
+                // No suitable site found at settlement. Leave settlement.
+                //**********************************************************//
+                CommunityManager.Instance.LeaveSettlement(npc.stats.settlement, npc.gameObject);
+                npc.stats.settlement.atMax = true;
+                npc.stats.settlement = null;
+                npc.joinCommunity.hasCommunity = false;
+
+                // Reset build goal
+                ResetBuildGoal();
             }
-            */
         }
     }
 }

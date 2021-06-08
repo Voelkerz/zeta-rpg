@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Human
   m_EditorClassIdentifier: 
   animMeta: {fileID: 11400000, guid: 2e78dd426adea244eaaf4b8bc70f34e6, type: 2}
-  characterAnimations: {fileID: 11400000, guid: 2e29a2320f9f5bf48aa95a181c727c2f,
-    type: 2}
+  bodyAnimations: {fileID: 11400000, guid: 2e29a2320f9f5bf48aa95a181c727c2f, type: 2}
   shadowAnimations: {fileID: 11400000, guid: f46748413196511439178e8442847ae8, type: 2}

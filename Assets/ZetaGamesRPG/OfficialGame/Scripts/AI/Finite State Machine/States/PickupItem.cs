@@ -28,18 +28,19 @@ namespace ZetaGames.RPG {
 
         public override void OnExit() {
             itemTarget = null;
+            hasItemTarget = false;
         }
 
         public override void Tick() {
             if (!finished) {
                 if (Vector3.Distance(npc.transform.position, itemTarget.GetWorldPosition()) < 1f) {
-                    if (itemTarget.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_ITEMPICKUP) && itemTarget.tileObject != null) {
+                    if (itemTarget.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_ITEMPICKUP) && itemTarget.tileObstacle != null) {
                         if (npc.debugLogs) {
                             Debug.Log("PickupItem.Tick(): Picking up designated item");
                         }
 
-                        if (typeof(BaseItem).IsInstanceOfType(itemTarget.tileObject)) {
-                            BaseItem item = (BaseItem)itemTarget.tileObject;
+                        if (typeof(BaseItem).IsInstanceOfType(itemTarget.tileObstacle)) {
+                            BaseItem item = (BaseItem)itemTarget.tileObstacle;
 
                             // Pickup item
                             int leftovers = npc.inventory.AddItem(item, itemAmount);
@@ -81,7 +82,7 @@ namespace ZetaGames.RPG {
 
                                 foreach (string memoryKey in npc.memory.GetAllMemories().Keys) {
                                     if (memoryKey != null) {
-                                        if (memoryKey.Contains(memoryTag) && Vector3.Distance(npc.transform.position, (Vector3)npc.memory.RetrieveMemory(memoryKey)) < 1f) {
+                                        if (memoryKey.Contains(memoryTag) && Vector3.Distance(npc.transform.position, (Vector3)npc.memory.RetrieveMemory(memoryKey)) < 0.5f) {
                                             memory = memoryKey;
                                         }
                                     }
@@ -96,28 +97,41 @@ namespace ZetaGames.RPG {
                                 }
 
                                 // Nullify tilemap sprite of item
-                                Vector3Int tileMapPos = new Vector3Int(itemTarget.x, itemTarget.y, 0);
-                                MapManager.Instance.tileMapList[4].SetTile(tileMapPos, null);
+                                MapManager.Instance.tileMapList[6].SetTile(itemTarget.GetWorldPositionInt(), null);
 
                                 // Alter tile data
+                                //itemTarget.ResetTile();
                                 itemTarget.occupied = false;
                                 itemTarget.occupiedStatus = ZetaUtilities.OCCUPIED_NONE;
-                                itemTarget.occupiedCategory = ResourceCategory.None;
-                                itemTarget.occupiedType = ResourceType.None;
-                                itemTarget.tileObject = null;
+                                itemTarget.tileObstacle = null;
 
                                 // Finished
                                 finished = true;
-                                hasItemTarget = false;
                             }
                         } else {
                             Debug.LogWarning("Object is not an item that can be picked up");
                             finished = true;
-                            hasItemTarget = false;
                         }
                     } else {
+                        string key = null;
+
+                        // remove memory if there was one and item is already gone
+                        foreach (string memoryKey in npc.memory.GetAllMemories().Keys) {
+                            if (memoryKey != null) {
+                                if (Vector3.Distance(npc.transform.position, (Vector3)npc.memory.RetrieveMemory(memoryKey)) < 1f) {
+                                    key = memoryKey;
+                                }
+                            }
+                        }
+
+                        if (key != null) {
+                            if (npc.debugLogs) {
+                                Debug.Log("PickupItem.Tick(): No item to pickup, but memory found.");
+                            }
+                            npc.memory.RemoveMemory(key);
+                        }
+                        
                         finished = true;
-                        hasItemTarget = false;
                     }
                 }
             }

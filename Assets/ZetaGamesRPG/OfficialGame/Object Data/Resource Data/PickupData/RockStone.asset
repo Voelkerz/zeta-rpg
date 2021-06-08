@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d64d52f604ab354dafe81bedf75ff02, type: 3}
   m_Name: RockStone
   m_EditorClassIdentifier: 
+  spriteName: Stone_ItemPickup
+  spriteShadowName: 
+  walkable: 1
+  additionalGridOccupation: []
   itemDropSprite: Stone_ItemPickup
   inventoryIconSprite: Stone_InventoryIcon
   itemName: Stone

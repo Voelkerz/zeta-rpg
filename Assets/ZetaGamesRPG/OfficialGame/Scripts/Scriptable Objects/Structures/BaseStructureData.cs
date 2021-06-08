@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     [CreateAssetMenu(menuName = "Structure Data", fileName = "New Structure Data", order = 51)]
-    public class BaseStructureData : BaseObject {
+    public class BaseStructureData : TilemapObstacle {
         // General Data
         public GameObject prefab;
         public EconomicClass quality;

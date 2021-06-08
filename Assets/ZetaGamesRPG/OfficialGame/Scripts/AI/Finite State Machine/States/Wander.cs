@@ -31,7 +31,7 @@ namespace ZetaGames.RPG {
                    
                     if ((int)destination.x < MapManager.Instance.mapWidth && (int)destination.y < MapManager.Instance.mapHeight && (int)destination.x >= 0 && (int)destination.y >= 0) {
                         WorldTile destinationTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(destination);
-                        if (destinationTile.walkable) {
+                        if (destinationTile != null && destinationTile.walkable) {
                             npcBrain.pathMovement.destination = destination;
                             npcBrain.pathMovement.SearchPath();
 

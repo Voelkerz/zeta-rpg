@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace ZetaGames.RPG {
     public class HumanBaseBrain : AIBrain {
@@ -11,8 +9,9 @@ namespace ZetaGames.RPG {
             personality = new Personality(PersonalityType.Default);
 
             // Create all NPC states
+            joinCommunity = new JoinCommunity(this);
             buildStructure = new BuildStructure(this);
-            searchForResource = new SearchForResource(this);
+            findResource = new FindResource(this);
             harvestResource = new HarvestResource(this);
             storeResource = new StoreResource(this);
             pickupItem = new PickupItem(this);
@@ -21,8 +20,9 @@ namespace ZetaGames.RPG {
             /********************************************************************
              * FROM ANY STATE TRANSITIONS (To this transition from any other)
             *********************************************************************/
+            stateMachine.AddFromAnyTransition(joinCommunity, new List<Func<bool>> { IsFalse(HasCommunity()), () => communityScore >= 100  });
             stateMachine.AddFromAnyTransition(buildStructure, new List<Func<bool>> { HasPlannedBuildGoal(), CanMakeBuildProgress() });
-            stateMachine.AddFromAnyTransition(searchForResource, new List<Func<bool>> { IsFalse(HasHarvestTarget()), IsFalse(InventoryFull()), ResourcesNeeded() });
+            stateMachine.AddFromAnyTransition(findResource, new List<Func<bool>> { IsFalse(HasHarvestTarget()), IsFalse(InventoryFull()), ResourcesNeeded() });
             stateMachine.AddFromAnyTransition(harvestResource, new List<Func<bool>> { HasHarvestTarget(), IsFalse(InventoryFull()), IsHarvestTargetHarvestable() });
             stateMachine.AddFromAnyTransition(pickupItem, new List<Func<bool>> { IsFalse(InventoryFull()), HasItemTarget() });
             stateMachine.AddFromAnyTransition(storeResource, new List<Func<bool>> { InventoryFull() });
@@ -31,9 +31,10 @@ namespace ZetaGames.RPG {
             /********************************************************************
              * TO ANY STATE TRANSITIONS (From this transition to any other)
             *********************************************************************/
+            stateMachine.AddToAnyTransition(joinCommunity);
             stateMachine.AddToAnyTransition(pickupItem);
             stateMachine.AddToAnyTransition(buildStructure);
-            stateMachine.AddToAnyTransition(searchForResource);
+            stateMachine.AddToAnyTransition(findResource);
             stateMachine.AddToAnyTransition(harvestResource);
             stateMachine.AddToAnyTransition(storeResource);
             stateMachine.AddToAnyTransition(wander);
@@ -52,7 +53,8 @@ namespace ZetaGames.RPG {
             Func<bool> InventoryFull() => () => inventory.needToStoreItems == true;
             Func<bool> ResourcesNeeded() => () => buildGoal.GetRequiredMaterials() != ResourceCategory.None;
             Func<bool> HasPlannedBuildGoal() => () => buildGoal.hasBuildGoal;
-            Func<bool> CanMakeBuildProgress() => () => (buildGoal.HasRequiredMaterialsInInventory() && (inventory.needToStoreItems || inventory.GetAmountOfResource(buildGoal.GetRequiredMaterials()) == buildGoal.GetResourceAmount(buildGoal.GetRequiredMaterials()))) || !buildGoal.hasBuildSite; 
+            Func<bool> CanMakeBuildProgress() => () => (buildGoal.HasRequiredMaterialsInInventory() && (inventory.needToStoreItems || inventory.GetAmountOfResource(buildGoal.GetRequiredMaterials()) == buildGoal.GetResourceAmount(buildGoal.GetRequiredMaterials()))) || !buildGoal.hasBuildSite;
+            Func<bool> HasCommunity() => () => joinCommunity.hasCommunity;
 
             // Inverse a condition
             Func<bool> IsFalse(Func<bool> conditionToInverse) => () => {
@@ -75,9 +77,6 @@ namespace ZetaGames.RPG {
             };
             */
 
-            // Join a community
-            JoinCommunity();
-
             // Pick a profession
             PickProfession();
         }
@@ -87,19 +86,7 @@ namespace ZetaGames.RPG {
         }
 
         public override void JoinCommunity() {
-            // Look through the list of settlements and randomly choose a settlement to join
-            if (CommunityManager.Instance.settlementList.Count > 0) {
-                if (Random.Range(0, 100f) <= personality.startCommunityChance && CommunityManager.Instance.viableRegions.Count > 0) {
-                    stats.settlement = CommunityManager.Instance.CreateSettlement(gameObject);
-                    Debug.Log("Creating a new settlement: " + stats.settlement.settlementName + " || Viable Regions: " + CommunityManager.Instance.viableRegions.Count);
-                } else {
-                    stats.settlement = CommunityManager.Instance.JoinRandomSettlement(gameObject);
-                    //Debug.Log("Joining settlement: " + stats.settlement.settlementName + " || Population: " + stats.settlement.citizenList.Count);
-                }
-            } else {
-                stats.settlement = CommunityManager.Instance.CreateSettlement(gameObject);
-                Debug.Log("Creating first settlement: " + stats.settlement.settlementName + " || Viable Regions: " + CommunityManager.Instance.viableRegions.Count);
-            }
+            
         }
 
         public override void PickProfession() {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     [CreateAssetMenu(menuName = "Recipe Data", fileName = "New Recipe Data", order = 51)]
-    public class BaseRecipeData : BaseObject {
+    public class BaseRecipeData : TilemapObstacle {
         public BaseItem[] ingredients;
         public BaseItem successReward;
 

@@ -60,6 +60,9 @@ SpriteAtlas:
     - {fileID: 2361370552029192998, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
     - {fileID: 1708204155200402127, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
     - {fileID: 8303573690327376359, guid: aaf9c10e642d0b3498b7656d8e4748d5, type: 3}
+    - {fileID: 2800000, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+    - {fileID: 2800000, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+    - {fileID: 2800000, guid: 74045acf3f363f747b7327646032ca30, type: 3}
     - {fileID: 2800000, guid: 3d9ede4f14b60fb4da5cb25e64d4a979, type: 3}
     - {fileID: 2800000, guid: 6b33468af978d9642bdb42c5028c97c0, type: 3}
     - {fileID: 2800000, guid: 9ca1fd8f22c846949821acbf94adebf3, type: 3}
@@ -86,7 +89,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 3abe8a6c7943e8b4fafed78c36d63b0d, type: 3}
     - {fileID: 2800000, guid: e5126990e23549b49be2ec8f9906db2a, type: 3}
     - {fileID: 2800000, guid: 0315333e99bcace4c8340f4c67f22820, type: 3}
-    totalSpriteSurfaceArea: 77653
+    totalSpriteSurfaceArea: 80677
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -634,6 +637,25 @@ SpriteAtlas:
   - {fileID: -5411679737409554135, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: -8885108771166411701, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
   - {fileID: 2367239980171883332, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
+  - {fileID: 8495406928897230079, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: -4371834994724710437, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: -8904159678430534837, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 8470957702147738405, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 7064116086300718205, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: -7099967170004465753, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 3120391871192433408, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: -2715575684214416093, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: -8839385509278395452, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 6163879791902631501, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 6627817689907803649, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: -2787325011129194549, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 1685804334020361204, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 1875418142032542338, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 4281047315110890270, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 3301053217299117261, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 2821912432728184545, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: 5356981332048350807, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
+  - {fileID: -7180180466933316115, guid: aad4a519897861e4ab61eb79a1e1f946, type: 3}
   - {fileID: 2607773780822617440, guid: 55c0956950fe57f499fc7730b0f42c07, type: 3}
   - {fileID: -1539755333391386407, guid: 55c0956950fe57f499fc7730b0f42c07, type: 3}
   - {fileID: -2191372197193287718, guid: 55c0956950fe57f499fc7730b0f42c07, type: 3}
@@ -653,6 +675,18 @@ SpriteAtlas:
   - {fileID: 3108990171744025959, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
   - {fileID: 6594496583888654214, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
   - {fileID: -4277055625861858072, guid: 653ad7c9217145e48bd6ae285e96edbe, type: 3}
+  - {fileID: -1350552892037579980, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: -3542754194350001981, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: 6680578867783746906, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: 8218353874446444013, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: -2738521415692379053, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: 9150698389632990882, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: 6541970877312371128, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: -7172580842614255247, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: 3623992069140606108, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: 1619388811459588617, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: 3676819542256138934, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
+  - {fileID: -2651160254579336524, guid: 70f59fd935db55b4dba929721b3b1437, type: 3}
   - {fileID: 5306728838596267984, guid: 6b33468af978d9642bdb42c5028c97c0, type: 3}
   - {fileID: -5049671124587872910, guid: 6b33468af978d9642bdb42c5028c97c0, type: 3}
   - {fileID: -3644772170032264694, guid: 6b33468af978d9642bdb42c5028c97c0, type: 3}
@@ -846,6 +880,7 @@ SpriteAtlas:
   - {fileID: 8294905585824140826, guid: 9ca1fd8f22c846949821acbf94adebf3, type: 3}
   - {fileID: 8621246720663771434, guid: 9ca1fd8f22c846949821acbf94adebf3, type: 3}
   - {fileID: 5162517619325257206, guid: 9ca1fd8f22c846949821acbf94adebf3, type: 3}
+  - {fileID: 21300000, guid: 74045acf3f363f747b7327646032ca30, type: 3}
   m_PackedSpriteNamesToIndex:
   - Minifantasy_DesolateDesertRockFormationShadows_18
   - Minifantasy_DesolateDesertRockFormationShadows_19
@@ -1389,6 +1424,25 @@ SpriteAtlas:
   - _Minifantasy_ForgottenPlainsAllTiles_142
   - _Minifantasy_ForgottenPlainsAllTiles_141
   - _Minifantasy_ForgottenPlainsAllTiles_140
+  - Minifantasy_AdventurersCampsite_Bedroll_N
+  - Minifantasy_AdventurersCampsite_WoodBarrier_SE
+  - Minifantasy_AdventurersCampsite_WoodBarrier_SW
+  - Minifantasy_AdventurersCampsite_WoodBarrier_E1
+  - Minifantasy_AdventurersCampsite_WoodBarrier_E2
+  - Minifantasy_AdventurersCampsite_WoodChest_Open
+  - Minifantasy_AdventurersCampsite_WoodBarrier_W2
+  - Minifantasy_AdventurersCampsite_WoodBarrier_W1
+  - Minifantasy_AdventurersCampsite_BrownTent_Front_Closed
+  - Minifantasy_AdventurersCampsite_WoodChest_Closed
+  - Minifantasy_AdventurersCampsite_BrownTent_Front_Open
+  - Minifantasy_AdventurersCampsite_0
+  - Minifantasy_AdventurersCampsite_WoodBarrier_N1
+  - Minifantasy_AdventurersCampsite_WoodBarrier_N2
+  - Minifantasy_AdventurersCampsite_WoodBarrier_S2
+  - Minifantasy_AdventurersCampsite_WoodBarrier_S1
+  - Minifantasy_AdventurersCampsite_WoodBarrier_NE
+  - Minifantasy_AdventurersCampsite_BrownTent_Back
+  - Minifantasy_AdventurersCampsite_WoodBarrier_NW
   - Minifantasy_DesolateDesert_WaterDirtToGrass1_1
   - Minifantasy_DesolateDesert_WaterDirtToGrass1_0
   - Minifantasy_DesolateDesert_WaterDirtToGrass1_3
@@ -1408,6 +1462,18 @@ SpriteAtlas:
   - OakWood_Node_Full_Shadow_HitRight3
   - OakWood_Node_Full_Shadow_HitRight2
   - OakWood_Node_Full_Shadow_HitRight1
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_NE
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_NW
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_W2
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_W1
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_E1
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_E2
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_S2
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_S1
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_SE
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_N1
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_N2
+  - Minifantasy_AdventurersCampsiteShadows_WoodBarrier_SW
   - Minifantasy_DesolateDesert_Sand1_14
   - Minifantasy_DesolateDesert_Sand1_13
   - Minifantasy_DesolateDesert_Sand1_12
@@ -1601,6 +1667,7 @@ SpriteAtlas:
   - Minifantasy_DesolateDesert_Sand2_4
   - Minifantasy_DesolateDesert_Sand2_9
   - Minifantasy_DesolateDesert_Sand2_8
+  - Minifantasy_TownsDirt
   m_RenderDataMap: {}
   m_Tag: Master
   m_IsVariant: 0

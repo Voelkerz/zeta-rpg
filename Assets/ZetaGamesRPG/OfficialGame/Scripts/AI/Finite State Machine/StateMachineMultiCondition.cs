@@ -70,6 +70,10 @@ namespace ZetaGames.RPG {
             transitionList.Add(new Transition(to, conditions));
         }
 
+        public void AddAllTransitions(State state, List<Func<bool>> conditions) {
+
+        }
+
         public void AddToAnyTransition(State from) {
             List<State> stateBuffer = new List<State>();
 

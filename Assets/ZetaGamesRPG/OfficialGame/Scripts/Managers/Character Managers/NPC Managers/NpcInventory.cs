@@ -190,7 +190,7 @@ namespace ZetaGames.RPG {
         public void PrintInventory() {
             for (int i = 0; i < maxInventoryCapacity; i++) {
                 if (inventorySlots[i].item != null) {
-                    Debug.Log("Slot: " + i + " || Item: " + inventorySlots[i].item.itemName + " || Amount: " + inventorySlots[i].amount);
+                    //Debug.Log("Slot: " + i + " || Item: " + inventorySlots[i].item.itemName + " || Amount: " + inventorySlots[i].amount);
                 }
             }
         }

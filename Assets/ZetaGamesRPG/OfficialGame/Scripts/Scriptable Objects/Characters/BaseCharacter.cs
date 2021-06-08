@@ -7,7 +7,7 @@ namespace ZetaGames.RPG {
 
         // Animation Data
         public AnimationMetaData animMeta;
-        public AnimationSpriteData characterAnimations;
+        public AnimationSpriteData bodyAnimations;
         public AnimationSpriteData shadowAnimations;
     }
 }

@@ -678,7 +678,7 @@ MonoBehaviour:
   repathRate: 0
   canSearch: 0
   canMove: 1
-  speed: 2
+  speed: 4
   orientation: 1
   enableRotation: 0
   rotationSpeed: 10
@@ -725,6 +725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13f560b1a374b7598804ceaa878a5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  communityScore: 0
+  shelterScore: 0
   inCombat: 0
   debugLogs: 0
 --- !u!114 &7803327183496426762
