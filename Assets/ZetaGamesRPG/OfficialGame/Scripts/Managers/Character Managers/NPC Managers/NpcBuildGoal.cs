@@ -13,6 +13,7 @@ namespace ZetaGames.RPG {
         public BaseStructureData structureData;
         public List<WorldTile> siteTiles = new List<WorldTile>();
         public Vector3 buildSiteLocation;
+        public Vector3 buildSiteRegionPos;
         public bool hasBuildSite;
         public bool hasBuildGoal;
 
@@ -83,10 +84,11 @@ namespace ZetaGames.RPG {
 
         public void FinishBuildGoal() {
             if (structCatGoal.Equals(StructureCategory.Home)) {
-                npc.stats.homeProperty = structureData;
-                npc.memory.AddMemory("Home", buildSiteLocation);
+                npc.stats.homePropertyData = structureData;
+                npc.memory.AddMemory(ZetaUtilities.MEMORY_LOCATION_HOME, buildSiteLocation);
             }
 
+            if (npc.debugLogs) Debug.Log("Finished building a structure at (" + buildSiteLocation.x + ", " + buildSiteLocation.y + ")!");
             ResetBuildGoal();
         }
 
@@ -165,24 +167,28 @@ namespace ZetaGames.RPG {
         }
 
         private bool CalculateSiteLocation(WorldTile[] worldTiles) {
-            ZetaGrid<WorldTile> mapGrid = MapManager.Instance.GetWorldTileGrid();
+            Vector3 siteRegion = Vector3.zero;
             int mapWidth = MapManager.Instance.mapWidth;
             int mapHeight = MapManager.Instance.mapHeight;
             bool siteTilesOccupied;
-            int randomBuffer = Random.Range(2, 7);
+            int randomBuffer = Random.Range(3, 8);
 
-            foreach (WorldTile settlementTiles in worldTiles) {
+            foreach (WorldTile settlementTile in worldTiles) {
                 siteTilesOccupied = false;
                 siteTiles.Clear();
 
-                if (!settlementTiles.occupied && settlementTiles.walkable && !settlementTiles.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
+                if (!settlementTile.occupied && settlementTile.walkable) {
                     for (int siteX = 0; siteX < structureData.sizeX + randomBuffer; siteX++) {
                         for (int siteY = 0; siteY < structureData.sizeY + randomBuffer; siteY++) {
-                            if (siteX + settlementTiles.x < mapWidth && siteY + settlementTiles.y < mapHeight && siteX + settlementTiles.x >= 0 && siteY + settlementTiles.y >= 0) {
-                                WorldTile siteTile = mapGrid.GetGridObject(siteX + settlementTiles.x, siteY + settlementTiles.y);
+                            if (siteX + settlementTile.x < mapWidth && siteY + settlementTile.y < mapHeight && siteX + settlementTile.x >= 0 && siteY + settlementTile.y >= 0) {
+                                WorldTile siteTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(siteX + settlementTile.x, siteY + settlementTile.y);
+
+                                siteRegion.x = siteTile.regionX;
+                                siteRegion.y = siteTile.regionY;
+
                                 siteTiles.Add(siteTile);
 
-                                if (siteTile.occupied || siteTile.lockTag != -1 || siteTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
+                                if (siteTile.occupied || siteTile.lockTag != -1 || buildSiteRegionPos != siteRegion) {
                                     siteTilesOccupied = true;
                                     break;
                                 }
@@ -196,10 +202,10 @@ namespace ZetaGames.RPG {
 
                     // site for building found
                     if (!siteTilesOccupied) {
-                        buildSiteLocation = new Vector3(settlementTiles.x + (randomBuffer / 2), settlementTiles.y + (randomBuffer / 2));
+                        buildSiteLocation = new Vector3(settlementTile.x + (randomBuffer / 2), settlementTile.y + (randomBuffer / 2));
 
                         // Lock this site to this NPC so no others build there
-                        siteTiles.Add(settlementTiles);
+                        siteTiles.Add(settlementTile);
 
                         foreach (WorldTile sTile in siteTiles) {
                             sTile.lockTag = npc.lockTag;
@@ -221,7 +227,11 @@ namespace ZetaGames.RPG {
                 //***************************//
                 // Check origin region first
                 //***************************//
-                WorldTile[] originRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(npc.stats.settlement.originRegion.x, npc.stats.settlement.originRegion.y);
+                buildSiteRegionPos.x = npc.stats.settlement.originRegion.x;
+                buildSiteRegionPos.y = npc.stats.settlement.originRegion.y;
+
+                WorldTile[] originRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject((int)buildSiteRegionPos.x, (int)buildSiteRegionPos.y);                
+                
                 foundBuildSite = CalculateSiteLocation(originRegionTiles);
                 if (foundBuildSite) return;
 
@@ -238,8 +248,14 @@ namespace ZetaGames.RPG {
 
                 if (settledRegions.Count != 0) {
                     randIndex = Random.Range(0, settledRegions.Count);
-                    WorldTile[] settledRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(settledRegions[randIndex].x, settledRegions[randIndex].y);
+
+                    buildSiteRegionPos.x = settledRegions[randIndex].x;
+                    buildSiteRegionPos.y = settledRegions[randIndex].y;
+
+                    WorldTile[] settledRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject((int)buildSiteRegionPos.x, (int)buildSiteRegionPos.y);
+
                     foundBuildSite = CalculateSiteLocation(settledRegionTiles);
+
                     if (foundBuildSite) return;
                 } else {
                     Debug.LogWarning("No settled regions added");
@@ -258,19 +274,24 @@ namespace ZetaGames.RPG {
 
                 if (unsettledRegions.Count != 0) {
                     randIndex = Random.Range(0, unsettledRegions.Count);
-                    WorldTile[] unsettledRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(unsettledRegions[randIndex].x, unsettledRegions[randIndex].y);
+
+                    buildSiteRegionPos.x = unsettledRegions[randIndex].x;
+                    buildSiteRegionPos.y = unsettledRegions[randIndex].y;
+
+                    WorldTile[] unsettledRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject((int)buildSiteRegionPos.x, (int)buildSiteRegionPos.y);
+
                     foundBuildSite = CalculateSiteLocation(unsettledRegionTiles);
+
                     if (foundBuildSite) return;
                 } else {
                     Debug.LogWarning("No unsettled regions added");
                 }
 
-
                 //**********************************************************//
                 // No suitable site found at settlement. Leave settlement.
                 //**********************************************************//
                 CommunityManager.Instance.LeaveSettlement(npc.stats.settlement, npc.gameObject);
-                npc.stats.settlement.atMax = true;
+                //npc.stats.settlement.atMax = true;
                 npc.stats.settlement = null;
                 npc.joinCommunity.hasCommunity = false;
 

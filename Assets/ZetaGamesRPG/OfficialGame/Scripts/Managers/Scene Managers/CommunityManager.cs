@@ -7,7 +7,6 @@ namespace ZetaGames.RPG {
 
         [HideInInspector] public static CommunityManager Instance;
         [HideInInspector] public List<Settlement> settlementList;
-        //[HideInInspector] public List<Vector3> settlementRegions;
         [HideInInspector] public Dictionary<Vector3, WorldTile[]> viableRegions;
 
         public int smallSettlementSize { get => 10; }
@@ -70,7 +69,7 @@ namespace ZetaGames.RPG {
 
         public void LeaveSettlement(Settlement settlement, GameObject citizen) {
             settlement.citizenList.Remove(citizen);
-            Debug.LogWarning("Leaving settlement: " + settlement.settlementName + " || Population: " + settlement.citizenList.Count);
+            Debug.Log("Leaving settlement: " + settlement.settlementName + " || Population: " + settlement.citizenList.Count);
         }
 
         public Settlement CreateNewSettlement(GameObject leader) {
@@ -118,20 +117,26 @@ namespace ZetaGames.RPG {
             // Create community bulletin board
             WorldTile[] originRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(settlement.originRegion.x, settlement.originRegion.y);
             WorldTile bulletinBoardTile;
-            
+
             while (true) {
                 bulletinBoardTile = originRegionTiles[Random.Range(0, originRegionTiles.Length)];
                 if (bulletinBoardTile.walkable && !bulletinBoardTile.occupied) break;
             }
 
+            // Adjust bulletin board tile
             settlement.bulletinBoardPos = bulletinBoardTile.GetWorldPosition();
+            bulletinBoardTile.occupied = true;
+            bulletinBoardTile.occupiedStatus = ZetaUtilities.OCCUPIED_STRUCTURE;
 
             // TODO: make barrier based on race
             // Create initial barrier around settlement
             List<WorldTile> allUpdatedTiles = CreateInitialSettlementBarrier(settlement);
 
             // Create main road(s) through settlement center
-            allUpdatedTiles.AddRange(CalculateRoads(settlement));
+            //allUpdatedTiles.AddRange(CalculateInnerRoads(settlement.originRegion));
+
+            // Calculate road connections to other settlements
+            //CalculateOuterRoads(settlement);
 
             // Update Astar graph for tile walkability
             ZetaUtilities.UpdateMultipleAstarGraphNodes(allUpdatedTiles);
@@ -263,22 +268,22 @@ namespace ZetaGames.RPG {
             // SW Corner
             swCornerTile = originRegionTiles[0];
             settlement.boundaryWallTiles.Add(swCornerTile);
-            updatedTiles = swCornerTile.SetParentTileObstacle(barrierSW, 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT);
+            updatedTiles = swCornerTile.SetParentTileObstacle(barrierSW, ZetaUtilities.TILEMAP_OBSTACLE + swCornerTile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT);
 
             // SE Corner
             seCornerTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(swCornerTile.x + MapManager.Instance.regionSize - 1, swCornerTile.y);
             settlement.boundaryWallTiles.Add(seCornerTile);
-            updatedTiles.AddRange(seCornerTile.SetParentTileObstacle(barrierSE, 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
+            updatedTiles.AddRange(seCornerTile.SetParentTileObstacle(barrierSE, ZetaUtilities.TILEMAP_OBSTACLE + seCornerTile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
 
             // NE Corner
             neCornerTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(seCornerTile.x, seCornerTile.y + MapManager.Instance.regionSize - 1);
             settlement.boundaryWallTiles.Add(neCornerTile);
-            updatedTiles.AddRange(neCornerTile.SetParentTileObstacle(barrierNE, 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
+            updatedTiles.AddRange(neCornerTile.SetParentTileObstacle(barrierNE, ZetaUtilities.TILEMAP_OBSTACLE + neCornerTile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
 
             // NW Corner
             nwCornerTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(neCornerTile.x - MapManager.Instance.regionSize + 1, neCornerTile.y);
             settlement.boundaryWallTiles.Add(nwCornerTile);
-            updatedTiles.AddRange(nwCornerTile.SetParentTileObstacle(barrierNW, 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
+            updatedTiles.AddRange(nwCornerTile.SetParentTileObstacle(barrierNW, ZetaUtilities.TILEMAP_OBSTACLE + nwCornerTile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
 
             // Check neighboring regions for viable entrance. No entrance if the neighbor region is not viable to expand settlement.
             // South region
@@ -328,7 +333,7 @@ namespace ZetaGames.RPG {
                     if (i > 7 && i < MapManager.Instance.regionSize - 6) {
                         // Check if occupied already
                         if (tile.tileObstacle != null) {
-                            updatedTiles.AddRange(tile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(tile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE));
                         }
 
                         // make an entrance
@@ -337,54 +342,37 @@ namespace ZetaGames.RPG {
                         tile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         tile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(tile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(tile.GetWorldPositionInt(), null);
-
-                        // Add number to end of entrance name if more than one on a cardinal side
-                        List<Vector3> westEntranceTilePositions = new List<Vector3>();
-                        string entName = "West_";
-                        int entNum = 0;
-
-                        foreach (string name in settlement.settlementEntrances.Keys) {
-                            if (name.Contains(entName)) {
-                                entNum++;
-                            }
-                        }
-
-                        entName += entNum;
-
-                        // Add entrance to vector3 list
-                        westEntranceTilePositions.Add(tile.GetWorldPosition());
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
 
                         // make next tile an entrance as well
                         WorldTile nextTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(tile.x, tile.y + 1);
 
                         // Check if occupied already
                         if (nextTile.tileObstacle != null) {
-                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation));
                         }
 
                         nextTile.occupied = true;
-                        tile.hasParent = false;
+                        nextTile.hasParent = false;
                         nextTile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         nextTile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(nextTile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(nextTile.GetWorldPositionInt(), null);
-
-                        // Add entrance to vector3 list
-                        westEntranceTilePositions.Add(nextTile.GetWorldPosition());
-
-                        settlement.settlementEntrances.Add(entName, westEntranceTilePositions);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
 
                         // Adjust settlement region and neighbor region exit data
                         settlement.originRegion.westExit = true;
+                        settlement.originRegion.westExitPos.x = tile.x;
+                        settlement.originRegion.westExitPos.y = tile.y;
 
                         if (settlement.ContainsRegion(settlement.originRegion.x - 1, settlement.originRegion.y)) {
                             Settlement.Region neighbor = settlement.GetSettledRegion(settlement.originRegion.x - 1, settlement.originRegion.y);
                             neighbor.eastExit = true;
+                            neighbor.eastExitPos.x = tile.x - 1;
+                            neighbor.eastExitPos.y = tile.y;
                         }
-                        
+
                         createWestEntrance = false;
                         continue;
                     }
@@ -393,7 +381,7 @@ namespace ZetaGames.RPG {
                 // Load a barrier
                 if (!tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_WEST) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE)) {
                     int randNum = Random.Range(0, barriersW.Count);
-                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersW[randNum], 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_WEST, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
+                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersW[randNum], ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_WEST, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
                 }
             }
 
@@ -408,7 +396,7 @@ namespace ZetaGames.RPG {
                     if (i > 7 && i < MapManager.Instance.regionSize - 6) {
                         // Check if occupied already
                         if (tile.tileObstacle != null) {
-                            updatedTiles.AddRange(tile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(tile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation));
                         }
 
                         // make an entrance
@@ -417,54 +405,37 @@ namespace ZetaGames.RPG {
                         tile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         tile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(tile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(tile.GetWorldPositionInt(), null);
-
-                        // Add number to end of entrance name if more than one on a cardinal side
-                        List<Vector3> eastEntranceTilePositions = new List<Vector3>();
-                        string entName = "East_";
-                        int entNum = 0;
-
-                        foreach (string name in settlement.settlementEntrances.Keys) {
-                            if (name.Contains(entName)) {
-                                entNum++;
-                            }
-                        }
-
-                        entName += entNum;
-
-                        // Add entrance to vector3 list
-                        eastEntranceTilePositions.Add(tile.GetWorldPosition());
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
 
                         // make next tile an entrance as well
                         WorldTile nextTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(tile.x, tile.y + 1);
 
                         // Check if occupied already
                         if (nextTile.tileObstacle != null) {
-                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation));
                         }
 
                         nextTile.occupied = true;
-                        tile.hasParent = false;
+                        nextTile.hasParent = false;
                         nextTile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         nextTile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(nextTile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(nextTile.GetWorldPositionInt(), null);
-
-                        // Add entrance to vector3 list
-                        eastEntranceTilePositions.Add(nextTile.GetWorldPosition());
-
-                        settlement.settlementEntrances.Add(entName, eastEntranceTilePositions);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
 
                         // Adjust settlement region and neighbor region exit data
                         settlement.originRegion.eastExit = true;
+                        settlement.originRegion.eastExitPos.x = tile.x;
+                        settlement.originRegion.eastExitPos.y = tile.y;
 
                         if (settlement.ContainsRegion(settlement.originRegion.x + 1, settlement.originRegion.y)) {
                             Settlement.Region neighbor = settlement.GetSettledRegion(settlement.originRegion.x + 1, settlement.originRegion.y);
                             neighbor.westExit = true;
+                            neighbor.westExitPos.x = tile.x + 1;
+                            neighbor.westExitPos.y = tile.y;
                         }
-                        
+
                         createEastEntrance = false;
                         continue;
                     }
@@ -473,7 +444,7 @@ namespace ZetaGames.RPG {
                 // Load a barrier
                 if (!tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_EAST) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE)) {
                     int randNum = Random.Range(0, barriersE.Count);
-                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersE[randNum], 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_EAST, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
+                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersE[randNum], ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_EAST, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
                 }
             }
 
@@ -488,7 +459,7 @@ namespace ZetaGames.RPG {
                     if (i > 7 && i < MapManager.Instance.regionSize - 6) {
                         // Check if occupied already
                         if (tile.tileObstacle != null) {
-                            updatedTiles.AddRange(tile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(tile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation));
                         }
 
                         // make an entrance
@@ -497,31 +468,15 @@ namespace ZetaGames.RPG {
                         tile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         tile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(tile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(tile.GetWorldPositionInt(), null);
-
-                        // Add number to end of entrance name if more than one on a cardinal side
-                        List<Vector3> southEntranceTilePositions = new List<Vector3>();
-                        string entName = "South_";
-                        int entNum = 0;
-
-                        foreach (string name in settlement.settlementEntrances.Keys) {
-                            if (name.Contains(entName)) {
-                                entNum++;
-                            }
-                        }
-
-                        entName += entNum;
-
-                        // Add entrance to vector3 list
-                        southEntranceTilePositions.Add(tile.GetWorldPosition());
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
 
                         // make next tile an entrance as well
                         WorldTile nextTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(tile.x + 1, tile.y);
 
                         // Check if occupied already
                         if (nextTile.tileObstacle != null) {
-                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation));
                         }
 
                         nextTile.occupied = true;
@@ -529,22 +484,21 @@ namespace ZetaGames.RPG {
                         nextTile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         nextTile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(nextTile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(nextTile.GetWorldPositionInt(), null);
-
-                        // Add entrance to vector3 list
-                        southEntranceTilePositions.Add(nextTile.GetWorldPosition());
-
-                        settlement.settlementEntrances.Add(entName, southEntranceTilePositions);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
 
                         // Adjust settlement region and neighbor region exit data
                         settlement.originRegion.southExit = true;
+                        settlement.originRegion.southExitPos.x = tile.x;
+                        settlement.originRegion.southExitPos.y = tile.y;
 
                         if (settlement.ContainsRegion(settlement.originRegion.x, settlement.originRegion.y - 1)) {
                             Settlement.Region neighbor = settlement.GetSettledRegion(settlement.originRegion.x, settlement.originRegion.y - 1);
                             neighbor.northExit = true;
+                            neighbor.northExitPos.x = tile.x;
+                            neighbor.northExitPos.y = tile.y - 1;
                         }
-                        
+
                         createSouthEntrance = false;
                         continue;
                     }
@@ -553,7 +507,7 @@ namespace ZetaGames.RPG {
                 // Load a barrier
                 if (!tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_SOUTH) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE)) {
                     int randNum = Random.Range(0, barriersS.Count);
-                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersS[randNum], 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_SOUTH, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
+                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersS[randNum], ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_SOUTH, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
                 }
             }
 
@@ -568,7 +522,7 @@ namespace ZetaGames.RPG {
                     if (i > 7 && i < MapManager.Instance.regionSize - 6) {
                         // Check if occupied already
                         if (tile.tileObstacle != null) {
-                            updatedTiles.AddRange(tile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(tile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation));
                         }
 
                         // make an entrance
@@ -577,31 +531,15 @@ namespace ZetaGames.RPG {
                         tile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         tile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(tile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(tile.GetWorldPositionInt(), null);
-
-                        // Add number to end of entrance name if more than one on a cardinal side
-                        List<Vector3> northEntranceTilePositions = new List<Vector3>();
-                        string entName = "North_";
-                        int entNum = 0;
-
-                        foreach (string name in settlement.settlementEntrances.Keys) {
-                            if (name.Contains(entName)) {
-                                entNum++;
-                            }
-                        }
-
-                        entName += entNum;
-
-                        // Add entrance to vector3 list
-                        northEntranceTilePositions.Add(tile.GetWorldPosition());
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + tile.elevation].SetTile(tile.GetWorldPositionInt(), null);
 
                         // make next tile an entrance as well
                         WorldTile nextTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(tile.x + 1, tile.y);
 
                         // Check if occupied already
                         if (nextTile.tileObstacle != null) {
-                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(2));
+                            updatedTiles.AddRange(nextTile.RemoveTileObstacle(ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation));
                         }
 
                         nextTile.occupied = true;
@@ -609,20 +547,19 @@ namespace ZetaGames.RPG {
                         nextTile.occupiedStatus = ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE;
                         nextTile.walkable = true;
 
-                        MapManager.Instance.tileMapList[2].SetTile(nextTile.GetWorldPositionInt(), null);
-                        MapManager.Instance.tileMapList[3].SetTile(nextTile.GetWorldPositionInt(), null);
-
-                        // Add entrance to vector3 list
-                        northEntranceTilePositions.Add(nextTile.GetWorldPosition());
-
-                        settlement.settlementEntrances.Add(entName, northEntranceTilePositions);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
+                        MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + nextTile.elevation].SetTile(nextTile.GetWorldPositionInt(), null);
 
                         // Adjust settlement region and neighbor region exit data
                         settlement.originRegion.northExit = true;
-                        
+                        settlement.originRegion.northExitPos.x = tile.x;
+                        settlement.originRegion.northExitPos.y = tile.y;
+
                         if (settlement.ContainsRegion(settlement.originRegion.x, settlement.originRegion.y + 1)) {
                             Settlement.Region neighbor = settlement.GetSettledRegion(settlement.originRegion.x, settlement.originRegion.y + 1);
                             neighbor.southExit = true;
+                            neighbor.southExitPos.x = tile.x;
+                            neighbor.southExitPos.y = tile.y + 1;
                         }
 
                         createNorthEntrance = false;
@@ -633,394 +570,12 @@ namespace ZetaGames.RPG {
                 // Load a barrier
                 if (!tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_CORNER) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_NORTH) && !tile.occupiedStatus.Equals(ZetaUtilities.OCCUPIED_SETTLEMENT_ENTRANCE)) {
                     int randNum = Random.Range(0, barriersN.Count);
-                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersN[randNum], 2, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_NORTH, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
+                    updatedTiles.AddRange(tile.SetParentTileObstacle(barriersN[randNum], ZetaUtilities.TILEMAP_OBSTACLE + tile.elevation, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_NORTH, ZetaUtilities.OCCUPIED_SETTLEMENT_WALL_ADJACENT));
                 }
             }
 
             // return the updated tile list
             return updatedTiles;
-        }
-
-        private List<WorldTile> CalculateRoads(Settlement settlement) {
-            List<WorldTile> updatedTiles = new List<WorldTile>();
-            bool north = false;
-            bool south = false;
-            bool west = false;
-            bool east = false;
-
-            foreach (string entrance in settlement.settlementEntrances.Keys) {
-                if (entrance.Contains("North")) {
-                    north = true;
-                } else if (entrance.Contains("South")) {
-                    south = true;
-                } else if (entrance.Contains("West")) {
-                    west = true;
-                } else if (entrance.Contains("East")) {
-                    east = true;
-                }
-            }
-
-            // Straight through roads
-            if (north && south) updatedTiles.AddRange(CreateThroughRoad_NS(settlement));
-            if (east && west) updatedTiles.AddRange(CreateThroughRoad_EW(settlement));
-
-            // Connecting roads (3 entrances)
-            if (!east && west && north && south) updatedTiles.AddRange(CreateConnectingRoad_W(settlement));
-            if (!west && east && north && south) updatedTiles.AddRange(CreateConnectingRoad_E(settlement));
-            if (!south && north && east && west) updatedTiles.AddRange(CreateConnectingRoad_N(settlement));
-            if (!north && south && east && west) updatedTiles.AddRange(CreateConnectingRoad_S(settlement));
-
-            return updatedTiles;
-        }
-
-        private List<WorldTile> CreateConnectingRoad_S(Settlement settlement) {
-            List<WorldTile> updatedTiles = new List<WorldTile>();
-
-            // There must be an AstarPath instance in the scene
-            if (AstarPath.active == null) return updatedTiles;
-
-            Vector3 northEnt = settlement.settlementEntrances["South_0"][0] + MapManager.Instance.GetTileOffset();
-
-            for (int i = 0; i < MapManager.Instance.regionSize; i++) {
-                WorldTile rightTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x + 1, (int)northEnt.y + i);
-                WorldTile leftTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x, (int)northEnt.y + i);
-
-                if (rightTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD) && leftTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
-                    break;
-                }
-
-                // Remove obstacles blocking path
-                if (leftTile.tileObstacle != null) updatedTiles.AddRange(leftTile.RemoveTileObstacle(2));
-                if (rightTile.tileObstacle != null) updatedTiles.AddRange(rightTile.RemoveTileObstacle(2));
-
-                // Set path sprites
-                MapManager.Instance.SetMapRuleTile(leftTile, 1, "TownDirt_To_Grass");
-                MapManager.Instance.SetMapRuleTile(rightTile, 1, "TownDirt_To_Grass");
-
-                // Update tile data
-                leftTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                leftTile.walkable = true;
-                rightTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                rightTile.walkable = true;
-            }
-
-            // Fill first two blocks below south entrance
-
-            // left
-            WorldTile starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x, (int)northEnt.y - 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            // right
-            starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x + 1, (int)northEnt.y - 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            return updatedTiles;
-        }
-
-        private List<WorldTile> CreateConnectingRoad_N(Settlement settlement) {
-            List<WorldTile> updatedTiles = new List<WorldTile>();
-
-            // There must be an AstarPath instance in the scene
-            if (AstarPath.active == null) return updatedTiles;
-
-            Vector3 northEnt = settlement.settlementEntrances["North_0"][0] + MapManager.Instance.GetTileOffset();
-
-            for (int i = 0; i < MapManager.Instance.regionSize; i++) {
-                WorldTile rightTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x + 1, (int)northEnt.y - i);
-                WorldTile leftTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x, (int)northEnt.y - i);
-
-                if (rightTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD) && leftTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
-                    break;
-                }
-
-                // Remove obstacles blocking path
-                if (leftTile.tileObstacle != null) updatedTiles.AddRange(leftTile.RemoveTileObstacle(2));
-                if (rightTile.tileObstacle != null) updatedTiles.AddRange(rightTile.RemoveTileObstacle(2));
-
-                // Set path sprites
-                MapManager.Instance.SetMapRuleTile(leftTile, 1, "TownDirt_To_Grass");
-                MapManager.Instance.SetMapRuleTile(rightTile, 1, "TownDirt_To_Grass");
-
-                // Update tile data
-                leftTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                leftTile.walkable = true;
-                rightTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                rightTile.walkable = true;
-            }
-
-            // Fill first two blocks above north entrance
-
-            // left
-            WorldTile starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x, (int)northEnt.y + 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            // right
-            starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)northEnt.x + 1, (int)northEnt.y + 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            return updatedTiles;
-        }
-
-        private List<WorldTile> CreateConnectingRoad_E(Settlement settlement) {
-            List<WorldTile> updatedTiles = new List<WorldTile>();
-
-            // There must be an AstarPath instance in the scene
-            if (AstarPath.active == null) return updatedTiles;
-
-            Vector3 eastEnt = settlement.settlementEntrances["East_0"][0] + MapManager.Instance.GetTileOffset();
-
-            for (int i = 0; i < MapManager.Instance.regionSize; i++) {
-                WorldTile upperTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)eastEnt.x - i, (int)eastEnt.y + 1);
-                WorldTile lowerTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)eastEnt.x - i, (int)eastEnt.y);
-
-                if (upperTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD) && lowerTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
-                    break;
-                }
-
-                // Remove obstacles blocking path
-                if (lowerTile.tileObstacle != null) updatedTiles.AddRange(lowerTile.RemoveTileObstacle(2));
-                if (upperTile.tileObstacle != null) updatedTiles.AddRange(upperTile.RemoveTileObstacle(2));
-
-                // Set path sprites
-                MapManager.Instance.SetMapRuleTile(lowerTile, 1, "TownDirt_To_Grass");
-                MapManager.Instance.SetMapRuleTile(upperTile, 1, "TownDirt_To_Grass");
-
-                // Update tile data
-                lowerTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                lowerTile.walkable = true;
-                upperTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                upperTile.walkable = true;
-            }
-
-            // Fill first two blocks right of east entrance
-
-            // lower
-            WorldTile starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)eastEnt.x + 1, (int)eastEnt.y);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            // upper
-            starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)eastEnt.x + 1, (int)eastEnt.y + 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            return updatedTiles;
-        }
-
-        private List<WorldTile> CreateConnectingRoad_W(Settlement settlement) {
-            List<WorldTile> updatedTiles = new List<WorldTile>();
-
-            // There must be an AstarPath instance in the scene
-            if (AstarPath.active == null) return updatedTiles;
-
-            Vector3 westEnt = settlement.settlementEntrances["West_0"][0] + MapManager.Instance.GetTileOffset();
-
-            for (int i = 0; i < MapManager.Instance.regionSize; i++) {
-                WorldTile upperTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)westEnt.x + i, (int)westEnt.y + 1);
-                WorldTile lowerTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)westEnt.x + i, (int)westEnt.y);
-
-                if (upperTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD) && lowerTile.terrainType.Equals(ZetaUtilities.TERRAIN_SETTLEMENT_ROAD)) {
-                    break;
-                }
-
-                // Remove obstacles blocking path
-                if (lowerTile.tileObstacle != null) updatedTiles.AddRange(lowerTile.RemoveTileObstacle(2));
-                if (upperTile.tileObstacle != null) updatedTiles.AddRange(upperTile.RemoveTileObstacle(2));
-
-                // Set path sprites
-                MapManager.Instance.SetMapRuleTile(lowerTile, 1, "TownDirt_To_Grass");
-                MapManager.Instance.SetMapRuleTile(upperTile, 1, "TownDirt_To_Grass");
-
-                // Update tile data
-                lowerTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                lowerTile.walkable = true;
-                upperTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                upperTile.walkable = true;
-            }
-
-            // Fill first two blocks left of west entrance
-
-            // lower
-            WorldTile starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)westEnt.x - 1, (int)westEnt.y);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            // upper
-            starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)westEnt.x - 1, (int)westEnt.y + 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            return updatedTiles;
-        }
-
-        private List<WorldTile> CreateThroughRoad_EW(Settlement settlement) {
-            List<WorldTile> updatedTiles = new List<WorldTile>();
-
-            // There must be an AstarPath instance in the scene
-            if (AstarPath.active == null) return updatedTiles;
-
-            Vector3 eastEnt = settlement.settlementEntrances["East_0"][0] + MapManager.Instance.GetTileOffset();
-            Vector3 westEnt = settlement.settlementEntrances["West_0"][0] + MapManager.Instance.GetTileOffset();
-
-            // Fill first two blocks left of west entrance
-
-            // lower
-            WorldTile starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)westEnt.x - 1, (int)westEnt.y);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-            
-            // upper
-            starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)westEnt.x - 1, (int)westEnt.y + 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            for (int i = 0; i < 3; i++) {
-            var p = ABPath.Construct(westEnt, eastEnt, OnEWPathComplete);
-            p.nnConstraint.constrainWalkability = false;
-            AstarPath.StartPath(p);
-            AstarPath.BlockUntilCalculated(p);
-            }
-
-            return updatedTiles;
-        }
-
-        private List<WorldTile> CreateThroughRoad_NS(Settlement settlement) {
-            List<WorldTile> updatedTiles = new List<WorldTile>();
-
-            // There must be an AstarPath instance in the scene
-            if (AstarPath.active == null) return updatedTiles;
-
-            Vector3 northEnt = settlement.settlementEntrances["North_0"][0] + MapManager.Instance.GetTileOffset();
-            Vector3 southEnt = settlement.settlementEntrances["South_0"][0] + MapManager.Instance.GetTileOffset();
-
-            // Fill first two blocks below south entrance
-            // left
-            WorldTile starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)southEnt.x, (int)southEnt.y - 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-            // right
-            starterTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)southEnt.x + 1, (int)southEnt.y - 1);
-            if (starterTile.tileObstacle != null) updatedTiles.AddRange(starterTile.RemoveTileObstacle(2));
-            MapManager.Instance.SetMapRuleTile(starterTile, 1, "TownDirt_To_Grass");
-            starterTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-            starterTile.walkable = true;
-
-            for (int i = 0; i < 3; i++) {
-            var p = ABPath.Construct(southEnt, northEnt, OnNSPathComplete);
-            p.nnConstraint.constrainWalkability = false;
-            AstarPath.StartPath(p);
-            AstarPath.BlockUntilCalculated(p);
-            }
-
-            return updatedTiles;
-        }
-
-        public void OnEWPathComplete(Path ewPath) {
-            if (ewPath.error) {
-                Debug.LogError("CommunityManager.OnEWPathComplete(): No valid path found.");
-            } else {
-                List<WorldTile> updatedTiles = new List<WorldTile>();
-
-                foreach (Vector3 vector in ewPath.vectorPath) {
-                    // Get world tiles
-                    WorldTile lowerTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x, (int)vector.y);
-                    WorldTile upperTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x, (int)vector.y + 1);
-                    WorldTile fillerUpperTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x + 1, (int)vector.y + 1);
-                    WorldTile fillerLowerTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x + 1, (int)vector.y);
-
-                    // Remove obstacles blocking path
-                    if (lowerTile.tileObstacle != null) updatedTiles.AddRange(lowerTile.RemoveTileObstacle(2));
-                    if (upperTile.tileObstacle != null) updatedTiles.AddRange(upperTile.RemoveTileObstacle(2));
-                    if (fillerUpperTile.tileObstacle != null) updatedTiles.AddRange(fillerUpperTile.RemoveTileObstacle(2));
-                    if (fillerLowerTile.tileObstacle != null) updatedTiles.AddRange(fillerLowerTile.RemoveTileObstacle(2));
-
-                    // Set path sprites
-                    MapManager.Instance.SetMapRuleTile(lowerTile, 1, "TownDirt_To_Grass");
-                    MapManager.Instance.SetMapRuleTile(upperTile, 1, "TownDirt_To_Grass");
-                    MapManager.Instance.SetMapRuleTile(fillerUpperTile, 1, "TownDirt_To_Grass");
-                    MapManager.Instance.SetMapRuleTile(fillerLowerTile, 1, "TownDirt_To_Grass");
-
-                    // Update tile data
-                    lowerTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    lowerTile.walkable = true;
-                    upperTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    upperTile.walkable = true;
-                    fillerUpperTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    fillerUpperTile.walkable = true;
-                    fillerLowerTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    fillerLowerTile.walkable = true;
-                }
-
-                // Update Astar graph for tile walkability
-                ZetaUtilities.UpdateMultipleAstarGraphNodes(updatedTiles);
-            }
-        }
-
-        public void OnNSPathComplete(Path nsPath) {
-            if (nsPath.error) {
-                Debug.LogError("CommunityManager.OnNSPathComplete(): No valid path found.");
-            } else {
-                List<WorldTile> updatedTiles = new List<WorldTile>();
-
-                foreach (Vector3 vector in nsPath.vectorPath) {
-                    // Get world tiles
-                    WorldTile leftTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x, (int)vector.y);
-                    WorldTile rightTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x + 1, (int)vector.y);
-                    WorldTile fillerLeftTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x, (int)vector.y + 1);
-                    WorldTile fillerRightTile = MapManager.Instance.GetWorldTileGrid().GetGridObject((int)vector.x + 1, (int)vector.y + 1);
-
-                    // Remove obstacles blocking path
-                    if (leftTile.tileObstacle != null) updatedTiles.AddRange(leftTile.RemoveTileObstacle(2));
-                    if (rightTile.tileObstacle != null) updatedTiles.AddRange(rightTile.RemoveTileObstacle(2));
-                    if (fillerLeftTile.tileObstacle != null) updatedTiles.AddRange(fillerLeftTile.RemoveTileObstacle(2));
-                    if (fillerRightTile.tileObstacle != null) updatedTiles.AddRange(fillerRightTile.RemoveTileObstacle(2));
-
-                    // Set path sprites
-                    MapManager.Instance.SetMapRuleTile(leftTile, 1, "TownDirt_To_Grass");
-                    MapManager.Instance.SetMapRuleTile(rightTile, 1, "TownDirt_To_Grass");
-                    MapManager.Instance.SetMapRuleTile(fillerLeftTile, 1, "TownDirt_To_Grass");
-                    MapManager.Instance.SetMapRuleTile(fillerRightTile, 1, "TownDirt_To_Grass");
-
-                    // Update tile data
-                    leftTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    leftTile.walkable = true;
-                    rightTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    rightTile.walkable = true;
-                    fillerLeftTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    fillerLeftTile.walkable = true;
-                    fillerRightTile.terrainType = ZetaUtilities.TERRAIN_SETTLEMENT_ROAD;
-                    fillerRightTile.walkable = true;
-                }
-
-                // Update Astar graph for tile walkability
-                ZetaUtilities.UpdateMultipleAstarGraphNodes(updatedTiles);
-            }
         }
     }
 }

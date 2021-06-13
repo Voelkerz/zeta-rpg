@@ -7,7 +7,7 @@ namespace ZetaGames.RPG {
     public class BuildStructure : State {
         public override int priority => 10;
         public override bool isFinished => finished;
-        public override bool isInterruptable => true;
+        public override bool isInterruptable { get => npc.inCombat; }
 
         private bool finished;
         private readonly AIBrain npc;
@@ -170,8 +170,7 @@ namespace ZetaGames.RPG {
         private bool PlaceBuildSite() {
             // Final check for build site validity
             foreach (WorldTile tile in npc.buildGoal.siteTiles) {
-                Vector3 tileRegion = MapManager.Instance.GetWorldRegionGrid().GetWorldPosition(tile.x, tile.y);
-                if (tile.occupied && !tile.walkable && tile.lockTag != npc.lockTag && !npc.stats.settlement.ContainsRegion((int)tileRegion.x, (int)tileRegion.y)) {
+                if (tile.occupied || !tile.walkable || tile.lockTag != npc.lockTag) {
                     npc.buildGoal.ResetBuildGoal();
                     finished = true;
                     return false;
@@ -195,7 +194,7 @@ namespace ZetaGames.RPG {
                 }
 
                 // Set dirt ground as base
-                MapManager.Instance.SetMapSpriteTile(tile, 1, "Minifantasy_TownsDirt");
+                MapManager.Instance.SetMapSpriteTile(tile, ZetaUtilities.TILEMAP_BASE + tile.elevation, "Minifantasy_TownsDirt", false);
 
                 // Nullify map decor layer
                 MapManager.Instance.tileMapList[4].SetTile(tile.GetWorldPositionInt(), null);

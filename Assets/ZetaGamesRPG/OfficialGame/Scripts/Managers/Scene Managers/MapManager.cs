@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
+using static UnityEngine.RuleTile;
+using System;
+using UnityEngine.Events;
 
 namespace ZetaGames.RPG {
     public class MapManager : MonoBehaviour {
@@ -12,6 +15,7 @@ namespace ZetaGames.RPG {
         public List<Tilemap> tileMapList;
         [SerializeField] private List<GlobalTileData> globalTileDataList;
         [SerializeField] private List<TilemapObstacle> mapFeaturesDataList;
+        public Dictionary<TileBase, GlobalTileData> globalTileDataDictionary;
         public int mapWidth = 256;
         public int mapHeight = 256;
         public int regionSize = 128;
@@ -34,6 +38,8 @@ namespace ZetaGames.RPG {
         private string ruleTileAddress = "Assets/ZetaGamesRPG/OfficialGame/Tilemaps/Tile Rulesets/";
         private Vector3 tileOffset;
         private Vector3Int tilemapPos;
+        private Color tileColorFade;
+        private WaitForSeconds waitTimer;
 
         private void Awake() {
             // Create instance
@@ -43,7 +49,10 @@ namespace ZetaGames.RPG {
             filePath = @"d:\GameDevProjects\Team\ZetaRPG\Assets\ZetaGamesRPG\Development\Zach\Json\" + fileName + ".json";
             worldRegionGrid = new ZetaGrid<WorldTile[]>(mapWidth / regionSize, mapHeight / regionSize, regionSize, new Vector3(0, 0), (int x, int y) => new WorldTile[regionSize * regionSize]);
             worldTileGrid = new ZetaGrid<WorldTile>(mapWidth, mapHeight, 1, new Vector3(0, 0), (int x, int y) => new WorldTile(x, y));
+            globalTileDataDictionary = new Dictionary<TileBase, GlobalTileData>();
             tileOffset = new Vector3(0.5f, 0.5f);
+            waitTimer = new WaitForSeconds(0.05f);
+            tileColorFade = new Color(255, 255, 255, 255);
 
             if (loadMapFromFile) {
                 //LoadJson();
@@ -68,9 +77,33 @@ namespace ZetaGames.RPG {
         private void Start() {
             // Update Astar pathfinding graph to include world tile info ((MUST BE IN START))
             UpdatePathfindingGrid();
+
+            // Regrow trampling
+            StartCoroutine(NatureRegrowCycle());
         }
 
         private void Update() {
+
+
+
+            /*
+            // Move across x scale
+            if (regrowX > mapWidth) {
+                regrowX = 0;
+                regrowY++;
+            } else {
+                regrowX++;
+            }
+
+            // Move across y scale
+            if (regrowY > mapHeight) {
+                regrowY = 0;
+            }
+
+            // Regrow trampling for one tile per update call
+            WorldTile regrowthTile = worldTileGrid.GetGridObject(regrowX, regrowY);
+            if (regrowthTile != null) regrowthTile.TrampleRegrow();
+            */
 
             if (Input.GetMouseButtonDown(0)) {
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -88,16 +121,62 @@ namespace ZetaGames.RPG {
             }
         }
 
-        public virtual void SetMapSpriteTile(WorldTile worldTile, int tilemapIndex, string spriteName) {
-            StartCoroutine(SetAtlasedSpriteAsync(worldTile, tilemapIndex, spriteName));
+        private IEnumerator NatureRegrowCycle() {
+            float frameRate = 30f;
+            float baseRegrowthTimer = (512 * 512) / (32 * 30);
+            float totalMapRegrowthInSeconds = (mapHeight * mapWidth) / (regionSize * frameRate);
+            float regrowModifier = totalMapRegrowthInSeconds / baseRegrowthTimer; // a multiplier that scales with the mapsize and regrowth timer. 1x for 512x512 maps, 4x for 1024x1024 maps, 16x for 2048x2048. Keeps regrowth amount the same even if timer is longer.
+            WaitForSeconds regrowWaitTimer = new WaitForSeconds(totalMapRegrowthInSeconds / (regionSize * regionSize * regionSize));
+
+            while (true) {
+                //Debug.LogWarning("Started");
+                for (int regionY = 0; regionY < mapHeight / regionSize; regionY++) {
+                    for (int regionX = 0; regionX < mapWidth / regionSize; regionX++) {
+                        WorldTile[] regionTiles = worldRegionGrid.GetGridObject(regionX, regionY);
+                        int counter = 0;
+
+                        for (int i = 0; i < regionTiles.Length; i++) {
+                            WorldTile tile = regionTiles[i];
+
+                            // Grass trample regrow
+                            if (tile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) || tile.terrainType.Equals(ZetaUtilities.TERRAIN_DIRT_PATH) || tile.terrainType.Equals(ZetaUtilities.TERRAIN_DIRT)) tile.TrampleRegrow(regrowModifier);
+
+                            // keep counter to size of region
+                            counter++;
+                            if (counter == regionSize) {
+                                counter = 0;
+                                yield return regrowWaitTimer;
+                            }
+                        }
+                    }
+                }
+                //Debug.LogWarning("Done");
+            }
         }
 
-        public virtual void SetMapRuleTile(WorldTile worldTile, int tilemapIndex, string ruleTileName) {
-            StartCoroutine(SetAddressableRuleTileAsync(worldTile, tilemapIndex, ruleTileName));
+        public virtual void SetMapSpriteTile(WorldTile worldTile, int tilemapIndex, string spriteName, bool fade) {
+            StartCoroutine(SetAtlasedSpriteAsync(worldTile, tilemapIndex, spriteName, fade));
+        }
+
+        public virtual void SetMapRuleTile(WorldTile worldTile, int tilemapIndex, string ruleTileName, bool fade) {
+            StartCoroutine(SetAddressableRuleTileAsync(worldTile, tilemapIndex, ruleTileName, fade));
         }
 
         public virtual void PlayMapSpriteAnimation(WorldTile worldTile, int tilemapIndex, List<string> spriteNames, int startIndex) {
             StartCoroutine(PlayResourceSpriteAnimationCoroutine(worldTile, tilemapIndex, spriteNames, startIndex));
+        }
+
+        public virtual void NullifySpriteTile(WorldTile worldTile, int tilemapIndex, bool fade) {
+            Vector3 worldPos = worldTileGrid.GetWorldPosition(worldTile.x, worldTile.y);
+            tilemapPos.x = (int)worldPos.x;
+            tilemapPos.y = (int)worldPos.y;
+            tilemapPos.z = 0;
+
+            if (fade) {
+                StartCoroutine(FadeSpriteOut(tileMapList[tilemapIndex], tilemapPos));
+            } else {
+                tileMapList[tilemapIndex].SetTile(tilemapPos, null);
+            }
         }
 
         public ZetaGrid<WorldTile> GetWorldTileGrid() {
@@ -111,8 +190,6 @@ namespace ZetaGames.RPG {
         public Vector3 GetTileOffset() {
             return tileOffset;
         }
-
-
 
         /*
         private void SaveJson() {
@@ -175,15 +252,47 @@ namespace ZetaGames.RPG {
         }
         */
 
-        private IEnumerator SetAtlasedSpriteAsync(WorldTile worldTile, int tilemapIndex, string spriteName) {
+        private IEnumerator FadeSpriteOut(Tilemap tilemap, Vector3Int position) {
+            float alpha = 1;
+            tileColorFade.a = alpha;
+            tilemap.SetTileFlags(position, TileFlags.None);
+
+            while (alpha > 0) {
+                alpha -= 0.2f;
+                tileColorFade.a = alpha;
+                tilemap.SetColor(position, tileColorFade);
+                yield return waitTimer;
+            }
+
+            tilemap.SetTile(position, null);
+        }
+
+        private IEnumerator FadeSpriteIn(Tilemap tilemap, Vector3Int position) {
+            // Start tile invisible
+            float alpha = 0;
+            tileColorFade.a = alpha;
+            tilemap.SetTileFlags(position, TileFlags.None);
+            tilemap.SetColor(position, tileColorFade);
+
+            while (alpha < 1f) {
+                alpha += 0.1f;
+                tileColorFade.a = alpha;
+                tilemap.SetColor(position, tileColorFade);
+                yield return waitTimer;
+            }
+        }
+
+        private IEnumerator SetAtlasedSpriteAsync(WorldTile worldTile, int tilemapIndex, string spriteName, bool fade) {
             string atlasedSpriteAddress = masterSpriteAtlas + '[' + spriteName + ']';
             var asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(atlasedSpriteAddress);
 
+            /*
             if (worldTile.tileSprites.Count > 0 && worldTile.tileSprites.ContainsKey(tilemapIndex)) {
                 worldTile.tileSprites[tilemapIndex] = spriteName;
             } else {
                 worldTile.tileSprites.Add(tilemapIndex, spriteName);
             }
+            */
 
             yield return asyncOperationHandle;
             Tile tile = ScriptableObject.CreateInstance<Tile>();
@@ -195,14 +304,37 @@ namespace ZetaGames.RPG {
             tilemapPos.z = 0;
             tileMapList[tilemapIndex].SetTile(tilemapPos, tile);
 
+            // Check dictionary for global tile stats if changing a base tilemap sprite (the ground the NPC walks on)
+            if (tilemapIndex == ZetaUtilities.TILEMAP_BASE + worldTile.elevation || tilemapIndex == ZetaUtilities.TILEMAP_BASE_OVERLAY + worldTile.elevation) {
+                foreach (TileBase tileBase in globalTileDataDictionary.Keys) {
+                    if (typeof(Tile).IsInstanceOfType(tileBase)) {
+                        Tile globalTile = (Tile)tileBase;
+                        // If the sprite names match, then modify the WorldTile global data
+                        if (globalTile.sprite.name.Equals(tile.sprite.name)) {
+                            GlobalTileData globalTileData = globalTileDataDictionary[tileBase];
+                            worldTile.pathPenalty = globalTileData.pathPenalty;
+                            worldTile.speedPercent = globalTileData.speedPercent;
+                            worldTile.terrainType = globalTileData.type;
+
+                            // Update Astar
+                            ZetaUtilities.UpdateSingleAstarGraphNode(worldTile);
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (fade) StartCoroutine(FadeSpriteIn(tileMapList[tilemapIndex], tilemapPos));
+
             // Release at some point
-            yield return new WaitForSeconds(1);
+            yield return waitTimer;
             Addressables.Release(asyncOperationHandle);
         }
 
-        private IEnumerator SetAddressableRuleTileAsync(WorldTile worldTile, int tilemapIndex, string ruleTile) {
+        private IEnumerator SetAddressableRuleTileAsync(WorldTile worldTile, int tilemapIndex, string ruleTile, bool fade) {
             string fullAddress = ruleTileAddress + ruleTile + ".asset";
-            var asyncOperationHandle = Addressables.LoadAssetAsync<TileBase>(fullAddress);
+            var asyncOperationHandle = Addressables.LoadAssetAsync<RuleTile>(fullAddress);
 
             if (worldTile.tileSprites.ContainsKey(tilemapIndex)) {
                 worldTile.tileSprites[tilemapIndex] = ruleTile;
@@ -217,10 +349,39 @@ namespace ZetaGames.RPG {
             tilemapPos.x = (int)worldPos.x;
             tilemapPos.y = (int)worldPos.y;
             tilemapPos.z = 0;
-            tileMapList[tilemapIndex].SetTile(tilemapPos, asyncOperationHandle.Result);
+            RuleTile tileResult = asyncOperationHandle.Result;
+            tileMapList[tilemapIndex].SetTile(tilemapPos, tileResult);
+
+
+
+            // Adjust WorldTile data
+            if (tilemapIndex == ZetaUtilities.TILEMAP_BASE + worldTile.elevation || tilemapIndex == ZetaUtilities.TILEMAP_BASE_OVERLAY + worldTile.elevation) {
+                Sprite tileSprite = tileMapList[tilemapIndex].GetSprite(tilemapPos);
+
+                foreach (TileBase tileBase in globalTileDataDictionary.Keys) {
+                    if (typeof(Tile).IsInstanceOfType(tileBase)) {
+                        Tile globalTile = (Tile)tileBase;
+
+                        // If the sprite names match, then modify the WorldTile global data
+                        if (globalTile.sprite.name.Equals(tileSprite.name)) {
+                            GlobalTileData globalTileData = globalTileDataDictionary[tileBase];
+                            worldTile.pathPenalty = globalTileData.pathPenalty;
+                            worldTile.speedPercent = globalTileData.speedPercent;
+                            worldTile.terrainType = globalTileData.type;
+
+                            // Update Astar
+                            ZetaUtilities.UpdateSingleAstarGraphNode(worldTile);
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (fade) StartCoroutine(FadeSpriteIn(tileMapList[tilemapIndex], tilemapPos));
 
             // Release at some point
-            yield return new WaitForSeconds(1);
+            yield return waitTimer;
             Addressables.Release(asyncOperationHandle);
         }
 
@@ -273,14 +434,14 @@ namespace ZetaGames.RPG {
             Vector3Int tilemapPos = new Vector3Int((int)worldPos.x, (int)worldPos.y, 0);
 
             yield return new WaitForEndOfFrame();
-            tileMapList[tilemapIndex].SetTile(tilemapPos, frame1);
-            tileMapList[tilemapIndex + 1].SetTile(tilemapPos, frame1_shadow);
+            tileMapList[tilemapIndex + worldTile.elevation].SetTile(tilemapPos, frame1);
+            tileMapList[tilemapIndex + 1 + worldTile.elevation].SetTile(tilemapPos, frame1_shadow);
             yield return new WaitForSeconds(0.33333333f);
-            tileMapList[tilemapIndex].SetTile(tilemapPos, frame2);
-            tileMapList[tilemapIndex + 1].SetTile(tilemapPos, frame2_shadow);
+            tileMapList[tilemapIndex + worldTile.elevation].SetTile(tilemapPos, frame2);
+            tileMapList[tilemapIndex + 1 + worldTile.elevation].SetTile(tilemapPos, frame2_shadow);
             yield return new WaitForSeconds(0.33333333f);
-            tileMapList[tilemapIndex].SetTile(tilemapPos, frame3);
-            tileMapList[tilemapIndex + 1].SetTile(tilemapPos, frame3_shadow);
+            tileMapList[tilemapIndex + worldTile.elevation].SetTile(tilemapPos, frame3);
+            tileMapList[tilemapIndex + 1 + worldTile.elevation].SetTile(tilemapPos, frame3_shadow);
             yield return new WaitForSeconds(0.33333333f);
 
             // Release at some point
@@ -317,9 +478,7 @@ namespace ZetaGames.RPG {
         private void FillWorldTileGrid() {
             int regionTileListSize = regionSize * regionSize;
 
-            // Create global dictionary for world creation use
-            Dictionary<TileBase, GlobalTileData> globalTileDataDictionary = new Dictionary<TileBase, GlobalTileData>();
-
+            // Fill global dictionary for world creation use
             foreach (GlobalTileData tileData in globalTileDataList) {
                 foreach (TileBase tile in tileData.tiles) {
                     if (!globalTileDataDictionary.ContainsKey(tile)) {
@@ -367,6 +526,9 @@ namespace ZetaGames.RPG {
                                                     break;
                                                 }
                                             }
+
+                                            // set tile neighbors
+                                            worldTile.SetTileNeighbors();
                                         }
                                     } else {
                                         Debug.LogWarning("TileBase not found in global tile dictionary: " + tile.name);
@@ -407,7 +569,7 @@ namespace ZetaGames.RPG {
                         // low chance to plant grass in tile
                         if (Random.Range(0, 100f) <= thickGrassStarterChance) {
                             planted = true;
-                            StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
+                            StartCoroutine(SetAddressableRuleTileAsync(currentTile, ZetaUtilities.TILEMAP_BASE + currentTile.elevation, thickGrassRuleTile, false));
                         }
 
                         // if not planted, check neighbors
@@ -442,7 +604,7 @@ namespace ZetaGames.RPG {
 
                             if (hasGrass) {
                                 if (Random.Range(0, 100f) <= thickGrassAdjacencyChance) {
-                                    StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
+                                    StartCoroutine(SetAddressableRuleTileAsync(currentTile, ZetaUtilities.TILEMAP_BASE + currentTile.elevation, thickGrassRuleTile, false));
                                 }
                             }
                         }
@@ -484,7 +646,7 @@ namespace ZetaGames.RPG {
                         }
 
                         if (hasGrass && numGrass >= 4) {
-                            StartCoroutine(SetAddressableRuleTileAsync(currentTile, 1, thickGrassRuleTile));
+                            StartCoroutine(SetAddressableRuleTileAsync(currentTile, ZetaUtilities.TILEMAP_BASE + currentTile.elevation, thickGrassRuleTile, false));
                         }
                     }
                 }
@@ -501,7 +663,7 @@ namespace ZetaGames.RPG {
                         int randomIndex = Random.Range(0, lightGrassSpriteList.Count);
                         // low chance to plant grass in tile
                         if (Random.Range(0, 100f) <= lightGrassChance) {
-                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, 1, lightGrassSpriteList[randomIndex]));
+                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_BASE + currentTile.elevation, lightGrassSpriteList[randomIndex], false));
                         }
                     }
                 }
@@ -647,7 +809,7 @@ namespace ZetaGames.RPG {
                                     }
 
                                     // Alter parent tile data
-                                    currentTile.SetParentTileObstacle(oakTreeData, 2, ZetaUtilities.OCCUPIED_NODE_FULL, ZetaUtilities.OCCUPIED_NODE_ADJACENT);
+                                    currentTile.SetParentTileObstacle(oakTreeData, ZetaUtilities.TILEMAP_OBSTACLE + currentTile.elevation, ZetaUtilities.OCCUPIED_NODE_FULL, ZetaUtilities.OCCUPIED_NODE_ADJACENT);
                                     currentTile.lootAvailable = oakTreeData.maxLoot;
                                     continue;
 
@@ -716,7 +878,7 @@ namespace ZetaGames.RPG {
                                         }
 
                                         // Alter parent tile data
-                                        currentTile.SetParentTileObstacle(oakTreeData, 2, ZetaUtilities.OCCUPIED_NODE_FULL, ZetaUtilities.OCCUPIED_NODE_ADJACENT);
+                                        currentTile.SetParentTileObstacle(oakTreeData, ZetaUtilities.TILEMAP_OBSTACLE + currentTile.elevation, ZetaUtilities.OCCUPIED_NODE_FULL, ZetaUtilities.OCCUPIED_NODE_ADJACENT);
                                         currentTile.lootAvailable = oakTreeData.maxLoot;
                                         continue;
 
@@ -764,8 +926,8 @@ namespace ZetaGames.RPG {
                         if (Random.Range(0, 100f) <= flowerStarterChance) {
                             //Debug.Log("Creating flower!");
                             planted = true;
-                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, 4, flower));
-                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, 5, flowerShadow));
+                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_DECOR + currentTile.elevation, flower, false));
+                            StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_DECOR_SHADOW + currentTile.elevation, flowerShadow, false));
                         }
 
                         // if not planted, check neighbors
@@ -847,8 +1009,8 @@ namespace ZetaGames.RPG {
                                 if (Random.Range(0, 100f) <= flowerAdjacencyChance) {
                                     // if a neighbor tile has same flower type, then plant!
                                     //Debug.Log("Creating flower neighbor!");
-                                    StartCoroutine(SetAtlasedSpriteAsync(currentTile, 4, flower));
-                                    StartCoroutine(SetAtlasedSpriteAsync(currentTile, 5, flowerShadow));
+                                    StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_DECOR + currentTile.elevation, flower, false));
+                                    StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_DECOR_SHADOW + currentTile.elevation, flowerShadow, false));
                                 }
                             }
                         }
@@ -857,7 +1019,7 @@ namespace ZetaGames.RPG {
             }
         }
 
-        public void CreateRandomStoneNodes() {
+        private void CreateRandomStoneNodes() {
             // Cache stone node data
             List<ResourceNode> stoneNodeList = new List<ResourceNode>();
 
@@ -919,8 +1081,8 @@ namespace ZetaGames.RPG {
                                 currentTile.walkable = false;
                                 currentTile.lootAvailable = stoneNodeList[randomIndex].maxLoot;
 
-                                StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, stoneNode));
-                                StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, stoneShadow));
+                                StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_OBSTACLE + currentTile.elevation, stoneNode, false));
+                                StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + currentTile.elevation, stoneShadow, false));
                             } else {
                                 break;
                             }
@@ -1033,8 +1195,8 @@ namespace ZetaGames.RPG {
                                         currentTile.walkable = false;
                                         currentTile.lootAvailable = stoneNodeList[randomIndex].maxLoot;
 
-                                        StartCoroutine(SetAtlasedSpriteAsync(currentTile, 2, stoneNode));
-                                        StartCoroutine(SetAtlasedSpriteAsync(currentTile, 3, stoneShadow));
+                                        StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_OBSTACLE + currentTile.elevation, stoneNode, false));
+                                        StartCoroutine(SetAtlasedSpriteAsync(currentTile, ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + currentTile.elevation, stoneShadow, false));
                                     } else {
                                         break;
                                     }

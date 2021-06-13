@@ -26,7 +26,7 @@ namespace ZetaGames.RPG {
                     resourceMaxSearchRange = 10f; // 10 unit range around current position to look for resources
                     resourceMaxWanderRange = 25f; // range for walking and searching for a resource
                     maxDistanceFromPosition = 100; // a max distance to consider to keep from doing actions too far away (in grid tiles)
-                    startCommunityChance = 1f;
+                    startCommunityChance = 50f;
                     break;
                 default:
                     break;

@@ -8,41 +8,75 @@ namespace ZetaGames.RPG {
         
 
         private bool finished;
-        private AIBrain npcBrain;
+        private AIBrain npc;
         public float wanderRadius;
         public float wanderCycle;
         private float tickTimer;
         Vector3 destination;
+        Vector3 homeDoorPos;
 
         public Wander(AIBrain npcBrain) {
-            this.npcBrain = npcBrain;
+            this.npc = npcBrain;
             wanderRadius = npcBrain.personality.wanderRadius;
             wanderCycle = npcBrain.personality.wanderCycle;
         }
 
         public override void Tick() {
-            tickTimer += npcBrain.deltaTime;
+            tickTimer += npc.deltaTime;
             
             if (tickTimer >= wanderCycle) {
                 tickTimer = 0;
 
-                if (npcBrain.pathMovement.isStopped && Vector3.Distance(npcBrain.transform.position, destination) <= 1f) {
-                    destination = new Vector3(npcBrain.transform.position.x + Random.Range(-wanderRadius, wanderRadius), npcBrain.transform.position.y + Random.Range(-wanderRadius, wanderRadius));
-                   
-                    if ((int)destination.x < MapManager.Instance.mapWidth && (int)destination.y < MapManager.Instance.mapHeight && (int)destination.x >= 0 && (int)destination.y >= 0) {
-                        WorldTile destinationTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(destination);
-                        if (destinationTile != null && destinationTile.walkable) {
-                            npcBrain.pathMovement.destination = destination;
-                            npcBrain.pathMovement.SearchPath();
+                if (npc.pathMovement.isStopped && Vector3.Distance(npc.transform.position, destination) <= 2f) {
+                    if (npc.stats.homePropertyData != null) {
+                        // Go visit other settlements and then walk back home!
+                        if (homeDoorPos == null || homeDoorPos == Vector3.zero) {
+                            homeDoorPos = (Vector3)npc.memory.RetrieveMemory(ZetaUtilities.MEMORY_LOCATION_HOME);
+                            homeDoorPos.x += npc.stats.homePropertyData.doorTile.x;
+                            homeDoorPos.y += npc.stats.homePropertyData.doorTile.y;
+                        }
+                        
+                        if (homeDoorPos != Vector3.zero && Vector3.Distance(npc.transform.position, homeDoorPos) >= 2f) {
+                            // If not at home, go home!
+                            destination = homeDoorPos;
+                            npc.pathMovement.destination = destination;
+                            npc.pathMovement.SearchPath();
 
-                            if (npcBrain.debugLogs) {
-                                Debug.Log("Wander.Tick(): Just wandering, nothing better to do...");
+                            if (npc.debugLogs) {
+                                Debug.Log("Wander.Tick(): Just wandering to home at (" + destination.x + ", " + destination.y + ").");
+                            }
+                        } else if (homeDoorPos != Vector3.zero) {
+                            // If at home, pick a random settlement to visit
+                            int rng = Random.Range(0, CommunityManager.Instance.settlementList.Count);
+                            destination = CommunityManager.Instance.settlementList[rng].bulletinBoardPos;
+                            npc.pathMovement.destination = destination;
+                            npc.pathMovement.SearchPath();
+
+                            if (npc.debugLogs) {
+                                Debug.Log("Wander.Tick(): Just wandering to a random settlment at (" + destination.x + ", " + destination.y + ").");
                             }
                         } else {
-                            destination = npcBrain.transform.position;
+                            Debug.LogError("Wander.Tick(): Home door position is not set.");
                         }
                     } else {
-                        destination = npcBrain.transform.position;
+                        // Wander in a random direction
+                        destination = new Vector3(npc.transform.position.x + Random.Range(-wanderRadius, wanderRadius), npc.transform.position.y + Random.Range(-wanderRadius, wanderRadius));
+
+                        if ((int)destination.x < MapManager.Instance.mapWidth && (int)destination.y < MapManager.Instance.mapHeight && (int)destination.x >= 0 && (int)destination.y >= 0) {
+                            WorldTile destinationTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(destination);
+                            if (destinationTile != null && destinationTile.walkable && destinationTile.tileObstacle == null) {
+                                npc.pathMovement.destination = destination;
+                                npc.pathMovement.SearchPath();
+
+                                if (npc.debugLogs) {
+                                    Debug.Log("Wander.Tick(): Just wandering to (" + destination.x + ", " + destination.y + "), nothing better to do...");
+                                }
+                            } else {
+                                destination = npc.transform.position;
+                            }
+                        } else {
+                            destination = npc.transform.position;
+                        }
                     }
                 } 
             } 
@@ -50,12 +84,13 @@ namespace ZetaGames.RPG {
 
         public override void OnEnter() {
             tickTimer = 0;
-            destination = npcBrain.transform.position;
-            npcBrain.wanderCooldown = 0;
+            destination = npc.transform.position;
+            npc.wanderCooldown = 0;
         }
 
         public override void OnExit() {
-           
+            homeDoorPos = Vector3.zero;
+            destination = Vector3.zero;
         }
     }
 }

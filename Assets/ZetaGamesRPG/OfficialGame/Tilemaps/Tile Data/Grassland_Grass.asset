@@ -42,6 +42,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8cdc02c3b5e3c2a4bb3248397c82d24b, type: 2}
   - {fileID: 11400000, guid: 5c718218e0790b8458ef180fcdc05e68, type: 2}
   - {fileID: 11400000, guid: 91c10ca44b05c734580a011a494e4cd9, type: 2}
+  - {fileID: 11400000, guid: 078160166ee0c0244b9a704420a6ea27, type: 2}
+  - {fileID: 11400000, guid: 52b30d947c2879d4aa3bc0a9454f0b1d, type: 2}
   pathPenalty: 10000
   speedPercent: 100
   walkable: 1

@@ -46,9 +46,9 @@ namespace ZetaGames.RPG {
                     } else {
                         //Debug.Log("HarvestResource.Tick(): Finished harvesting.");
                         RecycleAndSpawnLoot();
+                        finished = true;
                         harvestTarget.lockTag = -1;
                         hasHarvestTarget = false;
-                        finished = true;
                     }
                 } else if (!hasHarvestPos) {
                     //Debug.Log("HarvestResource.Tick(): Going to find a harvest position");
@@ -100,7 +100,7 @@ namespace ZetaGames.RPG {
                         npc.animationController.animMoveY = 1;
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE + harvestTarget.elevation, resourceNode.spriteAnimationList, 0);
                         }
                         break;
                     case 1:
@@ -109,7 +109,7 @@ namespace ZetaGames.RPG {
                         npc.animationController.animMoveY = -1;
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 0);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE + harvestTarget.elevation, resourceNode.spriteAnimationList, 0);
                         }
                         break;
                     case 2:
@@ -118,7 +118,7 @@ namespace ZetaGames.RPG {
                         npc.animationController.animMoveY = -1;
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE + harvestTarget.elevation, resourceNode.spriteAnimationList, 6);
                         }
                         break;
                     case 3:
@@ -127,7 +127,7 @@ namespace ZetaGames.RPG {
                         npc.animationController.animMoveY = 1;
 
                         if (resourceNode.resourceCategory == ResourceCategory.Wood) {
-                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, 2, resourceNode.spriteAnimationList, 6);
+                            MapManager.Instance.PlayMapSpriteAnimation(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE + harvestTarget.elevation, resourceNode.spriteAnimationList, 6);
                         }
                         break;
                     default:
@@ -165,8 +165,8 @@ namespace ZetaGames.RPG {
                 // Spawn depleted node in current tile
                 harvestTarget.occupiedStatus = ZetaUtilities.OCCUPIED_NODE_DEPLETED;
                 harvestTarget.lockTag = -1;
-                MapManager.Instance.SetMapSpriteTile(harvestTarget, 2, resourceNode.spriteDepleted);
-                MapManager.Instance.SetMapSpriteTile(harvestTarget, 3, resourceNode.spriteDepletedShadow);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE + harvestTarget.elevation, resourceNode.spriteDepleted, false);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + harvestTarget.elevation, resourceNode.spriteDepletedShadow, false);
             } else {
                 harvestTarget.lootAvailable -= lootPerDrop;
             }
@@ -194,7 +194,7 @@ namespace ZetaGames.RPG {
                 WorldTile chosenTile = possibleLootPositions[Random.Range(0, possibleLootPositions.Count - 1)];
                 possibleLootPositions.Remove(chosenTile);
 
-                MapManager.Instance.SetMapSpriteTile(chosenTile, 6, resourceNode.resourceItemData.itemDropSprite);
+                MapManager.Instance.SetMapSpriteTile(chosenTile, ZetaUtilities.TILEMAP_ITEM_DROP + chosenTile.elevation, resourceNode.resourceItemData.itemDropSprite, false);
 
                 // Adjust tile data
                 chosenTile.tileObstacle = resourceNode.resourceItemData;
@@ -250,8 +250,8 @@ namespace ZetaGames.RPG {
 
         public override void OnExit() {
             if (!finished) {
-                MapManager.Instance.SetMapSpriteTile(harvestTarget, 2, resourceNode.spriteFull);
-                MapManager.Instance.SetMapSpriteTile(harvestTarget, 3, resourceNode.spriteFullShadow);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE + harvestTarget.elevation, resourceNode.spriteFull, false);
+                MapManager.Instance.SetMapSpriteTile(harvestTarget, ZetaUtilities.TILEMAP_OBSTACLE_SHADOW + harvestTarget.elevation, resourceNode.spriteFullShadow, false);
                 harvestTarget.lockTag = -1;
             }
 

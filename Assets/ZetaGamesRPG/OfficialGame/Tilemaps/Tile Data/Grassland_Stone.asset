@@ -64,5 +64,5 @@ MonoBehaviour:
   pathPenalty: 8000
   speedPercent: 125
   walkable: 1
-  type: Path
+  type: Stone
   animated: 0

@@ -97,7 +97,7 @@ namespace ZetaGames.RPG {
                                 }
 
                                 // Nullify tilemap sprite of item
-                                MapManager.Instance.tileMapList[6].SetTile(itemTarget.GetWorldPositionInt(), null);
+                                MapManager.Instance.tileMapList[ZetaUtilities.TILEMAP_ITEM_DROP + itemTarget.elevation].SetTile(itemTarget.GetWorldPositionInt(), null);
 
                                 // Alter tile data
                                 //itemTarget.ResetTile();

@@ -9,7 +9,7 @@ namespace ZetaGames.RPG {
 
         // Physiological Needs
         public int food;
-        public int rest;
+        public float rest;
         public int clothing;
         public int shelter;
         public int health;
@@ -25,18 +25,14 @@ namespace ZetaGames.RPG {
             this.npc = npc;
         }
 
-        public int CalculateShelterScore() {
-            shelter = 0;
-            // Does NPC have a home?
-            if (npc.stats.homeProperty != null) {
-                // Has home
-                // Is NPC far from home? (300 tiles away should add 60 points)
-                shelter += (int)Mathf.Clamp(Vector3.Distance((Vector3)npc.memory.RetrieveMemory(ZetaUtilities.MEMORY_LOCATION_HOME), npc.transform.position) / 5, 0f, 100f);
-            } else if (npc.stats.homeProperty == null) {
-                // No Home
-                shelter = 100;
+        public float CalculateRestScore() {
+            rest = 100;
+
+            if (true) {
+                rest -= 100 / 288;
             }
-            return shelter;
+
+            return rest;
         }
 
         public int CalculateCommunityScore() {
@@ -56,6 +52,20 @@ namespace ZetaGames.RPG {
             }
 
             return community;
+        }
+
+        public int CalculateShelterScore() {
+            shelter = 0;
+            // Does NPC have a home?
+            if (npc.stats.homePropertyData != null) {
+                // Has home
+                // Is NPC far from home? (300 tiles away should add 60 points)
+                shelter += (int)Mathf.Clamp(Vector3.Distance((Vector3)npc.memory.RetrieveMemory(ZetaUtilities.MEMORY_LOCATION_HOME), npc.transform.position) / 5, 0f, 100f);
+            } else if (npc.stats.homePropertyData == null) {
+                // No Home
+                shelter = 100;
+            }
+            return shelter;
         }
     }
 }

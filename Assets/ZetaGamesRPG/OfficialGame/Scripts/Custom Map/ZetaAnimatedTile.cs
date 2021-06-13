@@ -9,8 +9,8 @@ namespace UnityEngine.Tilemaps {
     /// Animated Tiles are tiles which run through and display a list of sprites in sequence.
     /// </summary>
     [Serializable]
-    [CreateAssetMenu(fileName = "New Animated Tile", menuName = "Tiles/Animated Tile")]
-    public class AnimatedTile : TileBase {
+    [CreateAssetMenu(fileName = "New Zeta Animated Tile", menuName = "Tiles/Zeta Animated Tile")]
+    public class ZetaAnimatedTile : TileBase {
         /// <summary>
         /// The List of Sprites set for the Animated Tile.
         /// This will be played in sequence.
@@ -70,9 +70,9 @@ namespace UnityEngine.Tilemaps {
     }
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(AnimatedTile))]
+    [CustomEditor(typeof(ZetaAnimatedTile))]
     public class AnimatedTileEditor : Editor {
-        private AnimatedTile tile { get { return (target as AnimatedTile); } }
+        private ZetaAnimatedTile tile { get { return (target as ZetaAnimatedTile); } }
 
         public override void OnInspectorGUI() {
             EditorGUI.BeginChangeCheck();

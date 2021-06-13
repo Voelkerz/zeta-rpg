@@ -21,6 +21,7 @@ namespace ZetaGames.RPG {
         [HideInInspector] public int lockTag { get => gameObject.GetInstanceID(); }
 
         // NPC Needs Scores
+        public float restScore;
         public int communityScore;
         public int shelterScore;
 
@@ -88,13 +89,14 @@ namespace ZetaGames.RPG {
         }
 
         protected virtual void evaluateNeeds() {
+            restScore = needs.CalculateRestScore();
             communityScore = needs.CalculateCommunityScore();
             shelterScore = needs.CalculateShelterScore();
 
             // Shelter Need
             if (shelterScore == 100) {
                 // Special score. NPC needs a house.
-                if (!buildGoal.hasBuildGoal && stats.settlement != null && Vector3.Distance(transform.position, stats.settlement.bulletinBoardPos) <= 2f) {
+                if (!buildGoal.hasBuildGoal && stats.settlement != null && communityScore < 100) {
                     //TODO: More logic behind what house the NPC builds (not everyone will start poor)
                     buildGoal.CreateBuildGoal(StructureCategory.Home, StructureType.Small_House, EconomicClass.Poor);
                 }

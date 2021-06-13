@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: RuleTile_Dirt
+  m_Name: RuleTile_DirtPath
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -6650445127668614079, guid: 959ae9c8c6ca3da4c87c2e58ec983431,
+  m_DefaultSprite: {fileID: 2299576351572174591, guid: 943abc7efcab36c4391bc1e52b957ad8,
     type: 3}
   m_DefaultGameObject: {fileID: 0}
-  m_DefaultColliderType: 1
+  m_DefaultColliderType: 0
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: 4298687121466005454, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
-    - {fileID: 6572918773080919179, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
-    - {fileID: 1555164431926012628, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
-    - {fileID: -3248701105257933276, guid: 959ae9c8c6ca3da4c87c2e58ec983431, type: 3}
+    - {fileID: 4329783903997949295, guid: 3288475d53f030447a06e102d50f95b4, type: 3}
+    - {fileID: 4584502101929925528, guid: 3288475d53f030447a06e102d50f95b4, type: 3}
+    - {fileID: 5734395415314567029, guid: 3288475d53f030447a06e102d50f95b4, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

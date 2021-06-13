@@ -4,22 +4,20 @@ using Pathfinding;
 namespace ZetaGames.RPG {
     public class AIMovement : AILerp {
 
-        private static readonly int animShouldMove = Animator.StringToHash("AnimShouldMove");
-        private static readonly int animMoveX = Animator.StringToHash("AnimMoveX");
-        private static readonly int animMoveY = Animator.StringToHash("AnimMoveY");
-        private static readonly int animLastMoveX = Animator.StringToHash("AnimLastMoveX");
-        private static readonly int animLastMoveY = Animator.StringToHash("AnimLastMoveY");
-        //private Animator animator;
         private AnimationController animationController;
         private float baseSpeed = 2;
         private WorldTile currentTile;
-        private Vector3 direction, previousDirection;
+        private WorldTile previousTile;
+        WorldTile neighbor1;
+        WorldTile neighbor2;
+        private Vector3 direction;
+        private Vector3 previousDirection = Vector3.zero;
         public bool useSimplePathing;
+        private float tickTimer;
 
         protected override void Awake() {
             base.Awake();
             animationController = GetComponent<AnimationController>();
-            //animator = GetComponentInChildren<Animator>();
         }
 
         protected override void Start() {
@@ -80,31 +78,47 @@ namespace ZetaGames.RPG {
         protected override void Update() {
             base.Update();
 
-            if (!useSimplePathing) {
-                animationController.isPlaying = true;
+            tickTimer += Time.deltaTime;
 
+            if (tickTimer >= 0.2f) {
+                // No animation if off screen
+                animationController.isPlaying = (!useSimplePathing) ? true : false;
+
+                // If moving, do stuff
                 if (!isStopped && path != null && remainingDistance > 0.1) {
+                    CalculateNextPosition(out direction, Time.deltaTime);
+                    
+                    // Do char animation if on-screen
+                    if (!useSimplePathing) {
+                        animationController.StartPlaying();
+                        animationController.animMoveX = direction.normalized.x;
+                        animationController.animMoveY = direction.normalized.y;
+                    } else {
+                        animationController.StopPlaying();
+                    }
+
+                    // If previous tile is different than current tile
                     currentTile = MapManager.Instance.GetWorldTileGrid().GetGridObject(transform.position);
 
                     if (currentTile != null) {
-                        speed = baseSpeed * (currentTile.speedPercent / 100);
+                        if (previousTile != null && previousTile != currentTile) {
+                            speed = baseSpeed * (currentTile.speedPercent / 100);
+
+                            if (currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_GRASS) || currentTile.terrainType.Equals(ZetaUtilities.TERRAIN_DIRT_PATH)) {
+                                currentTile.AddTrampleAmount(1f);
+                                currentTile.TrampleSpread(1f);
+                            }
+                        }
+
+                        previousTile = currentTile;
                     }
 
-                    CalculateNextPosition(out direction, Time.deltaTime);
-
                     previousDirection = direction;
-                    animationController.animMoveX = direction.normalized.x;
-                    animationController.animMoveY = direction.normalized.y;
-                    //animator.SetFloat(animMoveX, direction.normalized.x);
-                    //animator.SetFloat(animMoveY, direction.normalized.y);
-                    //animator.SetBool(animShouldMove, true);
                 } else if (!isStopped) {
-                    //animator.SetFloat(animLastMoveX, previousDirection.normalized.x);
-                    //animator.SetFloat(animLastMoveY, previousDirection.normalized.y);
-                    //animator.SetBool(animShouldMove, false);
+
                 }
-            } else {
-                animationController.isPlaying = false;
+
+                tickTimer = 0;
             }
         }
 

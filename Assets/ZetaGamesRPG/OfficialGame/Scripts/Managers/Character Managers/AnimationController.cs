@@ -150,6 +150,10 @@ namespace ZetaGames.RPG {
             isPlaying = false;
         }
 
+        public void StartPlaying() {
+            isPlaying = true;
+        }
+
         public void PlayAnimation(AnimationType animationType) {
             //Debug.Log("Playing Animation: " + animationType.ToString());
 

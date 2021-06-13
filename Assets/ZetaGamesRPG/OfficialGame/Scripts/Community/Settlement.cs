@@ -17,6 +17,10 @@ namespace ZetaGames.RPG {
                 southExit = false;
                 westExit = false;
                 eastExit = false;
+                northExitPos = Vector3.zero;
+                southExitPos = Vector3.zero;
+                westExitPos = Vector3.zero;
+                eastExitPos = Vector3.zero;
                 numStructures = 0;
             }
 
@@ -31,14 +35,17 @@ namespace ZetaGames.RPG {
             public bool southExit;
             public bool westExit;
             public bool eastExit;
+            public Vector3 northExitPos;
+            public Vector3 southExitPos;
+            public Vector3 westExitPos;
+            public Vector3 eastExitPos;
             public int numStructures;
         }
 
         public string settlementName;
         public Region originRegion;
         public List<Region> growthRegions;
-        public Dictionary<string, List<Vector3>> settlementEntrances;
-        public Vector3 bulletinBoardPos;
+        public Vector3 bulletinBoardPos = Vector3.zero;
         public Dictionary<string, List<Vector3>> publicBuildings;
         public List<WorldTile> boundaryWallTiles;
         public List<WorldTile> allSettlementTiles;
@@ -52,7 +59,6 @@ namespace ZetaGames.RPG {
             this.settlementName = settlementName;
 
             growthRegions = new List<Region>();
-            settlementEntrances = new Dictionary<string, List<Vector3>>();
             publicBuildings = new Dictionary<string, List<Vector3>>();
             boundaryWallTiles = new List<WorldTile>();
             allSettlementTiles = new List<WorldTile>();

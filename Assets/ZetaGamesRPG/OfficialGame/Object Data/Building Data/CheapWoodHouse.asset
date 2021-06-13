@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc85fc3d17898324da0e2b4bf56ad386, type: 3}
   m_Name: CheapWoodHouse
   m_EditorClassIdentifier: 
+  spriteName: 
+  spriteShadowName: 
+  walkable: 0
+  additionalGridOccupation: []
   prefab: {fileID: 6352592309774312165, guid: b5e2265df5e79b841bafcf68eaf99feb, type: 3}
   quality: 1
   category: 1
@@ -57,6 +61,6 @@ MonoBehaviour:
   - {x: 1, y: 3, z: 0}
   doorTile: {x: 2, y: 0, z: 0}
   material1: 1
-  material1Amount: 5
+  material1Amount: 2
   material2: 6
   material2Amount: 0

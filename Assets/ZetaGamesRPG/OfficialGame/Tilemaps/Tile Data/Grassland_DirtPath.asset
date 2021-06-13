@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f430fc6aba907d4186e8d833a6fee70, type: 3}
+  m_Name: Grassland_DirtPath
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: fdcfe6acbfca25849a8b04df147d64cd, type: 2}
+  - {fileID: 11400000, guid: bf65eed42634c0949871bd2b5f288608, type: 2}
+  - {fileID: 11400000, guid: e8e93a937bc46ab4aa4029fa7cccaf7d, type: 2}
+  - {fileID: 11400000, guid: 7311272dd76324241b45297d735876b9, type: 2}
+  pathPenalty: 2500
+  speedPercent: 150
+  walkable: 1
+  type: Dirt Path
+  animated: 0

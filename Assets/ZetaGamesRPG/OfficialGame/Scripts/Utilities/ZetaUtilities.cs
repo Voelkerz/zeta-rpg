@@ -39,11 +39,24 @@ namespace ZetaGames.RPG {
         public static readonly string OCCUPIED_SETTLEMENT_ROAD_MAIN = "Settlement Main Road";
         public static readonly string OCCUPIED_SETTLEMENT_ROAD_SIDE = "Settlement Side Road";
 
-        // Terrain Constants
+        // Tilemap Index Constants
+        public static readonly int TILEMAP_UNREACHABLE = 0;
+        public static readonly int TILEMAP_BASE = 1;
+        public static readonly int TILEMAP_BASE_OVERLAY = 2;
+        public static readonly int TILEMAP_OBSTACLE = 3;
+        public static readonly int TILEMAP_OBSTACLE_SHADOW = 4;
+        public static readonly int TILEMAP_DECOR = 5;
+        public static readonly int TILEMAP_DECOR_SHADOW = 6;
+        public static readonly int TILEMAP_ITEM_DROP = 7;
+
+        // Terrain Constants (These must match the Tile Data scriptable objects)
         public static readonly string TERRAIN_GRASS = "Grass";
         public static readonly string TERRAIN_WATER = "Water";
         public static readonly string TERRAIN_DIRT = "Dirt";
-        public static readonly string TERRAIN_SETTLEMENT_ROAD = "Dirt Road";
+        public static readonly string TERRAIN_STONE = "Stone";
+        public static readonly string TERRAIN_STAIR = "Stair";
+        public static readonly string TERRAIN_MOUNTAIN = "Mountain";
+        public static readonly string TERRAIN_DIRT_PATH = "Dirt Path";
 
         // NPC Ownership Constants
         public static readonly string OWNED_HOME = "House";
@@ -59,6 +72,7 @@ namespace ZetaGames.RPG {
                 GridGraph gg = AstarPath.active.data.gridGraph;
                 GridNodeBase node = gg.GetNode(tile.x, tile.y);
                 node.Walkable = tile.walkable;
+                node.Penalty = tile.pathPenalty;
                 gg.CalculateConnectionsForCellAndNeighbours(tile.x, tile.y);
             }));
         }
@@ -74,6 +88,7 @@ namespace ZetaGames.RPG {
                 WorldTile tile = tileList[i];
                 GridNodeBase node = gg.GetNode(tile.x, tile.y);
                 node.Walkable = tile.walkable;
+                node.Penalty = tile.pathPenalty;
                 gg.CalculateConnectionsForCellAndNeighbours(tile.x, tile.y);
             }
 

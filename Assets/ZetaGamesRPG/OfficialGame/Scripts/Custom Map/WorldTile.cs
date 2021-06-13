@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ZetaGames.RPG {
     [System.Serializable]
@@ -18,12 +20,12 @@ namespace ZetaGames.RPG {
         public bool walkable;
         public string terrainType;
         public float speedPercent;
-        public int elevation = 0;
-
+       
         // Tilemap Data
         public Dictionary<int, string> tileSprites = new Dictionary<int, string>();
         public string ruleTileName = "none";
-        
+        public int elevation = 0;
+
         // World Grid Data
         public int x;
         public int y;
@@ -36,10 +38,29 @@ namespace ZetaGames.RPG {
         public int regionX;
         public int regionY;
 
+        // Tile Trample Data
+        private float trampledAmount = 0;
+        private float trampleThreshold = 15f;
+        private float regrowAmount = 0.05f;
+        private float trampleSpreadAmount = 0.25f;
+        private bool trampled = false;
+        private float trampleRng;
+
+        // Tile Neighbors
+        WorldTile northTile;
+        WorldTile northWestTile;
+        WorldTile northEastTile;
+        WorldTile southTile;
+        WorldTile southWestTile;
+        WorldTile southEastTile;
+        WorldTile westTile;
+        WorldTile eastTile;
+
         // Constructor
         public WorldTile(int x, int y) {
             this.x = x;
             this.y = y;
+            
         }
 
         public Vector3 GetWorldPosition() {
@@ -52,6 +73,59 @@ namespace ZetaGames.RPG {
 
         public WorldTile GetParentTile() {
             return MapManager.Instance.GetWorldTileGrid().GetGridObject(parentX, parentY);
+        }
+
+        public void SetTileNeighbors() {
+            ZetaGrid<WorldTile> mapGrid = MapManager.Instance.GetWorldTileGrid();
+            northTile = mapGrid.GetGridObject(x, y + 1);
+            northWestTile = mapGrid.GetGridObject(x - 1, y + 1);
+            northEastTile = mapGrid.GetGridObject(x + 1, y + 1);
+            southTile = mapGrid.GetGridObject(x, y - 1);
+            southWestTile = mapGrid.GetGridObject(x - 1, y - 1);
+            southEastTile = mapGrid.GetGridObject(x + 1, y - 1);
+            westTile = mapGrid.GetGridObject(x - 1, y);
+            eastTile = mapGrid.GetGridObject(x + 1, y);
+        }
+
+        public void AddTrampleAmount(float amount) {
+            trampleRng = Random.Range(0.5f, 2f);
+            trampledAmount += amount * trampleRng;
+
+            if (!trampled && trampledAmount >= trampleThreshold) {
+                MapManager.Instance.SetMapRuleTile(this, ZetaUtilities.TILEMAP_BASE_OVERLAY + elevation, "RuleTile_DirtPath", true);
+                trampled = true;
+            }
+
+            if (trampledAmount > trampleThreshold * 2) trampledAmount = trampleThreshold * 2;
+        }
+
+        private void ReduceTrampleAmount(float amount) {
+            trampleRng = Random.Range(0.5f, 2f);
+            trampledAmount -= amount * trampleRng;
+
+            if (trampled && trampledAmount < trampleThreshold) {
+                MapManager.Instance.NullifySpriteTile(this, ZetaUtilities.TILEMAP_BASE_OVERLAY + elevation, true);
+                trampled = false;
+            }
+
+            if (trampledAmount < 0) trampledAmount = 0;
+        }
+
+        public void TrampleRegrow(float modifier) {
+            ReduceTrampleAmount(regrowAmount * modifier);
+        }
+
+        public void TrampleSpread(float modifier) {
+            if (trampled) {
+                if (northTile != null) if (!northTile.trampled) northTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+                if (northWestTile != null) if (!northWestTile.trampled) northWestTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+                if (northEastTile != null) if (!northEastTile.trampled) northEastTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+                if (southTile != null) if (!southTile.trampled) southTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+                if (southWestTile != null) if (!southWestTile.trampled) southWestTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+                if (southEastTile != null) if (!southEastTile.trampled) southEastTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+                if (westTile != null) if (!westTile.trampled) westTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+                if (eastTile != null) if (!eastTile.trampled) eastTile.AddTrampleAmount(trampleSpreadAmount * trampledAmount * modifier);
+            }
         }
 
         public List<WorldTile> SetParentTileObstacle(TilemapObstacle tileObstacle, int tilemapLayer, string parentStatus, string childStatus) {
@@ -101,11 +175,11 @@ namespace ZetaGames.RPG {
                 updatedTiles.Add(this);
 
                 // Set obstacle sprites on parent tile
-                MapManager.Instance.SetMapSpriteTile(this, tilemapLayer + elevation, tileObstacle.spriteName);
-                MapManager.Instance.SetMapSpriteTile(this, tilemapLayer + elevation + 1, tileObstacle.spriteShadowName);
+                MapManager.Instance.SetMapSpriteTile(this, tilemapLayer, tileObstacle.spriteName, false);
+                MapManager.Instance.SetMapSpriteTile(this, tilemapLayer + 1, tileObstacle.spriteShadowName, false);
             } else {
-                MapManager.Instance.tileMapList[tilemapLayer + elevation].SetTile(GetWorldPositionInt(), null);
-                MapManager.Instance.tileMapList[tilemapLayer + elevation + 1].SetTile(GetWorldPositionInt(), null);
+                MapManager.Instance.tileMapList[tilemapLayer].SetTile(GetWorldPositionInt(), null);
+                MapManager.Instance.tileMapList[tilemapLayer + 1].SetTile(GetWorldPositionInt(), null);
             }
 
             // return list of updated tiles
@@ -137,8 +211,8 @@ namespace ZetaGames.RPG {
                 //Debug.Log("Nullifying parent tile at: (" + parentTile.x + ", " + parentTile.y + ")");
 
                 // Nullify obstacle sprites on parent tile
-                MapManager.Instance.tileMapList[tilemapLayer + elevation].SetTile(parentTile.GetWorldPositionInt(), null);
-                MapManager.Instance.tileMapList[tilemapLayer + elevation + 1].SetTile(parentTile.GetWorldPositionInt(), null);
+                MapManager.Instance.tileMapList[tilemapLayer].SetTile(parentTile.GetWorldPositionInt(), null);
+                MapManager.Instance.tileMapList[tilemapLayer + 1].SetTile(parentTile.GetWorldPositionInt(), null);
 
                 // Reset tile
                 parentTile.ResetTile();
