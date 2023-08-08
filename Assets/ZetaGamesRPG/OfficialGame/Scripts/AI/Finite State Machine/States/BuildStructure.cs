@@ -5,14 +5,13 @@ using Pathfinding;
 
 namespace ZetaGames.RPG {
     public class BuildStructure : State {
-        public override int priority => 10;
         public override bool isFinished => finished;
         public override bool isInterruptable { get => npc.inCombat; }
+        public override float actionScore { get => 10; set => actionScore = value; }
 
         private bool finished;
         private readonly AIBrain npc;
         private BaseStructureData buildData;
-        private float buildTimer;
 
         public BuildStructure(AIBrain npc) {
             this.npc = npc;
@@ -30,7 +29,7 @@ namespace ZetaGames.RPG {
         }
 
         public override void OnExit() {
-            buildData = null;
+            if (finished) buildData = null;
 
             if (npc.debugLogs) {
                 Debug.Log("BuildStructure.OnExit(): Exiting build mode.");
@@ -177,6 +176,12 @@ namespace ZetaGames.RPG {
                 }
             }
 
+            if (!MapManager.Instance.GetWorldTileGrid().IsWithinGridBounds((int)npc.buildGoal.buildSiteLocation.x, (int)npc.buildGoal.buildSiteLocation.y) || buildData == null) {
+                npc.buildGoal.ResetBuildGoal();
+                finished = true;
+                return false;
+            }
+
             List<WorldTile> updatedTiles = new List<WorldTile>();
             List<Vector3> buildingTileList = new List<Vector3>();
             buildingTileList.AddRange(buildData.blockedTiles);
@@ -211,6 +216,14 @@ namespace ZetaGames.RPG {
             ZetaUtilities.UpdateMultipleAstarGraphNodes(updatedTiles);
 
             return true;
+        }
+
+        public override float GetUtilityScore() {
+            throw new System.NotImplementedException();
+        }
+
+        public override void AddUtilityScore(float amount) {
+            throw new System.NotImplementedException();
         }
     }
 }

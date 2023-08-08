@@ -43,6 +43,7 @@ namespace ZetaGames.RPG {
         }
 
         public string settlementName;
+        //TODO: originRegion is not set and will cause a NPE
         public Region originRegion;
         public List<Region> growthRegions;
         public Vector3 bulletinBoardPos = Vector3.zero;

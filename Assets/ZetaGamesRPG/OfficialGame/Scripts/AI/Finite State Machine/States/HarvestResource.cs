@@ -10,7 +10,7 @@ namespace ZetaGames.RPG {
     */
 
     public class HarvestResource : State {
-        public override int priority => 10;
+        public override float actionScore { get => 10; set => actionScore = value; }
         public override bool isFinished { get => finished; }
         public override bool isInterruptable { get => true; }
 
@@ -259,6 +259,14 @@ namespace ZetaGames.RPG {
             memoryTag = null;
             harvestTarget = null;
             hasHarvestPos = false;
+        }
+
+        public override float GetUtilityScore() {
+            throw new System.NotImplementedException();
+        }
+
+        public override void AddUtilityScore(float amount) {
+            throw new System.NotImplementedException();
         }
     }
 }

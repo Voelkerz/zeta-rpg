@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class FindResource : State {
-        public override int priority => 5;
+        public override float actionScore { get => 5; set => actionScore = value; }
         public override bool isFinished { get => finished; }
         public override bool isInterruptable { get => npc.inCombat; }
 
@@ -67,10 +67,13 @@ namespace ZetaGames.RPG {
             }
 
             WorldTile closestTile = null;
-            WorldTile[] originRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(npc.stats.settlement.originRegion.x, npc.stats.settlement.originRegion.y);
+            //WorldTile[] homeRegionTiles = MapManager.Instance.GetWorldRegionGrid().GetGridObject(npc.stats.settlement.originRegion.x, npc.stats.settlement.originRegion.y);
+            
             Vector3 currentPos = npc.transform.position;
-            Vector3 homePos = (npc.stats.settlement != null) ? originRegionTiles[Random.Range(0, originRegionTiles.Length)].GetWorldPosition() : npc.buildGoal.buildSiteLocation;
-           
+            //Vector3 homePos = npc.memory.ContainsMemory(ZetaUtilities.MEMORY_LOCATION_HOME) ? (Vector3)npc.memory.RetrieveMemory(ZetaUtilities.MEMORY_LOCATION_HOME) : npc.buildGoal.buildSiteLocation;
+            //Vector3 homePos = (npc.stats.settlement != null) ? originRegionTiles[Random.Range(0, originRegionTiles.Length)].GetWorldPosition() : npc.buildGoal.buildSiteLocation;
+            Vector3 homePos = currentPos;
+
             ZetaGrid<WorldTile> mapGrid = MapManager.Instance.GetWorldTileGrid();
             int mapWidth = MapManager.Instance.mapWidth;
             int mapHeight = MapManager.Instance.mapHeight;
@@ -225,9 +228,7 @@ namespace ZetaGames.RPG {
                     // otherwise, travel to last known location of the resource if there is one remembered and not too far away
                     if (resourceTarget == null) {
                         if (npc.memory.ContainsMemory(lastKnownResourceNodeLocation)) {
-                            if (npc.debugLogs) {
-                                Debug.Log("SearchForResourceDrop.Tick(): memory found");
-                            }
+                            if (npc.debugLogs) Debug.Log("SearchForResourceDrop.Tick(): memory found");
 
                             Vector3 memoryLocation = (Vector3)npc.memory.RetrieveMemory(lastKnownResourceNodeLocation);
 
@@ -242,9 +243,7 @@ namespace ZetaGames.RPG {
                             }
                         } else {
                             // DEBUG - No trees in search range. Walk 30 tiles in a random direction to find some more.
-                            if (npc.debugLogs) {
-                                Debug.Log("SearchForResourceDrop.Tick(): No resources found. Wandering until I find some.");
-                            }
+                            if (npc.debugLogs) Debug.Log("SearchForResourceDrop.Tick(): No resources found. Wandering until I find some.");
 
                             Vector3 destination = new Vector3(npc.transform.position.x + Random.Range(-30f, 30f), npc.transform.position.y + Random.Range(-30f, 30f));
 
@@ -261,6 +260,14 @@ namespace ZetaGames.RPG {
                     }
                 }
             }
+        }
+
+        public override float GetUtilityScore() {
+            throw new System.NotImplementedException();
+        }
+
+        public override void AddUtilityScore(float amount) {
+            throw new System.NotImplementedException();
         }
     }
 }

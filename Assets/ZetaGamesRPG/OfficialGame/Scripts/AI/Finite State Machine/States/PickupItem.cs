@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class PickupItem : State {
-        public override int priority => 15;
+        public override float actionScore { get => 15; set => actionScore = value; }
         public override bool isFinished => finished;
         public override bool isInterruptable => npc.inCombat;
 
@@ -135,6 +135,14 @@ namespace ZetaGames.RPG {
                     }
                 }
             }
+        }
+
+        public override float GetUtilityScore() {
+            throw new System.NotImplementedException();
+        }
+
+        public override void AddUtilityScore(float amount) {
+            throw new System.NotImplementedException();
         }
     }
 }

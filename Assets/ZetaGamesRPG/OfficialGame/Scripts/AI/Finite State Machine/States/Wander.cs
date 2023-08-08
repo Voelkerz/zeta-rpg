@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class Wander : State {
-        public override int priority => 0;
+        public override float actionScore { get => 0; set => actionScore = value; }
         public override bool isFinished => finished;
         public override bool isInterruptable => true; //{ get => npcBrain.inCombat || cycleCount > 1; } // state will not be interrupted until specified full 'wandering' cycles are finished (unless combat is initiated)
         
@@ -12,13 +12,30 @@ namespace ZetaGames.RPG {
         public float wanderRadius;
         public float wanderCycle;
         private float tickTimer;
-        Vector3 destination;
-        Vector3 homeDoorPos;
+        private Vector3 destination;
+        private Vector3 homeDoorPos;
 
-        public Wander(AIBrain npcBrain) {
-            this.npc = npcBrain;
-            wanderRadius = npcBrain.personality.wanderRadius;
-            wanderCycle = npcBrain.personality.wanderCycle;
+        public Wander(AIBrain npc) {
+            this.npc = npc;
+            wanderRadius = npc.personality.wanderRadius;
+            wanderCycle = npc.personality.wanderCycle;
+        }
+
+        public override void OnEnter() {
+            tickTimer = 0;
+            destination = npc.transform.position;
+            npc.wanderCooldown = 0;
+
+            if (npc.stats.homePropertyData != null) {
+                homeDoorPos = (Vector3)npc.memory.RetrieveMemory(ZetaUtilities.MEMORY_LOCATION_HOME);
+                homeDoorPos.x += npc.stats.homePropertyData.doorTile.x;
+                homeDoorPos.y += npc.stats.homePropertyData.doorTile.y;
+            }
+        }
+
+        public override void OnExit() {
+            homeDoorPos = Vector3.zero;
+            destination = Vector3.zero;
         }
 
         public override void Tick() {
@@ -30,11 +47,13 @@ namespace ZetaGames.RPG {
                 if (npc.pathMovement.isStopped && Vector3.Distance(npc.transform.position, destination) <= 2f) {
                     if (npc.stats.homePropertyData != null) {
                         // Go visit other settlements and then walk back home!
+                        /*
                         if (homeDoorPos == null || homeDoorPos == Vector3.zero) {
                             homeDoorPos = (Vector3)npc.memory.RetrieveMemory(ZetaUtilities.MEMORY_LOCATION_HOME);
                             homeDoorPos.x += npc.stats.homePropertyData.doorTile.x;
                             homeDoorPos.y += npc.stats.homePropertyData.doorTile.y;
                         }
+                        */
                         
                         if (homeDoorPos != Vector3.zero && Vector3.Distance(npc.transform.position, homeDoorPos) >= 2f) {
                             // If not at home, go home!
@@ -82,15 +101,12 @@ namespace ZetaGames.RPG {
             } 
         }
 
-        public override void OnEnter() {
-            tickTimer = 0;
-            destination = npc.transform.position;
-            npc.wanderCooldown = 0;
+        public override float GetUtilityScore() {
+            throw new System.NotImplementedException();
         }
 
-        public override void OnExit() {
-            homeDoorPos = Vector3.zero;
-            destination = Vector3.zero;
+        public override void AddUtilityScore(float amount) {
+            throw new System.NotImplementedException();
         }
     }
 }
