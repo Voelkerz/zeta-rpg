@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class FindResource : State {
-        public override float actionScore { get => 5; set => actionScore = value; }
+        public override float actionScore { get; set; } = 5;
         public override bool isFinished { get => finished; }
         public override bool isInterruptable { get => npc.inCombat; }
 
@@ -260,14 +260,6 @@ namespace ZetaGames.RPG {
                     }
                 }
             }
-        }
-
-        public override float GetUtilityScore() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void AddUtilityScore(float amount) {
-            throw new System.NotImplementedException();
         }
     }
 }

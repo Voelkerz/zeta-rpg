@@ -1,8 +1,9 @@
 using UnityEngine;
 
 namespace ZetaGames.RPG {
-    public class Wander : State {
-        public override float actionScore { get => 0; set => actionScore = value; }
+    public class Wander : State
+    {
+        public override float actionScore { get; set; } = 0;
         public override bool isFinished => finished;
         public override bool isInterruptable => true; //{ get => npcBrain.inCombat || cycleCount > 1; } // state will not be interrupted until specified full 'wandering' cycles are finished (unless combat is initiated)
         
@@ -99,14 +100,6 @@ namespace ZetaGames.RPG {
                     }
                 } 
             } 
-        }
-
-        public override float GetUtilityScore() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void AddUtilityScore(float amount) {
-            throw new System.NotImplementedException();
         }
     }
 }

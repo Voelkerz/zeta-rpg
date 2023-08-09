@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class StoreResource : State {
-        public override float actionScore { get => 5; set => actionScore = value; }
+        public override float actionScore { get; set; } = 5;
         public override bool isFinished { get => finished; }
         public override bool isInterruptable { get => true; }
         
@@ -41,14 +41,6 @@ namespace ZetaGames.RPG {
                     finished = true;
                 }
             }
-        }
-
-        public override float GetUtilityScore() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void AddUtilityScore(float amount) {
-            throw new System.NotImplementedException();
         }
     }
 }

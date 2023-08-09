@@ -24,7 +24,7 @@ namespace ZetaGames.RPG {
                     Transition transition = GetTransition();
 
                     if (transition != null) {
-                        if (transition.to.priority > currentState.priority) {
+                        if (transition.to.actionScore > currentState.actionScore) {
                             thinking = true;
                             monoBehaviour.StartCoroutine(ThinkPause(transition));
                         } else if (currentState.isFinished) {
@@ -149,7 +149,7 @@ namespace ZetaGames.RPG {
                     continue;
                 }
 
-                if (transition.to.priority > highestPriorityTransition.to.priority) {
+                if (transition.to.actionScore > highestPriorityTransition.to.actionScore) {
                     highestPriorityTransition = transition;
                 }
             }

@@ -2,10 +2,8 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class JoinCommunity : State {
-        public override int priority => 30;
-
+        public override float actionScore { get; set; } = 30;
         public override bool isFinished { get => finished; }
-
         public override bool isInterruptable { get => npc.inCombat; }
 
         private bool finished;

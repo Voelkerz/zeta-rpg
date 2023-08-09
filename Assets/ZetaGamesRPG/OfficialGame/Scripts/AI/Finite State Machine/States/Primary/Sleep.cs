@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZetaGames.RPG {
     public class Sleep : State {
-        public override float actionScore { get => 50; set => actionScore = value; }
+        public override float actionScore { get; set; } = 50;
         public override bool isFinished => finished;
         public override bool isInterruptable => npc.inCombat;
 
@@ -52,6 +52,7 @@ namespace ZetaGames.RPG {
             finished = false;
         }
 
+        //TODO: Fix issue with TimeManager numTickersPerDay
         public override void Tick() {
             if (!finished) {
                 if (awake) {
@@ -59,20 +60,12 @@ namespace ZetaGames.RPG {
                         if (npc.debugLogs) Debug.Log("Resting now.");
                         awake = false;
                     }
-                } else if (npc.restScore >= 100 && TimeManager.Instance.currentTick > TimeManager.Instance.numTicksPerDay / 4.8) {
+                } //else if (npc.restScore >= 100 && TimeManager.Instance.currentTick > TimeManager.Instance.numTicksPerDay / 4.8) {
                     // 5am in-game time is ticks divided 4.8
-                    if (npc.debugLogs) Debug.Log("Done resting!");
-                    finished = true;
-                }
+                    //if (npc.debugLogs) Debug.Log("Done resting!");
+                    //finished = true;
+               // }
             }
-        }
-
-        public override float GetUtilityScore() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void AddUtilityScore(float amount) {
-            throw new System.NotImplementedException();
         }
     }
 }

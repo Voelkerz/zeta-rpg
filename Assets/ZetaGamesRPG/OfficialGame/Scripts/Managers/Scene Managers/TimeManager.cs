@@ -4,6 +4,7 @@ using UnityEngine;
 namespace ZetaGames.RPG {
     public class TimeManager : MonoBehaviour {
 
+        public static TimeManager Instance;
         private WaitForSeconds timeScale;
         public int currentTick;
 

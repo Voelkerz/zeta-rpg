@@ -5,9 +5,9 @@ using Pathfinding;
 
 namespace ZetaGames.RPG {
     public class BuildStructure : State {
+        public override float actionScore { get; set; } = 10;
         public override bool isFinished => finished;
         public override bool isInterruptable { get => npc.inCombat; }
-        public override float actionScore { get => 10; set => actionScore = value; }
 
         private bool finished;
         private readonly AIBrain npc;
@@ -216,14 +216,6 @@ namespace ZetaGames.RPG {
             ZetaUtilities.UpdateMultipleAstarGraphNodes(updatedTiles);
 
             return true;
-        }
-
-        public override float GetUtilityScore() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void AddUtilityScore(float amount) {
-            throw new System.NotImplementedException();
         }
     }
 }
